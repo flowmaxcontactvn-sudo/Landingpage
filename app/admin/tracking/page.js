@@ -1,9 +1,10 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import Modal from "../_components/Modal";
 import { useActiveLanding } from "../_lib/LandingContext";
+import useAutoRefresh from "../_lib/useAutoRefresh";
 
 const FIELDS = [
   { key: "facebook_pixel", label: "Facebook Pixel ID", placeholder: "Ví dụ: 2834126283617248" },
@@ -37,14 +38,18 @@ export default function TrackingPage() {
   const [saving, setSaving] = useState(false);
   const [formError, setFormError] = useState("");
 
-  const loadItems = useCallback(async () => {
-    setLoading(true);
+  const requestIdRef = useRef(0);
+
+  const loadItems = useCallback(async ({ silent } = {}) => {
+    const requestId = ++requestIdRef.current;
+    if (!silent) setLoading(true);
     const { data, error } = await supabase
       .from("cau_hinh_tracking")
       .select("id, loai_ma, ma, ngay_them")
       .eq("landing", landing)
       .order("ngay_them", { ascending: false });
 
+    if (requestIdRef.current !== requestId) return;
     if (error) {
       setLoadError(error.message);
     } else {
@@ -57,6 +62,8 @@ export default function TrackingPage() {
   useEffect(() => {
     loadItems();
   }, [loadItems]);
+
+  useAutoRefresh(() => loadItems({ silent: true }), 10000);
 
   const handleSave = async (e) => {
     e.preventDefault();

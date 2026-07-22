@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { SourceBadge } from "../_components/Badge";
 import { IconSearch } from "../_components/icons";
 import DateRangeFilter from "../_components/DateRangeFilter";
 import { sourceLabels } from "../_lib/mockData";
 import { useActiveLanding } from "../_lib/LandingContext";
+import useAutoRefresh from "../_lib/useAutoRefresh";
 
 function formatDateTime(iso) {
   if (!iso) return "—";
@@ -30,9 +31,11 @@ export default function LeadsPage() {
   const [deletingId, setDeletingId] = useState(null);
   const { landing } = useActiveLanding();
 
-  useEffect(() => {
-    let active = true;
-    setLoading(true);
+  const requestIdRef = useRef(0);
+
+  const loadLeads = useCallback(({ silent } = {}) => {
+    const requestId = ++requestIdRef.current;
+    if (!silent) setLoading(true);
 
     supabase
       .from("khach_hang")
@@ -40,7 +43,7 @@ export default function LeadsPage() {
       .eq("landing", landing)
       .order("thoi_gian", { ascending: false })
       .then(({ data, error }) => {
-        if (!active) return;
+        if (requestIdRef.current !== requestId) return;
         if (error) {
           setLoadError(error.message);
         } else {
@@ -49,27 +52,13 @@ export default function LeadsPage() {
         }
         setLoading(false);
       });
-
-    return () => {
-      active = false;
-    };
   }, [landing]);
 
-  const loadLeads = () => {
-    supabase
-      .from("khach_hang")
-      .select("id, ho_ten, so_dien_thoai, email, nguon, ghi_chu, thoi_gian, landing, chien_dich(ten_chien_dich, slug)")
-      .eq("landing", landing)
-      .order("thoi_gian", { ascending: false })
-      .then(({ data, error }) => {
-        if (error) {
-          setLoadError(error.message);
-        } else {
-          setLoadError("");
-          setLeads(data || []);
-        }
-      });
-  };
+  useEffect(() => {
+    loadLeads();
+  }, [loadLeads]);
+
+  useAutoRefresh(() => loadLeads({ silent: true }), 10000);
 
   const handleDelete = async (lead) => {
     if (!window.confirm(`Xoá khách hàng "${lead.ho_ten}"? Không thể hoàn tác.`)) return;
@@ -80,7 +69,7 @@ export default function LeadsPage() {
       window.alert("Xoá thất bại: " + error.message);
       return;
     }
-    loadLeads();
+    loadLeads({ silent: true });
   };
 
   const sourceOptions = useMemo(() => {

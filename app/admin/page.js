@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { useActiveLanding } from "./_lib/LandingContext";
+import useAutoRefresh from "./_lib/useAutoRefresh";
 import StatTile from "./_components/StatTile";
 import LineChart from "./_components/LineChart";
 import BarList from "./_components/BarList";
@@ -38,9 +39,11 @@ export default function AdminOverviewPage() {
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState("");
 
-  useEffect(() => {
-    let active = true;
-    setLoading(true);
+  const requestIdRef = useRef(0);
+
+  const loadOverview = useCallback(({ silent } = {}) => {
+    const requestId = ++requestIdRef.current;
+    if (!silent) setLoading(true);
 
     let leadsQuery = supabase
       .from("khach_hang")
@@ -64,7 +67,7 @@ export default function AdminOverviewPage() {
         .select("id, ten_chien_dich, chi_tiet_chien_dich(luot_truy_cap, luot_dang_ky_thanh_cong)")
         .eq("landing", landing),
     ]).then(([leadsRes, recentRes, campaignsRes]) => {
-      if (!active) return;
+      if (requestIdRef.current !== requestId) return;
       const err = leadsRes.error || recentRes.error || campaignsRes.error;
       if (err) {
         setLoadError(err.message);
@@ -77,11 +80,13 @@ export default function AdminOverviewPage() {
       setCampaigns(campaignsRes.data || []);
       setLoading(false);
     });
-
-    return () => {
-      active = false;
-    };
   }, [landing, fromDate, toDate]);
+
+  useEffect(() => {
+    loadOverview();
+  }, [loadOverview]);
+
+  useAutoRefresh(() => loadOverview({ silent: true }), 10000);
 
   const trend = useMemo(() => {
     // Toàn thời gian (không chọn ngày): lấy từ lead cũ nhất tới hôm nay.

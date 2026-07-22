@@ -1,12 +1,13 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import Tabs from "../_components/Tabs";
 import BarList from "../_components/BarList";
 import Modal from "../_components/Modal";
 import { SourceBadge } from "../_components/Badge";
 import { useActiveLanding } from "../_lib/LandingContext";
+import useAutoRefresh from "../_lib/useAutoRefresh";
 import { landingPages, sourceLabels, slugify, formatNumber } from "../_lib/mockData";
 
 const TABS = [
@@ -37,14 +38,18 @@ export default function CampaignsPage() {
 
   const slug = slugify(name || "");
 
-  const loadCampaigns = useCallback(async () => {
-    setLoading(true);
+  const requestIdRef = useRef(0);
+
+  const loadCampaigns = useCallback(async ({ silent } = {}) => {
+    const requestId = ++requestIdRef.current;
+    if (!silent) setLoading(true);
     const { data, error } = await supabase
       .from("chien_dich")
       .select("id, ten_chien_dich, slug, landing, nguon, ngay_tao, chi_tiet_chien_dich(luot_truy_cap, luot_dang_ky_thanh_cong, ty_le_chuyen_doi)")
       .eq("landing", landing)
       .order("ngay_tao", { ascending: false });
 
+    if (requestIdRef.current !== requestId) return;
     if (error) {
       setLoadError(error.message);
     } else {
@@ -57,6 +62,8 @@ export default function CampaignsPage() {
   useEffect(() => {
     loadCampaigns();
   }, [loadCampaigns]);
+
+  useAutoRefresh(() => loadCampaigns({ silent: true }), 10000);
 
   const handleCreate = async (e) => {
     e.preventDefault();

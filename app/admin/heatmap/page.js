@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import StatTile from "../_components/StatTile";
 import BarList from "../_components/BarList";
@@ -8,6 +8,7 @@ import PageHeatmap from "../_components/PageHeatmap";
 import { IconClock, IconMonitor, IconTablet, IconPhone } from "../_components/icons";
 import { sectionLabelsByLanding, formatDuration } from "../_lib/mockData";
 import { useActiveLanding } from "../_lib/LandingContext";
+import useAutoRefresh from "../_lib/useAutoRefresh";
 
 const DEVICES = [
   { key: "desktop", label: "Desktop", icon: IconMonitor },
@@ -25,10 +26,11 @@ export default function HeatmapPage() {
   const [loadError, setLoadError] = useState("");
 
   const sectionLabels = sectionLabelsByLanding[landing] || {};
+  const requestIdRef = useRef(0);
 
-  useEffect(() => {
-    let active = true;
-    setLoading(true);
+  const loadHeatmap = useCallback(({ silent } = {}) => {
+    const requestId = ++requestIdRef.current;
+    if (!silent) setLoading(true);
 
     Promise.all([
       supabase.from("heatmap_section").select("section_key, tong_giay").eq("landing", landing).eq("thiet_bi", device),
@@ -40,7 +42,7 @@ export default function HeatmapPage() {
         .eq("thiet_bi", device)
         .not("thoi_gian_phien_giay", "is", null),
     ]).then(([sectionRes, deviceRes, registeredRes]) => {
-      if (!active) return;
+      if (requestIdRef.current !== requestId) return;
 
       if (sectionRes.error || deviceRes.error || registeredRes.error) {
         setLoadError((sectionRes.error || deviceRes.error || registeredRes.error).message);
@@ -81,11 +83,13 @@ export default function HeatmapPage() {
 
       setLoading(false);
     });
-
-    return () => {
-      active = false;
-    };
   }, [landing, device]);
+
+  useEffect(() => {
+    loadHeatmap();
+  }, [loadHeatmap]);
+
+  useAutoRefresh(() => loadHeatmap({ silent: true }), 10000);
 
   const stats = deviceStats[device] || { moves: 0, clicks: 0, avgSession: "0m 0s" };
   const topSections = [...sections].sort((a, b) => b.score - a.score);
