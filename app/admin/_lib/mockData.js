@@ -83,11 +83,11 @@ export const landingPages = [
   { path: "/landing3", domain: "landing3.com", name: "Landing 3", live: false },
 ];
 
-// Thang màu sequential (1 hue cam, nhạt→đậm) dùng cho so sánh độ lớn
+// Thang màu sequential (từ trắng tới cam đậm nhất) dùng cho so sánh độ lớn
 // (heatmap, xếp hạng...) — khớp màu thương hiệu #e25010.
 export const sequentialRamp = [
-  "#fef3ea", "#fadcc0", "#f7c194", "#f3a366", "#ef853c",
-  "#e2650f", "#b84f0c", "#8c3a09", "#5c2607",
+  "#ffffff", "#fde8d4", "#fbd0a8", "#f7b47a", "#f19650",
+  "#e8752a", "#cc5811", "#a8440c", "#7a3008",
 ];
 
 export function formatNumber(n) {
