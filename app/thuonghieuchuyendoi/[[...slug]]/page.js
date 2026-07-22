@@ -47,6 +47,11 @@ export default function ThuongHieuChuyenDoiPage() {
   const [utmCampaign, setUtmCampaign] = useState(null);
   const [detectedSource, setDetectedSource] = useState("Trực tiếp");
 
+  // Trạng thái kiểm tra slug chiến dịch trên URL — "checking" trong lúc
+  // tra Supabase, "invalid" nếu slug không khớp chiến dịch nào (chặn
+  // không cho vào landing page), "valid" nếu khớp hoặc không có slug.
+  const [campaignStatus, setCampaignStatus] = useState("valid");
+
   // Sticky CTA state
   const [stickyVisible, setStickyVisible] = useState(false);
 
@@ -66,6 +71,10 @@ export default function ThuongHieuChuyenDoiPage() {
       const reservedPaths = ["", "index.html", "login.html", "adphmax.html", "login", "adphmax", "thuonghieuchuyendoi"];
       if (pathSlug && !reservedPaths.includes(pathSlug) && !pathSlug.startsWith("assets/")) {
         camp = decodeURIComponent(pathSlug);
+        setCampaignStatus("checking");
+        supabase.rpc("chien_dich_id_theo_slug", { p_slug: camp }).then(({ data, error }) => {
+          setCampaignStatus(error ? "valid" : data ? "valid" : "invalid");
+        }, () => setCampaignStatus("valid"));
       }
       setUtmCampaign(camp);
 
@@ -664,6 +673,23 @@ export default function ThuongHieuChuyenDoiPage() {
   const btnGoldLg =
     "inline-block " + btnBase +
     " border-[2.5px] border-white bg-[linear-gradient(135deg,#ffe066_0%,#f5c030_100%)] text-[#1a1a1a] shadow-[0_0_25px_rgba(245,166,35,0.8)] text-[19px] px-[100px] py-4 whitespace-nowrap max-[680px]:text-base max-[680px]:px-8 max-[680px]:py-[15px]";
+
+  if (campaignStatus === "checking") {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#f9f9f7]">
+        <div className="w-8 h-8 border-[3px] border-[#e25010] border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
+
+  if (campaignStatus === "invalid") {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-[#f9f9f7] px-6 text-center gap-3">
+        <p className="text-2xl font-bold text-[#0b0b0b]">404 — Không tìm thấy trang</p>
+        <p className="text-[#898781] max-w-sm">Đường dẫn này không tồn tại hoặc chiến dịch đã bị gỡ bỏ.</p>
+      </div>
+    );
+  }
 
   return (
     <div>
