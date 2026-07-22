@@ -27,6 +27,7 @@ export default function LeadsPage() {
   const [source, setSource] = useState("Tất cả nguồn");
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
+  const [deletingId, setDeletingId] = useState(null);
   const { landing } = useActiveLanding();
 
   useEffect(() => {
@@ -53,6 +54,34 @@ export default function LeadsPage() {
       active = false;
     };
   }, [landing]);
+
+  const loadLeads = () => {
+    supabase
+      .from("khach_hang")
+      .select("id, ho_ten, so_dien_thoai, email, nguon, ghi_chu, thoi_gian, landing, chien_dich(ten_chien_dich, slug)")
+      .eq("landing", landing)
+      .order("thoi_gian", { ascending: false })
+      .then(({ data, error }) => {
+        if (error) {
+          setLoadError(error.message);
+        } else {
+          setLoadError("");
+          setLeads(data || []);
+        }
+      });
+  };
+
+  const handleDelete = async (lead) => {
+    if (!window.confirm(`Xoá khách hàng "${lead.ho_ten}"? Không thể hoàn tác.`)) return;
+    setDeletingId(lead.id);
+    const { error } = await supabase.from("khach_hang").delete().eq("id", lead.id);
+    setDeletingId(null);
+    if (error) {
+      window.alert("Xoá thất bại: " + error.message);
+      return;
+    }
+    loadLeads();
+  };
 
   const sourceOptions = useMemo(() => {
     const distinct = [...new Set(leads.map((l) => l.nguon).filter(Boolean))];
@@ -127,12 +156,13 @@ export default function LeadsPage() {
                 <th className="text-left font-semibold text-[#52514e] px-4 py-3">Chiến dịch</th>
                 <th className="text-left font-semibold text-[#52514e] px-4 py-3">Ghi chú</th>
                 <th className="text-left font-semibold text-[#52514e] px-4 py-3">Thời gian</th>
+                <th className="text-right font-semibold text-[#52514e] px-4 py-3">Thao tác</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-black/[0.06]">
               {loading && (
                 <tr>
-                  <td colSpan={6} className="px-4 py-10 text-center text-sm text-[#898781]">
+                  <td colSpan={7} className="px-4 py-10 text-center text-sm text-[#898781]">
                     Đang tải dữ liệu...
                   </td>
                 </tr>
@@ -140,7 +170,7 @@ export default function LeadsPage() {
 
               {!loading && loadError && (
                 <tr>
-                  <td colSpan={6} className="px-4 py-10 text-center text-sm text-[#d03b3b]">
+                  <td colSpan={7} className="px-4 py-10 text-center text-sm text-[#d03b3b]">
                     Không tải được dữ liệu: {loadError}
                   </td>
                 </tr>
@@ -162,12 +192,21 @@ export default function LeadsPage() {
                       {lead.ghi_chu || "—"}
                     </td>
                     <td className="px-4 py-3 text-[#898781] whitespace-nowrap tabular-nums">{formatDateTime(lead.thoi_gian)}</td>
+                    <td className="px-4 py-3 whitespace-nowrap text-right">
+                      <button
+                        onClick={() => handleDelete(lead)}
+                        disabled={deletingId === lead.id}
+                        className="text-xs font-medium text-[#d03b3b] hover:text-[#a12e2e] disabled:opacity-40 disabled:cursor-not-allowed"
+                      >
+                        {deletingId === lead.id ? "Đang xoá..." : "Xoá"}
+                      </button>
+                    </td>
                   </tr>
                 ))}
 
               {!loading && !loadError && filtered.length === 0 && (
                 <tr>
-                  <td colSpan={6} className="px-4 py-10 text-center text-sm text-[#898781]">
+                  <td colSpan={7} className="px-4 py-10 text-center text-sm text-[#898781]">
                     {leads.length === 0 ? "Chưa có khách hàng nào đăng ký." : "Không tìm thấy khách hàng phù hợp."}
                   </td>
                 </tr>
