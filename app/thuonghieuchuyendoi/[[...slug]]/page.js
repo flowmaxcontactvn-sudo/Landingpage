@@ -568,25 +568,28 @@ export default function ThuongHieuChuyenDoiPage() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Tra chien_dich_id từ slug trong URL (nếu có) rồi lưu khách hàng vào Supabase
-    let chienDichId = null;
-    if (utmCampaign) {
-      const { data } = await supabase.rpc("chien_dich_id_theo_slug", { p_slug: utmCampaign });
-      chienDichId = data ?? null;
+    // Gửi qua route handler nội bộ — vừa lưu vào Supabase, vừa đồng bộ
+    // sang phmax.vn để xử lý CRM ở đó (xem app/api/dang-ky/route.js)
+    try {
+      const res = await fetch("/api/dang-ky", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullname: fullname.trim(),
+          phone: phone.trim(),
+          email: email.trim(),
+          nguon: detectedSource,
+          utmCampaign,
+          ghiChu: ghiChu.trim(),
+          thietBi: getDeviceBucket(),
+          thoiGianPhienGiay: Math.round((Date.now() - pageLoadTimeRef.current) / 100) / 10,
+        }),
+      });
+      const json = await res.json();
+      if (!json.ok) console.warn("Lưu khách hàng thất bại:", json.error);
+    } catch (err) {
+      console.warn("Gửi đăng ký thất bại:", err);
     }
-
-    const { error } = await supabase.from("khach_hang").insert({
-      ho_ten: fullname.trim(),
-      so_dien_thoai: phone.trim(),
-      email: email.trim(),
-      nguon: detectedSource,
-      chien_dich_id: chienDichId,
-      ghi_chu: ghiChu.trim() || null,
-      landing: "/thuonghieuchuyendoi",
-      thiet_bi: getDeviceBucket(),
-      thoi_gian_phien_giay: Math.round((Date.now() - pageLoadTimeRef.current) / 100) / 10,
-    });
-    if (error) console.warn("Lưu khách hàng thất bại:", error.message);
 
     // Show success modal immediately to mimic fast UX
     setTimeout(() => {
