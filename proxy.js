@@ -21,7 +21,10 @@ export function proxy(request) {
 
   // Lấy đường dẫn đích ứng với tên miền truy cập
   const targetPath = domainMapping[hostname];
-  if (targetPath) {
+  // Chỉ thêm tiền tố nếu đường dẫn CHƯA có sẵn tiền tố đó — tránh bị nhân đôi
+  // (vd. điều hướng phía client tới /admin/login rồi tải lại trang sẽ có
+  // URL đã là /admin/login, thêm lần nữa sẽ thành /admin/admin/login).
+  if (targetPath && !url.pathname.startsWith(targetPath)) {
     // Điều hướng ngầm (rewrite) không thay đổi URL trên trình duyệt của người dùng
     url.pathname = `${targetPath}${url.pathname}`;
     return NextResponse.rewrite(url);
