@@ -5,8 +5,8 @@ import { supabase } from "@/lib/supabase";
 import StatTile from "../_components/StatTile";
 import BarList from "../_components/BarList";
 import PageHeatmap from "../_components/PageHeatmap";
-import { IconCursorClick, IconClock, IconTrendUp, IconMonitor, IconTablet, IconPhone } from "../_components/icons";
-import { sectionLabelsByLanding, formatNumber, formatDuration } from "../_lib/mockData";
+import { IconClock, IconMonitor, IconTablet, IconPhone } from "../_components/icons";
+import { sectionLabelsByLanding, formatDuration } from "../_lib/mockData";
 import { useActiveLanding } from "../_lib/LandingContext";
 
 const DEVICES = [
@@ -30,7 +30,7 @@ export default function HeatmapPage() {
     setLoading(true);
 
     Promise.all([
-      supabase.from("heatmap_section").select("section_key, tong_giay").eq("landing", landing),
+      supabase.from("heatmap_section").select("section_key, tong_giay").eq("landing", landing).eq("thiet_bi", device),
       supabase.from("heatmap_thiet_bi").select("thiet_bi, luot_di_chuyen, luot_click, trung_binh_giay_phien").eq("landing", landing),
     ]).then(([sectionRes, deviceRes]) => {
       if (!active) return;
@@ -71,7 +71,7 @@ export default function HeatmapPage() {
     return () => {
       active = false;
     };
-  }, [landing]);
+  }, [landing, device]);
 
   const stats = deviceStats[device] || { moves: 0, clicks: 0, avgSession: "0m 0s" };
   const topSections = [...sections].sort((a, b) => b.score - a.score);
@@ -108,9 +108,7 @@ export default function HeatmapPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <StatTile label="Lượt di chuyển/chạm" value={formatNumber(stats.moves)} icon={IconTrendUp} accent="#2a78d6" />
-        <StatTile label="Lượt click" value={formatNumber(stats.clicks)} icon={IconCursorClick} accent="#eb6834" />
+      <div className="max-w-xs">
         <StatTile label="Thời gian trung bình/phiên" value={stats.avgSession} icon={IconClock} accent="#1baf7a" />
       </div>
 

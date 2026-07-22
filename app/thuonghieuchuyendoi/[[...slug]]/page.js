@@ -268,6 +268,14 @@ export default function ThuongHieuChuyenDoiPage() {
     const sections = document.querySelectorAll("[data-section]");
     if (!sections.length) return;
 
+    const getBucket = () => {
+      const w = window.innerWidth;
+      if (w <= 680) return "mobile";
+      if (w <= 860) return "tablet";
+      return "desktop";
+    };
+    const bucket = getBucket();
+
     const accumulated = {};
     const flushed = {};
     const visibleSince = {};
@@ -334,7 +342,7 @@ export default function ThuongHieuChuyenDoiPage() {
             apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
             Authorization: "Bearer " + process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
           },
-          body: JSON.stringify({ p_landing: LANDING, p_section_key: section, p_giay: seconds }),
+          body: JSON.stringify({ p_landing: LANDING, p_section_key: section, p_thiet_bi: bucket, p_giay: seconds }),
           keepalive: !!useKeepalive,
         }).catch(() => {});
       });
