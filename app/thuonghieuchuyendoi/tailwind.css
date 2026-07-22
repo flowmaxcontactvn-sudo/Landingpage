@@ -1,0 +1,52 @@
+/* Localized Tailwind v4 configuration: theme & utilities only, skipping preflight so we can hand-roll the base reset below */
+@import "tailwindcss/theme";
+@import "tailwindcss/utilities";
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 19px;
+    color: #333333;
+    line-height: 1.78;
+    background: #fff;
+    overflow-x: hidden;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  @media (max-width: 680px) {
+    body {
+      font-size: 15.5px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    body {
+      font-size: 15px;
+    }
+  }
+}
