@@ -20,6 +20,7 @@ export default function HeatmapPage() {
   const [device, setDevice] = useState("mobile");
   const [sections, setSections] = useState([]);
   const [deviceStats, setDeviceStats] = useState({});
+  const [registeredAvgSession, setRegisteredAvgSession] = useState("0m 0s");
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState("");
 
@@ -32,11 +33,17 @@ export default function HeatmapPage() {
     Promise.all([
       supabase.from("heatmap_section").select("section_key, tong_giay").eq("landing", landing).eq("thiet_bi", device),
       supabase.from("heatmap_thiet_bi").select("thiet_bi, luot_di_chuyen, luot_click, trung_binh_giay_phien").eq("landing", landing),
-    ]).then(([sectionRes, deviceRes]) => {
+      supabase
+        .from("khach_hang")
+        .select("thoi_gian_phien_giay")
+        .eq("landing", landing)
+        .eq("thiet_bi", device)
+        .not("thoi_gian_phien_giay", "is", null),
+    ]).then(([sectionRes, deviceRes, registeredRes]) => {
       if (!active) return;
 
-      if (sectionRes.error || deviceRes.error) {
-        setLoadError((sectionRes.error || deviceRes.error).message);
+      if (sectionRes.error || deviceRes.error || registeredRes.error) {
+        setLoadError((sectionRes.error || deviceRes.error || registeredRes.error).message);
         setLoading(false);
         return;
       }
@@ -65,6 +72,13 @@ export default function HeatmapPage() {
         };
       });
       setDeviceStats(stats);
+
+      const registeredRows = registeredRes.data || [];
+      const registeredAvg = registeredRows.length
+        ? registeredRows.reduce((sum, row) => sum + Number(row.thoi_gian_phien_giay || 0), 0) / registeredRows.length
+        : 0;
+      setRegisteredAvgSession(formatDuration(registeredAvg));
+
       setLoading(false);
     });
 
@@ -108,8 +122,9 @@ export default function HeatmapPage() {
         </div>
       </div>
 
-      <div className="max-w-xs">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl">
         <StatTile label="Thời gian trung bình/phiên" value={stats.avgSession} icon={IconClock} accent="#1baf7a" />
+        <StatTile label="TB/phiên (đã đăng ký)" value={registeredAvgSession} icon={IconClock} accent="#e25010" />
       </div>
 
       {Object.keys(sectionLabels).length === 0 ? (

@@ -4,7 +4,18 @@ import React, { useState, useEffect, useRef } from "react";
 import QRCode from "qrcode";
 import { supabase } from "@/lib/supabase";
 
+function getDeviceBucket() {
+  const w = window.innerWidth;
+  if (w <= 680) return "mobile";
+  if (w <= 860) return "tablet";
+  return "desktop";
+}
+
 export default function ThuongHieuChuyenDoiPage() {
+  // Mốc thời gian trang tải xong — dùng để tính thời gian phiên của
+  // người đăng ký thành công (Date.now() lúc gửi form - mốc này).
+  const pageLoadTimeRef = useRef(Date.now());
+
   // Countdown state (6 mins 49 seconds original duration)
   const [remaining, setRemaining] = useState(6 * 60 + 49);
 
@@ -268,13 +279,7 @@ export default function ThuongHieuChuyenDoiPage() {
     const sections = document.querySelectorAll("[data-section]");
     if (!sections.length) return;
 
-    const getBucket = () => {
-      const w = window.innerWidth;
-      if (w <= 680) return "mobile";
-      if (w <= 860) return "tablet";
-      return "desktop";
-    };
-    const bucket = getBucket();
+    const bucket = getDeviceBucket();
 
     const accumulated = {};
     const flushed = {};
@@ -417,14 +422,7 @@ export default function ThuongHieuChuyenDoiPage() {
     const SAMPLE_THROTTLE_MS = 130;
     const TOUCH_GHOST_WINDOW_MS = 700;
 
-    const getBucket = () => {
-      const w = window.innerWidth;
-      if (w <= 680) return "mobile";
-      if (w <= 860) return "tablet";
-      return "desktop";
-    };
-
-    const bucket = getBucket();
+    const bucket = getDeviceBucket();
     const sessionStart = Date.now();
 
     let moveCount = 0;
@@ -576,6 +574,8 @@ export default function ThuongHieuChuyenDoiPage() {
       chien_dich_id: chienDichId,
       ghi_chu: ghiChu.trim() || null,
       landing: "/thuonghieuchuyendoi",
+      thiet_bi: getDeviceBucket(),
+      thoi_gian_phien_giay: Math.round((Date.now() - pageLoadTimeRef.current) / 100) / 10,
     });
     if (error) console.warn("Lưu khách hàng thất bại:", error.message);
 
