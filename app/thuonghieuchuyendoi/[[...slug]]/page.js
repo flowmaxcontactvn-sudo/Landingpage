@@ -359,11 +359,26 @@ export default function ThuongHieuChuyenDoiPage() {
       if (document.visibilityState === "hidden") {
         Object.keys(visibleSince).forEach((key) => stopCounting(key));
         sendPayload(buildPayload(), true);
-      } else {
+      } else if (document.hasFocus()) {
         Object.keys(isCurrentlyIntersecting).forEach((key) => {
           if (isCurrentlyIntersecting[key]) startCounting(key);
         });
       }
+    };
+
+    // document.visibilityState chỉ đổi khi chuyển TAB — nếu người dùng chuyển
+    // sang cửa sổ ứng dụng khác (tab vẫn "visible") thì phải dựa vào blur/focus
+    // của window mới dừng đếm đúng lúc, tránh cộng dồn thời gian ảo.
+    const handleWindowBlur = () => {
+      Object.keys(visibleSince).forEach((key) => stopCounting(key));
+      sendPayload(buildPayload(), true);
+    };
+
+    const handleWindowFocus = () => {
+      if (document.visibilityState !== "visible") return;
+      Object.keys(isCurrentlyIntersecting).forEach((key) => {
+        if (isCurrentlyIntersecting[key]) startCounting(key);
+      });
     };
 
     const handlePageHide = () => {
@@ -372,11 +387,15 @@ export default function ThuongHieuChuyenDoiPage() {
     };
 
     document.addEventListener("visibilitychange", handleVisibilityChange);
+    window.addEventListener("blur", handleWindowBlur);
+    window.addEventListener("focus", handleWindowFocus);
     window.addEventListener("pagehide", handlePageHide);
 
     return () => {
       clearInterval(interval);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("blur", handleWindowBlur);
+      window.removeEventListener("focus", handleWindowFocus);
       window.removeEventListener("pagehide", handlePageHide);
       sections.forEach((el) => observer.unobserve(el));
     };
