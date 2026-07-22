@@ -21,7 +21,7 @@ export default function HeatmapPage() {
   const [device, setDevice] = useState("mobile");
   const [sections, setSections] = useState([]);
   const [deviceStats, setDeviceStats] = useState({});
-  const [registeredAvgSession, setRegisteredAvgSession] = useState("0m 0s");
+  const [registeredAvgSessionSeconds, setRegisteredAvgSessionSeconds] = useState(0);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState("");
 
@@ -70,7 +70,7 @@ export default function HeatmapPage() {
         stats[row.thiet_bi] = {
           moves: row.luot_di_chuyen,
           clicks: row.luot_click,
-          avgSession: formatDuration(row.trung_binh_giay_phien),
+          avgSessionSeconds: Number(row.trung_binh_giay_phien) || 0,
         };
       });
       setDeviceStats(stats);
@@ -79,7 +79,7 @@ export default function HeatmapPage() {
       const registeredAvg = registeredRows.length
         ? registeredRows.reduce((sum, row) => sum + Number(row.thoi_gian_phien_giay || 0), 0) / registeredRows.length
         : 0;
-      setRegisteredAvgSession(formatDuration(registeredAvg));
+      setRegisteredAvgSessionSeconds(registeredAvg);
 
       setLoading(false);
     });
@@ -91,7 +91,7 @@ export default function HeatmapPage() {
 
   useAutoRefresh(() => loadHeatmap({ silent: true }), 10000);
 
-  const stats = deviceStats[device] || { moves: 0, clicks: 0, avgSession: "0m 0s" };
+  const stats = deviceStats[device] || { moves: 0, clicks: 0, avgSessionSeconds: 0 };
   const topSections = [...sections].sort((a, b) => b.score - a.score);
 
   if (loading) {
@@ -127,8 +127,8 @@ export default function HeatmapPage() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl">
-        <StatTile label="Thời gian trung bình/phiên" value={stats.avgSession} icon={IconClock} accent="#1baf7a" />
-        <StatTile label="TB/phiên (đã đăng ký)" value={registeredAvgSession} icon={IconClock} accent="#e25010" />
+        <StatTile label="Thời gian trung bình/phiên" value={stats.avgSessionSeconds} formatValue={formatDuration} icon={IconClock} accent="#1baf7a" />
+        <StatTile label="TB/phiên (đã đăng ký)" value={registeredAvgSessionSeconds} formatValue={formatDuration} icon={IconClock} accent="#e25010" />
       </div>
 
       {Object.keys(sectionLabels).length === 0 ? (

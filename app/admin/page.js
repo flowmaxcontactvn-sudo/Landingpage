@@ -122,7 +122,7 @@ export default function AdminOverviewPage() {
 
   const totalVisits = campaigns.reduce((sum, c) => sum + (c.chi_tiet_chien_dich?.luot_truy_cap || 0), 0);
   const totalRegistered = campaigns.reduce((sum, c) => sum + (c.chi_tiet_chien_dich?.luot_dang_ky_thanh_cong || 0), 0);
-  const conversion = totalVisits > 0 ? ((totalRegistered / totalVisits) * 100).toFixed(1) : "0.0";
+  const conversion = totalVisits > 0 ? (totalRegistered / totalVisits) * 100 : 0;
 
   const topCampaigns = [...campaigns]
     .sort((a, b) => (b.chi_tiet_chien_dich?.luot_truy_cap || 0) - (a.chi_tiet_chien_dich?.luot_truy_cap || 0))
@@ -164,9 +164,9 @@ export default function AdminOverviewPage() {
       ) : (
         <>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            <StatTile label="Khách đăng ký (trong khoảng)" value={formatNumber(leads.length)} icon={IconUsers} accent="#eb6834" />
-            <StatTile label="Tổng lượt truy cập (từ trước đến nay)" value={formatNumber(totalVisits)} icon={IconTrendUp} accent="#2a78d6" />
-            <StatTile label="Tỷ lệ chuyển đổi (tất cả chiến dịch)" value={`${conversion}%`} icon={IconPercent} accent="#1baf7a" />
+            <StatTile label="Khách đăng ký (trong khoảng)" value={leads.length} formatValue={formatNumber} icon={IconUsers} accent="#eb6834" />
+            <StatTile label="Tổng lượt truy cập (từ trước đến nay)" value={totalVisits} formatValue={formatNumber} icon={IconTrendUp} accent="#2a78d6" />
+            <StatTile label="Tỷ lệ chuyển đổi (tất cả chiến dịch)" value={conversion} formatValue={(n) => `${n.toFixed(1)}%`} icon={IconPercent} accent="#1baf7a" />
             <StatTile label="Số chiến dịch" value={campaigns.length} icon={IconMegaphone} accent="#4a3aa7" />
           </div>
 
