@@ -30,8 +30,8 @@ function ActiveLandingBadge() {
   const { landing } = useActiveLanding();
   const info = landingPages.find((l) => l.path === landing);
   return (
-    <span className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-[#fdf0ea] text-[#e25010] text-xs font-semibold px-3 py-1.5 border border-[#f5d0bb]">
-      <span className="w-1.5 h-1.5 rounded-full bg-[#e25010]" />
+    <span className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-orange-50 text-[#e25010] text-xs font-semibold px-3.5 py-1.5 border border-orange-200/80 shadow-2xs">
+      <span className="w-2 h-2 rounded-full bg-gradient-to-r from-orange-500 to-red-500 animate-pulse" />
       {info?.name ?? landing}
     </span>
   );
@@ -43,16 +43,14 @@ export default function AdminShell({ children }) {
   const title = PAGE_TITLES[pathname] || "Quản trị";
   const isLoginPage = pathname === "/admin/login";
 
-  // undefined = đang kiểm tra, null = chưa đăng nhập, object = đã đăng nhập
   const [session, setSession] = useState(undefined);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => setSession(data.session));
     const { data: sub } = supabase.auth.onAuthStateChange((_event, sess) => setSession(sess));
 
-    // Trình duyệt có thể tạm dừng bộ đếm tự làm mới token khi tab không active
-    // lâu — mỗi lần quay lại tab, chủ động kiểm tra/làm mới phiên ngay.
     const handleVisibility = () => {
       if (document.visibilityState === "visible") {
         supabase.auth.getSession().then(({ data }) => setSession(data.session));
@@ -78,8 +76,9 @@ export default function AdminShell({ children }) {
 
   if (session === undefined) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#f9f9f7] text-sm text-[#898781]">
-        Đang kiểm tra đăng nhập...
+      <div className="min-h-screen flex items-center justify-center bg-[#f9f9f7] text-sm text-[#898781] gap-2.5 font-sans">
+        <div className="w-5 h-5 border-2 border-[#e25010] border-t-transparent rounded-full animate-spin" />
+        <span>Đang kiểm tra đăng nhập...</span>
       </div>
     );
   }
@@ -97,19 +96,43 @@ export default function AdminShell({ children }) {
 
   return (
     <LandingProvider>
-      <div className="min-h-screen bg-[#f9f9f7] flex">
-        <aside className="w-64 shrink-0 border-r border-black/10 bg-white flex flex-col max-lg:hidden">
-          <div className="h-16 flex items-center gap-2.5 px-6 border-b border-black/10">
-            <div className="w-8 h-8 rounded-lg bg-[linear-gradient(135deg,#e25010,#d0212a)] flex items-center justify-center text-white font-bold text-sm">
-              F
+      <div className="min-h-screen bg-[#f9f9f7] flex font-sans selection:bg-orange-500 selection:text-white">
+        {/* Mobile Navigation Backdrop */}
+        {mobileNavOpen && (
+          <div
+            onClick={() => setMobileNavOpen(false)}
+            className="fixed inset-0 bg-black/50 backdrop-blur-xs z-40 lg:hidden"
+          />
+        )}
+
+        {/* Sidebar */}
+        <aside
+          className={
+            "w-64 shrink-0 border-r border-black/10 bg-white flex flex-col z-50 transition-transform duration-300 max-lg:fixed max-lg:inset-y-0 max-lg:left-0 " +
+            (mobileNavOpen ? "translate-x-0 shadow-2xl" : "max-lg:-translate-x-full")
+          }
+        >
+          {/* Logo Header with Official Logo */}
+          <div className="h-16 flex items-center justify-between px-5 border-b border-black/10">
+            <div className="flex items-center gap-3">
+              <div className="h-9 w-auto flex items-center justify-center py-1">
+                <img src="/logo.png" alt="Flowmax Logo" className="h-full w-auto object-contain filter drop-shadow-xs" />
+              </div>
+              <div>
+                <p className="text-sm font-black text-[#0b0b0b] leading-tight">Flowmax</p>
+                <p className="text-[11px] text-[#898781] leading-tight font-medium">Admin</p>
+              </div>
             </div>
-            <div>
-              <p className="text-sm font-bold text-[#0b0b0b] leading-tight">Flowmax</p>
-              <p className="text-[11px] text-[#898781] leading-tight">Admin</p>
-            </div>
+            <button
+              onClick={() => setMobileNavOpen(false)}
+              className="lg:hidden text-[#898781] hover:text-[#0b0b0b] p-1"
+            >
+              ✕
+            </button>
           </div>
 
-          <nav className="flex-1 px-3 py-4 space-y-1">
+          {/* Navigation Links with Warm Login-Matching Palette */}
+          <nav className="flex-1 px-3 py-4 space-y-1.5 overflow-y-auto">
             {NAV_ITEMS.map((item) => {
               const active = item.exact ? pathname === item.href : pathname.startsWith(item.href);
               const Icon = item.icon;
@@ -117,58 +140,83 @@ export default function AdminShell({ children }) {
                 <Link
                   key={item.href}
                   href={item.href}
+                  onClick={() => setMobileNavOpen(false)}
                   className={
-                    "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors " +
+                    "relative flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-medium transition-all duration-200 group " +
                     (active
-                      ? "bg-[#fdf0ea] text-[#e25010]"
-                      : "text-[#52514e] hover:bg-black/[0.04] hover:text-[#0b0b0b]")
+                      ? "bg-gradient-to-r from-orange-500/10 to-red-500/5 text-[#e25010] font-bold border border-orange-500/20 shadow-2xs"
+                      : "text-[#52514e] hover:bg-orange-50/60 hover:text-[#e25010] border border-transparent")
                   }
                 >
-                  <Icon className={active ? "text-[#e25010]" : "text-[#898781]"} />
-                  {item.label}
+                  {active && (
+                    <span className="absolute left-0 top-2 bottom-2 w-1 rounded-r-full bg-gradient-to-b from-[#e25010] to-[#d0212a]" />
+                  )}
+                  <Icon className={active ? "text-[#e25010]" : "text-[#898781] group-hover:text-[#e25010] transition-colors"} />
+                  <span>{item.label}</span>
                 </Link>
               );
             })}
           </nav>
 
-          <div className="px-4 py-4 border-t border-black/10">
+          {/* Sidebar Footer */}
+          <div className="p-4 border-t border-black/10">
             <button
               onClick={handleSignOut}
-              className="w-full text-left rounded-lg px-3 py-2.5 text-sm font-medium text-[#52514e] hover:bg-black/[0.04] hover:text-[#0b0b0b] transition-colors"
+              className="w-full flex items-center justify-center gap-2 rounded-xl border border-black/10 bg-black/[0.02] hover:bg-rose-50 hover:border-rose-200 hover:text-rose-600 px-3.5 py-2.5 text-xs font-semibold text-[#52514e] transition-all duration-200 cursor-pointer"
             >
-              Đăng xuất
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+              </svg>
+              <span>Đăng xuất</span>
             </button>
           </div>
         </aside>
 
+        {/* Main Header & Body */}
         <div className="flex-1 min-w-0 flex flex-col">
           <header className="h-16 border-b border-black/10 bg-white flex items-center justify-between px-4 lg:px-8">
             <div className="flex items-center gap-3">
-              <h1 className="text-base font-bold text-[#0b0b0b]">{title}</h1>
+              <button
+                onClick={() => setMobileNavOpen(true)}
+                className="lg:hidden text-[#52514e] hover:text-[#0b0b0b] p-2 rounded-lg bg-black/[0.04]"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+              </button>
+
+              <h1 className="text-base font-bold text-[#0b0b0b] tracking-tight">{title}</h1>
               <ActiveLandingBadge />
             </div>
+
             <div className="relative flex items-center gap-3">
               <button
                 onClick={() => setMenuOpen((v) => !v)}
-                className="w-9 h-9 rounded-full bg-[#f0efec] flex items-center justify-center text-sm font-semibold text-[#52514e]"
+                className="w-9 h-9 rounded-full bg-gradient-to-tr from-orange-500 to-amber-500 flex items-center justify-center text-xs font-bold text-white shadow-xs hover:opacity-90 transition-opacity cursor-pointer"
               >
                 {initials}
               </button>
+
               {menuOpen && (
-                <div className="absolute right-0 top-11 w-56 rounded-lg border border-black/10 bg-white shadow-lg py-1.5 z-20">
-                  <p className="px-3 py-1.5 text-xs text-[#898781] truncate border-b border-black/[0.06] mb-1">{session.user.email}</p>
+                <div className="absolute right-0 top-11 w-56 rounded-2xl border border-black/10 bg-white shadow-xl py-1.5 z-50">
+                  <p className="px-4 py-2 text-xs font-semibold text-[#898781] truncate border-b border-black/[0.06] mb-1">
+                    {session.user.email}
+                  </p>
                   <button
                     onClick={handleSignOut}
-                    className="w-full text-left px-3 py-2 text-sm text-[#0b0b0b] hover:bg-black/[0.04]"
+                    className="w-full text-left px-4 py-2 text-xs font-semibold text-rose-600 hover:bg-rose-50 flex items-center gap-2 transition-colors cursor-pointer"
                   >
-                    Đăng xuất
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+                    </svg>
+                    <span>Đăng xuất hệ thống</span>
                   </button>
                 </div>
               )}
             </div>
           </header>
 
-          <main className="flex-1 px-4 py-6 lg:px-8 lg:py-8">
+          <main className="flex-1 px-4 py-6 lg:px-8 lg:py-8 overflow-y-auto">
             <div className="max-w-[1600px] mx-auto">{children}</div>
           </main>
         </div>
