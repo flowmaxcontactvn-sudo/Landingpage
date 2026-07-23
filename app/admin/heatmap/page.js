@@ -5,7 +5,7 @@ import { supabase } from "@/lib/supabase";
 import StatTile from "../_components/StatTile";
 import BarList from "../_components/BarList";
 import PageHeatmap from "../_components/PageHeatmap";
-import { IconClock, IconMonitor, IconTablet, IconPhone } from "../_components/icons";
+import { IconClock, IconMonitor, IconTablet, IconPhone, IconPercent } from "../_components/icons";
 import { sectionLabelsByLanding, formatDuration } from "../_lib/mockData";
 import { useActiveLanding } from "../_lib/LandingContext";
 import useAutoRefresh from "../_lib/useAutoRefresh";
@@ -34,7 +34,7 @@ export default function HeatmapPage() {
 
     Promise.all([
       supabase.from("heatmap_section").select("section_key, tong_giay").eq("landing", landing).eq("thiet_bi", device),
-      supabase.from("heatmap_thiet_bi").select("thiet_bi, luot_di_chuyen, luot_click, trung_binh_giay_phien").eq("landing", landing),
+      supabase.from("heatmap_thiet_bi").select("thiet_bi, luot_di_chuyen, luot_click, trung_binh_giay_phien, so_phien, so_phien_thoat").eq("landing", landing),
       supabase
         .from("khach_hang")
         .select("thoi_gian_phien_giay")
@@ -67,10 +67,16 @@ export default function HeatmapPage() {
 
       const stats = {};
       (deviceRes.data || []).forEach((row) => {
+        const total = Number(row.so_phien) || 0;
+        const bounced = Number(row.so_phien_thoat) || 0;
+        const bounceRate = total > 0 ? (bounced / total) * 100 : 0;
         stats[row.thiet_bi] = {
           moves: row.luot_di_chuyen,
           clicks: row.luot_click,
           avgSessionSeconds: Number(row.trung_binh_giay_phien) || 0,
+          soPhien: total,
+          soPhienThoat: bounced,
+          bounceRate,
         };
       });
       setDeviceStats(stats);
@@ -91,7 +97,7 @@ export default function HeatmapPage() {
 
   useAutoRefresh(() => loadHeatmap({ silent: true }), 10000);
 
-  const stats = deviceStats[device] || { moves: 0, clicks: 0, avgSessionSeconds: 0 };
+  const stats = deviceStats[device] || { moves: 0, clicks: 0, avgSessionSeconds: 0, bounceRate: 0 };
   const topSections = [...sections].sort((a, b) => b.score - a.score);
 
   if (loading) {
@@ -126,9 +132,10 @@ export default function HeatmapPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl">
         <StatTile label="Thời gian trung bình/phiên" value={stats.avgSessionSeconds} formatValue={formatDuration} icon={IconClock} accent="#1baf7a" />
         <StatTile label="TB/phiên (đã đăng ký)" value={registeredAvgSessionSeconds} formatValue={formatDuration} icon={IconClock} accent="#e25010" />
+        <StatTile label="Tỷ lệ thoát trang" value={stats.bounceRate} formatValue={(n) => `${n.toFixed(1)}%`} icon={IconPercent} accent="#d03b3b" />
       </div>
 
       {Object.keys(sectionLabels).length === 0 ? (

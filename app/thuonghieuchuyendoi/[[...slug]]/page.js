@@ -494,6 +494,7 @@ export default function ThuongHieuChuyenDoiPage() {
       const seconds = (Date.now() - sessionStart) / 1000;
       if (seconds < 1) return;
       sessionSent = true;
+      const isBounce = seconds < 10 || (moveCount === 0 && clickCount === 0);
       fetch(process.env.NEXT_PUBLIC_SUPABASE_URL + "/rest/v1/rpc/ghi_nhan_phien", {
         method: "POST",
         headers: {
@@ -501,7 +502,12 @@ export default function ThuongHieuChuyenDoiPage() {
           apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
           Authorization: "Bearer " + process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
         },
-        body: JSON.stringify({ p_landing: LANDING, p_thiet_bi: bucket, p_giay: Math.round(seconds * 10) / 10 }),
+        body: JSON.stringify({
+          p_landing: LANDING,
+          p_thiet_bi: bucket,
+          p_giay: Math.round(seconds * 10) / 10,
+          p_is_bounce: isBounce,
+        }),
         keepalive: !!useKeepalive,
       }).catch(() => {});
     };
@@ -568,25 +574,28 @@ export default function ThuongHieuChuyenDoiPage() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Tra chien_dich_id từ slug trong URL (nếu có) rồi lưu khách hàng vào Supabase
-    let chienDichId = null;
-    if (utmCampaign) {
-      const { data } = await supabase.rpc("chien_dich_id_theo_slug", { p_slug: utmCampaign });
-      chienDichId = data ?? null;
+    // Gửi qua route handler nội bộ — vừa lưu vào Supabase, vừa đồng bộ
+    // sang phmax.vn để xử lý CRM ở đó (xem app/api/dang-ky/route.js)
+    try {
+      const res = await fetch("/api/dang-ky", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullname: fullname.trim(),
+          phone: phone.trim(),
+          email: email.trim(),
+          nguon: detectedSource,
+          utmCampaign,
+          ghiChu: ghiChu.trim(),
+          thietBi: getDeviceBucket(),
+          thoiGianPhienGiay: Math.round((Date.now() - pageLoadTimeRef.current) / 100) / 10,
+        }),
+      });
+      const json = await res.json();
+      if (!json.ok) console.warn("Lưu khách hàng thất bại:", json.error);
+    } catch (err) {
+      console.warn("Gửi đăng ký thất bại:", err);
     }
-
-    const { error } = await supabase.from("khach_hang").insert({
-      ho_ten: fullname.trim(),
-      so_dien_thoai: phone.trim(),
-      email: email.trim(),
-      nguon: detectedSource,
-      chien_dich_id: chienDichId,
-      ghi_chu: ghiChu.trim() || null,
-      landing: "/thuonghieuchuyendoi",
-      thiet_bi: getDeviceBucket(),
-      thoi_gian_phien_giay: Math.round((Date.now() - pageLoadTimeRef.current) / 100) / 10,
-    });
-    if (error) console.warn("Lưu khách hàng thất bại:", error.message);
 
     // Show success modal immediately to mimic fast UX
     setTimeout(() => {
@@ -663,7 +672,7 @@ export default function ThuongHieuChuyenDoiPage() {
   const oppMid =
     "max-w-[720px] mx-auto mb-4 text-[19px] leading-[1.85] text-[#333] text-center max-[680px]:text-[15px] max-[680px]:my-3.5";
   const oppClosing =
-    "max-w-[720px] mx-auto text-center text-xl font-semibold text-[#e25010] italic max-[680px]:text-[15px] max-[680px]:mt-3 max-[680px]:mb-0";
+    "max-w-[720px] mx-auto text-center text-xl font-semibold text-[#e25010] italic max-[680px]:text-[14.5px] max-[680px]:leading-[1.6] max-[680px]:mt-4 max-[680px]:mb-4 max-[680px]:px-4";
   const oppListNoicon =
     "flex flex-col gap-[18px] max-w-[560px] mx-auto mb-[22px] bg-[#fff8f0] border-l-4 border-[#e25010] rounded-md px-6 py-[18px] max-[680px]:gap-1.5 max-[680px]:px-3.5 max-[680px]:py-2.5 max-[680px]:mb-2.5 max-[480px]:px-[18px] max-[480px]:py-3.5";
   const oppListNoiconLi =
@@ -823,10 +832,10 @@ export default function ThuongHieuChuyenDoiPage() {
       {/* ══════════════════════════════════════════
            SECTION 5 — ĐIỂM KHÁC BIỆT (20/80)
       ══════════════════════════════════════════ */}
-      <section className="bg-white text-center pt-0 pb-9 -mt-[30px] max-[680px]:py-5" data-section="theory-practice">
+      <section className="bg-white text-center pt-2 pb-9 max-[680px]:py-4" data-section="theory-practice">
         <div className={container}>
-          <div className="max-w-[600px] mx-auto mb-4 max-[680px]:mb-3 max-[680px]:px-4">
-            <img src="/thuonghieuchuyendoi/images/biểu đồ 2.8.png" alt="20% học lý thuyết - 80% thực hành kèm cặp" className="w-full h-auto block" />
+          <div className="max-w-[600px] mx-auto mb-4 max-[680px]:mb-3 max-[680px]:px-4 max-[680px]:max-w-[340px]">
+            <img src="/thuonghieuchuyendoi/images/biểu đồ 2.8.png" alt="20% học lý thuyết - 80% thực hành kèm cặp" className="w-full h-auto block mx-auto" />
           </div>
           <p className="max-w-[680px] mx-auto text-[19px] leading-[1.85] text-[#444] text-center max-[680px]:text-[15px]">
             Bạn sẽ học lý thuyết nền tảng qua E-Learning để hiểu đúng cách <span className="whitespace-nowrap">làm nội dung chuyển đổi.</span> Nhưng quan trọng nhất là thực hành: làm bài tập, đăng video thật và nhận góp ý từ <span className="whitespace-nowrap">mentor mỗi ngày.</span><br />
@@ -1276,10 +1285,14 @@ export default function ThuongHieuChuyenDoiPage() {
 
       {/* Sticky bottom CTA bar */}
       <div
-        className={`fixed bottom-0 left-0 w-full min-[768px]:hidden ${stickyVisible ? "flex" : "hidden"} justify-center items-center z-[1000] bg-white/55 backdrop-blur-[16px] border-t border-white/40 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] px-4 py-3 max-[680px]:bottom-4 max-[680px]:w-fit max-[680px]:mx-auto`}
+        className={`fixed bottom-0 inset-x-0 w-full min-[768px]:hidden ${stickyVisible ? "flex" : "hidden"} justify-center items-center z-[1000] bg-white/95 backdrop-blur-md border-t border-black/10 shadow-[0_-4px_20px_rgba(0,0,0,0.15)] px-4 py-2.5`}
         id="stickyCta"
       >
-        <a href="#register" onClick={(e) => handleAnchorClick(e, "register")} className="block bg-[linear-gradient(135deg,#f5c842_0%,#f5a623_100%)] text-[#1a1a1a] font-bold w-full py-3 rounded-md text-[17px] shadow-[0_4px_10px_rgba(245,166,35,0.4)] text-center uppercase max-[680px]:w-fit max-[680px]:px-11 max-[680px]:text-[15px] max-[680px]:whitespace-nowrap">
+        <a
+          href="#register"
+          onClick={(e) => handleAnchorClick(e, "register")}
+          className="block w-full max-w-[420px] bg-[linear-gradient(135deg,#f5c842_0%,#f5a623_100%)] text-[#1a1a1a] font-extrabold py-3.5 rounded-full text-base shadow-[0_4px_15px_rgba(245,166,35,0.4)] text-center uppercase tracking-wide cursor-pointer active:scale-95 transition-transform"
+        >
           ĐĂNG KÝ NGAY!
         </a>
       </div>
