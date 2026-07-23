@@ -43,27 +43,33 @@ export default function AdminLoginPage() {
     <div className="relative min-h-screen bg-[#07080d] text-white flex items-center justify-center px-4 py-12 overflow-hidden selection:bg-orange-500 selection:text-white font-sans">
       {/* Interactive Mouse Spotlight Glow Overlay */}
       <div
-        className="pointer-events-none fixed inset-0 z-10 transition-opacity duration-300 opacity-60"
+        className="pointer-events-none fixed inset-0 z-10 transition-opacity duration-300 opacity-90"
         style={{
-          background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(249, 115, 22, 0.12), transparent 40%)`,
+          background: `radial-gradient(700px circle at ${mousePos.x}px ${mousePos.y}px, rgba(249, 115, 22, 0.22), transparent 45%)`,
         }}
       />
 
-      {/* Dynamic Ambient Glowing Background Blobs (Pure Tailwind Utilities) */}
+      {/* Dynamic Ambient Glowing Background Blobs */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-orange-600/35 via-red-600/25 to-purple-700/35 blur-[140px] animate-pulse" />
-        <div className="absolute bottom-10 left-10 w-[450px] h-[450px] rounded-full bg-blue-600/20 blur-[130px] animate-pulse" />
-        <div className="absolute top-10 right-10 w-[400px] h-[400px] rounded-full bg-rose-600/25 blur-[120px] animate-pulse" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-gradient-to-tr from-orange-600/50 via-red-600/35 to-purple-700/45 blur-[150px] animate-pulse" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[650px] h-[650px] rounded-full bg-blue-600/35 blur-[140px] animate-pulse" />
+        <div className="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] rounded-full bg-rose-600/40 blur-[130px] animate-pulse" />
+        <div className="absolute bottom-[10%] right-[25%] w-[450px] h-[450px] rounded-full bg-amber-500/20 blur-[120px] animate-pulse" />
 
         {/* Floating Particles background simulation */}
-        <div className="absolute inset-0 opacity-40">
-          <div className="absolute top-1/6 left-1/5 w-2 h-2 rounded-full bg-orange-400 blur-[1px] animate-ping" />
-          <div className="absolute top-2/3 right-1/4 w-1.5 h-1.5 rounded-full bg-amber-300 blur-[1px] animate-ping" />
-          <div className="absolute bottom-1/4 left-1/3 w-2 h-2 rounded-full bg-red-400 blur-[1px] animate-ping" />
+        <div className="absolute inset-0 opacity-60">
+          <div className="absolute top-12 left-[15%] w-2 h-2 rounded-full bg-orange-500 blur-[1px] animate-pulse" />
+          <div className="absolute top-1/4 right-[20%] w-3 h-3 rounded-full bg-amber-400 blur-[2px] animate-ping" style={{ animationDuration: "3s" }} />
+          <div className="absolute top-1/3 left-[40%] w-1.5 h-1.5 rounded-full bg-red-400 blur-[1px] animate-pulse" />
+          <div className="absolute bottom-[35%] left-[10%] w-2.5 h-2.5 rounded-full bg-orange-400 blur-[1.5px] animate-ping" style={{ animationDuration: "4s" }} />
+          <div className="absolute bottom-[20%] right-[30%] w-2 h-2 rounded-full bg-amber-300 blur-[1px] animate-pulse" />
+          <div className="absolute bottom-[10%] left-[45%] w-3 h-3 rounded-full bg-rose-500 blur-[2px] animate-ping" style={{ animationDuration: "5s" }} />
+          <div className="absolute top-[45%] right-[10%] w-1.5 h-1.5 rounded-full bg-purple-400 blur-[1px] animate-pulse" />
+          <div className="absolute top-[10%] right-[45%] w-2 h-2 rounded-full bg-blue-400 blur-[1px] animate-pulse" />
         </div>
 
         {/* Fine Cyberpunk Grid Overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:3.5rem_3.5rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff09_1px,transparent_1px),linear-gradient(to_bottom,#ffffff09_1px,transparent_1px)] bg-[size:3.5rem_3.5rem] [mask-image:radial-gradient(ellipse_65%_55%_at_50%_50%,#000_75%,transparent_100%)]" />
       </div>
 
       <div className="relative w-full max-w-md z-20">
