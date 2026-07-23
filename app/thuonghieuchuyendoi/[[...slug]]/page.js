@@ -1346,20 +1346,20 @@ export default function ThuongHieuChuyenDoiPage() {
 
       {/* Dialog thông báo đăng ký thành công */}
       {successModalOpen && (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-[8px] flex items-center justify-center p-5 z-[2000]" role="dialog" aria-modal="true" aria-labelledby="successModalTitle">
-          <div className="bg-white rounded-2xl pt-7 px-6 pb-6 max-w-[380px] w-full max-h-[90vh] overflow-y-auto text-center relative shadow-[0_20px_60px_rgba(0,0,0,0.3)] max-[480px]:pt-[22px] max-[480px]:px-4 max-[480px]:pb-[18px]">
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center p-5 z-[2000] animate-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="successModalTitle">
+          <div className="bg-white rounded-2xl pt-7 px-6 pb-6 max-w-[380px] w-full max-h-[90vh] overflow-y-auto text-center relative shadow-[0_20px_60px_rgba(0,0,0,0.3)] max-[480px]:pt-[22px] max-[480px]:px-4 max-[480px]:pb-[18px] animate-modal-content">
             <button
               type="button"
-              className="absolute top-[14px] right-[14px] w-8 h-8 border-0 bg-[#f2f2f2] text-[#555] rounded-full text-base cursor-pointer flex items-center justify-center"
+              className="absolute top-[14px] right-[14px] w-8 h-8 border-0 bg-[#f2f2f2] text-[#555] rounded-full text-base cursor-pointer flex items-center justify-center transition-colors hover:bg-red-500 hover:text-white"
               onClick={() => setSuccessModalOpen(false)}
               aria-label="Đóng"
             >
               ✕
             </button>
             <div className="mb-3 flex justify-center">
-              <svg className="w-14 h-14 rounded-full block [stroke-width:3] stroke-white mx-auto shadow-[inset_0_0_0_30px_#1b8a3e]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+              <svg className="w-14 h-14 rounded-full block [stroke-width:3] stroke-white mx-auto animate-circle-fill" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
                 <circle className="stroke-[#1b8a3e] fill-none [stroke-width:3]" cx="26" cy="26" r="25" fill="none" style={{ strokeDasharray: 166, strokeDashoffset: 0 }} />
-                <path className="fill-none stroke-[#1b8a3e] [stroke-width:3]" d="M14.1 27.2l7.1 7.2 16.7-16.8" style={{ strokeDasharray: 48, strokeDashoffset: 0 }} />
+                <path className="fill-none stroke-white [stroke-width:3] animate-checkmark-draw" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
               </svg>
             </div>
             <h3 className="text-[22px] font-extrabold text-[#1b8a3e] mb-1.5 max-[480px]:text-[19px]" id="successModalTitle">Đăng ký thành công!</h3>
