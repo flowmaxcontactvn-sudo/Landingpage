@@ -71,12 +71,22 @@ export default function LineChart({ data, valueKey, xKey = "date", color = "#2a7
             );
           })}
 
-          <path d={areaPath} fill={color} opacity="0.1" />
-          <path d={path} fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <path className="animate-fade-area" d={areaPath} fill={color} opacity="0.1" />
+          <path className="animate-draw-line" d={path} fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
 
           {points.map((p, i) =>
             i === points.length - 1 ? (
-              <circle key={i} cx={p.x} cy={p.y} r="4" fill={color} stroke="#fff" strokeWidth="2" />
+              <circle
+                key={i}
+                cx={p.x}
+                cy={p.y}
+                r="4"
+                fill={color}
+                stroke="#fff"
+                strokeWidth="2"
+                style={{ transformOrigin: `${p.x}px ${p.y}px` }}
+                className="animate-pop-circle"
+              />
             ) : null
           )}
 
