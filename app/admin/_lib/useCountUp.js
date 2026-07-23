@@ -5,10 +5,9 @@ import { useEffect, useRef, useState } from "react";
 // Chạy số từ giá trị cũ lên giá trị mới trong `duration`ms — để số liệu
 // "tự nhảy" mỗi khi auto-refresh có dữ liệu mới thay vì đổi đột ngột.
 // Lần đầu hiện luôn giá trị thật, không chạy từ 0 lên.
-export default function useCountUp(target, duration = 700) {
-  const [display, setDisplay] = useState(target);
-  const fromRef = useRef(target);
-  const firstRef = useRef(true);
+export default function useCountUp(target, duration = 800) {
+  const [display, setDisplay] = useState(0);
+  const fromRef = useRef(0);
 
   useEffect(() => {
     if (typeof target !== "number" || Number.isNaN(target)) {
@@ -16,22 +15,18 @@ export default function useCountUp(target, duration = 700) {
       return;
     }
 
-    if (firstRef.current) {
-      firstRef.current = false;
-      fromRef.current = target;
+    const from = fromRef.current;
+    if (from === target) {
       setDisplay(target);
       return;
     }
-
-    const from = fromRef.current;
-    if (from === target) return;
 
     const start = performance.now();
     let rafId;
 
     const tick = (now) => {
       const progress = Math.min(1, (now - start) / duration);
-      const eased = 1 - Math.pow(1 - progress, 3);
+      const eased = 1 - Math.pow(1 - progress, 3); // Ease out cubic
       setDisplay(from + (target - from) * eased);
       if (progress < 1) {
         rafId = requestAnimationFrame(tick);
