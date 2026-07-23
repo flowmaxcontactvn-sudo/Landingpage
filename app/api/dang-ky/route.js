@@ -1,5 +1,19 @@
 import { NextResponse, after } from "next/server";
+import { createClient } from "@supabase/supabase-js";
 import { supabase } from "@/lib/supabase";
+
+// Client quyền nâng — chỉ dùng ở server, KHÔNG lộ ra browser. Cần dùng cái
+// này thay vì client anon (dùng chung với landing page) vì RLS chỉ cho anon
+// INSERT vào khach_hang chứ không cho SELECT lại — insert().select() bằng
+// anon key sẽ báo lỗi RLS dù chính sách insert vẫn đúng. Dùng service role
+// để insert xong lấy lại được id, phục vụ đồng bộ external_id sang phmax.vn.
+function adminSupabase() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.SUPABASE_SERVICE_ROLE_KEY,
+    { auth: { autoRefreshToken: false, persistSession: false } }
+  );
+}
 
 export async function POST(req) {
   const body = await req.json();
@@ -15,7 +29,7 @@ export async function POST(req) {
     chienDichId = data ?? null;
   }
 
-  const { data: inserted, error } = await supabase
+  const { data: inserted, error } = await adminSupabase()
     .from("khach_hang")
     .insert({
       ho_ten: fullname.trim(),
