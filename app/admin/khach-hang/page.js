@@ -64,11 +64,23 @@ export default function LeadsPage() {
     if (!window.confirm(`Xoá khách hàng "${lead.ho_ten}"? Không thể hoàn tác.`)) return;
     setDeletingId(lead.id);
     const { error } = await supabase.from("khach_hang").delete().eq("id", lead.id);
-    setDeletingId(null);
     if (error) {
+      setDeletingId(null);
       window.alert("Xoá thất bại: " + error.message);
       return;
     }
+
+    // Đồng bộ xoá sang phmax.vn (best-effort, không chặn UX nếu lỗi)
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session?.access_token) {
+      fetch("/api/dong-bo-xoa", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${session.access_token}` },
+        body: JSON.stringify({ id: lead.id }),
+      }).catch((err) => console.warn("[PHMAX_SYNC_DELETE_ERROR]", err));
+    }
+
+    setDeletingId(null);
     loadLeads({ silent: true });
   };
 

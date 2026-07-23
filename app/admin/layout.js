@@ -1,4 +1,3 @@
-import "../globals.css";
 import AdminShell from "./_components/AdminShell";
 
 // Toàn bộ trang admin cần phiên đăng nhập + dữ liệu Supabase real-time —

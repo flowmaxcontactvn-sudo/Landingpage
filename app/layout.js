@@ -1,3 +1,5 @@
+import "./globals.css";
+
 export const metadata = {
   title: "Flowmax Landing Pages",
   description: "Hệ thống quản trị Landing Page hợp nhất",
