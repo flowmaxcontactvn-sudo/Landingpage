@@ -57,57 +57,83 @@ export default function ThuongHieuChuyenDoiPage() {
   // Sticky CTA state
   const [stickyVisible, setStickyVisible] = useState(false);
 
-  // Multi-layered DevTools & Source Protection
+  // Ultimate Multi-layered DevTools & Source Protection
   useEffect(() => {
-    // 1. Chặn menu chuột phải (chặn mục Kiểm tra / Inspect)
-    const handleContextMenu = (e) => e.preventDefault();
-    document.addEventListener("contextmenu", handleContextMenu);
+    if (typeof window === "undefined") return;
 
-    // 2. Chặn các phím tắt DevTools (F12, Ctrl+Shift+I/C/J, Ctrl+U)
+    // 1. Chặn chuột phải ở tầng Capture (Bắt trước tất cả)
+    const handleContextMenu = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    };
+    window.addEventListener("contextmenu", handleContextMenu, true);
+
+    // 2. Chặn các phím tắt DevTools ở tầng Capture (F12, Cmd+Opt+I/C/J, Ctrl+Shift+I/C/J, Ctrl+U)
     const handleKeyDown = (e) => {
-      if (
-        e.key === "F12" ||
-        (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "C" || e.key === "J")) ||
-        (e.ctrlKey && e.key === "U")
-      ) {
+      const isMacCmdOpt = e.metaKey && e.altKey && (e.key === "i" || e.key === "j" || e.key === "c" || e.key === "I" || e.key === "J" || e.key === "C");
+      const isWinCtrlShift = e.ctrlKey && e.shiftKey && (e.key === "i" || e.key === "j" || e.key === "c" || e.key === "I" || e.key === "J" || e.key === "C");
+      const isViewSource = e.ctrlKey && (e.key === "u" || e.key === "U");
+      const isF12 = e.key === "F12" || e.key === "f12" || e.keyCode === 123;
+
+      if (isF12 || isMacCmdOpt || isWinCtrlShift || isViewSource) {
         e.preventDefault();
+        e.stopPropagation();
         return false;
       }
     };
-    document.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown, true);
 
-    // 3. Giám sát thay đổi kích thước cửa sổ để phát hiện mở ghim DevTools
-    const checkDevTools = () => {
+    // Màn hình khóa bảo mật hiển thị khi phát hiện DevTools
+    const lockSystemScreen = () => {
+      document.body.innerHTML = 
+        "<div style='display:flex;align-items:center;justify-content:center;height:100vh;background-color:#07080d;color:#fafafa;font-family:sans-serif;text-align:center;padding:20px;z-index:999999;position:fixed;inset:0;'>" +
+        "<div style='margin:auto;'>" +
+        "<h1 style='font-size:24px;color:#ff5500;margin-bottom:10px;'>Cảnh báo bảo mật!</h1>" +
+        "<p style='font-size:14px;color:#a1a1aa;'>Phát hiện hành vi can thiệp hệ thống. Vui lòng đóng cửa sổ kiểm tra để tiếp tục truy cập.</p>" +
+        "</div>" +
+        "</div>";
+    };
+
+    // 3. Giám sát kích thước cửa sổ để phát hiện ghim DevTools (Docked)
+    const checkDevToolsSize = () => {
       const threshold = 160;
       const widthDiff = window.outerWidth - window.innerWidth;
       const heightDiff = window.outerHeight - window.innerHeight;
-      
       if (widthDiff > threshold || heightDiff > threshold) {
-        document.body.innerHTML = 
-          "<div style='display:flex;align-items:center;justify-content:center;height:100vh;background-color:#07080d;color:#fafafa;font-family:sans-serif;text-align:center;padding:20px;'>" +
-          "<div style='margin:auto;'>" +
-          "<h1 style='font-size:24px;color:#ff5500;margin-bottom:10px;'>Cảnh báo bảo mật!</h1>" +
-          "<p style='font-size:14px;color:#a1a1aa;'>Phát hiện hành vi can thiệp hệ thống. Vui lòng đóng cửa sổ kiểm tra để tiếp tục truy cập.</p>" +
-          "</div>" +
-          "</div>";
+        lockSystemScreen();
       }
     };
-    window.addEventListener("resize", checkDevTools);
-    checkDevTools(); // Kiểm tra ngay khi tải
+    window.addEventListener("resize", checkDevToolsSize);
+    checkDevToolsSize();
 
-    // 4. Bẫy đóng băng DevTools bằng vòng lặp Debugger siêu tốc
+    // 4. Phát hiện DevTools cửa sổ rời (Undocked) bằng thuộc tính Getter của Console
+    const consoleDetectorElement = new Image();
+    Object.defineProperty(consoleDetectorElement, "id", {
+      get: function () {
+        lockSystemScreen();
+      },
+    });
+
+    const devToolsConsoleInterval = setInterval(() => {
+      console.log(consoleDetectorElement);
+      console.clear();
+    }, 450);
+
+    // 5. Bẫy debugger vô hạn
     let debuggerInterval;
     const startDebuggerTrap = () => {
       debuggerInterval = setInterval(() => {
         (function() {}.constructor("debugger")());
-      }, 100);
+      }, 150);
     };
-    const timer = setTimeout(startDebuggerTrap, 1000);
+    const timer = setTimeout(startDebuggerTrap, 800);
 
     return () => {
-      document.removeEventListener("contextmenu", handleContextMenu);
-      document.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("resize", checkDevTools);
+      window.removeEventListener("contextmenu", handleContextMenu, true);
+      window.removeEventListener("keydown", handleKeyDown, true);
+      window.removeEventListener("resize", checkDevToolsSize);
+      clearInterval(devToolsConsoleInterval);
       clearInterval(debuggerInterval);
       clearTimeout(timer);
     };
