@@ -27,6 +27,9 @@ export async function POST(req) {
       headers: { "Content-Type": "application/json", "x-landing-secret": process.env.LANDING_SYNC_SECRET },
       body: JSON.stringify({ external_id: id }),
     });
+    if (!res.ok) {
+      console.error("[PHMAX_DELETE_SYNC_ERROR]", res.status, await res.text());
+    }
   } catch (err) {
     console.error("[PHMAX_DELETE_SYNC_ERROR]", err);
   }
