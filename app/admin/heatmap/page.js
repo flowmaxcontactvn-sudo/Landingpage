@@ -5,6 +5,7 @@ import { supabase } from "@/lib/supabase";
 import StatTile from "../_components/StatTile";
 import BarList from "../_components/BarList";
 import PageHeatmap from "../_components/PageHeatmap";
+import DateRangeFilter from "../_components/DateRangeFilter";
 import { IconClock, IconMonitor, IconTablet, IconPhone, IconPercent } from "../_components/icons";
 import { sectionLabelsByLanding, formatDuration } from "../_lib/mockData";
 import { useActiveLanding } from "../_lib/LandingContext";
@@ -16,8 +17,20 @@ const DEVICES = [
   { key: "mobile", label: "Mobile", icon: IconPhone },
 ];
 
+function toDateStr(d) {
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+
+function defaultFrom() {
+  const d = new Date();
+  d.setDate(d.getDate() - 13);
+  return toDateStr(d);
+}
+
 export default function HeatmapPage() {
   const { landing } = useActiveLanding();
+  const [fromDate, setFromDate] = useState(defaultFrom());
+  const [toDate, setToDate] = useState(toDateStr(new Date()));
   const [device, setDevice] = useState("mobile");
   const [sections, setSections] = useState([]);
   const [deviceStats, setDeviceStats] = useState({});
@@ -32,16 +45,27 @@ export default function HeatmapPage() {
     const requestId = ++requestIdRef.current;
     if (!silent) setLoading(true);
 
-    Promise.all([
-      supabase.from("heatmap_section").select("section_key, tong_giay").eq("landing", landing).eq("thiet_bi", device),
-      supabase.from("heatmap_thiet_bi").select("thiet_bi, luot_di_chuyen, luot_click, trung_binh_giay_phien, so_phien, so_phien_thoat, so_phien_cuon_25, so_phien_cuon_50, so_phien_cuon_75, so_phien_cuon_100, so_phien_bo_form").eq("landing", landing),
-      supabase
-        .from("khach_hang")
-        .select("thoi_gian_phien_giay")
-        .eq("landing", landing)
-        .eq("thiet_bi", device)
-        .not("thoi_gian_phien_giay", "is", null),
-    ]).then(([sectionRes, deviceRes, registeredRes]) => {
+    let secQuery = supabase.from("heatmap_section").select("section_key, tong_giay").eq("landing", landing).eq("thiet_bi", device);
+    let devQuery = supabase.from("heatmap_thiet_bi").select("thiet_bi, luot_di_chuyen, luot_click, tong_giay_phien, so_phien, so_phien_thoat, so_phien_cuon_25, so_phien_cuon_50, so_phien_cuon_75, so_phien_cuon_100, so_phien_bo_form").eq("landing", landing);
+    let regQuery = supabase
+      .from("khach_hang")
+      .select("thoi_gian_phien_giay")
+      .eq("landing", landing)
+      .eq("thiet_bi", device)
+      .not("thoi_gian_phien_giay", "is", null);
+
+    if (fromDate) {
+      secQuery = secQuery.gte("ngay", fromDate);
+      devQuery = devQuery.gte("ngay", fromDate);
+      regQuery = regQuery.gte("thoi_gian", `${fromDate}T00:00:00`);
+    }
+    if (toDate) {
+      secQuery = secQuery.lte("ngay", toDate);
+      devQuery = devQuery.lte("ngay", toDate);
+      regQuery = regQuery.lte("thoi_gian", `${toDate}T23:59:59`);
+    }
+
+    Promise.all([secQuery, devQuery, regQuery]).then(([sectionRes, deviceRes, registeredRes]) => {
       if (requestIdRef.current !== requestId) return;
 
       if (sectionRes.error || deviceRes.error || registeredRes.error) {
@@ -51,9 +75,10 @@ export default function HeatmapPage() {
       }
       setLoadError("");
 
+      // Gom nhóm tổng số giây xem từng section theo khoảng thời gian
       const byKey = {};
       (sectionRes.data || []).forEach((row) => {
-        byKey[row.section_key] = Number(row.tong_giay) || 0;
+        byKey[row.section_key] = (byKey[row.section_key] || 0) + Number(row.tong_giay || 0);
       });
       const maxGiay = Math.max(1, ...Object.values(byKey));
 
@@ -65,35 +90,45 @@ export default function HeatmapPage() {
       }));
       setSections(list);
 
+      // Gom nhóm tổng hợp số liệu theo thiết bị
       const stats = {};
       (deviceRes.data || []).forEach((row) => {
-        const total = Number(row.so_phien) || 0;
-        const bounced = Number(row.so_phien_thoat) || 0;
-        const bounceRate = total > 0 ? (bounced / total) * 100 : 0;
-        const s25 = Number(row.so_phien_cuon_25) || 0;
-        const s50 = Number(row.so_phien_cuon_50) || 0;
-        const s75 = Number(row.so_phien_cuon_75) || 0;
-        const s100 = Number(row.so_phien_cuon_100) || 0;
-        const abandoned = Number(row.so_phien_bo_form) || 0;
-        const abandonRate = total > 0 ? (abandoned / total) * 100 : 0;
+        const d = row.thiet_bi;
+        if (!stats[d]) {
+          stats[d] = { moves: 0, clicks: 0, tongGiayPhien: 0, soPhien: 0, soPhienThoat: 0, s25: 0, s50: 0, s75: 0, s100: 0, abandoned: 0 };
+        }
+        stats[d].moves += Number(row.luot_di_chuyen || 0);
+        stats[d].clicks += Number(row.luot_click || 0);
+        stats[d].tongGiayPhien += Number(row.tong_giay_phien || 0);
+        stats[d].soPhien += Number(row.so_phien || 0);
+        stats[d].soPhienThoat += Number(row.so_phien_thoat || 0);
+        stats[d].s25 += Number(row.so_phien_cuon_25 || 0);
+        stats[d].s50 += Number(row.so_phien_cuon_50 || 0);
+        stats[d].s75 += Number(row.so_phien_cuon_75 || 0);
+        stats[d].s100 += Number(row.so_phien_cuon_100 || 0);
+        stats[d].abandoned += Number(row.so_phien_bo_form || 0);
+      });
 
-        stats[row.thiet_bi] = {
-          moves: row.luot_di_chuyen,
-          clicks: row.luot_click,
-          avgSessionSeconds: Number(row.trung_binh_giay_phien) || 0,
-          soPhien: total,
-          soPhienThoat: bounced,
-          bounceRate,
-          abandonRate,
+      const finalStats = {};
+      Object.keys(stats).forEach((d) => {
+        const item = stats[d];
+        finalStats[d] = {
+          moves: item.moves,
+          clicks: item.clicks,
+          avgSessionSeconds: item.soPhien > 0 ? Number((item.tongGiayPhien / item.soPhien).toFixed(1)) : 0,
+          soPhien: item.soPhien,
+          soPhienThoat: item.soPhienThoat,
+          bounceRate: item.soPhien > 0 ? (item.soPhienThoat / item.soPhien) * 100 : 0,
+          abandonRate: item.soPhien > 0 ? (item.abandoned / item.soPhien) * 100 : 0,
           scrollDepth: {
-            pct25: total > 0 ? Math.round((s25 / total) * 100) : 0,
-            pct50: total > 0 ? Math.round((s50 / total) * 100) : 0,
-            pct75: total > 0 ? Math.round((s75 / total) * 100) : 0,
-            pct100: total > 0 ? Math.round((s100 / total) * 100) : 0,
+            pct25: item.soPhien > 0 ? Math.round((item.s25 / item.soPhien) * 100) : 0,
+            pct50: item.soPhien > 0 ? Math.round((item.s50 / item.soPhien) * 100) : 0,
+            pct75: item.soPhien > 0 ? Math.round((item.s75 / item.soPhien) * 100) : 0,
+            pct100: item.soPhien > 0 ? Math.round((item.s100 / item.soPhien) * 100) : 0,
           },
         };
       });
-      setDeviceStats(stats);
+      setDeviceStats(finalStats);
 
       const registeredRows = registeredRes.data || [];
       const registeredAvg = registeredRows.length
@@ -103,7 +138,7 @@ export default function HeatmapPage() {
 
       setLoading(false);
     });
-  }, [landing, device]);
+  }, [landing, device, fromDate, toDate]);
 
   useEffect(() => {
     loadHeatmap();
@@ -126,7 +161,21 @@ export default function HeatmapPage() {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-end">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <DateRangeFilter
+          from={fromDate}
+          to={toDate}
+          onFromChange={setFromDate}
+          onToChange={setToDate}
+          onReset={() => {
+            setFromDate("");
+            setToDate("");
+          }}
+          onToday={(today) => {
+            setFromDate(today);
+            setToDate(today);
+          }}
+        />
         <div className="flex items-center gap-1 rounded-lg border border-black/10 bg-white p-1 w-fit">
           {DEVICES.map((d) => {
             const Icon = d.icon;
