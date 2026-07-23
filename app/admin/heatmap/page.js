@@ -34,7 +34,7 @@ export default function HeatmapPage() {
 
     Promise.all([
       supabase.from("heatmap_section").select("section_key, tong_giay").eq("landing", landing).eq("thiet_bi", device),
-      supabase.from("heatmap_thiet_bi").select("thiet_bi, luot_di_chuyen, luot_click, trung_binh_giay_phien, so_phien, so_phien_thoat").eq("landing", landing),
+      supabase.from("heatmap_thiet_bi").select("thiet_bi, luot_di_chuyen, luot_click, trung_binh_giay_phien, so_phien, so_phien_thoat, so_phien_cuon_25, so_phien_cuon_50, so_phien_cuon_75, so_phien_cuon_100, so_phien_bo_form").eq("landing", landing),
       supabase
         .from("khach_hang")
         .select("thoi_gian_phien_giay")
@@ -70,6 +70,13 @@ export default function HeatmapPage() {
         const total = Number(row.so_phien) || 0;
         const bounced = Number(row.so_phien_thoat) || 0;
         const bounceRate = total > 0 ? (bounced / total) * 100 : 0;
+        const s25 = Number(row.so_phien_cuon_25) || 0;
+        const s50 = Number(row.so_phien_cuon_50) || 0;
+        const s75 = Number(row.so_phien_cuon_75) || 0;
+        const s100 = Number(row.so_phien_cuon_100) || 0;
+        const abandoned = Number(row.so_phien_bo_form) || 0;
+        const abandonRate = total > 0 ? (abandoned / total) * 100 : 0;
+
         stats[row.thiet_bi] = {
           moves: row.luot_di_chuyen,
           clicks: row.luot_click,
@@ -77,6 +84,13 @@ export default function HeatmapPage() {
           soPhien: total,
           soPhienThoat: bounced,
           bounceRate,
+          abandonRate,
+          scrollDepth: {
+            pct25: total > 0 ? Math.round((s25 / total) * 100) : 0,
+            pct50: total > 0 ? Math.round((s50 / total) * 100) : 0,
+            pct75: total > 0 ? Math.round((s75 / total) * 100) : 0,
+            pct100: total > 0 ? Math.round((s100 / total) * 100) : 0,
+          },
         };
       });
       setDeviceStats(stats);
@@ -97,7 +111,9 @@ export default function HeatmapPage() {
 
   useAutoRefresh(() => loadHeatmap({ silent: true }), 10000);
 
-  const stats = deviceStats[device] || { moves: 0, clicks: 0, avgSessionSeconds: 0, bounceRate: 0 };
+  const defaultScroll = { pct25: 0, pct50: 0, pct75: 0, pct100: 0 };
+  const stats = deviceStats[device] || { moves: 0, clicks: 0, avgSessionSeconds: 0, bounceRate: 0, abandonRate: 0, scrollDepth: defaultScroll };
+  const scroll = stats.scrollDepth || defaultScroll;
   const topSections = [...sections].sort((a, b) => b.score - a.score);
 
   if (loading) {
@@ -132,10 +148,35 @@ export default function HeatmapPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatTile label="Thời gian trung bình/phiên" value={stats.avgSessionSeconds} formatValue={formatDuration} icon={IconClock} accent="#1baf7a" />
         <StatTile label="TB/phiên (đã đăng ký)" value={registeredAvgSessionSeconds} formatValue={formatDuration} icon={IconClock} accent="#e25010" />
         <StatTile label="Tỷ lệ thoát trang" value={stats.bounceRate} formatValue={(n) => `${n.toFixed(1)}%`} icon={IconPercent} accent="#d03b3b" />
+        <StatTile label="Tỷ lệ bỏ dở Form" value={stats.abandonRate} formatValue={(n) => `${n.toFixed(1)}%`} icon={IconPercent} accent="#eb6834" />
+      </div>
+
+      {/* Độ sâu cuộn trang */}
+      <div className="rounded-xl border border-black/10 bg-white p-5">
+        <p className="text-sm font-semibold text-[#0b0b0b] mb-1">Độ sâu cuộn trang (Scroll Depth Rate)</p>
+        <p className="text-xs text-[#898781] mb-4">Tỷ lệ người xem cuộn tới các mốc trên trang ({device}).</p>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          {[
+            { label: "Đã cuộn ≥ 25%", pct: scroll.pct25, color: "#2a78d6" },
+            { label: "Đã cuộn ≥ 50%", pct: scroll.pct50, color: "#1baf7a" },
+            { label: "Đã cuộn ≥ 75%", pct: scroll.pct75, color: "#e25010" },
+            { label: "Cuộn hết 100%", pct: scroll.pct100, color: "#4a3aa7" },
+          ].map((item) => (
+            <div key={item.label} className="rounded-lg bg-[#f9f9f7] border border-black/[0.06] p-3.5">
+              <div className="flex items-center justify-between text-xs text-[#52514e] mb-1.5">
+                <span>{item.label}</span>
+                <span className="font-semibold text-[#0b0b0b]">{item.pct}%</span>
+              </div>
+              <div className="w-full h-2 rounded-full bg-black/10 overflow-hidden">
+                <div className="h-full rounded-full transition-all duration-500" style={{ width: `${item.pct}%`, backgroundColor: item.color }} />
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {Object.keys(sectionLabels).length === 0 ? (

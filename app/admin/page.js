@@ -47,7 +47,7 @@ export default function AdminOverviewPage() {
 
     let leadsQuery = supabase
       .from("khach_hang")
-      .select("id, ho_ten, so_dien_thoai, nguon, thoi_gian")
+      .select("id, ho_ten, so_dien_thoai, nguon, thiet_bi, thoi_gian")
       .eq("landing", landing)
       .order("thoi_gian", { ascending: false });
 
@@ -58,7 +58,7 @@ export default function AdminOverviewPage() {
       leadsQuery,
       supabase
         .from("khach_hang")
-        .select("id, ho_ten, so_dien_thoai, nguon, thoi_gian")
+        .select("id, ho_ten, so_dien_thoai, nguon, thiet_bi, thoi_gian")
         .eq("landing", landing)
         .order("thoi_gian", { ascending: false })
         .limit(5),
@@ -140,6 +140,34 @@ export default function AdminOverviewPage() {
       .sort((a, b) => b.score - a.score);
   }, [leads]);
 
+  const peakHoursBreakdown = useMemo(() => {
+    const hours = {};
+    leads.forEach((lead) => {
+      if (!lead.thoi_gian) return;
+      const h = new Date(lead.thoi_gian).getHours();
+      const label = `${String(h).padStart(2, "0")}:00 - ${String(h).padStart(2, "0")}:59`;
+      hours[label] = (hours[label] || 0) + 1;
+    });
+    return Object.keys(hours)
+      .map((key) => ({ key, label: key, score: hours[key] }))
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 5);
+  }, [leads]);
+
+  const deviceBreakdown = useMemo(() => {
+    const counts = { Mobile: 0, Desktop: 0, Tablet: 0 };
+    leads.forEach((lead) => {
+      const dev = lead.thiet_bi;
+      if (dev === "mobile") counts.Mobile += 1;
+      else if (dev === "desktop") counts.Desktop += 1;
+      else if (dev === "tablet") counts.Tablet += 1;
+    });
+    return Object.keys(counts)
+      .filter((k) => counts[k] > 0)
+      .map((key) => ({ key, label: key, score: counts[key] }))
+      .sort((a, b) => b.score - a.score);
+  }, [leads]);
+
   return (
     <div className="space-y-6">
       <DateRangeFilter
@@ -195,6 +223,26 @@ export default function AdminOverviewPage() {
                 <p className="text-sm text-[#898781]">Chưa có chiến dịch nào.</p>
               ) : (
                 <BarList items={topCampaigns} />
+              )}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div className="rounded-xl border border-black/10 bg-white p-5">
+              <p className="text-sm font-semibold text-[#0b0b0b] mb-4">Khung giờ vàng đăng ký (nhiều nhất)</p>
+              {peakHoursBreakdown.length === 0 ? (
+                <p className="text-sm text-[#898781]">Chưa có dữ liệu đăng ký.</p>
+              ) : (
+                <BarList items={peakHoursBreakdown} />
+              )}
+            </div>
+
+            <div className="rounded-xl border border-black/10 bg-white p-5">
+              <p className="text-sm font-semibold text-[#0b0b0b] mb-4">Đăng ký theo thiết bị</p>
+              {deviceBreakdown.length === 0 ? (
+                <p className="text-sm text-[#898781]">Chưa có dữ liệu thiết bị.</p>
+              ) : (
+                <BarList items={deviceBreakdown} />
               )}
             </div>
           </div>

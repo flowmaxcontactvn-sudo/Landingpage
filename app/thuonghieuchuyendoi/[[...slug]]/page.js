@@ -15,6 +15,8 @@ export default function ThuongHieuChuyenDoiPage() {
   // Mốc thời gian trang tải xong — dùng để tính thời gian phiên của
   // người đăng ký thành công (Date.now() lúc gửi form - mốc này).
   const pageLoadTimeRef = useRef(Date.now());
+  const formTouchedRef = useRef(false);
+  const formSubmittedRef = useRef(false);
 
   // Countdown state (6 mins 49 seconds original duration)
   const [remaining, setRemaining] = useState(6 * 60 + 49);
@@ -465,6 +467,17 @@ export default function ThuongHieuChuyenDoiPage() {
       clickCount++;
     };
 
+    let maxScroll = 0;
+    const handleScrollDepth = () => {
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (scrollHeight > 0) {
+        const pct = Math.round((window.scrollY / scrollHeight) * 100);
+        if (pct > maxScroll) maxScroll = pct;
+      }
+    };
+    window.addEventListener("scroll", handleScrollDepth, { passive: true });
+    handleScrollDepth();
+
     document.addEventListener("mousemove", handleMouseMove, { passive: true });
     document.addEventListener("click", handleClick, { passive: true });
     document.addEventListener("touchmove", handleTouchMove, { passive: true });
@@ -495,6 +508,7 @@ export default function ThuongHieuChuyenDoiPage() {
       if (seconds < 1) return;
       sessionSent = true;
       const isBounce = seconds < 10 || (moveCount === 0 && clickCount === 0);
+      const isAbandoned = formTouchedRef.current && !formSubmittedRef.current;
       fetch(process.env.NEXT_PUBLIC_SUPABASE_URL + "/rest/v1/rpc/ghi_nhan_phien", {
         method: "POST",
         headers: {
@@ -507,6 +521,8 @@ export default function ThuongHieuChuyenDoiPage() {
           p_thiet_bi: bucket,
           p_giay: Math.round(seconds * 10) / 10,
           p_is_bounce: isBounce,
+          p_max_scroll: maxScroll,
+          p_form_abandoned: isAbandoned,
         }),
         keepalive: !!useKeepalive,
       }).catch(() => {});
@@ -573,6 +589,7 @@ export default function ThuongHieuChuyenDoiPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    formSubmittedRef.current = true;
 
     // Gửi qua route handler nội bộ — vừa lưu vào Supabase, vừa đồng bộ
     // sang phmax.vn để xử lý CRM ở đó (xem app/api/dang-ky/route.js)
@@ -1163,7 +1180,7 @@ export default function ThuongHieuChuyenDoiPage() {
                 </div>
               </div>
 
-              <form className="[&>input]:w-full [&>input]:border-[1.5px] [&>input]:border-[#ddd] [&>input]:rounded-md [&>input]:px-4 [&>input]:py-3.5 [&>input]:text-lg [&>input]:mb-2.5 [&>input]:outline-none [&>input]:block max-[680px]:[&>input]:text-[15px] [&>input]:focus:border-[#e25010]" onSubmit={handleSubmit}>
+              <form className="[&>input]:w-full [&>input]:border-[1.5px] [&>input]:border-[#ddd] [&>input]:rounded-md [&>input]:px-4 [&>input]:py-3.5 [&>input]:text-lg [&>input]:mb-2.5 [&>input]:outline-none [&>input]:block max-[680px]:[&>input]:text-[15px] [&>input]:focus:border-[#e25010]" onSubmit={handleSubmit} onFocusCapture={() => { formTouchedRef.current = true; }}>
                 <input
                   type="text"
                   name="fullname"
