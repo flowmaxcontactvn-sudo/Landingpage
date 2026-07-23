@@ -1,143 +1,176 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════════════════════════
-   PREMIUM DARK MODE OVERRIDES (ADMIN DASHBOARD)
+   PREMIUM OBSIDIAN DARK MODE OVERRIDES (ADMIN DASHBOARD)
+   Giữ nguyên 100% thiết kế giao diện Sáng gốc.
    ═══════════════════════════════════════════════════════════════ */
 
-/* 1. Base Dark Theme Styles */
+/* 1. Base Dark Theme & Layout */
 .dark body {
-  background-color: #121214 !important;
-  color: #f3f3f5 !important;
+  background-color: #09090b !important; /* Deep Obsidian Black */
+  color: #fafafa !important; /* Warm White */
 }
 
-.dark .bg-\[\#f9f9f7\],
-.dark .bg-orange-50\/60:hover {
-  background-color: #121214 !important;
+/* Page background */
+.dark .bg-\[\#f9f9f7\] {
+  background-color: #09090b !important;
 }
 
+/* Card & panel backgrounds */
 .dark .bg-white {
-  background-color: #1e1e22 !important;
+  background-color: #121216 !important; /* Rich Warm Charcoal Card */
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4), 0 2px 8px -1px rgba(0, 0, 0, 0.3) !important;
 }
 
+/* Subtle Borders */
 .dark .border-black\/10 {
-  border-color: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.05) !important;
 }
 
 .dark .border-black\/\[0\.06\] {
-  border-color: rgba(255, 255, 255, 0.05) !important;
+  border-color: rgba(255, 255, 255, 0.03) !important;
 }
 
 .dark .divide-black\/\[0\.06\] > :not([hidden]) ~ :not([hidden]) {
-  border-color: rgba(255, 255, 255, 0.05) !important;
+  border-color: rgba(255, 255, 255, 0.03) !important;
 }
 
-/* 2. Text Color Overrides */
+/* 2. Typographic Hierarchy */
 .dark .text-\[\#0b0b0b\] {
-  color: #f3f3f5 !important;
+  color: #fafafa !important;
 }
 
 .dark .text-\[\#52514e\] {
-  color: #a0a0a5 !important;
+  color: #a1a1aa !important; /* Soft Zinc Grey */
 }
 
 .dark .text-\[\#898781\] {
-  color: #7b7b83 !important;
+  color: #71717a !important; /* Muted Helper Grey */
 }
 
-/* 3. Navigation Sidebar */
+/* 3. Navigation Sidebar (Obsidian Depth) */
 .dark aside.bg-white {
-  background-color: #1a1a1d !important;
+  background-color: #0e0e11 !important; /* Darker than cards for layout depth */
+  border-right-color: rgba(255, 255, 255, 0.04) !important;
 }
 
 .dark aside .text-\[\#52514e\]:hover {
-  background-color: rgba(255, 255, 255, 0.03) !important;
-  color: #ff7536 !important;
+  background-color: rgba(255, 255, 255, 0.02) !important;
+  color: #ff7c3b !important;
 }
 
+/* Active menu item with amber/orange neon glow */
 .dark aside .bg-gradient-to-r.from-orange-500\/10.to-red-500\/5 {
-  background-image: linear-gradient(to right, rgba(245, 166, 35, 0.15), rgba(226, 80, 16, 0.05)) !important;
-  border-color: rgba(245, 166, 35, 0.25) !important;
-  color: #ff7536 !important;
+  background-image: linear-gradient(to right, rgba(226, 80, 16, 0.12), rgba(226, 80, 16, 0.02)) !important;
+  border-color: rgba(226, 80, 16, 0.25) !important;
+  color: #ff7c3b !important;
 }
 
-/* 4. Active Landing Badge */
+/* Header border & color */
+.dark header.bg-white {
+  background-color: #121216 !important;
+  border-bottom-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* 4. Active Landing Page Badge */
 .dark .bg-orange-50 {
-  background-color: rgba(245, 166, 35, 0.1) !important;
-  border-color: rgba(245, 166, 35, 0.2) !important;
-  color: #ff8c42 !important;
+  background-color: rgba(226, 80, 16, 0.12) !important;
+  border-color: rgba(226, 80, 16, 0.25) !important;
+  color: #ffa16c !important;
 }
 
-/* 5. Inputs, Dropdowns, and Buttons */
+/* 5. Dropdowns & Settings Panels */
+.dark .absolute.bg-white.shadow-xl {
+  background-color: #16161c !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* 6. Inputs & Interactive Controls (Glassmorphic Dark) */
 .dark input,
 .dark select,
 .dark textarea {
-  background-color: #252528 !important;
-  color: #f3f3f5 !important;
-  border-color: rgba(255, 255, 255, 0.12) !important;
+  background-color: #18181f !important;
+  color: #fafafa !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  transition: all 0.2s ease-in-out;
+}
+
+.dark input:hover,
+.dark select:hover,
+.dark textarea:hover {
+  border-color: rgba(255, 255, 255, 0.15) !important;
 }
 
 .dark input:focus,
 .dark select:focus,
 .dark textarea:focus {
   border-color: #e25010 !important;
+  box-shadow: 0 0 0 1px rgba(226, 80, 16, 0.3) !important;
 }
 
 .dark input::placeholder {
-  color: #636366 !important;
+  color: #52525b !important;
 }
 
+/* Button Hovers */
 .dark .hover\:bg-black\/\[0\.04\]:hover {
-  background-color: rgba(255, 255, 255, 0.04) !important;
-  color: #f3f3f5 !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: #fafafa !important;
 }
 
-/* 6. Modals and Popups */
-.dark .relative.bg-white.rounded-2xl {
-  background-color: #1e1e22 !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+.dark .bg-\[\#fdf0ea\] {
+  background-color: rgba(226, 80, 16, 0.12) !important;
+  color: #ff7c3b !important;
 }
 
-.dark .absolute.bg-white.shadow-xl {
-  background-color: #1e1e22 !important;
-  border-color: rgba(255, 255, 255, 0.08) !important;
-}
-
-/* 7. Charts & Heatmaps */
+/* 7. Charts & Heatmaps Overrides */
 .dark svg line[stroke="#e1e0d9"] {
-  stroke: rgba(255, 255, 255, 0.06) !important;
+  stroke: rgba(255, 255, 255, 0.04) !important;
 }
 
 .dark svg line[stroke="#c3c2b7"] {
-  stroke: rgba(255, 255, 255, 0.2) !important;
+  stroke: rgba(255, 255, 255, 0.15) !important;
 }
 
 .dark svg text[fill="#898781"] {
-  fill: #86868c !important;
+  fill: #71717a !important;
 }
 
 .dark svg text[fill="#0b0b0b"] {
-  fill: #f3f3f5 !important;
+  fill: #fafafa !important;
 }
 
 .dark svg circle[stroke="#fff"] {
-  stroke: #1e1e22 !important;
+  stroke: #121216 !important;
 }
 
-/* BarList gray wrapper override */
+/* SVGs hover details */
+.dark .absolute.bg-white.px-2\.5.py-1\.5.shadow-sm {
+  background-color: #18181f !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* BarList Progress Bars */
 .dark .bg-\[\#f0efec\] {
-  background-color: rgba(255, 255, 255, 0.08) !important;
+  background-color: rgba(255, 255, 255, 0.06) !important;
 }
 
 .dark .h-full.rounded-full[style*="#ffffff"],
 .dark .h-full.rounded-full[style*="rgb(255, 255, 255)"] {
-  background-color: rgba(255, 255, 255, 0.1) !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
 }
 
-/* Tables background & headers */
+/* 8. Tables and Lists */
 .dark thead tr.bg-\[\#f9f9f7\] {
-  background-color: #252528 !important;
+  background-color: #16161c !important;
 }
 
 .dark table tbody tr:hover {
-  background-color: rgba(255, 255, 255, 0.02) !important;
+  background-color: rgba(255, 255, 255, 0.015) !important;
+}
+
+/* Dynamic calendar colors inside DateRangeFilter */
+.dark input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
 }
