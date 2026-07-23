@@ -46,6 +46,7 @@ export default function AdminShell({ children }) {
   const [session, setSession] = useState(undefined);
   const [menuOpen, setMenuOpen] = useState(false);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => setSession(data.session));
@@ -58,11 +59,31 @@ export default function AdminShell({ children }) {
     };
     document.addEventListener("visibilitychange", handleVisibility);
 
+    // Dark Mode initialization
+    const isDark = localStorage.getItem("adminDarkMode") === "true";
+    setDarkMode(isDark);
+    if (isDark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
     return () => {
       sub.subscription.unsubscribe();
       document.removeEventListener("visibilitychange", handleVisibility);
     };
   }, []);
+
+  const toggleDarkMode = () => {
+    const nextVal = !darkMode;
+    setDarkMode(nextVal);
+    localStorage.setItem("adminDarkMode", String(nextVal));
+    if (nextVal) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  };
 
   useEffect(() => {
     if (session === null && !isLoginPage) {
@@ -179,6 +200,23 @@ export default function AdminShell({ children }) {
             </div>
 
             <div className="relative flex items-center gap-3">
+              <button
+                onClick={toggleDarkMode}
+                className="p-2 rounded-xl text-[#52514e] hover:bg-black/[0.04] transition-colors cursor-pointer"
+                title={darkMode ? "Chuyển sang Chế độ Sáng" : "Chuyển sang Chế độ Tối"}
+              >
+                {darkMode ? (
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="5" />
+                    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                  </svg>
+                ) : (
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                  </svg>
+                )}
+              </button>
+
               <button
                 onClick={() => setMenuOpen((v) => !v)}
                 className="w-9 h-9 rounded-full bg-gradient-to-tr from-orange-500 to-amber-500 flex items-center justify-center text-xs font-bold text-white shadow-xs hover:opacity-90 transition-opacity cursor-pointer"

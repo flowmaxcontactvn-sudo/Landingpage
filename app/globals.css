@@ -1,1 +1,143 @@
 @import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════════
+   PREMIUM DARK MODE OVERRIDES (ADMIN DASHBOARD)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* 1. Base Dark Theme Styles */
+.dark body {
+  background-color: #121214 !important;
+  color: #f3f3f5 !important;
+}
+
+.dark .bg-\[\#f9f9f7\],
+.dark .bg-orange-50\/60:hover {
+  background-color: #121214 !important;
+}
+
+.dark .bg-white {
+  background-color: #1e1e22 !important;
+}
+
+.dark .border-black\/10 {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.dark .border-black\/\[0\.06\] {
+  border-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.dark .divide-black\/\[0\.06\] > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* 2. Text Color Overrides */
+.dark .text-\[\#0b0b0b\] {
+  color: #f3f3f5 !important;
+}
+
+.dark .text-\[\#52514e\] {
+  color: #a0a0a5 !important;
+}
+
+.dark .text-\[\#898781\] {
+  color: #7b7b83 !important;
+}
+
+/* 3. Navigation Sidebar */
+.dark aside.bg-white {
+  background-color: #1a1a1d !important;
+}
+
+.dark aside .text-\[\#52514e\]:hover {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+  color: #ff7536 !important;
+}
+
+.dark aside .bg-gradient-to-r.from-orange-500\/10.to-red-500\/5 {
+  background-image: linear-gradient(to right, rgba(245, 166, 35, 0.15), rgba(226, 80, 16, 0.05)) !important;
+  border-color: rgba(245, 166, 35, 0.25) !important;
+  color: #ff7536 !important;
+}
+
+/* 4. Active Landing Badge */
+.dark .bg-orange-50 {
+  background-color: rgba(245, 166, 35, 0.1) !important;
+  border-color: rgba(245, 166, 35, 0.2) !important;
+  color: #ff8c42 !important;
+}
+
+/* 5. Inputs, Dropdowns, and Buttons */
+.dark input,
+.dark select,
+.dark textarea {
+  background-color: #252528 !important;
+  color: #f3f3f5 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+.dark input:focus,
+.dark select:focus,
+.dark textarea:focus {
+  border-color: #e25010 !important;
+}
+
+.dark input::placeholder {
+  color: #636366 !important;
+}
+
+.dark .hover\:bg-black\/\[0\.04\]:hover {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  color: #f3f3f5 !important;
+}
+
+/* 6. Modals and Popups */
+.dark .relative.bg-white.rounded-2xl {
+  background-color: #1e1e22 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark .absolute.bg-white.shadow-xl {
+  background-color: #1e1e22 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* 7. Charts & Heatmaps */
+.dark svg line[stroke="#e1e0d9"] {
+  stroke: rgba(255, 255, 255, 0.06) !important;
+}
+
+.dark svg line[stroke="#c3c2b7"] {
+  stroke: rgba(255, 255, 255, 0.2) !important;
+}
+
+.dark svg text[fill="#898781"] {
+  fill: #86868c !important;
+}
+
+.dark svg text[fill="#0b0b0b"] {
+  fill: #f3f3f5 !important;
+}
+
+.dark svg circle[stroke="#fff"] {
+  stroke: #1e1e22 !important;
+}
+
+/* BarList gray wrapper override */
+.dark .bg-\[\#f0efec\] {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.dark .h-full.rounded-full[style*="#ffffff"],
+.dark .h-full.rounded-full[style*="rgb(255, 255, 255)"] {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Tables background & headers */
+.dark thead tr.bg-\[\#f9f9f7\] {
+  background-color: #252528 !important;
+}
+
+.dark table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.02) !important;
+}
