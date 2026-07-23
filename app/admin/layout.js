@@ -9,9 +9,6 @@ export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Quản trị - Flowmax",
   description: "Trang quản trị hệ thống Landing Page",
-  icons: {
-    icon: "/logo.png",
-  },
 };
 
 export default function AdminLayout({ children }) {
