@@ -48,6 +48,62 @@ export default function AdminShell({ children }) {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
 
+  // Multi-layered DevTools & Source Protection for Admin Portal
+  useEffect(() => {
+    // 1. Chặn menu chuột phải
+    const handleContextMenu = (e) => e.preventDefault();
+    document.addEventListener("contextmenu", handleContextMenu);
+
+    // 2. Chặn các phím tắt DevTools (F12, Ctrl+Shift+I/C/J, Ctrl+U)
+    const handleKeyDown = (e) => {
+      if (
+        e.key === "F12" ||
+        (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "C" || e.key === "J")) ||
+        (e.ctrlKey && e.key === "U")
+      ) {
+        e.preventDefault();
+        return false;
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+
+    // 3. Giám sát kích thước cửa sổ để phát hiện mở DevTools
+    const checkDevTools = () => {
+      const threshold = 160;
+      const widthDiff = window.outerWidth - window.innerWidth;
+      const heightDiff = window.outerHeight - window.innerHeight;
+      
+      if (widthDiff > threshold || heightDiff > threshold) {
+        document.body.innerHTML = 
+          "<div style='display:flex;align-items:center;justify-content:center;height:100vh;background-color:#07080d;color:#fafafa;font-family:sans-serif;text-align:center;padding:20px;'>" +
+          "<div style='margin:auto;'>" +
+          "<h1 style='font-size:24px;color:#ff5500;margin-bottom:10px;'>Cảnh báo bảo mật Admin!</h1>" +
+          "<p style='font-size:14px;color:#a1a1aa;'>Phát hiện hành vi can thiệp hệ thống quản trị. Vui lòng đóng cửa sổ kiểm tra để tiếp tục làm việc.</p>" +
+          "</div>" +
+          "</div>";
+      }
+    };
+    window.addEventListener("resize", checkDevTools);
+    checkDevTools();
+
+    // 4. Bẫy đóng băng DevTools bằng vòng lặp Debugger siêu tốc
+    let debuggerInterval;
+    const startDebuggerTrap = () => {
+      debuggerInterval = setInterval(() => {
+        (function() {}.constructor("debugger")());
+      }, 100);
+    };
+    const timer = setTimeout(startDebuggerTrap, 1000);
+
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+      document.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("resize", checkDevTools);
+      clearInterval(debuggerInterval);
+      clearTimeout(timer);
+    };
+  }, []);
+
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => setSession(data.session));
     const { data: sub } = supabase.auth.onAuthStateChange((_event, sess) => setSession(sess));
