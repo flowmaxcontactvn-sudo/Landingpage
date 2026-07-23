@@ -852,7 +852,7 @@ export default function ThuongHieuChuyenDoiPage() {
       <section className="bg-white text-center pt-2 pb-9 max-[680px]:py-4" data-section="theory-practice">
         <div className={container}>
           <div className="max-w-[600px] mx-auto mb-4 max-[680px]:mb-3 max-[680px]:px-4 max-[680px]:max-w-[340px]">
-            <img src="/thuonghieuchuyendoi/images/biểu đồ 2.8.png" alt="20% học lý thuyết - 80% thực hành kèm cặp" className="w-full h-auto block mx-auto" />
+            <img src="/thuonghieuchuyendoi/images/chart-practice-80-20.png" alt="20% học lý thuyết - 80% thực hành kèm cặp" className="w-full h-auto block mx-auto" />
           </div>
           <p className="max-w-[680px] mx-auto text-[19px] leading-[1.85] text-[#444] text-center max-[680px]:text-[15px]">
             Bạn sẽ học lý thuyết nền tảng qua E-Learning để hiểu đúng cách <span className="whitespace-nowrap">làm nội dung chuyển đổi.</span> Nhưng quan trọng nhất là thực hành: làm bài tập, đăng video thật và nhận góp ý từ <span className="whitespace-nowrap">mentor mỗi ngày.</span><br />
@@ -993,16 +993,16 @@ export default function ThuongHieuChuyenDoiPage() {
 
           <div className="grid grid-cols-2 gap-4 max-w-[720px] mx-auto mt-8 max-[680px]:gap-2.5">
             <div>
-              <img src="/thuonghieuchuyendoi/images/B%E1%BB%95%20sung%20ph%E1%BA%A7n%20section%209%20(1).jpg" alt="Đồng hành thực chiến" className="w-full h-auto block rounded-lg shadow-[0_2px_10px_rgba(0,0,0,0.1)]" />
+              <img src="/thuonghieuchuyendoi/images/mentor-class-1.jpg" alt="Đồng hành thực chiến" className="w-full h-auto block rounded-lg shadow-[0_2px_10px_rgba(0,0,0,0.1)]" />
             </div>
             <div>
-              <img src="/thuonghieuchuyendoi/images/B%E1%BB%95%20sung%20ph%E1%BA%A7n%20section%209%20(2).jpg" alt="Học viên thực hành" className="w-full h-auto block rounded-lg shadow-[0_2px_10px_rgba(0,0,0,0.1)]" />
+              <img src="/thuonghieuchuyendoi/images/mentor-class-2.jpg" alt="Học viên thực hành" className="w-full h-auto block rounded-lg shadow-[0_2px_10px_rgba(0,0,0,0.1)]" />
             </div>
             <div>
-              <img src="/thuonghieuchuyendoi/images/B%E1%BB%95%20sung%20ph%E1%BA%A7n%20section%209%20(3).jpg" alt="Mentor hướng dẫn" className="w-full h-auto block rounded-lg shadow-[0_2px_10px_rgba(0,0,0,0.1)]" />
+              <img src="/thuonghieuchuyendoi/images/mentor-class-3.jpg" alt="Mentor hướng dẫn" className="w-full h-auto block rounded-lg shadow-[0_2px_10px_rgba(0,0,0,0.1)]" />
             </div>
             <div>
-              <img src="/thuonghieuchuyendoi/images/B%E1%BB%95%20sung%20ph%E1%BA%A7n%20section%209%20(4).jpg" alt="Lớp học xây kênh" className="w-full h-auto block rounded-lg shadow-[0_2px_10px_rgba(0,0,0,0.1)]" />
+              <img src="/thuonghieuchuyendoi/images/mentor-class-4.jpg" alt="Lớp học xây kênh" className="w-full h-auto block rounded-lg shadow-[0_2px_10px_rgba(0,0,0,0.1)]" />
             </div>
           </div>
         </div>
