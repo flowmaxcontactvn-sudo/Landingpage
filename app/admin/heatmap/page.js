@@ -6,8 +6,8 @@ import StatTile from "../_components/StatTile";
 import BarList from "../_components/BarList";
 import PageHeatmap from "../_components/PageHeatmap";
 import DateRangeFilter from "../_components/DateRangeFilter";
-import { IconClock, IconMonitor, IconTablet, IconPhone, IconPercent } from "../_components/icons";
-import { sectionLabelsByLanding, formatDuration } from "../_lib/mockData";
+import { IconClock, IconMonitor, IconTablet, IconPhone, IconPercent, IconUsers } from "../_components/icons";
+import { sectionLabelsByLanding, formatDuration, formatNumber } from "../_lib/mockData";
 import { useActiveLanding } from "../_lib/LandingContext";
 import useAutoRefresh from "../_lib/useAutoRefresh";
 
@@ -197,7 +197,8 @@ export default function HeatmapPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <StatTile label="Tổng số phiên" value={stats.soPhien} formatValue={formatNumber} icon={IconUsers} accent="#2a78d6" />
         <StatTile label="Thời gian trung bình/phiên" value={stats.avgSessionSeconds} formatValue={formatDuration} icon={IconClock} accent="#1baf7a" />
         <StatTile label="TB/phiên (đã đăng ký)" value={registeredAvgSessionSeconds} formatValue={formatDuration} icon={IconClock} accent="#e25010" />
         <StatTile label="Tỷ lệ thoát trang" value={stats.bounceRate} formatValue={(n) => `${n.toFixed(1)}%`} icon={IconPercent} accent="#d03b3b" />
