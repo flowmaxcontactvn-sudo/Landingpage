@@ -54,6 +54,12 @@ export default function ThuongHieuChuyenDoiPage() {
   // không cho vào landing page), "valid" nếu khớp hoặc không có slug.
   const [campaignStatus, setCampaignStatus] = useState("valid");
 
+  // Mã pixel tracking (Facebook/TikTok/Google/YouTube) do admin cấu hình ở
+  // /admin/tracking — lấy trực tiếp từ Supabase, KHÔNG qua localStorage vì
+  // không có nơi nào ghi vào đó cả (bug cũ khiến pixel không bao giờ chạy).
+  const [trackingCodes, setTrackingCodes] = useState([]);
+  const pickTrackingCodes = (type) => trackingCodes.filter((r) => r.loai_ma === type).map((r) => r.ma);
+
   // Sticky CTA state
   const [stickyVisible, setStickyVisible] = useState(false);
 
@@ -106,12 +112,23 @@ export default function ThuongHieuChuyenDoiPage() {
     }
   }, []);
 
-  // 2. Initial pixel tracking scripts from localstorage
+  // 2a. Tải mã tracking do admin cấu hình cho landing này
   useEffect(() => {
-    const fbPixel = localStorage.getItem("clientFbPixel");
-    const ttPixel = localStorage.getItem("clientTtPixel");
-    const ggTag = localStorage.getItem("clientGgTag");
-    const ytTag = localStorage.getItem("clientYtTag");
+    supabase
+      .from("cau_hinh_tracking")
+      .select("loai_ma, ma")
+      .eq("landing", "/thuonghieuchuyendoi")
+      .then(({ data }) => setTrackingCodes(data || []));
+  }, []);
+
+  // 2b. Khởi tạo pixel tracking khi đã có mã từ Supabase
+  useEffect(() => {
+    if (trackingCodes.length === 0) return;
+
+    const fbPixel = pickTrackingCodes("facebook_pixel").join(",");
+    const ttPixel = pickTrackingCodes("tiktok_pixel")[0] || "";
+    const ggTag = pickTrackingCodes("google_tag")[0] || "";
+    const ytTag = pickTrackingCodes("youtube_ads")[0] || "";
 
     // Facebook Pixel
     if (fbPixel && !window.fbq) {
@@ -188,7 +205,7 @@ export default function ThuongHieuChuyenDoiPage() {
       if (ggTag) window.gtag("config", ggTag);
       if (ytTag) window.gtag("config", ytTag);
     }
-  }, []);
+  }, [trackingCodes]);
 
   // Đọc link Zalo do admin cấu hình (dùng tạo mã QR khi đăng ký thành công)
   useEffect(() => {
@@ -640,12 +657,12 @@ export default function ThuongHieuChuyenDoiPage() {
       }
       if (window.gtag) {
         try {
-          const clientGgTag = localStorage.getItem("clientGgTag");
+          const clientGgTag = pickTrackingCodes("google_tag")[0];
           if (clientGgTag) {
             window.gtag("event", "generate_lead", { send_to: clientGgTag });
           }
-          const clientYtTag = localStorage.getItem("clientYtTag");
-          const clientYtLabel = localStorage.getItem("clientYtLabel");
+          const clientYtTag = pickTrackingCodes("youtube_ads")[0];
+          const clientYtLabel = pickTrackingCodes("conversion_label")[0];
           if (clientYtTag && clientYtLabel) {
             window.gtag("event", "conversion", { send_to: `${clientYtTag}/${clientYtLabel}` });
           }
