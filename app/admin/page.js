@@ -36,6 +36,7 @@ export default function AdminOverviewPage() {
   const [leads, setLeads] = useState([]);
   const [recentLeads, setRecentLeads] = useState([]);
   const [campaigns, setCampaigns] = useState([]);
+  const [dailyVisits, setDailyVisits] = useState([]);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState("");
 
@@ -54,6 +55,14 @@ export default function AdminOverviewPage() {
     if (fromDate) leadsQuery = leadsQuery.gte("thoi_gian", `${fromDate}T00:00:00`);
     if (toDate) leadsQuery = leadsQuery.lte("thoi_gian", `${toDate}T23:59:59`);
 
+    // Lượt truy cập theo ngày lấy từ heatmap_thiet_bi (so_phien) — đây là số
+    // phiên thật vào landing page mỗi ngày, có mốc "ngay" nên lọc được đúng
+    // theo khoảng đang chọn (khác với chi_tiet_chien_dich.luot_truy_cap chỉ
+    // cộng dồn từ trước đến nay, không tách được theo ngày/khoảng thời gian).
+    let visitsQuery = supabase.from("heatmap_thiet_bi").select("ngay, so_phien").eq("landing", landing);
+    if (fromDate) visitsQuery = visitsQuery.gte("ngay", fromDate);
+    if (toDate) visitsQuery = visitsQuery.lte("ngay", toDate);
+
     Promise.all([
       leadsQuery,
       supabase
@@ -66,9 +75,10 @@ export default function AdminOverviewPage() {
         .from("chien_dich")
         .select("id, ten_chien_dich, chi_tiet_chien_dich(luot_truy_cap, luot_dang_ky_thanh_cong)")
         .eq("landing", landing),
-    ]).then(([leadsRes, recentRes, campaignsRes]) => {
+      visitsQuery,
+    ]).then(([leadsRes, recentRes, campaignsRes, visitsRes]) => {
       if (requestIdRef.current !== requestId) return;
-      const err = leadsRes.error || recentRes.error || campaignsRes.error;
+      const err = leadsRes.error || recentRes.error || campaignsRes.error || visitsRes.error;
       if (err) {
         setLoadError(err.message);
         setLoading(false);
@@ -78,6 +88,7 @@ export default function AdminOverviewPage() {
       setLeads(leadsRes.data || []);
       setRecentLeads(recentRes.data || []);
       setCampaigns(campaignsRes.data || []);
+      setDailyVisits(visitsRes.data || []);
       setLoading(false);
     });
   }, [landing, fromDate, toDate]);
@@ -89,17 +100,17 @@ export default function AdminOverviewPage() {
   useAutoRefresh(() => loadOverview({ silent: true }), 10000);
 
   const trend = useMemo(() => {
-    // Toàn thời gian (không chọn ngày): lấy từ lead cũ nhất tới hôm nay.
+    // Toàn thời gian (không chọn ngày): lấy từ mốc cũ nhất (lead hoặc lượt
+    // truy cập, cái nào có trước) tới hôm nay — để không cắt mất dữ liệu
+    // lượt truy cập nếu nó có trước lead đầu tiên.
     let start = fromDate ? new Date(`${fromDate}T00:00:00`) : null;
     const end = toDate ? new Date(`${toDate}T00:00:00`) : new Date();
 
     if (!start) {
-      if (leads.length === 0) {
-        start = new Date();
-      } else {
-        const oldest = leads.reduce((min, l) => (l.thoi_gian < min ? l.thoi_gian : min), leads[0].thoi_gian);
-        start = new Date(oldest.slice(0, 10) + "T00:00:00");
-      }
+      const oldestLead = leads.length ? leads.reduce((min, l) => (l.thoi_gian < min ? l.thoi_gian : min), leads[0].thoi_gian).slice(0, 10) : null;
+      const oldestVisit = dailyVisits.length ? dailyVisits.reduce((min, v) => (v.ngay < min ? v.ngay : min), dailyVisits[0].ngay) : null;
+      const oldest = [oldestLead, oldestVisit].filter(Boolean).sort()[0];
+      start = oldest ? new Date(`${oldest}T00:00:00`) : new Date();
     }
 
     const days = [];
@@ -107,7 +118,7 @@ export default function AdminOverviewPage() {
     // Chặn tối đa 90 điểm để biểu đồ không bị quá dài khi xem toàn thời gian.
     while (cursor <= end && days.length < 90) {
       const key = toDateStr(cursor);
-      days.push({ date: dateKey(key), key, leads: 0 });
+      days.push({ date: dateKey(key), key, leads: 0, visits: 0 });
       cursor.setDate(cursor.getDate() + 1);
     }
 
@@ -117,12 +128,17 @@ export default function AdminOverviewPage() {
       const key = lead.thoi_gian.slice(0, 10);
       if (byKey[key]) byKey[key].leads += 1;
     });
+    dailyVisits.forEach((row) => {
+      if (byKey[row.ngay]) byKey[row.ngay].visits += Number(row.so_phien || 0);
+    });
     return days;
-  }, [leads, fromDate, toDate]);
+  }, [leads, dailyVisits, fromDate, toDate]);
 
-  const totalVisits = campaigns.reduce((sum, c) => sum + (c.chi_tiet_chien_dich?.luot_truy_cap || 0), 0);
-  const totalRegistered = campaigns.reduce((sum, c) => sum + (c.chi_tiet_chien_dich?.luot_dang_ky_thanh_cong || 0), 0);
-  const conversion = totalVisits > 0 ? (totalRegistered / totalVisits) * 100 : 0;
+  // Lượt truy cập + tỷ lệ chuyển đổi tính đúng theo khoảng ngày đang lọc
+  // (tổng số phiên thật vào landing page trong khoảng đó), không phải số
+  // cộng dồn từ trước đến nay như chi_tiet_chien_dich.
+  const totalVisits = dailyVisits.reduce((sum, row) => sum + Number(row.so_phien || 0), 0);
+  const conversion = totalVisits > 0 ? (leads.length / totalVisits) * 100 : 0;
 
   const topCampaigns = [...campaigns]
     .sort((a, b) => (b.chi_tiet_chien_dich?.luot_truy_cap || 0) - (a.chi_tiet_chien_dich?.luot_truy_cap || 0))
@@ -193,13 +209,18 @@ export default function AdminOverviewPage() {
         <>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             <StatTile label="Khách đăng ký (trong khoảng)" value={leads.length} formatValue={formatNumber} icon={IconUsers} accent="#eb6834" />
-            <StatTile label="Tổng lượt truy cập (từ trước đến nay)" value={totalVisits} formatValue={formatNumber} icon={IconTrendUp} accent="#2a78d6" />
-            <StatTile label="Tỷ lệ chuyển đổi (tất cả chiến dịch)" value={conversion} formatValue={(n) => `${n.toFixed(1)}%`} icon={IconPercent} accent="#1baf7a" />
+            <StatTile label="Lượt truy cập (trong khoảng)" value={totalVisits} formatValue={formatNumber} icon={IconTrendUp} accent="#2a78d6" />
+            <StatTile label="Tỷ lệ chuyển đổi (trong khoảng)" value={conversion} formatValue={(n) => `${n.toFixed(1)}%`} icon={IconPercent} accent="#1baf7a" />
             <StatTile label="Số chiến dịch" value={campaigns.length} icon={IconMegaphone} accent="#4a3aa7" />
           </div>
 
-          <div className="rounded-xl border border-black/10 bg-white p-5">
-            <LineChart data={trend} valueKey="leads" label="Khách đăng ký theo ngày" color="#e25010" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div className="rounded-xl border border-black/10 bg-white p-5">
+              <LineChart data={trend} valueKey="visits" label="Lượt truy cập theo ngày" color="#2a78d6" formatValue={formatNumber} />
+            </div>
+            <div className="rounded-xl border border-black/10 bg-white p-5">
+              <LineChart data={trend} valueKey="leads" label="Khách đăng ký theo ngày" color="#e25010" formatValue={formatNumber} />
+            </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
