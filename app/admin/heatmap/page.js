@@ -6,6 +6,7 @@ import StatTile from "../_components/StatTile";
 import BarList from "../_components/BarList";
 import PageHeatmap from "../_components/PageHeatmap";
 import DateRangeFilter from "../_components/DateRangeFilter";
+import Modal from "../_components/Modal";
 import { IconClock, IconMonitor, IconTablet, IconPhone, IconPercent, IconUsers } from "../_components/icons";
 import { sectionLabelsByLanding, formatDuration, formatNumber } from "../_lib/mockData";
 import { useActiveLanding } from "../_lib/LandingContext";
@@ -37,6 +38,11 @@ export default function HeatmapPage() {
   const [registeredAvgSessionSeconds, setRegisteredAvgSessionSeconds] = useState(0);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState("");
+
+  const [confirmOpen, setConfirmOpen] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [deleting, setDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState("");
 
   const sectionLabels = sectionLabelsByLanding[landing] || {};
   const requestIdRef = useRef(0);
@@ -146,6 +152,56 @@ export default function HeatmapPage() {
 
   useAutoRefresh(() => loadHeatmap({ silent: true }), 10000);
 
+  const handleDeleteData = async (e) => {
+    e.preventDefault();
+    setDeleteError("");
+
+    if (!confirmPassword) return;
+    setDeleting(true);
+
+    // Xác nhận đúng mật khẩu tài khoản admin đang đăng nhập trước khi xoá —
+    // Supabase không có API "kiểm tra mật khẩu" riêng, nên tận dụng luôn
+    // signInWithPassword: sai mật khẩu sẽ trả lỗi, đúng thì xác thực lại
+    // đúng phiên hiện tại (không ảnh hưởng gì vì cùng 1 tài khoản).
+    const { data: sessionData } = await supabase.auth.getSession();
+    const email = sessionData?.session?.user?.email;
+    if (!email) {
+      setDeleteError("Không xác định được tài khoản đang đăng nhập.");
+      setDeleting(false);
+      return;
+    }
+
+    const { error: authError } = await supabase.auth.signInWithPassword({ email, password: confirmPassword });
+    if (authError) {
+      setDeleteError("Sai mật khẩu.");
+      setDeleting(false);
+      return;
+    }
+
+    let secDel = supabase.from("heatmap_section").delete().eq("landing", landing);
+    let devDel = supabase.from("heatmap_thiet_bi").delete().eq("landing", landing);
+    if (fromDate) {
+      secDel = secDel.gte("ngay", fromDate);
+      devDel = devDel.gte("ngay", fromDate);
+    }
+    if (toDate) {
+      secDel = secDel.lte("ngay", toDate);
+      devDel = devDel.lte("ngay", toDate);
+    }
+
+    const [secRes, devRes] = await Promise.all([secDel, devDel]);
+    setDeleting(false);
+
+    if (secRes.error || devRes.error) {
+      setDeleteError((secRes.error || devRes.error).message);
+      return;
+    }
+
+    setConfirmPassword("");
+    setConfirmOpen(false);
+    loadHeatmap({ silent: true });
+  };
+
   const defaultScroll = { pct25: 0, pct50: 0, pct75: 0, pct100: 0 };
   const stats = deviceStats[device] || { moves: 0, clicks: 0, avgSessionSeconds: 0, bounceRate: 0, abandonRate: 0, scrollDepth: defaultScroll };
   const scroll = stats.scrollDepth || defaultScroll;
@@ -176,26 +232,95 @@ export default function HeatmapPage() {
             setToDate(today);
           }}
         />
-        <div className="flex items-center gap-1 rounded-lg border border-black/10 bg-white p-1 w-fit">
-          {DEVICES.map((d) => {
-            const Icon = d.icon;
-            const active = device === d.key;
-            return (
-              <button
-                key={d.key}
-                onClick={() => setDevice(d.key)}
-                className={
-                  "flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium transition-colors " +
-                  (active ? "bg-[#fdf0ea] text-[#e25010]" : "text-[#52514e] hover:bg-black/[0.04]")
-                }
-              >
-                <Icon />
-                {d.label}
-              </button>
-            );
-          })}
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => {
+              setDeleteError("");
+              setConfirmPassword("");
+              setConfirmOpen(true);
+            }}
+            className="text-sm font-medium text-[#d03b3b] hover:text-[#a12e2e] whitespace-nowrap"
+          >
+            Xoá dữ liệu
+          </button>
+
+          <div className="flex items-center gap-1 rounded-lg border border-black/10 bg-white p-1 w-fit">
+            {DEVICES.map((d) => {
+              const Icon = d.icon;
+              const active = device === d.key;
+              return (
+                <button
+                  key={d.key}
+                  onClick={() => setDevice(d.key)}
+                  className={
+                    "flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium transition-colors " +
+                    (active ? "bg-[#fdf0ea] text-[#e25010]" : "text-[#52514e] hover:bg-black/[0.04]")
+                  }
+                >
+                  <Icon />
+                  {d.label}
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
+
+      <Modal
+        open={confirmOpen}
+        onClose={() => {
+          if (deleting) return;
+          setConfirmOpen(false);
+        }}
+        title="Xoá dữ liệu Heatmap"
+      >
+        <form onSubmit={handleDeleteData} className="space-y-4">
+          <p className="text-sm text-[#52514e]">
+            Xoá toàn bộ dữ liệu heatmap (thời gian xem section, số phiên, tỷ lệ thoát/cuộn trang/bỏ dở form) của{" "}
+            <span className="font-semibold text-[#0b0b0b]">{landing}</span>
+            {fromDate || toDate ? (
+              <>
+                {" "}trong khoảng <span className="font-semibold text-[#0b0b0b]">{fromDate || "…"} → {toDate || "…"}</span>
+              </>
+            ) : (
+              <> — <span className="font-semibold text-[#d03b3b]">toàn bộ thời gian</span></>
+            )}
+            . Không thể hoàn tác.
+          </p>
+
+          <div>
+            <label className="block text-sm font-medium text-[#0b0b0b] mb-1.5">Nhập mật khẩu admin để xác nhận</label>
+            <input
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="Mật khẩu đăng nhập"
+              autoFocus
+              className="w-full rounded-lg border border-black/10 bg-white py-2.5 px-3 text-sm text-[#0b0b0b] placeholder:text-[#898781] outline-none focus:border-[#e25010]"
+            />
+          </div>
+
+          {deleteError && <p className="text-xs text-[#d03b3b]">{deleteError}</p>}
+
+          <div className="flex items-center gap-3">
+            <button
+              type="submit"
+              disabled={!confirmPassword || deleting}
+              className="inline-flex items-center gap-1.5 rounded-lg bg-[linear-gradient(135deg,#d0212a,#a12e2e)] text-white text-sm font-semibold px-5 py-2.5 disabled:opacity-40 disabled:cursor-not-allowed hover:opacity-90 transition-opacity"
+            >
+              {deleting ? "Đang xoá..." : "Xác nhận xoá"}
+            </button>
+            <button
+              type="button"
+              onClick={() => setConfirmOpen(false)}
+              disabled={deleting}
+              className="text-sm font-medium text-[#52514e] hover:text-[#0b0b0b] disabled:opacity-40"
+            >
+              Huỷ
+            </button>
+          </div>
+        </form>
+      </Modal>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
         <StatTile label="Tổng số phiên" value={stats.soPhien} formatValue={formatNumber} icon={IconUsers} accent="#2a78d6" />
