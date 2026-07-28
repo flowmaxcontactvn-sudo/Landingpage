@@ -138,6 +138,10 @@ export default function LeadsPage() {
           setFromDate(today);
           setToDate(today);
         }}
+        onPreset={(f, t) => {
+          setFromDate(f);
+          setToDate(t);
+        }}
       />
 
       <div className="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">

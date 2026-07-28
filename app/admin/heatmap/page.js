@@ -231,6 +231,10 @@ export default function HeatmapPage() {
             setFromDate(today);
             setToDate(today);
           }}
+          onPreset={(f, t) => {
+            setFromDate(f);
+            setToDate(t);
+          }}
         />
         <div className="flex items-center gap-3">
           <button

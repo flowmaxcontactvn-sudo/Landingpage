@@ -199,6 +199,10 @@ export default function AdminOverviewPage() {
           setFromDate(today);
           setToDate(today);
         }}
+        onPreset={(f, t) => {
+          setFromDate(f);
+          setToDate(t);
+        }}
       />
 
       {loading ? (
