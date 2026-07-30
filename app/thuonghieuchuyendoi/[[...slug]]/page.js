@@ -1180,11 +1180,11 @@ export default function ThuongHieuChuyenDoiPage() {
                 ghiChu: "Diamond — 1.868.000đ",
               },
             ].map((tier) => (
-              <div key={tier.key} className="rounded-2xl bg-white px-4 py-6 flex flex-col text-center shadow-lg">
-                <h3 className="text-[38px] md:text-[42px] font-black font-montserrat text-[#1a1a2e] uppercase leading-tight mb-1">{tier.key}</h3>
-                <p className="text-[16px] font-semibold text-gray-600 mb-3">{tier.subtitle}</p>
+              <div key={tier.key} className="rounded-2xl bg-white px-6 py-8 flex flex-col text-center shadow-lg">
+                <h3 className="text-[40px] md:text-[44px] font-black font-montserrat text-[#1a1a2e] uppercase leading-tight mb-1">{tier.key}</h3>
+                <p className="text-[16.5px] font-semibold text-gray-600 mb-3">{tier.subtitle}</p>
                 <div className="h-px bg-gray-200 mb-4" />
-                <ul className="space-y-2.5 text-[18px] md:text-[19px] font-bold text-[#111111] mb-4 text-left">
+                <ul className="space-y-3 text-[20px] md:text-[21px] font-bold text-[#e30a0a] mb-4 text-left">
                   {tier.items.map((item) => (
                     <li key={item} className="flex gap-2.5 items-start">
                       <span className="text-[#e30a0a] font-black">✓</span>
