@@ -43,6 +43,7 @@ export default function ThuongHieuChuyenDoiPage() {
   const [ghiChu, setGhiChu] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successModalOpen, setSuccessModalOpen] = useState(false);
+  const [playingTestimonial, setPlayingTestimonial] = useState(null);
 
   // UTM tracking variables
   const [utmSource, setUtmSource] = useState(null);
@@ -699,6 +700,9 @@ export default function ThuongHieuChuyenDoiPage() {
   // ── Shared Tailwind class strings (1:1 port of the former BEM classes) ──
   const container = "max-w-[980px] mx-auto px-6 max-[680px]:px-4";
   const sectionWhite = "bg-white py-14 max-[680px]:py-5";
+  const sectionTitle = "text-[clamp(28px,3.4vw,40px)] font-extrabold font-montserrat text-[#e25010] uppercase leading-[1.2]";
+  const ctaButton = "bg-[#e30a0a] hover:bg-[#ff1e1e] text-white font-extrabold font-montserrat uppercase tracking-wide rounded-xl shadow-[0_0_25px_rgba(227,10,10,0.45)] hover:shadow-[0_0_32px_rgba(227,10,10,0.6)] transition-all duration-300";
+  const ctaButtonInline = ctaButton + " hover:scale-105 active:scale-95";
   const oppTitle =
     "text-[clamp(30px,4.2vw,46px)] font-extrabold text-[#e25010] uppercase leading-[1.2] mb-2 max-[680px]:text-[27px] max-[680px]:leading-[1.2]";
   const oppSubtitle = "text-[22px] text-[#555] max-[680px]:text-[16.5px]";
@@ -746,16 +750,16 @@ export default function ThuongHieuChuyenDoiPage() {
            SECTION 1 — THANH THÔNG BÁO ĐẦU TRANG
       ══════════════════════════════════════════ */}
       <div
-        className="relative overflow-hidden bg-[#e30a0a] text-white text-center px-4 py-2.5 text-[14px] font-bold flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 max-[680px]:text-[12px] max-[680px]:py-2 font-montserrat"
+        className="relative overflow-hidden bg-[#e30a0a] text-white text-center px-6 py-4 text-[15.5px] font-bold flex flex-wrap items-center justify-center gap-x-5 gap-y-2.5 max-[680px]:text-[13.5px] max-[680px]:py-3 font-montserrat shadow-md"
         data-section="announcement-bar"
       >
         <span className="opacity-95">🗓️ Khai giảng: 03/08/2026</span>
         <span className="hidden md:inline-block opacity-40">|</span>
-        <span className="opacity-95">Chỉ nhận 10 học viên để đội ngũ Mentor có thể theo sát quá trình thực hành.</span>
+        <span className="text-[#ffe066] font-extrabold">Chỉ nhận 10 học viên để đội ngũ Mentor có thể theo sát quá trình thực hành.</span>
         <a
           href="#register"
           onClick={(e) => handleAnchorClick(e, "register")}
-          className="bg-white text-[#e30a0a] font-black text-[11px] px-4 py-1.5 rounded-full uppercase tracking-wide hover:opacity-90 transition-opacity whitespace-nowrap"
+          className="bg-white text-[#e30a0a] font-black text-[12px] px-5 py-2.5 rounded-full uppercase tracking-wide hover:opacity-90 transition-opacity whitespace-nowrap ml-2 shadow-md"
         >
           Đăng ký giữ chỗ
         </a>
@@ -765,19 +769,24 @@ export default function ThuongHieuChuyenDoiPage() {
            SECTION 2 — HERO: LỜI HỨA CHÍNH
       ══════════════════════════════════════════ */}
       <section
-        className="bg-[linear-gradient(135deg,#0b1120_0%,#141d3d_45%,#1f2b5c_100%)] text-white py-16 max-[680px]:py-9 relative overflow-hidden"
+        className="text-white py-16 md:py-20 max-[680px]:py-10 relative overflow-hidden"
+        style={{
+          backgroundImage: "linear-gradient(to right, rgba(11, 16, 44, 0.95), rgba(16, 26, 68, 0.92)), url('/thuonghieuchuyendoi/images/banner.jpeg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat"
+        }}
         data-section="hero"
       >
-        <div className="max-w-[1140px] mx-auto px-6 max-[680px]:px-4 relative grid grid-cols-[0.9fr_1.1fr] gap-8 items-center max-[860px]:grid-cols-1 max-[860px]:gap-6">
-          <div className="relative">
-            <div className="w-full aspect-video max-w-[500px] mx-auto rounded-xl overflow-hidden border-[3px] border-white/10 bg-black/60 shadow-[0_15px_40px_rgba(0,0,0,0.4)] relative group cursor-pointer">
+        <div className="max-w-[1140px] mx-auto px-6 max-[680px]:px-4 relative grid grid-cols-[1fr_1.1fr] gap-10 items-center max-[860px]:grid-cols-1 max-[860px]:gap-8">
+          
+          {/* Cột trái: Video player (dạng thẻ card trắng bo tròn giống ảnh mẫu) */}
+          <div className="relative max-[860px]:order-2">
+            <div className="w-full aspect-[4/3] md:aspect-[1.35/1] max-w-[500px] mx-auto rounded-2xl overflow-hidden border border-white/20 bg-white p-2.5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative group cursor-pointer flex flex-col justify-center items-center">
               <img
-                src="/thuonghieuchuyendoi/images/mentor-class-2.jpg"
+                src="/thuonghieuchuyendoi/images/banner.jpeg"
                 alt="Video giới thiệu chương trình"
-                className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-500"
-                onError={(e) => {
-                  e.target.src = "https://placehold.co/500x281/1e293b/ffffff?text=Video+Gioi+Thieu+Chuong+Trinh";
-                }}
+                className="w-full h-full object-cover rounded-xl"
               />
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-14 h-14 rounded-full bg-[#e30a0a] text-white flex items-center justify-center shadow-[0_0_25px_rgba(227,10,10,0.5)] group-hover:scale-110 group-hover:bg-[#ff1e1e] transition-all duration-300">
@@ -786,32 +795,62 @@ export default function ThuongHieuChuyenDoiPage() {
                   </svg>
                 </div>
               </div>
+              
+              {/* [âm nhạc] subtitle overlay ở dưới ảnh mẫu */}
+              <div className="absolute bottom-5 left-1/2 -translate-x-1/2 bg-black/75 px-3 py-1 rounded text-[11px] font-sans font-medium text-white tracking-wider select-none">
+                [âm nhạc]
+              </div>
             </div>
           </div>
-          <div className="text-left max-[860px]:text-center">
-            <h1 className="text-[26px] md:text-[34px] font-black font-montserrat leading-[1.25] mb-3 uppercase">
-              7 ngày bắt đầu xây kênh<br />
-              và tạo ra những <span className="text-[#f5a623]">khách hàng đầu tiên</span><br />
-              từ nội dung
+
+          {/* Cột phải: Text & CTA button (căn trái toàn bộ theo ảnh mẫu) */}
+          <div className="text-left max-[860px]:text-center flex flex-col items-start max-[860px]:items-center max-[860px]:order-1">
+            
+            <h1 className="text-[20px] md:text-[23px] font-bold font-montserrat leading-relaxed mb-4 text-white uppercase max-w-[560px]">
+              7 ngày bắt đầu xây kênh và tạo ra những <span className="text-[#f5a623]">khách hàng đầu tiên</span> từ <br /> <span className="text-[#f5a623] whitespace-nowrap">nội dung</span>
             </h1>
-            <p className="mb-2 text-[15px] opacity-[0.92] leading-[1.7] max-[680px]:text-[13.5px]">
+            
+            <p className="mb-4 text-[14px] md:text-[15px] opacity-[0.92] leading-relaxed max-w-[500px] text-justify">
               Bạn sẽ bắt đầu xây dựng được kênh thương hiệu cá nhân thu hút khách hàng và bán hàng bằng việc tham dự chương trình 7 ngày liên tục này.
             </p>
-            <p className="mb-3 text-[14px] italic opacity-80 font-semibold leading-[1.6]">
+            
+            <p className="mb-4 text-[14px] italic text-[#f5a623] font-bold leading-relaxed">
               Đăng ký sớm ngay hôm nay để chúng tôi giữ cho bạn một chỗ.
             </p>
-            <p className="mb-4 text-[15px] opacity-[0.9] leading-[1.7] max-[680px]:text-[13.5px]">
+            
+            <p className="mb-6 text-[13.5px] md:text-[14.5px] opacity-[0.8] leading-relaxed max-w-[500px] text-justify">
               Trong suốt 4 năm qua, hơn <strong>2.000 học viên</strong> đã tham dự chương trình xây kênh và bán hàng, bằng những kiến thức có được và sự kèm cặp sát sao công việc kinh doanh của họ đã có rất nhiều thay đổi.
             </p>
-            <div className="flex flex-wrap gap-x-4 gap-y-1.5 mb-6 text-[14px] font-semibold text-white/80 max-[860px]:justify-center">
-              <span>🗓️ Khai giảng: 03/08/2026</span>
-              <span>💻 Địa điểm: Online qua Zoom và kèm cặp tại Group</span>
+            
+            {/* Hàng Icons ngày/địa điểm với SVG outline chuẩn (căn trái) */}
+            <div className="flex flex-wrap items-center justify-start max-[860px]:justify-center gap-x-6 gap-y-2 mb-8 text-[13.5px] font-medium text-white/90">
+              <span className="flex items-center gap-2">
+                <svg className="w-5 h-5 text-white/80 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <span>Tháng 8/2026</span>
+              </span>
+              <span className="flex items-center gap-2">
+                <svg className="w-5 h-5 text-white/80 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span>Online qua Zoom & Group</span>
+              </span>
             </div>
-            <a href="#register" onClick={(e) => handleAnchorClick(e, "register")} className="inline-block bg-[#e30a0a] hover:bg-[#ff1e1e] text-white font-extrabold text-[14px] px-10 py-3.5 rounded-full text-center tracking-wide uppercase transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg max-[860px]:mx-auto leading-tight font-montserrat">
+
+            {/* Red pill CTA Button */}
+            <a
+              href="#register"
+              onClick={(e) => handleAnchorClick(e, "register")}
+              className="inline-block bg-[#e30a0a] hover:bg-[#ff1e1e] text-white font-extrabold text-[12px] md:text-[13px] px-10 py-4.5 rounded-full text-center tracking-wide uppercase transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_10px_30px_rgba(227,10,10,0.4)] leading-tight font-montserrat max-[860px]:mx-auto"
+            >
               YES! TÔI SẴN SÀNG XÂY KÊNH<br />
               VÀ BỨT PHÁ DOANH THU CỦA MÌNH!
             </a>
+            
           </div>
+          
         </div>
       </section>
 
@@ -823,36 +862,36 @@ export default function ThuongHieuChuyenDoiPage() {
           <div className="grid grid-cols-[1.1fr_0.9fr] gap-12 items-start max-[960px]:grid-cols-1 max-[960px]:gap-10">
             {/* Cột trái: Tiêu đề & Danh sách văn bản */}
             <div className="text-left font-montserrat">
-              <span className="block text-[18px] md:text-[22px] font-bold text-gray-500 uppercase tracking-wider mb-1">
+              <span className="block text-[18px] md:text-[22px] font-black text-gray-800 uppercase tracking-wider mb-1">
                 KHI BẠN THAM GIA
               </span>
-              <h2 className="text-[32px] md:text-[40px] font-black text-[#e30a0a] uppercase leading-[1.15] mb-2.5">
-                7 ngày xây kênh chuyển đổi
+              <h2 className="text-[24px] md:text-[36px] font-black text-[#e25010] uppercase leading-[1.2] mb-2.5">
+                7 ngày xây kênh <span className="whitespace-nowrap">chuyển đổi</span>
               </h2>
               <span className="block text-[15px] md:text-[16px] font-black text-gray-800 uppercase tracking-widest mb-6">
                 BẠN SẼ CÓ CƠ HỘI ĐỂ:
               </span>
 
-              <div className="space-y-3.5 text-[15.5px] leading-relaxed text-gray-700 font-medium font-sans">
+              <div className="space-y-3.5 text-[15.5px] leading-relaxed text-gray-700 font-medium font-sans text-justify">
                 {[
-                  ["#1.", "Thấu hiểu thuật toán các nền tảng."],
-                  ["#3.", "Làm thế nào để chọn sản phẩm bán trên Online hiệu quả."],
-                  ["#8.", "Các chiến lược sáng tạo nội dung chuyển đổi."],
-                  ["#11.", "4 Dạng nội dung chuyển đổi dễ dàng cho người mới."],
-                  ["#17.", "Quy trình Quay và Edit một video đơn giản."],
-                  ["#23.", "Xây dựng Trang Fanpage, TikTok, Profile trên MXH."],
-                  ["#25.", "Đo lường chỉ số và tối ưu nội dung chuyển đổi trên kênh."],
-                  ["#31.", "Kèm cặp chữa bài từng ngày."],
-                  ["#36.", "Khám 1:1 định hướng kênh sau khi kết thúc hành trình."],
-                ].map(([num, desc]) => (
-                  <p key={num} className="flex gap-1.5 items-start">
-                    <strong className="text-gray-900 font-bold font-montserrat shrink-0">{num}</strong>
-                    <span>{desc}</span>
+                  { num: "#1.", desc: <span>Thấu hiểu thuật toán các <span className="whitespace-nowrap">nền tảng.</span></span> },
+                  { num: "#3.", desc: <span>Làm thế nào để chọn sản phẩm bán trên Online <span className="whitespace-nowrap">hiệu quả.</span></span> },
+                  { num: "#8.", desc: <span>Các chiến lược sáng tạo nội dung <span className="whitespace-nowrap">chuyển đổi.</span></span> },
+                  { num: "#11.", desc: <span>4 Dạng nội dung chuyển đổi dễ dàng cho <span className="whitespace-nowrap">người mới.</span></span> },
+                  { num: "#17.", desc: <span>Quy trình Quay và Edit một video <span className="whitespace-nowrap">đơn giản.</span></span> },
+                  { num: "#23.", desc: <span>Xây dựng Trang Fanpage, TikTok, Profile <span className="whitespace-nowrap">trên MXH.</span></span> },
+                  { num: "#25.", desc: <span>Đo lường chỉ số và tối ưu nội dung chuyển đổi <span className="whitespace-nowrap">trên kênh.</span></span> },
+                  { num: "#31.", desc: <span>Kèm cặp chữa bài <span className="whitespace-nowrap">từng ngày.</span></span> },
+                  { num: "#36.", desc: <span>Khám 1:1 định hướng kênh sau khi kết thúc <span className="whitespace-nowrap">hành trình.</span></span> }
+                ].map((item) => (
+                  <p key={item.num} className="text-justify leading-relaxed">
+                    <strong className="text-gray-900 font-bold font-montserrat mr-2">{item.num}</strong>
+                    <span>{item.desc}</span>
                   </p>
                 ))}
               </div>
 
-              <p className="text-left text-[16px] text-gray-500 font-bold italic mt-8 font-sans">
+              <p className="text-left text-[16.5px] text-[#111111] font-black italic mt-8 font-sans">
                 Và còn nhiều hơnnnn thế nữa….
               </p>
             </div>
@@ -914,7 +953,7 @@ export default function ThuongHieuChuyenDoiPage() {
             <a
               href="#register"
               onClick={(e) => handleAnchorClick(e, "register")}
-              className="inline-block bg-[#e30a0a] hover:bg-[#ff1e1e] text-white font-extrabold text-[15px] px-10 py-4.5 rounded-full text-center tracking-wide uppercase transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg animate-btn-pulse font-montserrat"
+              className={"inline-block " + ctaButtonInline + " text-[15px] px-10 py-4.5 text-center animate-btn-pulse"}
             >
               YES! TÔI ĐÃ SẴN SÀNG XÂY KÊNH VÀ BỨT PHÁ DOANH THU CỦA MÌNH
             </a>
@@ -929,11 +968,11 @@ export default function ThuongHieuChuyenDoiPage() {
         <div className="max-w-[1040px] mx-auto px-6 max-[680px]:px-4">
           <div className="bg-[#0b0c1e]/65 backdrop-blur-md rounded-[32px] p-8 md:p-12 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.3)] text-white font-montserrat leading-[1.8] text-[15px] md:text-[15.5px] max-[680px]:text-[14px]">
             
-            <p className="text-center font-bold text-[18px] md:text-[21px] leading-relaxed mb-8 max-w-[880px] mx-auto">
+            <p className="text-justify font-bold text-[17px] md:text-[19.5px] leading-relaxed mb-8 max-w-[880px] mx-auto">
               7 ngày xây kênh chuyển đổi là một chương trình liên tục được thiết kế để bạn vượt qua những rào cản bản thân để ngay lập tức <u>xây một kênh thương hiệu cá nhân, bán hàng gia tăng doanh số và thu nhập.</u>
             </p>
 
-            <div className="space-y-6 text-[#cbd5e1]">
+            <div className="space-y-6 text-[#cbd5e1] text-justify">
               <p>
                 Với những trải nghiệm sống, sự phán xét từ môi trường xung quanh, con người ta chấp nhận những định kiến của người khác về xây kênh, về bán hàng online tạo ra những nỗi sợ ngăn chúng ta hành động.
               </p>
@@ -963,7 +1002,7 @@ export default function ThuongHieuChuyenDoiPage() {
       ══════════════════════════════════════════ */}
       <section className="bg-white py-10 max-[680px]:py-8" data-section="customer-pain-points">
         <div className={container}>
-          <h2 className="text-[clamp(26px,3.2vw,36px)] font-extrabold text-[#e6231e] uppercase leading-[1.3] text-center mb-8 max-[680px]:text-[22px] font-montserrat">
+          <h2 className={sectionTitle + " text-center mb-8"}>
             ĐÂY LÀ VẤN ĐỀ MÀ HẦU HẾT<br />CÁC CHỦ DOANH NGHIỆP ĐỀU GẶP PHẢI
           </h2>
 
@@ -1001,7 +1040,7 @@ export default function ThuongHieuChuyenDoiPage() {
             <a
               href="#register"
               onClick={(e) => handleAnchorClick(e, "register")}
-              className="inline-block px-10 py-4 rounded-full font-extrabold text-white bg-[#d0212a] text-[14px] uppercase tracking-wide hover:bg-[#b81a22] transition-colors font-montserrat shadow-md"
+              className={"inline-block " + ctaButtonInline + " text-[14px] px-10 py-4"}
             >
               YES! TÔI SẴN SÀNG TĂNG TỐC CÔNG VIỆC KINH DOANH CỦA MÌNH!
             </a>
@@ -1023,13 +1062,10 @@ export default function ThuongHieuChuyenDoiPage() {
 
           {/* Header căn giữa */}
           <div className="text-center mb-10">
-            <p className="text-[12px] font-black uppercase tracking-[0.22em] text-gray-400 mb-1 font-montserrat">
+            <p className="text-[16px] md:text-[18px] font-black uppercase tracking-[0.2em] text-[#e25010] mb-2 font-montserrat">
               GẶP GỠ NGƯỜI HUẤN LUYỆN
             </p>
-            <p className="text-[15px] font-bold uppercase tracking-wide text-gray-600 mb-2 font-montserrat">
-              LUẬT SƯ / NHÀ ĐÀO TẠO DOANH NGHIỆP
-            </p>
-            <h2 className="text-[32px] md:text-[40px] font-black text-[#e25010] uppercase leading-tight font-montserrat">
+            <h2 className={sectionTitle}>
               TH.S VŨ KIM KHÁNH
             </h2>
           </div>
@@ -1039,18 +1075,18 @@ export default function ThuongHieuChuyenDoiPage() {
 
             {/* Cột trái — nội dung */}
             <div>
-              <div className="space-y-4 text-[14px] text-[#333] leading-[1.85] font-sans text-justify">
+              <div className="space-y-4 text-[15px] text-[#111111] font-semibold leading-[1.85] font-sans text-justify">
                 <p>
-                  Không chỉ là một Doanh nhân và Nhà đào tạo chuyên nghiệp trong lĩnh vực xây dựng thương hiệu cá nhân và bán hàng mà còn là <span className="text-[#e25010] font-semibold">một biểu tượng của sự kiên trì, vượt khó, tạo ra những kết quả không tưởng từ con số 0</span>. Với hơn 6 năm kinh nghiệm kinh doanh và đào tạo ông trở thành nguồn cảm hứng cho hàng chục nghìn người qua hơn 100 khoá học seminar, đồng thời đồng hành cùng hơn 10 doanh nghiệp doanh thu triệu đô.
+                  Không chỉ là một Doanh nhân và Nhà đào tạo chuyên nghiệp trong lĩnh vực xây dựng thương hiệu cá nhân và bán hàng mà còn là <span className="text-[#e25010] font-extrabold">một biểu tượng của sự kiên trì, vượt khó, tạo ra những kết quả không tưởng từ con số 0</span>. Với hơn 6 năm kinh nghiệm kinh doanh và đào tạo ông trở thành nguồn cảm hứng cho hàng chục nghìn người qua hơn 100 khoá học seminar, đồng thời đồng hành cùng hơn 10 doanh nghiệp doanh thu triệu đô.
                 </p>
                 <p>
-                  Sở hữu hệ thống kênh mạng xã hội <span className="text-[#e25010] font-semibold">&gt;400.000 Follower</span> nơi ông chia sẻ kiến thức về phát triển bản thân, kinh doanh và hạnh phúc gia đình. Trở thành một nguồn thông tin đáng tin cậy dẫn đường cho những ai <span className="text-[#e25010] font-semibold">đam mê kinh doanh và xây dựng hạnh phúc</span>.
+                  Sở hữu hệ thống kênh mạng xã hội <span className="text-[#e25010] font-extrabold">&gt;400.000 Follower</span> nơi ông chia sẻ kiến thức về phát triển bản thân, kinh doanh và hạnh phúc gia đình. Trở thành một nguồn thông tin đáng tin cậy dẫn đường cho những ai <span className="text-[#e25010] font-extrabold">đam mê kinh doanh và xây dựng hạnh phúc</span>.
                 </p>
                 <p>
-                  Không chỉ là một doanh nhân, Vũ Kim Khánh còn là <span className="text-[#e25010] font-semibold">một vận động viên Marathon mạnh mẽ</span>, đã thể hiện tinh thần thép qua việc hoàn tất cự ly Marathon 42km nhiều lần, tham gia các chuyến trip 20 ngày trong khi doanh nghiệp vẫn vận hành hoạt động bình thường. Những thành tựu này không chỉ phản ánh sự kiên trì nghị lực mà còn minh chứng cho khả năng quản lý thời gian và cân bằng cuộc sống một cách xuất sắc.
+                  Không chỉ là một doanh nhân, Vũ Kim Khánh còn là <span className="text-[#e25010] font-extrabold">một vận động viên Marathon mạnh mẽ</span>, đã thể hiện tinh thần thép qua việc hoàn tất cự ly Marathon 42km nhiều lần, tham gia các chuyến trip 20 ngày trong khi doanh nghiệp vẫn vận hành hoạt động bình thường. Những thành tựu này không chỉ phản ánh sự kiên trì nghị lực mà còn minh chứng cho khả năng quản lý thời gian và cân bằng cuộc sống một cách xuất sắc.
                 </p>
                 <p>
-                  Tham gia khoá học của Vũ Kim Khánh bạn sẽ trải nghiệm <span className="text-[#e25010] font-semibold">một hành trình chuyển hoá</span> từ việc khám phá các tiềm lực của bản thân đến việc xây dựng kênh thương hiệu cá nhân và bán hàng bằng phong cách sống, mở ra cánh cửa mới cho tương lai của bạn.
+                  Tham gia khoá học của Vũ Kim Khánh bạn sẽ trải nghiệm <span className="text-[#e25010] font-extrabold">một hành trình chuyển hoá</span> từ việc khám phá các tiềm lực của bản thân đến việc xây dựng kênh thương hiệu cá nhân và bán hàng bằng phong cách sống, mở ra cánh cửa mới cho tương lai của bạn.
                 </p>
               </div>
             </div>
@@ -1093,17 +1129,17 @@ export default function ThuongHieuChuyenDoiPage() {
       {/* ══════════════════════════════════════════
            SECTION 7 — TỔNG HỢP CHƯƠNG TRÌNH
       ══════════════════════════════════════════ */}
-      <section className="bg-[linear-gradient(115deg,#3a1560_0%,#5b2a8f_45%,#8a1f4a_100%)] text-center py-20 max-[680px]:py-10" data-section="methodology">
+      <section className="bg-white text-center py-20 max-[680px]:py-10 border-t-[3px] border-t-[#f0f0f0]" data-section="methodology">
         <div className={container}>
-          <h2 className="text-[24px] md:text-[34px] font-extrabold font-montserrat text-white uppercase leading-[1.25] mb-4 max-[680px]:text-[22px]">
+          <h2 className={sectionTitle + " mb-4"}>
             7 NGÀY XÂY KÊNH CHUYỂN ĐỔI THAY ĐỔI TOÀN BỘ CÔNG VIỆC KINH DOANH SỰ NGHIỆP CỦA BẠN TRÊN ONLINE
           </h2>
-          <p className="text-[16px] md:text-[18px] font-black font-montserrat text-[#fa8c16] uppercase tracking-wider mb-6">
+          <p className="text-[16px] md:text-[18px] font-black font-montserrat text-[#e25010] uppercase tracking-wider mb-6">
             PHƯƠNG PHÁP ĐÀO TẠO ACTION LEARNING
           </p>
 
-          <div className="inline-block bg-white/10 border border-white/10 rounded-2xl px-6 py-4.5 mb-8 shadow-inner max-w-[860px] mx-auto">
-            <span className="text-[18px] md:text-[22px] font-black font-montserrat text-white leading-relaxed block">
+          <div className="inline-block bg-[#fff8f0] border border-[#f5ddc0] rounded-2xl px-6 py-4.5 mb-8 shadow-inner max-w-[860px] mx-auto">
+            <span className="text-[18px] md:text-[22px] font-black font-montserrat text-[#1a1a1a] leading-relaxed block">
               20% HỌC ĐÚNG — 80% LÀM THẬT - 100% MENTOR SỬA TRỰC TIẾP
             </span>
           </div>
@@ -1112,22 +1148,22 @@ export default function ThuongHieuChuyenDoiPage() {
             <img src="/thuonghieuchuyendoi/images/chart-practice-80-20.png" alt="20% học lý thuyết - 80% thực hành kèm cặp" className="w-full h-auto block mx-auto" />
           </div>
 
-          <div className="max-w-[760px] mx-auto text-white/90 text-left text-[15.5px] leading-relaxed space-y-4 mb-10 bg-black/10 p-6 md:p-8 rounded-2xl border border-white/5">
-            <p className="font-semibold text-[17px] text-[#fa8c16] italic border-b border-white/10 pb-3">
+          <div className="max-w-[760px] mx-auto text-[#333] text-justify text-[15.5px] leading-relaxed space-y-4 mb-10 bg-gray-50 p-6 md:p-8 rounded-2xl border border-gray-200">
+            <p className="font-semibold text-[17px] text-[#e25010] italic border-b border-gray-200 pb-3">
               * Chưa từng có tiền lệ một chương trình kết hợp cả việc HỌC và THỰC HÀNH trong cùng một chương trình.
             </p>
             <p>
               Học viên sẽ trải nghiệm bằng việc học kiến thức tới đâu, thực hành ngay tới đó liên tục trong 7 ngày, với sự hỗ trợ kèm cặp của các Mentor. Sai đâu sửa đó, từng nội dung Video và bài viết.
             </p>
-            <p className="font-medium text-[16px] text-white">
+            <p className="font-medium text-[16px] text-[#1a1a1a]">
               👉 Kết thúc 7 ngày khám và định hướng tư vấn kênh 1:1.
             </p>
           </div>
 
-          <a href="#register" onClick={(e) => handleAnchorClick(e, "register")} className="inline-block px-10 py-4.5 rounded-full font-bold font-montserrat text-white bg-gradient-to-r from-[#fa8c16] to-[#e25010] shadow-[0_10px_30px_rgba(226,80,16,0.3)] hover:shadow-[0_12px_35px_rgba(226,80,16,0.5)] hover:scale-[1.02] active:scale-95 transition-all text-[15px] uppercase tracking-wide animate-btn-pulse">
+          <a href="#register" onClick={(e) => handleAnchorClick(e, "register")} className={"inline-block " + ctaButtonInline + " text-[15px] px-10 py-4.5 animate-btn-pulse"}>
             YES! TÔI MUỐN BẮT ĐẦU XÂY KÊNH
           </a>
-          <p className="text-[14px] text-white/60 mt-4 max-[680px]:text-[12.5px] font-medium font-montserrat">
+          <p className="text-[14px] text-gray-500 mt-4 max-[680px]:text-[12.5px] font-medium font-montserrat">
             Không cần nổi tiếng — Không cần thiết bị chuyên nghiệp — Không cần biết quay dựng phức tạp..
           </p>
         </div>
@@ -1136,88 +1172,82 @@ export default function ThuongHieuChuyenDoiPage() {
       {/* ══════════════════════════════════════════
            SECTION 8 — LỰA CHỌN HẠNG VÉ CỦA BẠN
       ══════════════════════════════════════════ */}
-      <section className="bg-[#0b0d16] py-20 max-[680px]:py-10" data-section="pricing-tiers">
+      <section className="bg-[#0d0b26] py-20 max-[680px]:py-10" data-section="pricing-tiers">
         <div className={container}>
-          <h2 className="text-[clamp(28px,3.8vw,42px)] font-extrabold font-montserrat text-white uppercase leading-[1.2] text-center mb-12 max-[680px]:text-[24px]">LỰA CHỌN HẠNG VÉ CỦA BẠN</h2>
+          <h2 className={sectionTitle + " text-center mb-2"}>LỰA CHỌN HẠNG VÉ <br className="max-[680px]:inline hidden" /><span className="whitespace-nowrap">CỦA BẠN</span></h2>
+          <p className="text-center text-[#e25010] font-bold text-[15px] mb-12">Chọn đúng hạng vé phù hợp với mục tiêu 7 ngày tới của bạn</p>
 
           <div className="grid grid-cols-3 gap-6 max-[860px]:grid-cols-1 max-[860px]:gap-8 items-stretch">
-            {/* Vé Silver */}
-            <div className="rounded-2xl bg-white border border-[#e5e7eb] px-7 py-9 flex flex-col hover:shadow-[0_15px_35px_rgba(0,0,0,0.1)] transition-all duration-300">
-              <p className="text-xs font-black font-montserrat tracking-wider text-[#888] uppercase mb-1">General</p>
-              <h3 className="text-xl font-bold font-montserrat text-gray-800 mb-3">Vé Silver</h3>
-              <p className="text-[36px] font-black font-montserrat text-[#0b0b0b] mb-6 leading-none">
-                568.000<span className="text-lg font-bold">đ</span>
-              </p>
-              <ul className="space-y-3.5 text-[15px] text-[#444] mb-8 flex-1">
-                <li className="flex gap-2.5 items-start"><span className="text-[#1b8a3e] font-bold">✔</span><span>Học qua Elearning</span></li>
-                <li className="flex gap-2.5 items-start"><span className="text-[#1b8a3e] font-bold">✔</span><span>Hỏi đáp trong nhóm</span></li>
-              </ul>
-              <a
-                href="#register"
-                onClick={(e) => {
-                  setGhiChu("Silver — 568.000đ");
-                  handleAnchorClick(e, "register");
-                }}
-                className="block text-center rounded-lg border-2 border-[#e25010] text-[#e25010] font-bold font-montserrat py-3.5 hover:bg-[#fff8f0] transition-colors uppercase text-sm tracking-wider"
-              >
-                Chọn Silver
-              </a>
-            </div>
-
-            {/* Vé Gold */}
-            <div className="rounded-2xl bg-[#fffdfa] px-7 py-9 flex flex-col relative shadow-[0_20px_50px_rgba(226,80,16,0.25)] md:scale-[1.05] border-2 border-[#fa8c16] z-10">
-              <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#fa8c16] to-[#e25010] text-white text-[11px] font-extrabold px-5 py-1.5 rounded-full whitespace-nowrap uppercase tracking-wider">PHỔ BIẾN NHẤT</span>
-              <p className="text-xs font-black font-montserrat tracking-wider text-[#e25010] uppercase mb-1 mt-1">VIP Tier</p>
-              <h3 className="text-xl font-bold font-montserrat text-[#e25010] mb-3">Vé Gold</h3>
-              <p className="text-[36px] font-black font-montserrat text-[#e25010] mb-6 leading-none">
-                868.000<span className="text-lg font-bold">đ</span>
-              </p>
-              <ul className="space-y-3.5 text-[15px] text-[#333] mb-8 flex-1">
-                <li className="flex gap-2.5 items-start"><span className="text-[#1b8a3e] font-bold">✔</span><span>Học qua Elearning</span></li>
-                <li className="flex gap-2.5 items-start"><span className="text-[#1b8a3e] font-bold">✔</span><span>Hỏi đáp trong nhóm</span></li>
-                <li className="flex gap-2.5 items-start"><span className="text-[#1b8a3e] font-bold">✔</span><span>Chữa bài 7 ngày</span></li>
-                <li className="flex gap-2.5 items-start"><span className="text-[#1b8a3e] font-bold">✔</span><span>Phiên coach chiến lược 1:1</span></li>
-                <li className="flex gap-2.5 items-start"><span className="text-[#1b8a3e] font-bold">✔</span><span>Hoàn tiền nếu không hài lòng</span></li>
-              </ul>
-              <a
-                href="#register"
-                onClick={(e) => {
-                  setGhiChu("Gold — 868.000đ");
-                  handleAnchorClick(e, "register");
-                }}
-                className="block text-center rounded-lg bg-gradient-to-r from-[#fa8c16] to-[#e25010] text-white font-extrabold font-montserrat py-4 hover:shadow-lg transition-all uppercase text-sm tracking-wider animate-btn-pulse"
-              >
-                Chọn Gold
-              </a>
-            </div>
-
-            {/* Vé Diamond */}
-            <div className="rounded-2xl bg-white border border-[#e5e7eb] px-7 py-9 flex flex-col hover:shadow-[0_15px_35px_rgba(0,0,0,0.1)] transition-all duration-300">
-              <p className="text-xs font-black font-montserrat tracking-wider text-[#888] uppercase mb-1">VVIP Tier</p>
-              <h3 className="text-xl font-bold font-montserrat text-gray-800 mb-3">Vé Diamond</h3>
-              <p className="text-[36px] font-black font-montserrat text-[#0b0b0b] mb-6 leading-none">
-                1.868.000<span className="text-lg font-bold">đ</span>
-              </p>
-              <ul className="space-y-3.5 text-[15px] text-[#444] mb-8 flex-1">
-                <li className="flex gap-2.5 items-start"><span className="text-[#1b8a3e] font-bold">✔</span><span>Học qua Elearning</span></li>
-                <li className="flex gap-2.5 items-start"><span className="text-[#1b8a3e] font-bold">✔</span><span>Hỏi đáp trong nhóm</span></li>
-                <li className="flex gap-2.5 items-start"><span className="text-[#1b8a3e] font-bold">✔</span><span>Chữa bài 7 ngày</span></li>
-                <li className="flex gap-2.5 items-start"><span className="text-[#1b8a3e] font-bold">✔</span><span>Phiên coach chiến lược 1:1</span></li>
-                <li className="flex gap-2.5 items-start"><span className="text-[#1b8a3e] font-bold">✔</span><span>Hoàn tiền nếu không hài lòng</span></li>
-                <li className="flex gap-2.5 items-start"><span className="text-[#1b8a3e] font-bold">✔</span><span>Nhóm riêng kết nối CEO</span></li>
-                <li className="flex gap-2.5 items-start"><span className="text-[#1b8a3e] font-bold">✔</span><span>Tặng 1 trong 3 khoá học online trị giá 2 triệu đồng</span></li>
-              </ul>
-              <a
-                href="#register"
-                onClick={(e) => {
-                  setGhiChu("Diamond — 1.868.000đ");
-                  handleAnchorClick(e, "register");
-                }}
-                className="block text-center rounded-lg border-2 border-[#e25010] text-[#e25010] font-bold font-montserrat py-3.5 hover:bg-[#fff8f0] transition-colors uppercase text-sm tracking-wider"
-              >
-                Chọn Diamond
-              </a>
-            </div>
+            {[
+              {
+                key: "Silver",
+                subtitle: "Hạng vé chung",
+                items: ["Học qua Elearning", "Hỏi đáp trong nhóm"],
+                original: null,
+                price: "568.000",
+                ghiChu: "Silver — 568.000đ",
+              },
+              {
+                key: "Gold",
+                subtitle: "Hạng vé Gold, đã đăng ký 58%",
+                items: [
+                  "Học qua Elearning",
+                  "Hỏi đáp trong nhóm",
+                  "Chữa bài 7 ngày",
+                  "Phiên coach chiến lược 1:1",
+                  "Hoàn tiền nếu không hài lòng",
+                ],
+                original: "1.468.000đ",
+                price: "868.000",
+                ghiChu: "Gold — 868.000đ",
+              },
+              {
+                key: "Diamond",
+                subtitle: "Hạng vé Diamond, đã đăng ký 76%",
+                items: [
+                  "Học qua Elearning",
+                  "Hỏi đáp trong nhóm",
+                  "Chữa bài 7 ngày",
+                  "Phiên coach chiến lược 1:1",
+                  "Hoàn tiền nếu không hài lòng",
+                  "Nhóm riêng kết nối CEO",
+                  "Tặng 1 trong 3 khoá học online trị giá 2 triệu đồng",
+                ],
+                original: "3.268.000đ",
+                price: "1.868.000",
+                ghiChu: "Diamond — 1.868.000đ",
+              },
+            ].map((tier) => (
+              <div key={tier.key} className="rounded-2xl bg-white px-7 py-9 flex flex-col text-center">
+                <h3 className="text-[30px] md:text-[34px] font-black font-montserrat text-[#1a1a2e] uppercase leading-tight mb-2">{tier.key}</h3>
+                <p className="text-[14px] font-medium text-gray-600 mb-4">{tier.subtitle}</p>
+                <div className="h-px bg-gray-200 mb-5" />
+                <ul className="space-y-3.5 text-[15px] font-bold text-[#222] mb-6 flex-1 text-left">
+                  {tier.items.map((item) => (
+                    <li key={item} className="flex gap-2.5 items-start">
+                      <span className="text-[#e30a0a] font-bold">✔</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                {tier.original && (
+                  <p className="text-[15px] text-gray-400 line-through leading-none mb-1">{tier.original}</p>
+                )}
+                <p className="text-[32px] font-black font-montserrat text-[#e30a0a] mb-6 leading-none">
+                  {tier.price}<span className="text-base font-bold"> VND</span>
+                </p>
+                <a
+                  href="#register"
+                  onClick={(e) => {
+                    setGhiChu(tier.ghiChu);
+                    handleAnchorClick(e, "register");
+                  }}
+                  className={"block " + ctaButton + " py-3.5 text-sm active:scale-95"}
+                >
+                  Bấm để nhận vé
+                </a>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -1229,18 +1259,18 @@ export default function ThuongHieuChuyenDoiPage() {
         <div className={container}>
           <div className="grid grid-cols-[1fr_1.15fr] gap-10 items-start max-[860px]:grid-cols-1 max-[860px]:gap-7">
             <div className="text-white max-[860px]:text-center">
-              <h2 className="text-[clamp(26px,3.2vw,38px)] font-extrabold font-montserrat uppercase leading-[1.2] mb-3 text-[#e25010]">7 Ngày Xây Kênh Chuyển Đổi</h2>
+              <h2 className="text-[19px] min-[390px]:text-[22px] sm:text-[28px] md:text-[36px] font-black font-montserrat uppercase leading-[1.2] mb-3 text-[#e25010] whitespace-nowrap">7 Ngày Xây Kênh Chuyển Đổi</h2>
               <div className="flex flex-wrap gap-x-5 gap-y-1 text-[16px] text-white/75 mb-6 max-[860px]:justify-center">
                 <span>🗓️ Tháng 8.2026</span>
                 <span>📍 Kèm cặp liên tục 7 ngày</span>
               </div>
-              <img src="/thuonghieuchuyendoi/images/mentor-class-2.jpg" alt="Lớp học xây kênh" className="w-full rounded-xl shadow-[0_16px_40px_rgba(0,0,0,0.5)] max-[860px]:max-w-[420px] max-[860px]:mx-auto" />
+              <img src="/thuonghieuchuyendoi/images/event-stage-crowd.jpg" alt="Sự kiện hội nghị bán hàng" className="w-full rounded-xl shadow-[0_16px_40px_rgba(0,0,0,0.5)] max-[860px]:max-w-[420px] max-[860px]:mx-auto" />
             </div>
 
-            <div className="bg-white rounded-2xl border border-gray-100 p-8 shadow-[0_20px_50px_rgba(0,0,0,0.15)] text-[#222] relative" id="register">
-              <p className="text-center text-lg font-bold font-montserrat text-[#d0212a] mb-5 leading-[1.6] max-[680px]:text-[15px]">Ưu đãi đăng ký sớm chỉ áp dụng <br className="max-[680px]:hidden" />cho số lượng học viên giới hạn!</p>
+            <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-[0_20px_50px_rgba(0,0,0,0.15)] text-[#222] relative" id="register">
+              <h3 className="text-center text-[22px] font-black font-montserrat text-[#d0212a] mb-5 uppercase tracking-wide">Đăng ký ngay</h3>
 
-              <form className="[&>input]:w-full [&>input]:border-[1.5px] [&>input]:border-[#e5e7eb] [&>input]:rounded-lg [&>input]:px-4 [&>input]:py-3.5 [&>input]:text-base [&>input]:mb-3.5 [&>input]:outline-none [&>input]:block max-[680px]:[&>input]:text-[15px] [&>input]:focus:border-[#e25010] [&>input]:font-montserrat" onSubmit={handleSubmit} onFocusCapture={() => { formTouchedRef.current = true; }}>
+              <form className="[&>input]:w-full [&>input]:border-[1.5px] [&>input]:border-[#e5e7eb] [&>input]:rounded-lg [&>input]:px-4 [&>input]:py-2.5 [&>input]:text-base [&>input]:mb-2.5 [&>input]:outline-none [&>input]:block max-[680px]:[&>input]:text-[15px] [&>input]:focus:border-[#e25010] [&>input]:font-montserrat" onSubmit={handleSubmit} onFocusCapture={() => { formTouchedRef.current = true; }}>
                 <input
                   type="text"
                   name="fullname"
@@ -1267,7 +1297,7 @@ export default function ThuongHieuChuyenDoiPage() {
                 />
 
                 <p className="text-[15px] font-bold font-montserrat text-gray-800 mb-2">Lựa chọn hạng vé của bạn</p>
-                <div className="flex flex-col gap-2.5 mb-5">
+                <div className="flex flex-col gap-2 mb-4">
                   {[
                     "Silver — 568.000đ",
                     "Gold — 868.000đ",
@@ -1278,7 +1308,7 @@ export default function ThuongHieuChuyenDoiPage() {
                       <label
                         key={opt}
                         className={
-                          "flex items-center gap-3 border-[1.5px] rounded-lg px-4 py-3.5 cursor-pointer transition-all " +
+                          "flex items-center gap-3 border-[1.5px] rounded-lg px-4 py-2.5 cursor-pointer transition-all " +
                           (active ? "border-[#e25010] bg-[#fff8f0] shadow-sm font-semibold text-[#e25010]" : "border-[#e5e7eb] hover:bg-gray-50")
                         }
                       >
@@ -1305,23 +1335,17 @@ export default function ThuongHieuChuyenDoiPage() {
                   onChange={(e) => setMaSoThue(e.target.value)}
                 />
 
-                <button type="submit" disabled={isSubmitting} className="block w-full py-4 text-center rounded-lg bg-gradient-to-r from-[#e25010] to-[#d0212a] text-white font-extrabold font-montserrat uppercase tracking-wider shadow-[0_10px_20px_rgba(226,80,16,0.3)] hover:shadow-[0_12px_24px_rgba(226,80,16,0.45)] hover:scale-[1.01] active:scale-95 transition-all text-base cursor-pointer animate-btn-pulse">
+                <button type="submit" disabled={isSubmitting} className={"block w-full " + ctaButton + " py-3.5 text-center tracking-wider text-base cursor-pointer active:scale-95 animate-btn-pulse"}>
                   {isSubmitting ? "Đang đăng ký..." : "Đăng ký ngay"}
                 </button>
               </form>
 
-              <div className="flex justify-center items-center gap-1.5 mt-6">
+              <div className="flex justify-center items-center gap-1.5 mt-5">
                 <div className="flex flex-col items-center"><span className="block bg-[#e25010] text-white text-[28px] font-black font-montserrat px-3 py-1.5 rounded-lg min-w-[55px] text-center leading-[1.2] max-[480px]:text-[22px] max-[480px]:min-w-[42px] shadow-sm">{timeParts.h}</span><small className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mt-1.5">Giờ</small></div>
                 <div className="text-2xl font-black text-gray-300 mb-5 px-0.5">:</div>
                 <div className="flex flex-col items-center"><span className="block bg-[#e25010] text-white text-[28px] font-black font-montserrat px-3 py-1.5 rounded-lg min-w-[55px] text-center leading-[1.2] max-[480px]:text-[22px] max-[480px]:min-w-[42px] shadow-sm">{timeParts.m}</span><small className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mt-1.5">Phút</small></div>
                 <div className="text-2xl font-black text-gray-300 mb-5 px-0.5">:</div>
                 <div className="flex flex-col items-center"><span className="block bg-[#e25010] text-white text-[28px] font-black font-montserrat px-3 py-1.5 rounded-lg min-w-[55px] text-center leading-[1.2] max-[480px]:text-[22px] max-[480px]:min-w-[42px] shadow-sm">{timeParts.s}</span><small className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mt-1.5">Giây</small></div>
-              </div>
-
-              <div className="mt-5 border-t border-gray-100 pt-5">
-                <p className="text-[13.5px] text-gray-500 mb-1.5 leading-[1.6]">* Chú ý: Tư vấn viên sẽ liên lạc lại để xác nhận đăng ký chương trình cho bạn.</p>
-                <p className="text-[13.5px] text-gray-500 mb-1.5 leading-[1.6]">* Đây là chương trình online kèm cặp qua E-Learning, không phải học trực tiếp.</p>
-                <p className="text-[13.5px] text-gray-500 mb-1.5 leading-[1.6]">* Hãy kiểm tra lại thông tin họ tên và số điện thoại của bạn trước khi bấm đăng ký.</p>
               </div>
             </div>
           </div>
@@ -1333,7 +1357,7 @@ export default function ThuongHieuChuyenDoiPage() {
       ══════════════════════════════════════════ */}
       <section className="py-16 bg-[#faf9f7]" data-section="social-proof">
         <div className={container}>
-          <h2 className="text-[24px] md:text-[32px] font-extrabold font-montserrat text-gray-800 text-center leading-tight mb-8">
+          <h2 className={sectionTitle + " text-center mb-8"}>
             Đừng tin những gì tôi nói,<br />đây là những gì người khác nói…
           </h2>
 
@@ -1372,40 +1396,47 @@ export default function ThuongHieuChuyenDoiPage() {
             </div>
           </div>
 
-          {/* 5 Feedback bằng Video */}
+          {/* Feedback bằng Video (3 video thật) */}
           <div className="my-12">
             <h3 className="text-center text-lg font-extrabold font-montserrat text-[#e25010] uppercase mb-6">
               Học viên thành công qua video
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-              {[
-                { name: "Chị Hải Yến", role: "CEO Mỹ phẩm" },
-                { name: "Anh Nam Khánh", role: "Chuyên gia BĐS" },
-                { name: "Chị Thu Hương", role: "Chủ Spa" },
-                { name: "Anh Hoàng Bách", role: "Kinh doanh đồ gia dụng" },
-                { name: "Chị Minh Thư", role: "Thực phẩm sạch" }
-              ].map((student, idx) => (
-                <div key={idx} className="bg-white border border-[#eee] rounded-xl overflow-hidden shadow-sm flex flex-col">
-                  <div className="relative aspect-[9/16] bg-[#111] group cursor-pointer">
-                    <img
-                      src={`/thuonghieuchuyendoi/images/feedback-video-poster-${idx + 1}.jpg`}
-                      alt={`Video poster học viên ${idx + 1}`}
-                      className="w-full h-full object-cover opacity-80"
-                      onError={(e) => {
-                        e.target.src = `https://placehold.co/270x480/222/ffffff?text=Video+Feedback+${idx + 1}`;
-                      }}
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-10 h-10 rounded-full bg-red-600/90 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                        <svg className="w-4 h-4 fill-current ml-0.5" viewBox="0 0 24 24">
-                          <path d="M8 5v14l11-7z" />
-                        </svg>
-                      </div>
-                    </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-[700px] mx-auto">
+              {["testimonial-1", "testimonial-2", "testimonial-3"].map((file, idx) => (
+                <div key={file} className="bg-white border border-[#eee] rounded-xl overflow-hidden shadow-sm flex flex-col">
+                  <div className="relative aspect-[9/16] bg-[#111]">
+                    {playingTestimonial === idx ? (
+                      <video
+                        src={`/thuonghieuchuyendoi/Video/${file}.mp4`}
+                        poster={`/thuonghieuchuyendoi/images/${file}-poster.jpg`}
+                        className="w-full h-full object-cover"
+                        controls
+                        autoPlay
+                      />
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => setPlayingTestimonial(idx)}
+                        className="absolute inset-0 w-full h-full group cursor-pointer"
+                        aria-label={`Phát video cảm nhận học viên ${idx + 1}`}
+                      >
+                        <img
+                          src={`/thuonghieuchuyendoi/images/${file}-poster.jpg`}
+                          alt={`Cảm nhận học viên ${idx + 1}`}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/20 transition-colors">
+                          <div className="w-12 h-12 rounded-full bg-red-600/90 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <svg className="w-5 h-5 fill-current ml-0.5" viewBox="0 0 24 24">
+                              <path d="M8 5v14l11-7z" />
+                            </svg>
+                          </div>
+                        </div>
+                      </button>
+                    )}
                   </div>
                   <div className="p-3 text-center">
-                    <p className="font-bold text-[14px] text-gray-800 font-montserrat leading-tight mb-0.5">{student.name}</p>
-                    <p className="text-[11.5px] text-gray-400 font-semibold leading-tight">{student.role}</p>
+                    <p className="font-bold text-[14px] text-gray-800 font-montserrat leading-tight">Cảm nhận học viên {idx + 1}</p>
                   </div>
                 </div>
               ))}
@@ -1420,16 +1451,18 @@ export default function ThuongHieuChuyenDoiPage() {
             <div className="w-full overflow-hidden py-4 bg-gray-50 border-y border-[#eee] rounded-lg">
               <div className="animate-marquee whitespace-nowrap flex gap-6">
                 {[
-                  "Kênh học viên: Vũ Hải",
-                  "Kênh học viên: Minh Vương",
                   "Kênh học viên: Quỳnh Thương",
-                  "Kênh học viên: Nam Khánh",
-                  "Kênh học viên: Thu Hương",
-                  "Kênh học viên: Hải Yến",
-                  "Kênh học viên: Hoàng Bách",
-                  "Kênh học viên: Minh Thư",
-                  "Kênh học viên: Đắc Lộc",
-                  "Kênh học viên: Thủy Tiên"
+                  "Kênh học viên: Hường Nguyễn",
+                  "Kênh học viên: Huyền Lắm Mẹo",
+                  "Kênh học viên: Vũ Hải xe điện",
+                  "Kênh học viên: Tuân Vũ",
+                  "Kênh học viên: Thảo Ly",
+                  "Kênh học viên: Hương Phạm",
+                  "Kênh học viên: Nguyen Thanh Ha",
+                  "Kênh học viên: Minh Phượng sinh lý",
+                  "Kênh học viên: Nhung Trương Daily",
+                  "Kênh học viên: Trương thị huyền trang",
+                  "Kênh học viên: Minh Vương thuận mộc"
                 ].map((label, idx) => (
                   <span key={idx} className="bg-white border border-[#eee] rounded-full px-6 py-2.5 text-[14.5px] font-bold text-gray-700 shadow-sm inline-block font-montserrat">
                     {label}
@@ -1437,16 +1470,18 @@ export default function ThuongHieuChuyenDoiPage() {
                 ))}
                 {/* Loop copy */}
                 {[
-                  "Kênh học viên: Vũ Hải",
-                  "Kênh học viên: Minh Vương",
                   "Kênh học viên: Quỳnh Thương",
-                  "Kênh học viên: Nam Khánh",
-                  "Kênh học viên: Thu Hương",
-                  "Kênh học viên: Hải Yến",
-                  "Kênh học viên: Hoàng Bách",
-                  "Kênh học viên: Minh Thư",
-                  "Kênh học viên: Đắc Lộc",
-                  "Kênh học viên: Thủy Tiên"
+                  "Kênh học viên: Hường Nguyễn",
+                  "Kênh học viên: Huyền Lắm Mẹo",
+                  "Kênh học viên: Vũ Hải xe điện",
+                  "Kênh học viên: Tuân Vũ",
+                  "Kênh học viên: Thảo Ly",
+                  "Kênh học viên: Hương Phạm",
+                  "Kênh học viên: Nguyen Thanh Ha",
+                  "Kênh học viên: Minh Phượng sinh lý",
+                  "Kênh học viên: Nhung Trương Daily",
+                  "Kênh học viên: Trương thị huyền trang",
+                  "Kênh học viên: Minh Vương thuận mộc"
                 ].map((label, idx) => (
                   <span key={`dup-${idx}`} className="bg-white border border-[#eee] rounded-full px-6 py-2.5 text-[14.5px] font-bold text-gray-700 shadow-sm inline-block font-montserrat">
                     {label}
@@ -1485,19 +1520,6 @@ export default function ThuongHieuChuyenDoiPage() {
         </div>
       </footer>
 
-      {/* Sticky bottom CTA bar */}
-      <div
-        className={`fixed bottom-0 inset-x-0 w-full min-[768px]:hidden ${stickyVisible ? "flex" : "hidden"} justify-center items-center z-[1000] bg-white/95 backdrop-blur-md border-t border-black/10 shadow-[0_-4px_20px_rgba(0,0,0,0.15)] px-4 py-2.5`}
-        id="stickyCta"
-      >
-        <a
-          href="#register"
-          onClick={(e) => handleAnchorClick(e, "register")}
-          className="block w-full max-w-[420px] bg-[linear-gradient(135deg,#f5c842_0%,#f5a623_100%)] text-[#1a1a1a] font-extrabold py-3.5 rounded-full text-base shadow-[0_4px_15px_rgba(245,166,35,0.4)] text-center uppercase tracking-wide cursor-pointer active:scale-95 transition-transform"
-        >
-          ĐĂNG KÝ NGAY!
-        </a>
-      </div>
 
       {/* Thông báo đăng ký gần đây (social proof) */}
       <div
