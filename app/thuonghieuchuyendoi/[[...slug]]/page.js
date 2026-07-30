@@ -807,7 +807,7 @@ export default function ThuongHieuChuyenDoiPage() {
           <div className="text-left max-[860px]:text-center flex flex-col items-start max-[860px]:items-center max-[860px]:order-1">
             
             <h1 className="text-[21px] md:text-[25px] font-black font-montserrat leading-relaxed mb-5 text-white uppercase max-w-[560px]">
-              7 ngày bắt đầu xây kênh và tạo ra những <span className="text-[#f5a623]">khách hàng đầu tiên</span> từ <br /> <span className="text-[#f5a623] whitespace-nowrap">nội dung</span>
+              7 ngày bắt đầu xây kênh và tạo ra những <span className="text-[#f5a623]">khách hàng đầu tiên</span> <br /> <span className="whitespace-nowrap">từ <span className="text-[#f5a623]">nội dung</span></span>
             </h1>
             
             <p className="mb-4 text-[16px] md:text-[17.5px] opacity-[0.95] leading-relaxed max-w-[500px] text-justify">
