@@ -923,35 +923,35 @@ export default function ThuongHieuChuyenDoiPage() {
       {/* ══════════════════════════════════════════
            SECTION 4 — GIỚI THIỆU GIẢI PHÁP 2 (thư ngỏ)
       ══════════════════════════════════════════ */}
-      <section className="bg-[linear-gradient(135deg,#7a1a5c_0%,#5b2a8f_50%,#2a4fb8_100%)] py-20 max-[680px]:py-10" data-section="overcome-barriers">
-        <div className="max-w-[840px] mx-auto px-6 max-[680px]:px-4">
-          <div className="bg-white rounded-3xl p-10 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.15)] text-gray-800 font-sans leading-[1.8] text-[16.5px] max-[680px]:text-[15px] border border-gray-100 relative">
-            {/* Top decorative element */}
-            <div className="absolute top-0 left-0 w-full h-[6px] bg-gradient-to-r from-[#fa8c16] via-[#e25010] to-[#d0212a]" />
+      <section className="bg-[linear-gradient(to_right,#901a5e_0%,#4a187e_50%,#1c3285_100%)] py-20 max-[680px]:py-12" data-section="overcome-barriers">
+        <div className="max-w-[1040px] mx-auto px-6 max-[680px]:px-4">
+          <div className="bg-[#0b0c1e]/65 backdrop-blur-md rounded-[32px] p-8 md:p-12 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.3)] text-white font-montserrat leading-[1.8] text-[15px] md:text-[15.5px] max-[680px]:text-[14px]">
             
-            <p className="mb-6 font-medium">
-              7 ngày xây kênh chuyển đổi là một chương trình liên tục được thiết kế để bạn vượt qua những rào cản bản thân để ngay lập tức xây một kênh thương hiệu cá nhân, bán hàng gia tăng doanh số và thu nhập.
-            </p>
-            <p className="mb-6">
-              Với những trải nghiệm sống, sự phán xét từ môi trường xung quanh, con người ta chấp nhận những định kiến của người khác về xây kênh, về bán hàng online tạo ra những nỗi sợ ngăn chúng ta hành động.
-            </p>
-            <p className="mb-6">
-              Theo thời gian, chúng ta tin đó là sự thật, nó biến thành những rào cản vô hình khi chúng ta phát triển kinh doanh và ngăn cản điều chúng ta muốn làm, muốn có, muốn trở thành.
+            <p className="text-center font-bold text-[18px] md:text-[21px] leading-relaxed mb-8 max-w-[880px] mx-auto">
+              7 ngày xây kênh chuyển đổi là một chương trình liên tục được thiết kế để bạn vượt qua những rào cản bản thân để ngay lập tức <u>xây một kênh thương hiệu cá nhân, bán hàng gia tăng doanh số và thu nhập.</u>
             </p>
 
-            <span className="block text-2xl md:text-3xl font-black font-montserrat text-[#e30a0a] text-center my-8 tracking-wide leading-tight uppercase">
-              TÔI GỌI ĐÓ LÀ ẢO TƯỞNG!!!
-            </span>
+            <div className="space-y-6 text-[#cbd5e1]">
+              <p>
+                Với những trải nghiệm sống, sự phán xét từ môi trường xung quanh, con người ta chấp nhận những định kiến của người khác về xây kênh, về bán hàng online tạo ra những nỗi sợ ngăn chúng ta hành động.
+              </p>
+              
+              <p>
+                Theo thời gian, chúng ta tin đó là sự thật, nó biến thành những rào cản vô hình khi chúng ta phát triển kinh doanh và ngăn cản điều chúng ta muốn làm, muốn có, muốn trở thành.
+              </p>
 
-            <p className="mb-6">
-              Điều đáng buồn là chúng ta lại coi những ảo tưởng đó là có thật. Chúng ta sẵn sàng mang những điều chúng ta coi là “sự thật” để bao biện cho việc không xây kênh, không bắt đầu làm nội dung, không tạo ra thu nhập. Và dùng nó để chỉ trích ai đó đang có khát khao một kênh truyền thông, một nguồn thu nhập mới mà ta từng khát khao có.
-            </p>
-            <p className="mb-6">
-              7 ngày xây kênh chuyển đổi là một chương trình liên tục được thiết kế để bạn vượt qua những rào cản bản thân để ngay lập tức xây một kênh thương hiệu cá nhân, bán hàng gia tăng doanh số và thu nhập.
-            </p>
-            <p className="font-semibold italic text-[#e25010] text-[17px] md:text-[18px] border-l-4 border-[#e25010] pl-4 py-1.5 my-6 leading-relaxed">
-              Tôi mong bạn khi tham gia chương trình sẽ nhận ra những RÀO CẢN vô hình của mình, thách thức chúng rồi vượt qua chúng. Đối diện với nó thay vì TRỐN CHẠY như trước đây!
-            </p>
+              <p>
+                TÔI GỌI ĐÓ LÀ ẢO TƯỞNG!!! Điều đáng buồn là chúng ta lại coi những ảo tưởng đó là có thật. Chúng ta sẵn sàng mang những điều chúng ta coi là “sự thật” để bao biện cho việc không xây kênh, không bắt đầu làm nội dung, không tạo ra thu nhập. Và dùng nó để chỉ trích ai đó đang có khát khao một kênh truyền thông, một nguồn thu nhập mới mà ta từng khát khao có.
+              </p>
+
+              <p>
+                7 ngày xây kênh chuyển đổi là một chương trình liên tục được thiết kế để bạn vượt qua những rào cản bản thân để ngay lập tức xây một kênh thương hiệu cá nhân, bán hàng gia tăng doanh số và thu nhập.
+              </p>
+
+              <p>
+                Tôi mong bạn khi tham gia chương trình sẽ nhận ra những RÀO CẢN vô hình của mình, thách thức chúng rồi vượt qua chúng. Đối diện với nó thay vì TRỐN CHẠY như trước đây!
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -961,86 +961,58 @@ export default function ThuongHieuChuyenDoiPage() {
       ══════════════════════════════════════════ */}
       <section className={sectionWhite + " border-t-[3px] border-t-[#f0f0f0]"} data-section="customer-pain-points">
         <div className={container}>
-          <h2 className="text-[clamp(28px,3.8vw,42px)] font-extrabold font-montserrat text-[#e25010] uppercase leading-[1.2] text-center mb-10">
+          <h2 className="text-[clamp(28px,3.8vw,42px)] font-extrabold text-[#e25010] uppercase leading-[1.2] text-center mb-10 max-[680px]:text-[24px]">
             ĐÂY LÀ HẦU HẾT VẤN ĐỀ MÀ NHỮNG NGƯỜI<br /><span className="whitespace-nowrap">KINH DOANH ONLINE GẶP PHẢI</span>
           </h2>
 
-          <div className="bg-[#fff8f0] border border-orange-500/10 rounded-2xl p-6 md:p-8 mb-10 shadow-sm text-left">
-            <h3 className="text-lg font-extrabold font-montserrat text-gray-800 mb-4 uppercase tracking-wide">
-              NĂM 2020 TÔI VÀ VỢ BẮT ĐẦU KINH DOANH ONLINE TỪ NGƯỜI LÀM THUÊ XUẤT SẮC,
-            </h3>
-            <div className="grid grid-cols-2 gap-4 max-[768px]:grid-cols-1">
-              {[
-                "Chúng tôi bắt đầu nhập hàng để bán trên Online nhưng khi nhìn vào đống hàng đã nhập về chúng tôi thực sự không biết làm thế nào?",
-                "Tôi muốn xây dựng thương hiệu cá nhân nhưng không biết mình nên chia sẻ điều gì?",
-                "Muốn quay Video nhưng cứ cầm điện thoại lên thì con chữ cứ bay đi đâu, cứng miệng không nói ra được!",
-                "Đăng bài lên đều nhưng nội dung ít tương tác, không có khách hàng nào hỏi mua.",
-                "Sau này phát triển thêm các kênh như Shopee, TikTok cũng không biết cách chọn sản phẩm, tối ưu nội dung như thế nào?",
-                "Xem rất nhiều hướng dẫn, lưu rất nhiều công thức nhưng kênh vẫn chưa tạo ra được kết quả."
-              ].map((item, idx) => (
-                <div key={idx} className="flex gap-2.5 items-start py-2.5 px-3 rounded-lg bg-white/50 border border-orange-500/5">
-                  <span className="text-orange-500 font-bold shrink-0 mt-0.5">⚠️</span>
-                  <p className="text-[14.5px] leading-relaxed text-gray-700 font-medium">{item}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+          <div className="max-w-[820px] mx-auto">
+            {[
+              "Năm 2020, tôi và vợ bắt đầu kinh doanh online từ người làm thuê xuất sắc.",
+              "Chúng tôi bắt đầu nhập hàng để bán trên Online, nhưng khi nhìn vào đống hàng đã nhập về, chúng tôi thực sự không biết làm thế nào?",
+              "Tôi muốn xây dựng thương hiệu cá nhân nhưng không biết mình nên chia sẻ điều gì?",
+              "Muốn quay video nhưng cứ cầm điện thoại lên thì con chữ cứ bay đi đâu, cứng miệng không nói ra được!",
+              "Đăng bài lên đều nhưng nội dung ít tương tác, không có khách hàng nào hỏi mua.",
+              "Sau này phát triển thêm các kênh như Shopee, TikTok cũng không biết cách chọn sản phẩm, tối ưu nội dung như thế nào?",
+              "Xem rất nhiều hướng dẫn, lưu rất nhiều công thức nhưng kênh vẫn chưa tạo ra được kết quả.",
+            ].map((text, i) => (
+              <p key={i} className="text-[18px] text-[#333] leading-[1.9] mb-4 max-[680px]:text-[15px]">{text}</p>
+            ))}
 
-          <div className="bg-[#fff5f5] border border-red-200/50 rounded-2xl p-6 md:p-8 mb-10 text-left">
-            <p className="text-[17px] font-bold font-montserrat text-red-700 mb-5 uppercase tracking-wide">
-              Nếu bạn cũng như vậy có thể bạn đang gặp những sai lầm sau:
-            </p>
-            <div className="grid grid-cols-2 gap-4 max-[768px]:grid-cols-1">
-              {[
-                "Follow trước bán hàng sau.",
-                "Mình không phải idol, không có tài năng nào đặc biệt.",
-                "Đối diện với Camera cảm giác như đối diện với kẻ thù.",
-                "Không có người dẫn dắt bạn vượt qua những khó khăn ngày đầu xây kênh.",
-                "Cố gắng bắt đầu bằng một ý tưởng."
-              ].map((item, idx) => (
-                <div key={idx} className="flex gap-2.5 items-center bg-white/80 border border-red-100 rounded-lg py-3.5 px-4 shadow-sm">
-                  <span className="text-red-500 font-bold shrink-0">❌</span>
-                  <span className="text-[15px] text-gray-700 font-bold">{item}</span>
-                </div>
-              ))}
-            </div>
-            <p className="text-[16px] text-red-600 font-semibold italic mt-5 pl-1.5">
-              * Tôi đã từng gặp những lỗi như vậy và không có Video, không có đơn hàng.
-            </p>
-          </div>
+            <p className="text-[18px] text-[#333] leading-[1.9] mb-4 max-[680px]:text-[15px]">Nếu bạn cũng như vậy, có thể bạn đang gặp những sai lầm sau:</p>
+            {[
+              "Follow trước, bán hàng sau.",
+              "Mình không phải idol, không có tài năng nào đặc biệt.",
+              "Đối diện với camera cảm giác như đối diện với kẻ thù.",
+              "Không có người dẫn dắt bạn vượt qua những khó khăn ngày đầu xây kênh.",
+              "Cố gắng bắt đầu bằng một ý tưởng.",
+            ].map((text, i) => (
+              <p key={i} className="text-[18px] text-[#333] leading-[1.9] mb-4 max-[680px]:text-[15px]">{text}</p>
+            ))}
 
-          <div className="bg-[#f3faf4] border border-green-200/50 rounded-2xl p-6 md:p-8 mb-10 text-left">
-            <p className="text-[17px] font-bold font-montserrat text-green-800 mb-3 uppercase tracking-wide leading-relaxed">
-              Thực tế là bạn không cần triệu view và hàng trăm ngàn Follower mới bán được hàng.
-            </p>
-            <p className="text-[15px] font-semibold text-gray-600 mb-5 pl-0.5">Họ mua khi nội dung tạo ra:</p>
-            <div className="grid grid-cols-2 gap-4 max-[768px]:grid-cols-1">
-              {[
-                "Sự tin tưởng vào người bán và giải pháp phù hợp với họ.",
-                "Người làm nội dung thấu hiểu vấn đề của họ đang gặp phải.",
-                "Người giới thiệu thực sự hiểu được giá trị của sản phẩm giải quyết được vấn đề.",
-                "Trao đúng sản phẩm tới đúng người cần chứ không phải spam nội dung tới tất cả mọi người.",
-                "Biết rõ mình cần hành động gì tiếp theo."
-              ].map((item, idx) => (
-                <div key={idx} className="flex gap-2.5 items-start bg-white border border-green-100 rounded-lg py-3 px-4 shadow-sm">
-                  <span className="text-green-600 font-extrabold shrink-0 mt-0.5">✔</span>
-                  <p className="text-[14.5px] leading-relaxed text-gray-700 font-semibold">{item}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+            <p className="text-[18px] text-[#333] leading-[1.9] mb-4 max-[680px]:text-[15px]">Tôi đã từng gặp những lỗi như vậy — và không có video, không có đơn hàng.</p>
 
-          <div className="max-w-[860px] mx-auto text-center mb-10 space-y-4">
-            <p className="text-[18px] md:text-[22px] font-extrabold font-montserrat text-[#e25010] bg-[#fff8f0] border-l-4 border-[#e25010] py-3.5 px-4 rounded-r-xl shadow-sm italic leading-relaxed">
-              "Một kênh ít Follower vẫn có thể bán hàng nếu nội dung đúng và đủ!"
-            </p>
-            <p className="text-[18px] md:text-[22px] font-extrabold font-montserrat text-red-600 bg-[#fff5f5] border-l-4 border-red-600 py-3.5 px-4 rounded-r-xl shadow-sm italic leading-relaxed">
-              "Nội dung hay có thể tạo View nhưng chỉ nội dung đúng mới tạo ra chuyển đổi"
-            </p>
+            <p className="text-[18px] font-bold text-[#0b0b0b] leading-[1.9] mb-4 max-[680px]:text-[15px]">Thực tế là bạn không cần triệu view và hàng trăm ngàn Follower mới bán được hàng.</p>
+            <p className="text-[18px] text-[#333] leading-[1.9] mb-4 max-[680px]:text-[15px]">Họ mua khi nội dung tạo ra:</p>
+            {[
+              "Sự tin tưởng vào người bán và giải pháp phù hợp với họ.",
+              "Người làm nội dung thấu hiểu vấn đề họ đang gặp phải.",
+              "Người giới thiệu thực sự hiểu được giá trị của sản phẩm giải quyết được vấn đề.",
+              "Trao đúng sản phẩm tới đúng người cần, chứ không phải spam nội dung tới tất cả mọi người.",
+              "Biết rõ mình cần hành động gì tiếp theo.",
+            ].map((text, i) => (
+              <p key={i} className="text-[18px] text-[#333] leading-[1.9] mb-4 max-[680px]:text-[15px]">{text}</p>
+            ))}
+
+            <p className="text-[18px] font-bold text-[#0b0b0b] leading-[1.9] mb-2 max-[680px]:text-[15px]">Một kênh ít Follower vẫn có thể bán hàng nếu nội dung đúng và đủ!</p>
+            <p className="text-[18px] font-bold text-[#0b0b0b] leading-[1.9] mb-8 max-[680px]:text-[15px]">Nội dung hay có thể tạo View, nhưng chỉ nội dung đúng mới tạo ra chuyển đổi.</p>
           </div>
 
           <div className="text-center">
-            <a href="#register" onClick={(e) => handleAnchorClick(e, "register")} className="inline-block px-10 py-4.5 rounded-full font-bold font-montserrat text-white bg-gradient-to-r from-red-600 to-[#d0212a] shadow-[0_10px_30px_rgba(208,33,42,0.3)] hover:shadow-[0_12px_35px_rgba(208,33,42,0.5)] hover:scale-[1.02] active:scale-95 transition-all text-[15px] uppercase tracking-wide animate-btn-pulse">
+            <a
+              href="#register"
+              onClick={(e) => handleAnchorClick(e, "register")}
+              className="inline-block px-10 py-4 rounded-full font-extrabold text-white bg-[#d0212a] text-[15px] uppercase tracking-wide hover:opacity-90 transition-opacity"
+            >
               YES! TÔI SẴN SÀNG TĂNG TỐC XÂY KÊNH CỦA MÌNH!
             </a>
           </div>
