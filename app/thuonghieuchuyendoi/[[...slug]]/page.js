@@ -18,8 +18,8 @@ export default function ThuongHieuChuyenDoiPage() {
   const formTouchedRef = useRef(false);
   const formSubmittedRef = useRef(false);
 
-  // Countdown state (6 mins 49 seconds original duration)
-  const [remaining, setRemaining] = useState(6 * 60 + 49);
+  // Countdown state (7 giờ, theo nội dung Section CTA "7:00:00")
+  const [remaining, setRemaining] = useState(7 * 60 * 60);
 
   // Social proof toast state
   const [toast, setToast] = useState({
@@ -711,11 +711,18 @@ export default function ThuongHieuChuyenDoiPage() {
     "flex flex-col gap-[18px] max-w-[560px] mx-auto mb-[22px] bg-[#fff8f0] border-l-4 border-[#e25010] rounded-md px-6 py-[18px] max-[680px]:gap-1.5 max-[680px]:px-3.5 max-[680px]:py-2.5 max-[680px]:mb-2.5 max-[480px]:px-[18px] max-[480px]:py-3.5";
   const oppListNoiconLi =
     "py-[5px] pl-5 relative text-xl font-semibold text-[#333] max-[680px]:text-[15px] max-[680px]:py-[2px] max-[680px]:pl-[18px] before:content-['✔'] before:absolute before:left-0 before:text-[#e25010] before:text-[12px] before:top-[7px] max-[680px]:before:top-[3px]";
+  const checkListGreen =
+    "flex flex-col gap-[14px] max-w-[680px] mx-auto mb-7 max-[680px]:gap-2";
+  const checkListGreenLi =
+    "text-[18px] text-[#333] py-1 pl-[30px] relative leading-[1.65] max-[680px]:text-[15px] max-[680px]:pl-[26px] before:content-['✔'] before:absolute before:left-0 before:top-[6px] before:text-[#1b8a3e] before:text-[13px] max-[680px]:before:top-[3px]";
   const btnBase =
     "px-9 py-3.5 rounded-md font-bold text-[17px] cursor-pointer text-center tracking-[0.4px] relative overflow-hidden";
   const btnGoldLg =
     "inline-block " + btnBase +
     " border-[2.5px] border-white bg-[linear-gradient(135deg,#ffe066_0%,#f5c030_100%)] text-[#1a1a1a] shadow-[0_0_25px_rgba(245,166,35,0.8)] text-[19px] px-[100px] py-4 whitespace-nowrap max-[680px]:text-base max-[680px]:px-8 max-[680px]:py-[15px]";
+  const btnGoldLgWrap =
+    "inline-block " + btnBase +
+    " border-[2.5px] border-white bg-[linear-gradient(135deg,#ffe066_0%,#f5c030_100%)] text-[#1a1a1a] shadow-[0_0_25px_rgba(245,166,35,0.8)] text-[17px] leading-snug px-10 py-4 max-w-[420px] max-[680px]:text-[14.5px] max-[680px]:px-6 max-[680px]:py-[15px] max-[680px]:max-w-[300px]";
 
   if (campaignStatus === "checking") {
     return (
@@ -737,278 +744,232 @@ export default function ThuongHieuChuyenDoiPage() {
   return (
     <div>
       {/* ══════════════════════════════════════════
-           SECTION 1 — HERO
+           SECTION 1 — THANH THÔNG BÁO ĐẦU TRANG
+      ══════════════════════════════════════════ */}
+      <div
+        className="bg-[linear-gradient(90deg,#d0212a,#e25010)] text-white text-center px-4 py-2.5 text-[14.5px] font-semibold flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 max-[680px]:text-[12.5px] max-[680px]:py-2"
+        data-section="announcement-bar"
+      >
+        <span>🗓️ Khai giảng: <strong>03/08/2026</strong></span>
+        <span className="hidden min-[560px]:inline text-white/50">•</span>
+        <span>Chỉ nhận <strong>10 học viên</strong> để đội ngũ Mentor có thể theo sát quá trình thực hành</span>
+        <a
+          href="#register"
+          onClick={(e) => handleAnchorClick(e, "register")}
+          className="ml-1 inline-block bg-white text-[#d0212a] font-extrabold text-[12px] px-3.5 py-[7px] rounded-full uppercase tracking-wide hover:opacity-90 transition-opacity whitespace-nowrap"
+        >
+          Đăng ký giữ chỗ
+        </a>
+      </div>
+
+      {/* ══════════════════════════════════════════
+           SECTION 2 — HERO: LỜI HỨA CHÍNH
       ══════════════════════════════════════════ */}
       <section
         className="bg-[linear-gradient(150deg,#a50e0e_0%,#c41a10_30%,#d43020_60%,#e04822_100%)] bg-[url('/thuonghieuchuyendoi/images/banner.jpeg')] bg-cover bg-center text-white text-center px-6 pt-12 pb-16 max-[680px]:px-4 max-[680px]:pt-9 max-[680px]:pb-[52px] max-[480px]:px-[14px] max-[480px]:pt-7 max-[480px]:pb-11 relative overflow-hidden"
         data-section="hero"
       >
-        <div className="inline-block border-[1.5px] border-white/50 rounded-[20px] px-6 py-[7px] text-[17px] mb-[22px] relative max-[680px]:text-[13px] max-[680px]:px-4 max-[680px]:py-[5px] max-[680px]:mb-4">
-          🚀 Chương trình 7 ngày dành cho người mới bắt đầu
-        </div>
-        <h1 className="text-[clamp(32px,4.8vw,56px)] font-black leading-[1.18] mb-5 uppercase relative [text-shadow:-1.5px_-1.5px_0_#000,1.5px_-1.5px_0_#000,-1.5px_1.5px_0_#000,1.5px_1.5px_0_#000,0px_4px_12px_rgba(0,0,0,0.65)] max-[680px]:text-[clamp(22px,6vw,36px)] max-[480px]:text-[clamp(20px,7vw,30px)]">
-          7 NGÀY BẮT ĐẦU XÂY KÊNH ONLINE<br className="max-[680px]:hidden" />
-          VÀ TẠO <span className="text-[#f5a623] whitespace-nowrap">ĐƠN HÀNG ĐẦU TIÊN</span><br />
+        <h1 className="text-[clamp(30px,4.6vw,54px)] font-black leading-[1.2] mb-5 relative [text-shadow:-1.5px_-1.5px_0_#000,1.5px_-1.5px_0_#000,-1.5px_1.5px_0_#000,1.5px_1.5px_0_#000,0px_4px_12px_rgba(0,0,0,0.65)] max-[680px]:text-[clamp(22px,6vw,34px)] max-[480px]:text-[clamp(20px,7vw,28px)]">
+          7 NGÀY BẮT ĐẦU XÂY KÊNH<br className="max-[680px]:hidden" />
+          VÀ TẠO RA NHỮNG <span className="text-[#f5a623] whitespace-nowrap">KHÁCH HÀNG ĐẦU TIÊN</span><br />
           TỪ NỘI DUNG
         </h1>
-        <div className="flex flex-wrap justify-center gap-[10px] mx-auto mb-5 relative">
-          <span className="bg-white/15 border-[1.5px] border-white/40 rounded-3xl px-5 py-2 text-[17px] font-semibold text-white whitespace-nowrap max-[480px]:whitespace-normal max-[480px]:text-sm max-[480px]:px-4 max-[480px]:py-1.5 max-[480px]:leading-[1.4]">🚫 Không học lan man, chỉ nghe lý thuyết</span>
-          <span className="bg-white/15 border-[1.5px] border-white/40 rounded-3xl px-5 py-2 text-[17px] font-semibold text-white whitespace-nowrap max-[480px]:whitespace-normal max-[480px]:text-sm max-[480px]:px-4 max-[480px]:py-1.5 max-[480px]:leading-[1.4]">✅ Học – Làm – Trả bài mỗi ngày</span>
+        <p className="max-w-[620px] mx-auto mb-4 text-lg opacity-[0.94] leading-[1.8] text-center relative max-[680px]:text-[14.5px] max-[680px]:px-4">
+          Bạn sẽ bắt đầu xây dựng được kênh thương hiệu cá nhân thu hút khách hàng và bán hàng bằng việc tham dự chương trình 7 ngày liên tục&nbsp;này.
+        </p>
+        <p className="max-w-[620px] mx-auto mb-6 text-lg opacity-[0.94] leading-[1.8] text-center relative max-[680px]:text-[14.5px] max-[680px]:px-4">
+          Trong suốt 4 năm qua, hơn <strong>2.000 học viên</strong> đã tham dự chương trình xây kênh và bán hàng — bằng những kiến thức có được và sự kèm cặp sát sao công việc kinh doanh, họ đã có rất nhiều thay&nbsp;đổi.
+        </p>
+        <div className="flex flex-wrap justify-center gap-x-6 gap-y-1.5 mb-8 text-[15.5px] font-semibold text-white/90 relative max-[680px]:text-[13px]">
+          <span>🗓️ Khai giảng: 03/08/2026</span>
+          <span>💻 Địa điểm: Online qua Zoom và kèm cặp tại Group</span>
         </div>
-        <p className="max-w-[580px] mx-auto mb-[14px] text-lg opacity-[0.92] leading-[1.8] text-center relative max-[680px]:text-[14.5px] max-[680px]:px-6 max-[480px]:text-[14px] max-[480px]:px-4">
-          Bạn có sản phẩm, dịch vụ hoặc muốn làm affiliate Shopee nhưng chưa biết <span className="whitespace-nowrap">cách xây kênh từ đâu?</span>
-        </p>
-        <p className="max-w-[580px] mx-auto mb-8 text-lg opacity-[0.92] leading-[1.8] text-center relative max-[680px]:text-[14.5px] max-[680px]:px-6 max-[480px]:text-[14px] max-[480px]:px-4">
-          Chương trình <strong>7 Ngày Xây Kênh Chuyển Đổi</strong> giúp bạn biến câu chuyện thương hiệu thành bài viết, video thu hút khách hàng và tạo đơn hàng thật. Bạn sẽ được học, thực hành và nhận góp ý trực tiếp từ <span className="whitespace-nowrap">mentor mỗi ngày.</span>
-        </p>
-        <div className="relative block w-[280px] mx-auto mb-9 max-[680px]:w-[200px] max-[480px]:w-[170px]">
-          <div className="w-[280px] h-[280px] rounded-full overflow-hidden border-[7px] border-[#f5a623] bg-[#f5a623] relative shadow-[0_8px_32px_rgba(0,0,0,0.3)] max-[680px]:w-[200px] max-[680px]:h-[200px] max-[480px]:w-[170px] max-[480px]:h-[170px]">
+        <div className="relative block w-[260px] mx-auto mb-9 max-[680px]:w-[190px] max-[480px]:w-[160px]">
+          <div className="w-[260px] h-[260px] rounded-full overflow-hidden border-[7px] border-[#f5a623] bg-[#f5a623] relative shadow-[0_8px_32px_rgba(0,0,0,0.3)] max-[680px]:w-[190px] max-[680px]:h-[190px] max-[480px]:w-[160px] max-[480px]:h-[160px]">
             <img src="/thuonghieuchuyendoi/images/instructor-avatar.jpg" alt="Th.S Vũ Kim Khánh" className="w-full h-full object-cover" />
           </div>
         </div>
-        <a href="#register" onClick={(e) => handleAnchorClick(e, "register")} className={btnGoldLg}>
-          ĐĂNG KÝ THAM GIA NGAY
+        <a href="#register" onClick={(e) => handleAnchorClick(e, "register")} className={btnGoldLgWrap}>
+          YES! TÔI SẴN SÀNG XÂY KÊNH VÀ BỨT PHÁ DOANH THU CỦA MÌNH
         </a>
       </section>
 
       {/* ══════════════════════════════════════════
-           SECTION 2 — VẤN ĐỀ CỦA NGƯỜI MỚI
+           SECTION 3 — GIỚI THIỆU GIẢI PHÁP 1
       ══════════════════════════════════════════ */}
-      <section className={sectionWhite} data-section="pain-points">
+      <section className={sectionWhite + " border-t-[3px] border-t-[#f0f0f0]"} data-section="benefits">
         <div className={container}>
-          <div className="flex items-center justify-center gap-4 mb-3 text-center max-[480px]:flex-col max-[480px]:gap-[10px] max-[480px]:mb-2">
-            <div>
-              <h2 className={oppTitle}>VẤN ĐỀ CỦA NGƯỜI MỚI KHI <br /><span className="whitespace-nowrap">XÂY KÊNH</span></h2>
-              <p className={oppSubtitle}>Bạn biết online là con đường phải đi, nhưng lại mắc kẹt ngay từ bước đầu&nbsp;tiên</p>
-            </div>
+          <div className="text-center mb-8 max-[680px]:mb-5">
+            <h2 className={oppTitle}>KHI BẠN THAM GIA CHƯƠNG TRÌNH<br /><span className="whitespace-nowrap">"7 NGÀY XÂY KÊNH CHUYỂN&nbsp;ĐỔI"</span></h2>
+            <p className={oppSubtitle}>Bạn sẽ có cơ hội để</p>
           </div>
 
+          <div className="grid grid-cols-2 gap-x-8 gap-y-4 max-w-[820px] mx-auto mb-8 max-[680px]:grid-cols-1 max-[680px]:gap-3">
+            {[
+              "Thấu hiểu thuật toán các nền tảng.",
+              "Làm thế nào để chọn sản phẩm bán trên Online hiệu quả.",
+              "Các chiến lược sáng tạo nội dung chuyển đổi.",
+              "4 dạng nội dung chuyển đổi dễ dàng cho người mới.",
+              "Quy trình quay và edit một video đơn giản.",
+              "Xây dựng trang Fanpage, TikTok, Profile trên mạng xã hội.",
+              "Đo lường chỉ số và tối ưu nội dung chuyển đổi trên kênh.",
+              "Kèm cặp chữa bài từng ngày.",
+              "Khám 1:1 định hướng kênh sau khi kết thúc hành trình.",
+            ].map((text, i) => (
+              <div key={i} className="flex items-start gap-3 text-left">
+                <span className="shrink-0 w-8 h-8 rounded-full bg-[#e25010] text-white text-sm font-extrabold flex items-center justify-center mt-0.5 max-[680px]:w-7 max-[680px]:h-7 max-[680px]:text-[13px]">
+                  {i + 1}
+                </span>
+                <p className="text-[17px] text-[#333] leading-[1.6] pt-0.5 max-[680px]:text-[15px]">{text}</p>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-center text-[17px] text-[#999] italic mb-8 max-[680px]:text-[14px]">Và còn nhiều hơn nữa….</p>
+
+          <div className="text-center">
+            <a href="#register" onClick={(e) => handleAnchorClick(e, "register")} className={btnGoldLgWrap}>
+              YES! TÔI ĐÃ SẴN SÀNG XÂY KÊNH VÀ BỨT PHÁ DOANH THU CỦA MÌNH
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+           SECTION 4 — GIỚI THIỆU GIẢI PHÁP 2 (thư ngỏ)
+      ══════════════════════════════════════════ */}
+      <section className={sectionWhite + " border-t-[3px] border-t-[#f0f0f0]"} data-section="overcome-barriers">
+        <div className={container}>
           <p className={oppIntro}>
-            Bạn thấy người khác bán được hàng từ Facebook, TikTok, Shopee, video ngắn, affiliate. Nhưng đến lượt mình thì lại mắc&nbsp;kẹt:
+            7 ngày xây kênh chuyển đổi là một chương trình liên tục được thiết kế để bạn vượt qua những rào cản bản thân để ngay lập tức xây một kênh thương hiệu cá nhân, bán hàng gia tăng doanh số và thu&nbsp;nhập.
           </p>
-
-          <ul className={oppListNoicon}>
-            <li className="py-[5px] pl-5 relative text-xl font-semibold text-[#333] max-[680px]:text-[15px] max-[680px]:py-[2px] max-[680px]:pl-[18px] before:content-['❌'] before:absolute before:left-0 before:text-[#d0212a] before:text-[12px] before:top-[7px] max-[680px]:before:top-[3px]">Không biết nên đăng gì.</li>
-            <li className="py-[5px] pl-5 relative text-xl font-semibold text-[#333] max-[680px]:text-[15px] max-[680px]:py-[2px] max-[680px]:pl-[18px] before:content-['❌'] before:absolute before:left-0 before:text-[#d0212a] before:text-[12px] before:top-[7px] max-[680px]:before:top-[3px]">Không biết quay video thế nào.</li>
-            <li className="py-[5px] pl-5 relative text-xl font-semibold text-[#333] max-[680px]:text-[15px] max-[680px]:py-[2px] max-[680px]:pl-[18px] before:content-['❌'] before:absolute before:left-0 before:text-[#d0212a] before:text-[12px] before:top-[7px] max-[680px]:before:top-[3px]">Không biết viết bài sao cho có người mua.</li>
-            <li className="py-[5px] pl-5 relative text-xl font-semibold text-[#333] max-[680px]:text-[15px] max-[680px]:py-[2px] max-[680px]:pl-[18px] before:content-['❌'] before:absolute before:left-0 before:text-[#d0212a] before:text-[12px] before:top-[7px] max-[680px]:before:top-[3px]">Không biết chọn sản phẩm nào để bán.</li>
-            <li className="py-[5px] pl-5 relative text-xl font-semibold text-[#333] max-[680px]:text-[15px] max-[680px]:py-[2px] max-[680px]:pl-[18px] before:content-['❌'] before:absolute before:left-0 before:text-[#d0212a] before:text-[12px] before:top-[7px] max-[680px]:before:top-[3px]">Không biết dùng AI sao cho ra nội dung thực tế.</li>
-          </ul>
-
-          <p className={oppMid}>Đăng bài thì ít tương tác, ít khách hỏi, ít đơn&nbsp;hàng.</p>
-
+          <p className={oppMid}>
+            Với những trải nghiệm sống, sự phán xét từ môi trường xung quanh, con người ta chấp nhận những định kiến của người khác về xây kênh, về bán hàng online — tạo ra những nỗi sợ ngăn chúng ta hành&nbsp;động.
+          </p>
+          <p className={oppMid}>
+            Theo thời gian, chúng ta tin đó là sự thật, nó biến thành những rào cản vô hình khi chúng ta phát triển kinh doanh và ngăn cản điều chúng ta muốn làm, muốn có, muốn trở&nbsp;thành.
+          </p>
+          <p className="max-w-[720px] mx-auto mb-5 text-2xl font-black text-[#d0212a] text-center max-[680px]:text-lg">
+            TÔI GỌI ĐÓ LÀ ẢO TƯỞNG!!!
+          </p>
+          <p className={oppMid}>
+            Điều đáng buồn là chúng ta lại coi những ảo tưởng đó là có thật. Chúng ta sẵn sàng mang những điều chúng ta coi là "sự thật" để bao biện cho việc không xây kênh, không bắt đầu làm nội dung, không tạo ra thu&nbsp;nhập. Và dùng nó để chỉ trích ai đó đang có khát khao một kênh truyền thông, một nguồn thu nhập mới mà ta từng khát khao&nbsp;có.
+          </p>
+          <p className={oppMid}>
+            7 ngày xây kênh chuyển đổi là một chương trình liên tục được thiết kế để bạn vượt qua những rào cản bản thân để ngay lập tức xây một kênh thương hiệu cá nhân, bán hàng gia tăng doanh số và thu&nbsp;nhập.
+          </p>
           <p className={oppClosing}>
-            Vấn đề không phải là bạn thiếu năng lực. Vấn đề là bạn chưa có một lộ trình đủ đơn giản để bắt đầu và đủ thực chiến để tạo ra kết&nbsp;quả.
+            Tôi mong bạn khi tham gia chương trình sẽ nhận ra những RÀO CẢN vô hình của mình, thách thức chúng rồi vượt qua chúng. Đối diện với nó thay vì TRỐN CHẠY như trước&nbsp;đây!
           </p>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════
-           SECTION 3 — SỰ THẬT BẠN CẦN BIẾT
+           SECTION 5 — VẤN ĐỀ KHÁCH HÀNG ĐANG GẶP
       ══════════════════════════════════════════ */}
-      <section className={sectionWhite + " border-t-[3px] border-t-[#f0f0f0]"} data-section="truth">
+      <section className={sectionWhite + " border-t-[3px] border-t-[#f0f0f0]"} data-section="customer-pain-points">
         <div className={container}>
-          <div className="flex items-center justify-center gap-4 mb-3 text-center max-[480px]:flex-col max-[480px]:gap-[10px] max-[480px]:mb-2">
-            <div>
-              <h2 className={oppTitle}>SỰ THẬT BẠN CẦN BIẾT</h2>
-              <p className={oppSubtitle}>Bạn không cần hoàn hảo mới được bắt&nbsp;đầu</p>
-            </div>
+          <h2 className={oppTitle + " text-center"}>ĐÂY LÀ HẦU HẾT VẤN ĐỀ MÀ NHỮNG NGƯỜI<br /><span className="whitespace-nowrap">KINH DOANH ONLINE GẶP PHẢI</span></h2>
+
+          <div className="max-w-[760px] mx-auto mt-6 mb-7">
+            <p className="text-[18px] text-[#333] leading-[1.85] mb-4 max-[680px]:text-[15px]">
+              Năm 2020, tôi và vợ bắt đầu kinh doanh online từ người làm thuê xuất&nbsp;sắc.
+            </p>
+            <p className="text-[18px] text-[#333] leading-[1.85] mb-4 max-[680px]:text-[15px]">
+              Chúng tôi bắt đầu nhập hàng để bán trên Online, nhưng khi nhìn vào đống hàng đã nhập về, chúng tôi thực sự không biết làm thế&nbsp;nào?
+            </p>
+            <p className="text-[18px] text-[#333] leading-[1.85] mb-4 max-[680px]:text-[15px]">
+              Tôi muốn xây dựng thương hiệu cá nhân nhưng không biết mình nên chia sẻ điều&nbsp;gì?
+            </p>
+            <p className="text-[18px] text-[#333] leading-[1.85] mb-4 max-[680px]:text-[15px]">
+              Muốn quay video nhưng cứ cầm điện thoại lên thì con chữ cứ bay đi đâu, cứng miệng không nói ra&nbsp;được!
+            </p>
+            <p className="text-[18px] text-[#333] leading-[1.85] mb-4 max-[680px]:text-[15px]">
+              Đăng bài lên đều nhưng nội dung ít tương tác, không có khách hàng nào hỏi&nbsp;mua.
+            </p>
+            <p className="text-[18px] text-[#333] leading-[1.85] mb-4 max-[680px]:text-[15px]">
+              Sau này phát triển thêm các kênh như Shopee, TikTok cũng không biết cách chọn sản phẩm, tối ưu nội dung như thế&nbsp;nào?
+            </p>
+            <p className="text-[18px] text-[#333] leading-[1.85]">
+              Xem rất nhiều hướng dẫn, lưu rất nhiều công thức nhưng kênh vẫn chưa tạo ra được kết&nbsp;quả.
+            </p>
           </div>
 
-          <ul className="flex flex-col gap-[18px] max-w-[760px] mx-auto mb-7 max-[680px]:gap-1.5 max-[680px]:mb-3">
-            <li className="flex gap-[14px] items-start text-[19px] text-[#333] max-[680px]:text-[15px] max-[680px]:gap-1.5 max-[680px]:leading-[1.4]"><span className="text-xl shrink-0 mt-px">📌</span><span>Không cần nổi tiếng mới có thể bán hàng.</span></li>
-            <li className="flex gap-[14px] items-start text-[19px] text-[#333] max-[680px]:text-[15px] max-[680px]:gap-1.5 max-[680px]:leading-[1.4]"><span className="text-xl shrink-0 mt-px">📌</span><span>Không cần video quá chuyên nghiệp để bắt đầu.</span></li>
-            <li className="flex gap-[14px] items-start text-[19px] text-[#333] max-[680px]:text-[15px] max-[680px]:gap-1.5 max-[680px]:leading-[1.4]"><span className="text-xl shrink-0 mt-px">📌</span><span>Không cần học hết mọi công cụ marketing phức tạp.</span></li>
-          </ul>
-
-          <p className={oppMid}>Điều bạn cần là:</p>
+          <p className={oppMid}>Nếu bạn cũng như vậy, có thể bạn đang gặp những sai lầm&nbsp;sau:</p>
 
           <ul className={oppListNoicon}>
-            <li className={oppListNoiconLi}>Biết mình bán gì.</li>
-            <li className={oppListNoiconLi}>Biết mình nói với ai.</li>
-            <li className={oppListNoiconLi}>Biết khách hàng đang đau ở đâu.</li>
-            <li className={oppListNoiconLi}>Biết cách biến sản phẩm thành nội dung.</li>
-            <li className={oppListNoiconLi}>Biết cách quay dựng, đăng bài, dùng AI và kêu gọi hành động.</li>
+            <li className={oppListNoiconLi}>Follow trước, bán hàng sau.</li>
+            <li className={oppListNoiconLi}>Mình không phải idol, không có tài năng nào đặc biệt.</li>
+            <li className={oppListNoiconLi}>Đối diện với camera cảm giác như đối diện với kẻ thù.</li>
+            <li className={oppListNoiconLi}>Không có người dẫn dắt bạn vượt qua những khó khăn ngày đầu xây kênh.</li>
+            <li className={oppListNoiconLi}>Cố gắng bắt đầu bằng một ý tưởng.</li>
           </ul>
 
-          <p className={oppClosing}>Khi có đúng công thức, người mới vẫn có thể bắt đầu tạo ra chuyển động bán hàng trong 7&nbsp;ngày.</p>
-        </div>
-      </section>
+          <p className={oppMid}>Tôi đã từng gặp những lỗi như vậy — và không có video, không có đơn&nbsp;hàng.</p>
 
-      {/* ══════════════════════════════════════════
-           SECTION 4 — GIẢI PHÁP / DÀNH CHO AI
-      ══════════════════════════════════════════ */}
-      <section className={sectionWhite + " border-t-[3px] border-t-[#f0f0f0] pb-0 max-[680px]:pb-0"} data-section="audience-fit">
-        <div className={container}>
-          <div className="flex items-center justify-center gap-4 mb-3 text-center max-[480px]:flex-col max-[480px]:gap-[10px] max-[480px]:mb-2">
-            <div>
-              <h2 className={oppTitle}>CHƯƠNG TRÌNH <span className="whitespace-nowrap">"7 NGÀY XÂY KÊNH CHUYỂN&nbsp;ĐỔI"</span><br /><span className="whitespace-nowrap">LÀ DÀNH CHO BẠN</span></h2>
-              <p className={oppSubtitle}>Chương trình thực chiến dành cho người muốn bắt đầu xây kênh online để bán&nbsp;hàng</p>
-            </div>
-          </div>
-
-          <ul className={oppListNoicon}>
-            <li className={oppListNoiconLi}>Người kinh doanh online.</li>
-            <li className={oppListNoiconLi}>Chủ shop, chủ spa, chủ dịch vụ.</li>
-            <li className={oppListNoiconLi}>Người bán sản phẩm cá nhân.</li>
-            <li className={oppListNoiconLi}>Người làm affiliate Shopee.</li>
-            <li className={oppListNoiconLi}>Người muốn xây thương hiệu cá nhân để thu hút khách hàng.</li>
-            <li className={oppListNoiconLi}>Người đã học nhiều nhưng chưa triển khai đều.</li>
-            <li className={oppListNoiconLi}>Người mới bắt đầu và cần một lộ trình dễ làm ngay.</li>
-          </ul>
-
-          <p className={oppClosing}>
-            Mục tiêu của chương trình là giúp bạn có nội dung đầu tiên, kênh được kích hoạt, sản phẩm được truyền thông và có cơ hội tạo ra đơn hàng đầu tiên từ&nbsp;online.
+          <p className="max-w-[720px] mx-auto mb-2 text-xl font-bold text-[#0b0b0b] text-center max-[680px]:text-base">
+            Thực tế là bạn không cần triệu view và hàng trăm ngàn Follower mới bán được&nbsp;hàng.
           </p>
-        </div>
-      </section>
+          <p className={oppMid}>Họ mua khi nội dung tạo&nbsp;ra:</p>
 
-      {/* ══════════════════════════════════════════
-           SECTION 5 — ĐIỂM KHÁC BIỆT (20/80)
-      ══════════════════════════════════════════ */}
-      <section className="bg-white text-center pt-2 pb-9 max-[680px]:py-4" data-section="theory-practice">
-        <div className={container}>
-          <div className="max-w-[600px] mx-auto mb-4 max-[680px]:mb-3 max-[680px]:px-4 max-[680px]:max-w-[340px]">
-            <img src="/thuonghieuchuyendoi/images/chart-practice-80-20.png" alt="20% học lý thuyết - 80% thực hành kèm cặp" className="w-full h-auto block mx-auto" />
-          </div>
-          <p className="max-w-[680px] mx-auto text-[19px] leading-[1.85] text-[#444] text-center max-[680px]:text-[15px]">
-            Bạn sẽ học lý thuyết nền tảng qua E-Learning để hiểu đúng cách <span className="whitespace-nowrap">làm nội dung chuyển đổi.</span> Nhưng quan trọng nhất là thực hành: làm bài tập, đăng video thật và nhận góp ý từ <span className="whitespace-nowrap">mentor mỗi ngày.</span><br />
-            Không chỉ học lý thuyết, bạn thực sự bắt đầu hành động <span className="whitespace-nowrap">để xây kênh.</span>
-          </p>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════
-           SECTION 6 — CÁCH CHƯƠNG TRÌNH VẬN HÀNH
-      ══════════════════════════════════════════ */}
-      <section className={sectionWhite + " border-t-[3px] border-t-[#f0f0f0]"} data-section="steps">
-        <div className={container}>
-          <h2 className="text-center text-[clamp(24px,3vw,32px)] font-extrabold text-[#e25010] uppercase leading-[1.25] mb-2 max-[680px]:text-[22px] max-[680px]:leading-[1.22]">⚙️ 3 BƯỚC ĐỂ CÓ NHỮNG KẾT QUẢ ĐẦU TIÊN</h2>
-          <p className="text-center text-[19px] text-[#666] mb-9 max-[680px]:text-[15px]">Cách chương trình vận hành</p>
-          <div className="grid grid-cols-3 gap-6 max-[680px]:grid-cols-1 max-[680px]:gap-3">
-            <div className="bg-[#fff8f0] border-[1.5px] border-[#f0d5b0] rounded-[14px] px-[22px] py-7 text-left max-[680px]:px-[18px] max-[680px]:py-4">
-              <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#e25010] text-white text-[19px] font-extrabold mb-3.5 max-[680px]:w-8 max-[680px]:h-8 max-[680px]:text-base max-[680px]:mb-2">1</span>
-              <h3 className="text-[19px] font-bold text-[#222] mb-2.5 leading-[1.4] max-[680px]:text-[16.5px] max-[680px]:mb-1.5">📖 Học bài ngắn trên E-Learning</h3>
-              <p className="text-[17.5px] text-[#555] leading-[1.7] max-[680px]:text-[14.5px] max-[680px]:leading-[1.45]">Bạn xem các video hướng dẫn ngắn, dễ hiểu, tập trung vào những gì cần làm ngay. Nội dung gồm: định hướng kênh, chọn sản phẩm, hiểu khách hàng, viết bài, quay video, chụp ảnh, dùng AI và tạo lời kêu gọi hành&nbsp;động.</p>
-            </div>
-            <div className="bg-[#fff8f0] border-[1.5px] border-[#f0d5b0] rounded-[14px] px-[22px] py-7 text-left max-[680px]:px-[18px] max-[680px]:py-4">
-              <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#e25010] text-white text-[19px] font-extrabold mb-3.5 max-[680px]:w-8 max-[680px]:h-8 max-[680px]:text-base max-[680px]:mb-2">2</span>
-              <h3 className="text-[19px] font-bold text-[#222] mb-2.5 leading-[1.4] max-[680px]:text-[16.5px] max-[680px]:mb-1.5">📝 Nhận bài tập mỗi ngày</h3>
-              <p className="text-[17.5px] text-[#555] leading-[1.7] max-[680px]:text-[14.5px] max-[680px]:leading-[1.45]">Mỗi ngày, bạn nhận một nhiệm vụ cụ thể để triển khai trên chính kênh của mình. Không học xong để đó. Mỗi bài học đều gắn với một hành động thực&nbsp;tế.</p>
-            </div>
-            <div className="bg-[#fff8f0] border-[1.5px] border-[#f0d5b0] rounded-[14px] px-[22px] py-7 text-left max-[680px]:px-[18px] max-[680px]:py-4">
-              <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#e25010] text-white text-[19px] font-extrabold mb-3.5 max-[680px]:w-8 max-[680px]:h-8 max-[680px]:text-base max-[680px]:mb-2">3</span>
-              <h3 className="text-[19px] font-bold text-[#222] mb-2.5 leading-[1.4] max-[680px]:text-[16.5px] max-[680px]:mb-1.5">🤝 Trả bài và được mentor góp ý</h3>
-              <p className="text-[17.5px] text-[#555] leading-[1.7] max-[680px]:text-[14.5px] max-[680px]:leading-[1.45]">Bạn đăng bài, quay video, hoàn thiện kênh và nộp bài theo yêu cầu. Đội ngũ mentor sẽ hỗ trợ soi bài, góp ý, chỉ ra điểm cần sửa và giúp bạn tối ưu để tăng khả năng tạo chuyển&nbsp;đổi.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════
-           SECTION 7 — LỘ TRÌNH 7 NGÀY
-      ══════════════════════════════════════════ */}
-      <section className={sectionDark} data-section="roadmap">
-        <div className={container}>
-          <h2 className="text-center text-[clamp(24px,3vw,34px)] font-extrabold text-white uppercase leading-[1.25] mb-10 relative max-[680px]:text-[22px] max-[680px]:leading-[1.22]">Lộ Trình 7 Ngày Kèm Cặp</h2>
-          <div className="flex flex-col gap-5 relative">
-            <div className="bg-white rounded-[14px] px-7 py-[26px] text-[#222] max-[680px]:px-4 max-[680px]:py-3.5 max-[680px]:mb-3">
-              <span className="inline-block bg-[#d0212a] text-white text-[13px] font-bold px-4 py-1 rounded-xl mb-3">Ngày 1</span>
-              <h3 className="text-xl font-bold text-[#e25010] mb-2 leading-[1.4] max-[680px]:text-[17px]">Xác định hướng kênh và sản phẩm bán</h3>
-              <p className="text-lg text-[#444] leading-[1.75] mb-2.5 max-[680px]:text-[15px]">Bạn làm rõ mình bán gì, bán cho ai và kênh của mình cần truyền tải thông điệp&nbsp;gì.</p>
-              <p className="text-[17.5px] text-[#444] border-l-[3px] border-[#e25010] pl-3 leading-[1.7] max-[680px]:text-[15px]"><strong>Kết quả:</strong> Có định hướng kênh và bài giới thiệu đầu&nbsp;tiên.</p>
-            </div>
-
-            <div className="bg-white rounded-[14px] px-7 py-[26px] text-[#222] max-[680px]:px-4 max-[680px]:py-3.5 max-[680px]:mb-3">
-              <span className="inline-block bg-[#d0212a] text-white text-[13px] font-bold px-4 py-1 rounded-xl mb-3">Ngày 2</span>
-              <h3 className="text-xl font-bold text-[#e25010] mb-2 leading-[1.4] max-[680px]:text-[17px]">Hiểu khách hàng và lý do họ mua</h3>
-              <p className="text-lg text-[#444] leading-[1.75] mb-2.5 max-[680px]:text-[15px]">Bạn học cách nhìn sản phẩm từ góc nhìn khách hàng, không chỉ từ góc nhìn người&nbsp;bán.</p>
-              <p className="text-[17.5px] text-[#444] border-l-[3px] border-[#e25010] pl-3 leading-[1.7] max-[680px]:text-[15px]"><strong>Kết quả:</strong> Có bài viết chạm đúng nỗi đau hoặc mong muốn của khách&nbsp;hàng.</p>
-            </div>
-
-            <div className="bg-white rounded-[14px] px-7 py-[26px] text-[#222] max-[680px]:px-4 max-[680px]:py-3.5 max-[680px]:mb-3">
-              <span className="inline-block bg-[#d0212a] text-white text-[13px] font-bold px-4 py-1 rounded-xl mb-3">Ngày 3</span>
-              <h3 className="text-xl font-bold text-[#e25010] mb-2 leading-[1.4] max-[680px]:text-[17px]">Viết bài bán hàng có chuyển đổi</h3>
-              <p className="text-lg text-[#444] leading-[1.75] mb-2.5 max-[680px]:text-[15px]">Bạn học công thức viết bài khiến người đọc hiểu vấn đề, tin giải pháp và muốn hành&nbsp;động.</p>
-              <p className="text-[17.5px] text-[#444] border-l-[3px] border-[#e25010] pl-3 leading-[1.7] max-[680px]:text-[15px]"><strong>Kết quả:</strong> Có một bài bán hàng hoàn chỉnh được đăng lên&nbsp;kênh.</p>
-            </div>
-
-            <div className="bg-white rounded-[14px] px-7 py-[26px] text-[#222] max-[680px]:px-4 max-[680px]:py-3.5 max-[680px]:mb-3">
-              <span className="inline-block bg-[#d0212a] text-white text-[13px] font-bold px-4 py-1 rounded-xl mb-3">Ngày 4</span>
-              <h3 className="text-xl font-bold text-[#e25010] mb-2 leading-[1.4] max-[680px]:text-[17px]">Quay video chuyển đổi đầu tiên</h3>
-              <p className="text-lg text-[#444] leading-[1.75] mb-2.5 max-[680px]:text-[15px]">Bạn học cách mở đầu video, trình bày thông điệp và kêu gọi khách hàng hành&nbsp;động.</p>
-              <p className="text-[17.5px] text-[#444] border-l-[3px] border-[#e25010] pl-3 leading-[1.7] max-[680px]:text-[15px]"><strong>Kết quả:</strong> Có video đầu tiên giới thiệu sản phẩm, câu chuyện hoặc giải&nbsp;pháp.</p>
-            </div>
-
-            <div className="bg-white rounded-[14px] px-7 py-[26px] text-[#222] max-[680px]:px-4 max-[680px]:py-3.5 max-[680px]:mb-3">
-              <span className="inline-block bg-[#d0212a] text-white text-[13px] font-bold px-4 py-1 rounded-xl mb-3">Ngày 5</span>
-              <h3 className="text-xl font-bold text-[#e25010] mb-2 leading-[1.4] max-[680px]:text-[17px]">Chụp ảnh và trình bày sản phẩm hấp dẫn hơn</h3>
-              <p className="text-lg text-[#444] leading-[1.75] mb-2.5 max-[680px]:text-[15px]">Bạn học cách làm sản phẩm trở nên rõ ràng, đẹp mắt và đáng mua hơn qua hình&nbsp;ảnh.</p>
-              <p className="text-[17.5px] text-[#444] border-l-[3px] border-[#e25010] pl-3 leading-[1.7] max-[680px]:text-[15px]"><strong>Kết quả:</strong> Có bộ ảnh hoặc bài đăng sản phẩm hấp dẫn&nbsp;hơn.</p>
-            </div>
-
-            <div className="bg-white rounded-[14px] px-7 py-[26px] text-[#222] max-[680px]:px-4 max-[680px]:py-3.5 max-[680px]:mb-3">
-              <span className="inline-block bg-[#d0212a] text-white text-[13px] font-bold px-4 py-1 rounded-xl mb-3">Ngày 6</span>
-              <h3 className="text-xl font-bold text-[#e25010] mb-2 leading-[1.4] max-[680px]:text-[17px]">Dùng AI để làm nội dung nhanh hơn</h3>
-              <p className="text-lg text-[#444] leading-[1.75] mb-2.5 max-[680px]:text-[15px]">Bạn học cách dùng AI cơ bản để lên ý tưởng, viết nháp, tạo hook, viết caption và kịch bản&nbsp;video.</p>
-              <p className="text-[17.5px] text-[#444] border-l-[3px] border-[#e25010] pl-3 leading-[1.7] max-[680px]:text-[15px]"><strong>Kết quả:</strong> Có nội dung được tạo cùng AI nhưng vẫn giữ giọng thật của&nbsp;bạn.</p>
-            </div>
-
-            <div className="bg-white rounded-[14px] px-7 py-[26px] text-[#222] max-[680px]:px-4 max-[680px]:py-3.5 max-[680px]:mb-3">
-              <span className="inline-block bg-[#d0212a] text-white text-[13px] font-bold px-4 py-1 rounded-xl mb-3">Ngày 7</span>
-              <h3 className="text-xl font-bold text-[#e25010] mb-2 leading-[1.4] max-[680px]:text-[17px]">Tối ưu kênh và tạo lời mời mua hàng</h3>
-              <p className="text-lg text-[#444] leading-[1.75] mb-2.5 max-[680px]:text-[15px]">Bạn rà soát lại kênh, tối ưu bio, thông tin sản phẩm, CTA, link mua hàng hoặc link&nbsp;affiliate.</p>
-              <p className="text-[17.5px] text-[#444] border-l-[3px] border-[#e25010] pl-3 leading-[1.7] max-[680px]:text-[15px]"><strong>Kết quả:</strong> Kênh rõ ràng hơn, nội dung có lời mời mua hàng rõ hơn và sẵn sàng cho buổi khám&nbsp;kênh.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════
-           SECTION 8 — SAU 7 NGÀY BẠN CÓ GÌ
-      ══════════════════════════════════════════ */}
-      <section className={sectionWhite} data-section="outcomes">
-        <div className={container}>
-          <h2 className="text-center text-[clamp(24px,3vw,32px)] font-extrabold text-[#e25010] uppercase leading-[1.25] mb-8 max-[680px]:text-[22px] max-[680px]:leading-[1.22] max-[680px]:mb-4">Sau 7 Ngày Bạn Có</h2>
-          <ul className="max-w-[640px] mx-auto">
-            <li className="text-[19px] text-[#333] py-2 pl-[30px] relative leading-[1.7] max-[680px]:text-[15px] max-[680px]:py-1 max-[680px]:pl-[22px] before:content-['✔'] before:absolute before:left-0 before:top-[10px] before:text-[#27ae60] before:text-[13px] max-[680px]:before:top-[6px] max-[680px]:before:text-[11px]">Một định hướng kênh rõ ràng hơn.</li>
-            <li className="text-[19px] text-[#333] py-2 pl-[30px] relative leading-[1.7] max-[680px]:text-[15px] max-[680px]:py-1 max-[680px]:pl-[22px] before:content-['✔'] before:absolute before:left-0 before:top-[10px] before:text-[#27ae60] before:text-[13px] max-[680px]:before:top-[6px] max-[680px]:before:text-[11px]">Một sản phẩm hoặc nhóm sản phẩm để tập trung bán.</li>
-            <li className="text-[19px] text-[#333] py-2 pl-[30px] relative leading-[1.7] max-[680px]:text-[15px] max-[680px]:py-1 max-[680px]:pl-[22px] before:content-['✔'] before:absolute before:left-0 before:top-[10px] before:text-[#27ae60] before:text-[13px] max-[680px]:before:top-[6px] max-[680px]:before:text-[11px]">Những bài viết đầu tiên có cấu trúc bán hàng.</li>
-            <li className="text-[19px] text-[#333] py-2 pl-[30px] relative leading-[1.7] max-[680px]:text-[15px] max-[680px]:py-1 max-[680px]:pl-[22px] before:content-['✔'] before:absolute before:left-0 before:top-[10px] before:text-[#27ae60] before:text-[13px] max-[680px]:before:top-[6px] max-[680px]:before:text-[11px]">Những video đầu tiên được quay và đăng.</li>
-            <li className="text-[19px] text-[#333] py-2 pl-[30px] relative leading-[1.7] max-[680px]:text-[15px] max-[680px]:py-1 max-[680px]:pl-[22px] before:content-['✔'] before:absolute before:left-0 before:top-[10px] before:text-[#27ae60] before:text-[13px] max-[680px]:before:top-[6px] max-[680px]:before:text-[11px]">Ảnh sản phẩm hấp dẫn hơn.</li>
-            <li className="text-[19px] text-[#333] py-2 pl-[30px] relative leading-[1.7] max-[680px]:text-[15px] max-[680px]:py-1 max-[680px]:pl-[22px] before:content-['✔'] before:absolute before:left-0 before:top-[10px] before:text-[#27ae60] before:text-[13px] max-[680px]:before:top-[6px] max-[680px]:before:text-[11px]">Cách dùng AI đơn giản để không còn bí ý tưởng.</li>
-            <li className="text-[19px] text-[#333] py-2 pl-[30px] relative leading-[1.7] max-[680px]:text-[15px] max-[680px]:py-1 max-[680px]:pl-[22px] before:content-['✔'] before:absolute before:left-0 before:top-[10px] before:text-[#27ae60] before:text-[13px] max-[680px]:before:top-[6px] max-[680px]:before:text-[11px]">Lượt tương tác, tin nhắn, click link hoặc tín hiệu mua hàng đầu tiên.</li>
-            <li className="text-[19px] text-[#333] py-2 pl-[30px] relative leading-[1.7] max-[680px]:text-[15px] max-[680px]:py-1 max-[680px]:pl-[22px] before:content-['✔'] before:absolute before:left-0 before:top-[10px] before:text-[#27ae60] before:text-[13px] max-[680px]:before:top-[6px] max-[680px]:before:text-[11px]">Cơ hội tạo đơn hàng đầu tiên từ sản phẩm của bạn hoặc affiliate Shopee.</li>
-            <li className="text-[19px] font-bold text-[#e25010] py-2 pl-[30px] relative leading-[1.7] max-[680px]:text-[15px] max-[680px]:py-1 max-[680px]:pl-[22px] before:content-['✔'] before:absolute before:left-0 before:top-[10px] before:text-[#27ae60] before:text-[13px] max-[680px]:before:top-[6px] max-[680px]:before:text-[11px]">Quan trọng nhất: bạn vượt qua rào cản bắt đầu.</li>
+          <ul className={checkListGreen}>
+            <li className={checkListGreenLi}>Sự tin tưởng vào người bán và giải pháp phù hợp với họ.</li>
+            <li className={checkListGreenLi}>Người làm nội dung thấu hiểu vấn đề họ đang gặp phải.</li>
+            <li className={checkListGreenLi}>Người giới thiệu thực sự hiểu được giá trị của sản phẩm giải quyết được vấn đề.</li>
+            <li className={checkListGreenLi}>Trao đúng sản phẩm tới đúng người cần, chứ không phải spam nội dung tới tất cả mọi người.</li>
+            <li className={checkListGreenLi}>Biết rõ mình cần hành động gì tiếp theo.</li>
           </ul>
+
+          <p className={oppClosing}>Một kênh ít Follower vẫn có thể bán hàng nếu nội dung đúng và&nbsp;đủ!</p>
+          <p className={oppClosing + " mt-3"}>Nội dung hay có thể tạo View, nhưng chỉ nội dung đúng mới tạo ra chuyển&nbsp;đổi.</p>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════
-           SECTION 9 — GIẢNG VIÊN VÀ ĐỘI NGŨ MENTOR
+           SECTION 6 — NGƯỜI DẪN ĐƯỜNG
       ══════════════════════════════════════════ */}
       <section className={sectionWhite + " border-t-[3px] border-t-[#f0f0f0] text-center"} data-section="instructor">
         <div className={container}>
-          <div className="inline-block border-[1.5px] border-[#ccc] rounded-[20px] px-[22px] py-1.5 text-[17px] text-[#666] mb-3">Giảng viên chính</div>
-          <h2 className="text-[26px] font-extrabold text-[#e25010] uppercase leading-[1.25] mb-8 max-[680px]:text-[22px] max-[680px]:leading-[1.22]">Người trực tiếp dẫn dắt bạn trong chương trình</h2>
+          <div className="inline-block border-[1.5px] border-[#ccc] rounded-[20px] px-[22px] py-1.5 text-[17px] text-[#666] mb-3">Gặp gỡ người huấn luyện</div>
+          <h2 className="text-[26px] font-extrabold text-[#e25010] uppercase leading-[1.25] mb-8 max-[680px]:text-[22px] max-[680px]:leading-[1.22]">Th.S Vũ Kim Khánh</h2>
 
-          <div className="flex gap-8 items-start text-left max-w-[800px] mx-auto mb-9 flex-wrap justify-center max-[680px]:flex-col max-[680px]:items-center max-[680px]:gap-0">
+          <div className="flex gap-8 items-start text-left max-w-[800px] mx-auto mb-8 flex-wrap justify-center max-[680px]:flex-col max-[680px]:items-center max-[680px]:gap-0">
             <div className="relative shrink-0">
               <img src="/thuonghieuchuyendoi/images/instructor-avatar.jpg" alt="Th.S Vũ Kim Khánh" className="w-[180px] h-[180px] rounded-full object-cover border-4 border-[#f5a623] block" />
             </div>
             <div className="flex-1 min-w-[260px] max-[680px]:min-w-0 max-[680px]:w-full max-[680px]:text-left max-[680px]:bg-[#fff8f0] max-[680px]:border-[1.5px] max-[680px]:border-[#f0d5b0] max-[680px]:rounded-[14px] max-[680px]:px-[18px] max-[680px]:py-5 max-[680px]:mt-4">
-              <h3 className="text-[21px] font-bold text-[#e25010] mb-3 max-[680px]:text-center max-[680px]:text-[17px] max-[680px]:bg-[linear-gradient(135deg,#e25010,#d0212a)] max-[680px]:text-white max-[680px]:px-4 max-[680px]:py-2.5 max-[680px]:-mx-[18px] max-[680px]:-mt-5 max-[680px]:mb-4 max-[680px]:rounded-t-xl">Th.S Vũ Kim Khánh</h3>
-              <ul className="mb-4 max-[680px]:mb-3.5">
-                <li className="text-[19px] mb-1.5 flex items-start gap-2 max-[680px]:text-left max-[680px]:text-[15px] max-[680px]:mb-2.5 max-[680px]:leading-[1.55] max-[680px]:gap-2.5"><span className="text-[#d0212a] text-[10px] mt-[5px] shrink-0 max-[680px]:mt-1 max-[680px]:text-[8px]">●</span><span>Mentor xây dựng thương hiệu cá nhân, content bán hàng và hệ thống chuyển đổi online.</span></li>
-                <li className="text-[19px] mb-1.5 flex items-start gap-2 max-[680px]:text-left max-[680px]:text-[15px] max-[680px]:mb-2.5 max-[680px]:leading-[1.55] max-[680px]:gap-2.5"><span className="text-[#d0212a] text-[10px] mt-[5px] shrink-0 max-[680px]:mt-1 max-[680px]:text-[8px]">●</span><span>Đã cố vấn và đồng hành cùng hàng ngàn học viên, chủ shop xây kênh thực chiến.</span></li>
-              </ul>
-              <p className="text-[19px] text-[#555] leading-[1.7] max-[680px]:text-left max-[680px]:text-[14.5px] max-[680px]:bg-white max-[680px]:border-l-[3px] max-[680px]:border-[#e25010] max-[680px]:px-3 max-[680px]:py-2.5 max-[680px]:rounded max-[680px]:leading-[1.65]">
-                Cùng đội ngũ Mentor đồng hành hỗ trợ soi kênh, sửa bài tập và góp ý trực tiếp mỗi ngày.
+              <p className="text-[17px] text-[#444] leading-[1.75] mb-3 max-[680px]:text-[14.5px]">
+                Không chỉ là một doanh nhân và nhà đào tạo chuyên nghiệp trong lĩnh vực xây dựng thương hiệu cá nhân và bán hàng, mà còn là một biểu tượng của sự kiên trì, vượt khó, tạo ra những kết quả không tưởng từ con số 0. Với hơn 6 năm kinh nghiệm kinh doanh và đào tạo, ông trở thành nguồn cảm hứng cho hàng chục nghìn người qua hơn 100 khoá học/seminar, đồng thời đồng hành cùng hơn 10 doanh nghiệp doanh thu triệu&nbsp;đô.
+              </p>
+              <p className="text-[17px] text-[#444] leading-[1.75] mb-3 max-[680px]:text-[14.5px]">
+                Sở hữu hệ thống kênh mạng xã hội hơn 400.000 Follower, nơi ông chia sẻ kiến thức về phát triển bản thân, kinh doanh và hạnh phúc gia đình — trở thành nguồn thông tin đáng tin cậy dẫn đường cho những ai đam mê kinh doanh và xây dựng hạnh&nbsp;phúc.
+              </p>
+              <p className="text-[17px] text-[#444] leading-[1.75] max-[680px]:text-[14.5px]">
+                Không chỉ là một doanh nhân, Vũ Kim Khánh còn là một vận động viên Marathon mạnh mẽ — đã hoàn tất cự ly Marathon 42km nhiều lần, tham gia các chuyến trip 20 ngày trong khi doanh nghiệp vẫn vận hành bình thường. Những thành tựu này phản ánh sự kiên trì, nghị lực và khả năng quản lý thời gian, cân bằng cuộc sống một cách xuất&nbsp;sắc.
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 max-w-[720px] mx-auto mt-8 max-[680px]:gap-2.5">
+          <p className="max-w-[760px] mx-auto text-[18px] text-[#555] leading-[1.75] mb-8 max-[680px]:text-[14.5px]">
+            Tham gia khoá học của Vũ Kim Khánh, bạn sẽ trải nghiệm một hành trình chuyển hoá từ việc khám phá các tiềm lực của bản thân đến việc xây dựng kênh thương hiệu cá nhân và bán hàng bằng phong cách sống, mở ra cánh cửa mới cho tương lai của&nbsp;bạn.
+          </p>
+
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 max-w-[760px] mx-auto mb-9">
+            {[
+              { label: "Học vấn", value: "Thạc sĩ QTKD" },
+              { label: "Đã đào tạo", value: "1000+ học viên" },
+              { label: "Đã tư vấn", value: "50+ doanh nghiệp" },
+              { label: "Kinh nghiệm", value: "6 năm" },
+              { label: "Thành tích nổi bật", value: "10 DN doanh thu >1 triệu $" },
+            ].map((s) => (
+              <div key={s.label} className="bg-[#fff8f0] border-[1.5px] border-[#f0d5b0] rounded-lg px-2.5 py-3.5 text-center">
+                <p className="text-[10.5px] text-[#999] uppercase tracking-wide mb-1.5 leading-tight">{s.label}</p>
+                <p className="text-[13.5px] font-extrabold text-[#e25010] leading-snug">{s.value}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-2 gap-4 max-w-[720px] mx-auto max-[680px]:gap-2.5">
             <div>
               <img src="/thuonghieuchuyendoi/images/mentor-class-1.jpg" alt="Đồng hành thực chiến" className="w-full h-auto block rounded-lg shadow-[0_2px_10px_rgba(0,0,0,0.1)]" />
             </div>
@@ -1026,12 +987,172 @@ export default function ThuongHieuChuyenDoiPage() {
       </section>
 
       {/* ══════════════════════════════════════════
-           SECTION 10 — HỌC VIÊN THÀNH CÔNG
+           SECTION 7 — TỔNG HỢP CHƯƠNG TRÌNH
       ══════════════════════════════════════════ */}
-      <section className="py-14 bg-[#faf9f7]" data-section="testimonials">
+      <section className={sectionWhite + " border-t-[3px] border-t-[#f0f0f0] text-center"} data-section="methodology">
         <div className={container}>
-          <h2 className="text-center text-[clamp(24px,3vw,32px)] font-extrabold text-[#e25010] uppercase leading-[1.25] mb-9 max-[680px]:text-[22px] max-[680px]:leading-[1.22]">Học Viên Thành Công</h2>
-          <div className="grid grid-cols-3 gap-5 max-[680px]:grid-cols-1">
+          <h2 className={oppTitle}>7 NGÀY XÂY KÊNH CHUYỂN ĐỔI<br />THAY ĐỔI TOÀN BỘ CÔNG VIỆC KINH DOANH, SỰ NGHIỆP CỦA BẠN TRÊN&nbsp;ONLINE</h2>
+
+          <p className="text-lg font-extrabold text-[#0b0b0b] uppercase mt-6 mb-1 max-[680px]:text-[15px]">Phương pháp đào tạo Action Learning</p>
+          <p className="text-[19px] font-extrabold text-[#e25010] uppercase mb-6 max-[680px]:text-[15px]">20% học đúng — 80% làm thật — 100% mentor sửa trực tiếp</p>
+
+          <div className="max-w-[600px] mx-auto mb-4 max-[680px]:mb-3 max-[680px]:px-4 max-[680px]:max-w-[340px]">
+            <img src="/thuonghieuchuyendoi/images/chart-practice-80-20.png" alt="20% học lý thuyết - 80% thực hành kèm cặp" className="w-full h-auto block mx-auto" />
+          </div>
+
+          <p className="max-w-[680px] mx-auto text-[19px] leading-[1.85] text-[#444] text-center mb-2 max-[680px]:text-[15px]">
+            Chưa từng có tiền lệ một chương trình kết hợp cả việc HỌC và THỰC HÀNH trong cùng một chương&nbsp;trình.
+          </p>
+          <p className="max-w-[680px] mx-auto text-[19px] leading-[1.85] text-[#444] text-center mb-7 max-[680px]:text-[15px]">
+            Học viên sẽ trải nghiệm bằng việc học kiến thức tới đâu, thực hành ngay tới đó liên tục trong 7 ngày, với sự hỗ trợ kèm cặp của các Mentor. Sai đâu sửa đó, từng nội dung video và bài&nbsp;viết. Kết thúc 7 ngày, bạn được khám và định hướng tư vấn kênh&nbsp;1:1.
+          </p>
+
+          <a href="#register" onClick={(e) => handleAnchorClick(e, "register")} className={btnGoldLgWrap}>
+            YES! TÔI MUỐN BẮT ĐẦU XÂY KÊNH
+          </a>
+          <p className="text-[15px] text-[#888] mt-4 max-[680px]:text-[13px]">Không cần nổi tiếng — Không cần thiết bị chuyên nghiệp — Không cần biết quay dựng phức&nbsp;tạp</p>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+           SECTION 8 — LỰA CHỌN HẠNG VÉ CỦA BẠN
+      ══════════════════════════════════════════ */}
+      <section className={sectionWhite + " border-t-[3px] border-t-[#f0f0f0]"} data-section="pricing-tiers">
+        <div className={container}>
+          <h2 className={oppTitle + " text-center mb-8"}>LỰA CHỌN HẠNG VÉ CỦA BẠN</h2>
+
+          <div className="grid grid-cols-3 gap-5 max-[860px]:grid-cols-1 max-[860px]:gap-6">
+            <div className="rounded-2xl border-2 border-[#e2ded4] bg-white px-6 py-8 flex flex-col">
+              <p className="text-sm font-extrabold tracking-wide text-[#888] uppercase mb-2">Silver</p>
+              <p className="text-[30px] font-black text-[#0b0b0b] mb-5 leading-none">568.000<span className="text-lg font-bold">đ</span></p>
+              <ul className="space-y-2.5 text-[15px] text-[#444] mb-7 flex-1">
+                <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Học qua E-learning</li>
+                <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Hỏi đáp trong nhóm</li>
+              </ul>
+              <a href="#register" onClick={(e) => handleAnchorClick(e, "register")} className="block text-center rounded-md border-2 border-[#e25010] text-[#e25010] font-bold py-3 hover:bg-[#fff8f0] transition-colors">
+                Chọn Silver
+              </a>
+            </div>
+
+            <div className="rounded-2xl border-2 border-[#e25010] bg-[#fff8f0] px-6 py-8 flex flex-col relative shadow-[0_10px_30px_rgba(226,80,16,0.15)] md:scale-[1.04]">
+              <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[linear-gradient(135deg,#e25010,#d0212a)] text-white text-[11px] font-extrabold px-4 py-1.5 rounded-full whitespace-nowrap">PHỔ BIẾN NHẤT</span>
+              <p className="text-sm font-extrabold tracking-wide text-[#e25010] uppercase mb-2 mt-2">Gold</p>
+              <p className="text-[30px] font-black text-[#0b0b0b] mb-5 leading-none">868.000<span className="text-lg font-bold">đ</span></p>
+              <ul className="space-y-2.5 text-[15px] text-[#333] mb-7 flex-1">
+                <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Học qua E-learning</li>
+                <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Hỏi đáp trong nhóm</li>
+                <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Chữa bài 7 ngày</li>
+                <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Phiên coach chiến lược 1:1</li>
+                <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Hoàn tiền nếu không hài lòng</li>
+              </ul>
+              <a href="#register" onClick={(e) => handleAnchorClick(e, "register")} className={btnBase + " block bg-[linear-gradient(135deg,#e25010,#d0212a)] text-white text-center"}>
+                Chọn Gold
+              </a>
+            </div>
+
+            <div className="rounded-2xl border-2 border-[#e2ded4] bg-white px-6 py-8 flex flex-col">
+              <p className="text-sm font-extrabold tracking-wide text-[#888] uppercase mb-2">Diamond</p>
+              <p className="text-[30px] font-black text-[#0b0b0b] mb-5 leading-none">1.868.000<span className="text-lg font-bold">đ</span></p>
+              <ul className="space-y-2.5 text-[15px] text-[#444] mb-7 flex-1">
+                <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Toàn bộ quyền lợi gói Gold</li>
+                <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Nhóm riêng kết nối CEO</li>
+                <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Tặng 1 trong 3 khoá học online trị giá 2.000.000đ</li>
+              </ul>
+              <a href="#register" onClick={(e) => handleAnchorClick(e, "register")} className="block text-center rounded-md border-2 border-[#e25010] text-[#e25010] font-bold py-3 hover:bg-[#fff8f0] transition-colors">
+                Chọn Diamond
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+           SECTION 9 — CTA: ĐĂNG KÝ THAM GIA
+      ══════════════════════════════════════════ */}
+      <section className={sectionDark + " pb-16"} data-section="register-cta">
+        <div className={container}>
+          <h2 className="text-center text-[clamp(24px,3.2vw,36px)] font-extrabold text-white uppercase leading-[1.25] mb-2 relative max-[680px]:text-[22px] max-[680px]:leading-[1.22]">7 Ngày Xây Kênh Chuyển Đổi</h2>
+          <p className="text-center text-[19px] text-white/85 mb-9 relative max-[680px]:text-[15px]">Tháng 8.2026 — Kèm cặp liên tục 7 ngày</p>
+
+          <div className="max-w-[440px] mx-auto bg-white rounded-[14px] px-[22px] py-7 text-[#222] relative" id="register">
+            <div className="flex justify-center items-center gap-1 mb-2">
+              <div className="flex flex-col items-center"><span className="block bg-[#111] text-white text-[26px] font-black px-2.5 py-1.5 rounded-md min-w-[50px] text-center leading-[1.2] max-[480px]:text-[22px] max-[480px]:min-w-[42px]">{timeParts.h}</span><small className="text-xs text-[#777] mt-[3px]">Giờ</small></div>
+              <div className="text-2xl font-black text-[#333] mb-3.5 px-0.5">:</div>
+              <div className="flex flex-col items-center"><span className="block bg-[#111] text-white text-[26px] font-black px-2.5 py-1.5 rounded-md min-w-[50px] text-center leading-[1.2] max-[480px]:text-[22px] max-[480px]:min-w-[42px]">{timeParts.m}</span><small className="text-xs text-[#777] mt-[3px]">Phút</small></div>
+              <div className="text-2xl font-black text-[#333] mb-3.5 px-0.5">:</div>
+              <div className="flex flex-col items-center"><span className="block bg-[#111] text-white text-[26px] font-black px-2.5 py-1.5 rounded-md min-w-[50px] text-center leading-[1.2] max-[480px]:text-[22px] max-[480px]:min-w-[42px]">{timeParts.s}</span><small className="text-xs text-[#777] mt-[3px]">Giây</small></div>
+            </div>
+            <p className="text-center text-[17px] font-bold text-[#d0212a] mb-5 leading-[1.6] max-[680px]:text-[14px]">Ưu đãi đăng ký sớm chỉ áp dụng <br className="max-[680px]:hidden" />cho số lượng học viên giới hạn!</p>
+
+            <form className="[&>input]:w-full [&>input]:border-[1.5px] [&>input]:border-[#ddd] [&>input]:rounded-md [&>input]:px-4 [&>input]:py-3.5 [&>input]:text-lg [&>input]:mb-2.5 [&>input]:outline-none [&>input]:block max-[680px]:[&>input]:text-[15px] [&>input]:focus:border-[#e25010]" onSubmit={handleSubmit} onFocusCapture={() => { formTouchedRef.current = true; }}>
+              <input
+                type="text"
+                name="fullname"
+                placeholder="Nhập tên của bạn"
+                value={fullname}
+                onChange={(e) => setFullname(e.target.value)}
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Nhập email của bạn"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Nhập số điện thoại của bạn"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                required
+              />
+              <input
+                type="text"
+                name="ghiChu"
+                placeholder="Vấn đề gặp phải"
+                value={ghiChu}
+                onChange={(e) => setGhiChu(e.target.value)}
+              />
+              <button type="submit" disabled={isSubmitting} className={"block w-full " + btnBase + " border-[2.5px] border-white bg-[linear-gradient(135deg,#ffe066_0%,#f5c030_100%)] text-[#1a1a1a] shadow-[0_0_25px_rgba(245,166,35,0.8)]"}>
+                {isSubmitting ? "Đang đăng ký..." : "Đăng ký ngay"}
+              </button>
+            </form>
+
+            <div className="mt-3">
+              <p className="text-[15px] text-[#888] mb-1 leading-[1.6]">* Chú ý: Tư vấn viên sẽ liên lạc lại để xác nhận đăng ký chương trình cho bạn.</p>
+              <p className="text-[15px] text-[#888] mb-1 leading-[1.6]">* Đây là chương trình online kèm cặp qua E-Learning, không phải học trực tiếp.</p>
+              <p className="text-[15px] text-[#888] mb-1 leading-[1.6]">* Hãy kiểm tra lại thông tin họ tên và số điện thoại của bạn trước khi bấm đăng ký.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+           SECTION 10 — SOCIAL PROOF
+      ══════════════════════════════════════════ */}
+      <section className="py-14 bg-[#faf9f7]" data-section="social-proof">
+        <div className={container}>
+          <h2 className={oppTitle + " text-center"}>Đừng tin những gì tôi nói,<br />đây là những gì người khác&nbsp;nói…</h2>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-[860px] mx-auto my-9">
+            {[
+              { value: "500+", label: "học viên đã được đào tạo" },
+              { value: "12+", label: "ngành nghề đã được tư vấn" },
+              { value: "500+", label: "kênh đã được đánh giá và tối ưu" },
+              { value: "500+", label: "học viên đã tạo ra khách hàng hoặc đơn hàng từ nội dung" },
+            ].map((s) => (
+              <div key={s.label} className="bg-white border-[1.5px] border-[#eee] rounded-[14px] px-4 py-6 text-center">
+                <p className="text-[30px] font-black text-[#e25010] leading-none mb-2 max-[680px]:text-2xl">{s.value}</p>
+                <p className="text-[13px] text-[#666] leading-snug">{s.label}</p>
+              </div>
+            ))}
+          </div>
+
+          <h3 className="text-center text-lg font-extrabold text-[#e25010] uppercase mb-5 max-[680px]:text-base">Feedback bằng video</h3>
+          <div className="grid grid-cols-3 gap-5 max-[680px]:grid-cols-1 mb-12">
             <div className="bg-white border-[1.5px] border-[#eee] rounded-[14px] overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
               <div className="relative aspect-square bg-[#222]">
                 <video controls preload="none" playsInline poster="/thuonghieuchuyendoi/images/testimonial-1-poster.jpg" className="w-full h-full object-cover block">
@@ -1053,7 +1174,7 @@ export default function ThuongHieuChuyenDoiPage() {
               </div>
               <div className="px-5 py-[18px]">
                 <p className="text-lg font-bold text-[#222] mb-0.5">Anh Phạm Minh Vương</p>
-                <p className="text-[15px] text-[#888] mb-2.5 italic">Chuyên gia trị liệu, chăm sóc cơ xương khớp (Đau vai gáy, thoái hoá, thoát vị, đau thần kinh toạ. Lâm sàng 5000+ ca, 4+ năm kinh nghiệm)</p>
+                <p className="text-[15px] text-[#888] mb-2.5 italic">Chuyên gia trị liệu, chăm sóc cơ xương khớp (Lâm sàng 5000+ ca, 4+ năm kinh nghiệm)</p>
                 <p className="text-[15px] text-[#444] leading-[1.6]">Là một chuyên gia trị liệu, tôi từng nghĩ kiến thức chuyên môn của mình rất khó truyền tải qua video ngắn. Nhờ sự dẫn dắt của thầy Khánh trong chương trình 7 ngày, tôi đã học được cách biến những kiến thức bệnh lý phức tạp thành nội dung chia sẻ ngắn gọn, dễ hiểu và gần gũi. Lượng bệnh nhân tin tưởng và liên hệ đặt lịch khám tại cơ sở tăng trưởng vượt trội!</p>
               </div>
             </div>
@@ -1066,226 +1187,27 @@ export default function ThuongHieuChuyenDoiPage() {
               </div>
               <div className="px-5 py-[18px]">
                 <p className="text-lg font-bold text-[#222] mb-0.5">Chị Quỳnh Thương Beauty</p>
-                <p className="text-[15px] text-[#888] mb-2.5 italic">Chủ chuỗi spa QUỲNH THƯƠNG BEAUTY CENTER</p>
+                <p className="text-[15px] text-[#888] mb-2.5 italic">Chủ chuỗi spa Quỳnh Thương Beauty Center</p>
                 <p className="text-[15px] text-[#444] leading-[1.6]">Với quy mô chuỗi spa, bài toán tiếp cận và thu hút khách hàng mới luôn là ưu tiên hàng đầu. Khóa học đã giúp tôi định hình thương hiệu cá nhân chuyên nghiệp và xây dựng quy trình sản xuất video chăm sóc da chuẩn y khoa bài bản. Lượng khách biết đến spa qua mạng xã hội tăng trưởng mạnh mẽ, giúp spa luôn kín lịch mà không còn phụ thuộc quá nhiều vào chi phí quảng cáo.</p>
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* ══════════════════════════════════════════
-           SECTION 11 — ĐỪNG TIẾP TỤC TRÌ HOÃN
-      ══════════════════════════════════════════ */}
-      <section className={sectionWhite} data-section="urgency">
-        <div className={container}>
-          <div className="flex items-center justify-center gap-4 mb-3 text-center max-[480px]:flex-col max-[480px]:gap-[10px] max-[480px]:mb-2">
-            <div>
-              <h2 className={oppTitle}>ĐỪNG ĐỂ VIỆC XÂY KÊNH TIẾP TỤC <br /><span className="whitespace-nowrap">BỊ TRÌ HOÃN</span></h2>
-            </div>
+          <h3 className="text-center text-lg font-extrabold text-[#e25010] uppercase mb-5 max-[680px]:text-base">Feedback bằng hình ảnh</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-12">
+            <img src="/thuonghieuchuyendoi/images/mentor-class-1.jpg" alt="Feedback học viên" className="w-full h-auto rounded-lg shadow-[0_2px_10px_rgba(0,0,0,0.08)]" />
+            <img src="/thuonghieuchuyendoi/images/mentor-class-2.jpg" alt="Feedback học viên" className="w-full h-auto rounded-lg shadow-[0_2px_10px_rgba(0,0,0,0.08)]" />
+            <img src="/thuonghieuchuyendoi/images/mentor-class-3.jpg" alt="Feedback học viên" className="w-full h-auto rounded-lg shadow-[0_2px_10px_rgba(0,0,0,0.08)]" />
+            <img src="/thuonghieuchuyendoi/images/mentor-class-4.jpg" alt="Feedback học viên" className="w-full h-auto rounded-lg shadow-[0_2px_10px_rgba(0,0,0,0.08)]" />
           </div>
 
-          <p className={oppIntro}>Mỗi ngày bạn chưa bắt đầu, khách hàng của bạn vẫn đang xem nội dung của người&nbsp;khác.</p>
-
-          <ul className={oppListNoicon}>
-            <li className={oppListNoiconLi}>Người khác đang xuất hiện trước bạn.</li>
-            <li className={oppListNoiconLi}>Người khác đang tạo niềm tin trước bạn.</li>
-            <li className={oppListNoiconLi}>Người khác đang có lượt xem, data, tin nhắn và đơn hàng trước bạn.</li>
-          </ul>
-
-          <p className={oppMid}>Nếu tiếp tục chờ đợi hoàn hảo, vài tháng nữa kênh của bạn vẫn trống và bạn vẫn loay hoay chưa biết bắt đầu từ đâu.</p>
-
-          <p className={oppClosing}>Bạn không cần thêm một khóa học để nghe cho hay. Bạn cần một chương trình khiến bạn hành động&nbsp;thật.</p>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════
-           SECTION 12 + 13 — PHÙ HỢP / KHÔNG PHÙ HỢP
-      ══════════════════════════════════════════ */}
-      <section className={sectionWhite + " border-t-[3px] border-t-[#f0f0f0]"} data-section="fit-checklist">
-        <div className={container}>
-          <h2 className="text-center text-2xl font-extrabold text-[#e25010] uppercase leading-[1.25] mb-8 max-[680px]:text-[22px] max-[680px]:leading-[1.22]">CHƯƠNG TRÌNH PHÙ HỢP VỚI AI?</h2>
-          <div className="grid grid-cols-2 gap-6 max-[680px]:grid-cols-1">
-            <div className="rounded-[14px] px-6 py-7 bg-[#f0fbf3] border-[1.5px] border-[#b8e6c3]">
-              <h3 className="text-xl font-bold mb-4 text-[#1b8a3e]">✅ Phù hợp nếu bạn</h3>
-              <ul>
-                <li className="text-[18px] text-[#333] pl-[26px] relative mb-2.5 leading-[1.65] max-[680px]:text-[15px] before:content-['✔'] before:absolute before:left-0 before:text-[#1b8a3e] before:font-bold">Muốn bắt đầu xây kênh để bán hàng.</li>
-                <li className="text-[18px] text-[#333] pl-[26px] relative mb-2.5 leading-[1.65] max-[680px]:text-[15px] before:content-['✔'] before:absolute before:left-0 before:text-[#1b8a3e] before:font-bold">Muốn tạo nội dung nhưng chưa biết làm sao.</li>
-                <li className="text-[18px] text-[#333] pl-[26px] relative mb-2.5 leading-[1.65] max-[680px]:text-[15px] before:content-['✔'] before:absolute before:left-0 before:text-[#1b8a3e] before:font-bold">Có sản phẩm/dịch vụ nhưng chưa biết marketing online.</li>
-                <li className="text-[18px] text-[#333] pl-[26px] relative mb-2.5 leading-[1.65] max-[680px]:text-[15px] before:content-['✔'] before:absolute before:left-0 before:text-[#1b8a3e] before:font-bold">Muốn làm affiliate Shopee nhưng chưa biết kéo click và tạo đơn.</li>
-                <li className="text-[18px] text-[#333] pl-[26px] relative mb-2.5 leading-[1.65] max-[680px]:text-[15px] before:content-['✔'] before:absolute before:left-0 before:text-[#1b8a3e] before:font-bold">Muốn dùng AI để làm nội dung nhanh hơn.</li>
-                <li className="text-[18px] text-[#333] pl-[26px] relative mb-2.5 leading-[1.65] max-[680px]:text-[15px] before:content-['✔'] before:absolute before:left-0 before:text-[#1b8a3e] before:font-bold">Muốn có người kèm, soi bài và góp ý trong quá trình làm.</li>
-              </ul>
-            </div>
-            <div className="rounded-[14px] px-6 py-7 bg-[#fdf2f2] border-[1.5px] border-[#f0c0c0]">
-              <h3 className="text-xl font-bold mb-4 text-[#d0212a]">❌ Không phù hợp nếu bạn</h3>
-              <ul>
-                <li className="text-[18px] text-[#333] pl-[26px] relative mb-2.5 leading-[1.65] max-[680px]:text-[15px] before:content-['✘'] before:absolute before:left-0 before:text-[#d0212a] before:font-bold">Chỉ muốn nghe lý thuyết nhưng không làm bài tập.</li>
-                <li className="text-[18px] text-[#333] pl-[26px] relative mb-2.5 leading-[1.65] max-[680px]:text-[15px] before:content-['✘'] before:absolute before:left-0 before:text-[#d0212a] before:font-bold">Muốn có kết quả nhưng không đăng bài, không quay video, không giới thiệu sản phẩm.</li>
-                <li className="text-[18px] text-[#333] pl-[26px] relative mb-2.5 leading-[1.65] max-[680px]:text-[15px] before:content-['✘'] before:absolute before:left-0 before:text-[#d0212a] before:font-bold">Kỳ vọng có đơn hàng mà không hành động.</li>
-              </ul>
-            </div>
-          </div>
-          <p className={oppClosing + " mt-7"}>Dành cho người muốn bắt đầu thật.</p>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════
-           SECTION 14 — ĐĂNG KÝ THAM GIA
-      ══════════════════════════════════════════ */}
-      <section className={sectionDark + " pb-16"} data-section="pricing-register">
-        <div className={container}>
-          <div className="text-center mb-[18px] relative" aria-hidden="true">
-            <svg width="160" height="55" viewBox="0 0 160 55" fill="none" xmlns="http://www.w3.org/2000/svg" className="mx-auto">
-              <polyline points="10,5 20,22 30,5" stroke="#c8a200" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-              <polyline points="10,24 20,41 30,24" stroke="#c8a200" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-              <polyline points="65,5 75,22 85,5" stroke="#c8a200" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-              <polyline points="65,24 75,41 85,24" stroke="#c8a200" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-              <polyline points="120,5 130,22 140,5" stroke="#c8a200" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-              <polyline points="120,24 130,41 140,24" stroke="#c8a200" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-            </svg>
-          </div>
-
-          <h2 className="text-center text-[clamp(24px,3vw,36px)] font-extrabold text-white uppercase leading-[1.25] mb-6 relative max-[680px]:text-[22px] max-[680px]:leading-[1.22]">Nếu bạn đã từng muốn xây kênh <br className="max-[680px]:hidden" />nhưng chưa biết bắt đầu từ đâu, đây là lúc bắt đầu</h2>
-          <p className="text-center text-[19.5px] font-bold text-white mb-6 leading-[1.5] uppercase relative block max-[680px]:text-[15px]">KHÔNG PHẢI BẰNG MỘT KẾ HOẠCH HOÀN HẢO <br className="max-[680px]:hidden" />MÀ BẰNG 7 NGÀY HÀNH ĐỘNG THẬT
-            <span className="inline-block bg-[#ff4500] border-2 border-white rounded-full px-2 py-1.5 text-[11px] ml-2 align-middle">🔥 ĐĂNG KÝ NGAY</span>
-          </p>
-
-          <div className="grid grid-cols-2 gap-6 items-start relative max-[860px]:grid-cols-1">
-            <div className="bg-white/10 border-[1.5px] border-white/25 rounded-[14px] px-6 py-7 text-white">
-              <div>
-                <div className="text-xl text-white/75 mb-2">Học phí gốc: <span className="line-through ml-1.5 text-white/45">6.868.000đ</span></div>
-                <div className="inline-block bg-[#f5a623] text-[#1a1a1a] text-lg font-bold px-6 py-2.5 rounded-lg shadow-[0_4px_15px_rgba(245,166,35,0.35)] leading-[1.2]">
-                  Ưu đãi thanh toán ngay: <strong className="text-[32px] font-black inline-block align-middle ml-1">999.000đ</strong>
-                </div>
-                <div className="text-sm text-white/70 mt-2.5 italic block">Đã bao gồm thuế phí</div>
-              </div>
-              <div className="h-[1.5px] bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.2)_20%,rgba(255,255,255,0.2)_80%,transparent)] my-6"></div>
-              <ul className="flex flex-col gap-2.5">
-                <li className="text-[19px] text-white/[0.92] leading-[1.65] max-[680px]:text-[15px]">✅ Khóa học E-Learning nền tảng</li>
-                <li className="text-[19px] text-white/[0.92] leading-[1.65] max-[680px]:text-[15px]">✅ Bài tập thực hành mỗi ngày</li>
-                <li className="text-[19px] text-white/[0.92] leading-[1.65] max-[680px]:text-[15px]">✅ Hướng dẫn viết bài, quay chụp và dùng AI</li>
-                <li className="text-[19px] text-white/[0.92] leading-[1.65] max-[680px]:text-[15px]">✅ Cơ chế trả bài trong 7 ngày</li>
-                <li className="text-[19px] text-white/[0.92] leading-[1.65] max-[680px]:text-[15px]">✅ Mentor soi bài và góp ý</li>
-                <li className="text-[19px] text-white/[0.92] leading-[1.65] max-[680px]:text-[15px]">✅ Khám kênh & tư vấn chiến lược sau khóa</li>
-              </ul>
-            </div>
-
-            <div className="bg-white rounded-[14px] px-[22px] py-7 text-[#222]" id="register">
-              <div className="flex justify-center items-center gap-1 mb-2">
-                <div className="flex flex-col items-center"><span className="block bg-[#111] text-white text-[26px] font-black px-2.5 py-1.5 rounded-md min-w-[50px] text-center leading-[1.2] max-[480px]:text-[22px] max-[480px]:min-w-[42px]">{timeParts.h}</span><small className="text-xs text-[#777] mt-[3px]">Giờ</small></div>
-                <div className="text-2xl font-black text-[#333] mb-3.5 px-0.5">:</div>
-                <div className="flex flex-col items-center"><span className="block bg-[#111] text-white text-[26px] font-black px-2.5 py-1.5 rounded-md min-w-[50px] text-center leading-[1.2] max-[480px]:text-[22px] max-[480px]:min-w-[42px]">{timeParts.m}</span><small className="text-xs text-[#777] mt-[3px]">Phút</small></div>
-                <div className="text-2xl font-black text-[#333] mb-3.5 px-0.5">:</div>
-                <div className="flex flex-col items-center"><span className="block bg-[#111] text-white text-[26px] font-black px-2.5 py-1.5 rounded-md min-w-[50px] text-center leading-[1.2] max-[480px]:text-[22px] max-[480px]:min-w-[42px]">{timeParts.s}</span><small className="text-xs text-[#777] mt-[3px]">Giây</small></div>
-              </div>
-              <p className="text-center text-[17px] font-bold text-[#d0212a] mb-4 leading-[1.6] max-[680px]:text-[14px]">Ưu đãi đăng ký sớm chỉ áp dụng <br className="max-[680px]:hidden" />cho số lượng học viên giới hạn!</p>
-
-              <div className="bg-[linear-gradient(135deg,#fffaf0_0%,#fff1f2_100%)] border-2 border-[#f43f5e] px-5 py-4 rounded-2xl mb-5 text-center shadow-[0_8px_24px_rgba(244,63,94,0.12)] relative [font-family:system-ui,-apple-system,sans-serif]">
-                <div className="bg-[#f43f5e] text-white text-[10px] font-extrabold uppercase px-3 py-1 rounded-[20px] inline-block mb-2 tracking-[0.5px]">
-                  🔥 ƯU ĐÃI ĐẶC BIỆT - THANH TOÁN NGAY
-                </div>
-                <div className="flex items-center justify-center gap-2 mb-1.5">
-                  <span className="text-[13px] text-[#78716c] line-through">Học phí gốc: 6.868.000đ</span>
-                  <span className="bg-[#fee2e2] text-[#ef4444] text-[10px] font-bold px-2 py-0.5 rounded-md">TIẾT KIỆM 85%</span>
-                </div>
-                <div className="text-[30px] text-[#e11d48] font-black tracking-[-0.5px] leading-[1.1] mb-1">
-                  999.000đ
-                </div>
-                <div className="text-[11px] text-[#4b5563] font-medium flex items-center justify-center gap-1">
-                  🛡️ Đã bao gồm toàn bộ thuế phí
-                </div>
-              </div>
-
-              <form className="[&>input]:w-full [&>input]:border-[1.5px] [&>input]:border-[#ddd] [&>input]:rounded-md [&>input]:px-4 [&>input]:py-3.5 [&>input]:text-lg [&>input]:mb-2.5 [&>input]:outline-none [&>input]:block max-[680px]:[&>input]:text-[15px] [&>input]:focus:border-[#e25010]" onSubmit={handleSubmit} onFocusCapture={() => { formTouchedRef.current = true; }}>
-                <input
-                  type="text"
-                  name="fullname"
-                  placeholder="Họ và tên"
-                  value={fullname}
-                  onChange={(e) => setFullname(e.target.value)}
-                  required
-                />
-                <input
-                  type="tel"
-                  name="phone"
-                  placeholder="Số điện thoại"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  required
-                />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-                <input
-                  type="text"
-                  name="ghiChu"
-                  placeholder="Vấn đề bạn đang gặp phải (không bắt buộc)"
-                  value={ghiChu}
-                  onChange={(e) => setGhiChu(e.target.value)}
-                />
-                <button type="submit" disabled={isSubmitting} className={"block w-full " + btnBase + " border-[2.5px] border-white bg-[linear-gradient(135deg,#ffe066_0%,#f5c030_100%)] text-[#1a1a1a] shadow-[0_0_25px_rgba(245,166,35,0.8)]"}>
-                  {isSubmitting ? "Đang đăng ký..." : "TÔI MUỐN THAM GIA"}
-                </button>
-              </form>
-
-              <div className="mt-3">
-                <p className="text-[15px] text-[#888] mb-1 leading-[1.6]">* Chú ý: Tư vấn viên sẽ liên lạc lại để xác nhận đăng ký chương trình cho bạn.</p>
-                <p className="text-[15px] text-[#888] mb-1 leading-[1.6]">* Đây là chương trình online kèm cặp qua E-Learning, không phải học trực tiếp.</p>
-                <p className="text-[15px] text-[#888] mb-1 leading-[1.6]">* Hãy kiểm tra lại thông tin họ tên và số điện thoại của bạn trước khi bấm đăng ký.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════
-           SECTION 15 — SAU 7 NGÀY, ĐI XA HƠN
-      ══════════════════════════════════════════ */}
-      <section className={sectionWhite} data-section="next-steps">
-        <div className={container}>
-          <div className="flex items-center justify-center gap-4 mb-3 text-center max-[480px]:flex-col max-[480px]:gap-[10px] max-[480px]:mb-2">
-            <div>
-              <h2 className={oppTitle}>SAU 7 NGÀY, BẠN CÓ THỂ ĐI <br /><span className="whitespace-nowrap">XA HƠN</span></h2>
-            </div>
-          </div>
-
-          <p className={oppIntro}>7 ngày đầu tiên giúp bạn bắt đầu. Nhưng nếu muốn biến kênh thành tài sản bán hàng dài hạn, bạn cần đi&nbsp;tiếp.</p>
-
-          <ul className={oppListNoicon}>
-            <li className={oppListNoiconLi}>Cần lịch nội dung rõ ràng.</li>
-            <li className={oppListNoiconLi}>Cần tối ưu chất lượng video.</li>
-            <li className={oppListNoiconLi}>Cần xây thương hiệu cá nhân sâu.</li>
-            <li className={oppListNoiconLi}>Cần xây phễu và tích lũy khách hàng bền vững.</li>
-          </ul>
-
-          <p className={oppClosing}>Vì vậy, sau chương trình 7 ngày, bạn sẽ có buổi khám kênh và tư vấn chiến lược 1:1 cùng đội ngũ&nbsp;Mentor.</p>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════
-           SECTION 16 — CTA CUỐI TRANG
-      ══════════════════════════════════════════ */}
-      <section className={sectionDark + " text-center py-16"} data-section="final-cta">
-        <div className={container}>
-          <h2 className="text-[clamp(24px,3.2vw,34px)] font-extrabold text-white mb-5 leading-[1.4] relative max-[680px]:text-[20px]">Không cần hoàn hảo mới <span className="whitespace-nowrap">xây kênh</span><br />chỉ cần bắt đầu <span className="whitespace-nowrap">đúng cách</span></h2>
-          <p className="max-w-[680px] mx-auto mb-8 text-[19px] leading-[1.85] text-white/[0.92] relative max-[680px]:text-[15px]">
-            Trong 7 ngày tới, thay vì đứng ngoài nhìn người khác bán hàng, bạn sẽ tự tay xây kênh, đăng bài, quay video và tạo ra những <span className="whitespace-nowrap">đơn hàng đầu tiên.</span>
-            <br />
-            <strong>7 Ngày Xây Kênh Chuyển Đổi</strong> giúp bạn bắt đầu xây một kênh có khả năng bán&nbsp;hàng.
-          </p>
-          <div className="flex gap-4 justify-center flex-wrap relative max-[680px]:flex-col max-[680px]:items-center">
-            <a href="#register" onClick={(e) => handleAnchorClick(e, "register")} className={btnGoldLg + " max-[680px]:w-full max-[680px]:max-w-[320px]"}>
-              ĐĂNG KÝ THAM GIA NGAY
-            </a>
-            <a href="https://zalo.me/0989975498" target="_blank" rel="noopener noreferrer" className={"inline-block " + btnBase + " bg-transparent border-[2.5px] border-[#f5a623] text-[#f5a623] whitespace-nowrap max-[680px]:text-[15px] max-[680px]:px-[18px] max-[680px]:w-full max-[680px]:max-w-[320px]"}>
-              Nhận tư vấn lộ trình phù hợp
-            </a>
+          <h3 className="text-center text-lg font-extrabold text-[#e25010] uppercase mb-5 max-[680px]:text-base">Kênh học viên thành công</h3>
+          <div className="flex flex-wrap justify-center gap-3">
+            {["Kênh học viên #1", "Kênh học viên #2", "Kênh học viên #3", "Kênh học viên #4", "Kênh học viên #5", "Kênh học viên #6", "Kênh học viên #7"].map((label) => (
+              <span key={label} className="bg-white border-[1.5px] border-[#eee] rounded-full px-5 py-2 text-[14px] font-semibold text-[#444]">
+                {label}
+              </span>
+            ))}
           </div>
         </div>
       </section>
