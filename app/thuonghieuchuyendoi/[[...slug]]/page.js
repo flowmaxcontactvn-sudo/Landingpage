@@ -699,22 +699,22 @@ export default function ThuongHieuChuyenDoiPage() {
   const sectionDark =
     "bg-[linear-gradient(155deg,#b01010_0%,#c82010_35%,#d93015_65%,#e04020_100%)] text-white relative py-[60px] max-[680px]:py-5";
   const oppTitle =
-    "text-2xl font-extrabold text-[#e25010] uppercase leading-[1.25] mb-1 max-[680px]:text-[22px] max-[680px]:leading-[1.22]";
-  const oppSubtitle = "text-[19px] text-[#555] max-[680px]:text-[14.5px]";
+    "text-[clamp(30px,4.2vw,46px)] font-extrabold text-[#e25010] uppercase leading-[1.2] mb-2 max-[680px]:text-[27px] max-[680px]:leading-[1.2]";
+  const oppSubtitle = "text-[22px] text-[#555] max-[680px]:text-[16.5px]";
   const oppIntro =
-    "max-w-[760px] mx-auto mb-8 text-[19px] leading-[1.85] text-[#333] text-center max-[680px]:text-[15px] max-[680px]:mb-4";
+    "max-w-[780px] mx-auto mb-8 text-[21px] leading-[1.8] text-[#333] text-center max-[680px]:text-[16.5px] max-[680px]:mb-4";
   const oppMid =
-    "max-w-[720px] mx-auto mb-4 text-[19px] leading-[1.85] text-[#333] text-center max-[680px]:text-[15px] max-[680px]:my-3.5";
+    "max-w-[740px] mx-auto mb-4 text-[21px] leading-[1.8] text-[#333] text-center max-[680px]:text-[16.5px] max-[680px]:my-3.5";
   const oppClosing =
-    "max-w-[720px] mx-auto text-center text-xl font-semibold text-[#e25010] italic max-[680px]:text-[14.5px] max-[680px]:leading-[1.6] max-[680px]:mt-4 max-[680px]:mb-4 max-[680px]:px-4";
+    "max-w-[740px] mx-auto text-center text-[24px] font-semibold text-[#e25010] italic leading-[1.4] max-[680px]:text-[17px] max-[680px]:leading-[1.5] max-[680px]:mt-4 max-[680px]:mb-4 max-[680px]:px-4";
   const oppListNoicon =
-    "flex flex-col gap-[18px] max-w-[560px] mx-auto mb-[22px] bg-[#fff8f0] border-l-4 border-[#e25010] rounded-md px-6 py-[18px] max-[680px]:gap-1.5 max-[680px]:px-3.5 max-[680px]:py-2.5 max-[680px]:mb-2.5 max-[480px]:px-[18px] max-[480px]:py-3.5";
+    "flex flex-col gap-[18px] max-w-[600px] mx-auto mb-[22px] bg-[#fff8f0] border-l-4 border-[#e25010] rounded-md px-6 py-[18px] max-[680px]:gap-1.5 max-[680px]:px-3.5 max-[680px]:py-2.5 max-[680px]:mb-2.5 max-[480px]:px-[18px] max-[480px]:py-3.5";
   const oppListNoiconLi =
-    "py-[5px] pl-5 relative text-xl font-semibold text-[#333] max-[680px]:text-[15px] max-[680px]:py-[2px] max-[680px]:pl-[18px] before:content-['✔'] before:absolute before:left-0 before:text-[#e25010] before:text-[12px] before:top-[7px] max-[680px]:before:top-[3px]";
+    "py-[5px] pl-6 relative text-[23px] font-semibold text-[#333] max-[680px]:text-[17px] max-[680px]:py-[2px] max-[680px]:pl-[20px] before:content-['✔'] before:absolute before:left-0 before:text-[#e25010] before:text-[14px] before:top-[9px] max-[680px]:before:top-[4px]";
   const checkListGreen =
-    "flex flex-col gap-[14px] max-w-[680px] mx-auto mb-7 max-[680px]:gap-2";
+    "flex flex-col gap-[14px] max-w-[700px] mx-auto mb-7 max-[680px]:gap-2";
   const checkListGreenLi =
-    "text-[18px] text-[#333] py-1 pl-[30px] relative leading-[1.65] max-[680px]:text-[15px] max-[680px]:pl-[26px] before:content-['✔'] before:absolute before:left-0 before:top-[6px] before:text-[#1b8a3e] before:text-[13px] max-[680px]:before:top-[3px]";
+    "text-[21px] text-[#333] py-1 pl-[32px] relative leading-[1.6] max-[680px]:text-[16.5px] max-[680px]:pl-[28px] before:content-['✔'] before:absolute before:left-0 before:top-[6px] before:text-[#1b8a3e] before:text-[15px] max-[680px]:before:top-[2px]";
   const btnBase =
     "px-9 py-3.5 rounded-md font-bold text-[17px] cursor-pointer text-center tracking-[0.4px] relative overflow-hidden";
   const btnGoldLg =
@@ -784,7 +784,7 @@ export default function ThuongHieuChuyenDoiPage() {
         className="bg-[linear-gradient(150deg,#a50e0e_0%,#c41a10_30%,#d43020_60%,#e04822_100%)] bg-[url('/thuonghieuchuyendoi/images/banner.jpeg')] bg-cover bg-center text-white text-center px-6 pt-12 pb-16 max-[680px]:px-4 max-[680px]:pt-9 max-[680px]:pb-[52px] max-[480px]:px-[14px] max-[480px]:pt-7 max-[480px]:pb-11 relative overflow-hidden"
         data-section="hero"
       >
-        <h1 className="text-[clamp(30px,4.6vw,54px)] font-black leading-[1.2] mb-5 relative [text-shadow:-1.5px_-1.5px_0_#000,1.5px_-1.5px_0_#000,-1.5px_1.5px_0_#000,1.5px_1.5px_0_#000,0px_4px_12px_rgba(0,0,0,0.65)] max-[680px]:text-[clamp(22px,6vw,34px)] max-[480px]:text-[clamp(20px,7vw,28px)]">
+        <h1 className="text-[clamp(34px,5.2vw,60px)] font-black leading-[1.15] mb-5 relative [text-shadow:-1.5px_-1.5px_0_#000,1.5px_-1.5px_0_#000,-1.5px_1.5px_0_#000,1.5px_1.5px_0_#000,0px_4px_12px_rgba(0,0,0,0.65)] max-[680px]:text-[clamp(26px,7vw,38px)] max-[480px]:text-[clamp(24px,8vw,32px)]">
           7 NGÀY BẮT ĐẦU XÂY KÊNH<br className="max-[680px]:hidden" />
           VÀ TẠO RA NHỮNG <span className="text-[#f5a623] whitespace-nowrap">KHÁCH HÀNG ĐẦU TIÊN</span><br />
           TỪ NỘI DUNG
@@ -950,7 +950,7 @@ export default function ThuongHieuChuyenDoiPage() {
       <section className={sectionWhite + " border-t-[3px] border-t-[#f0f0f0] text-center"} data-section="instructor">
         <div className={container}>
           <div className="inline-block border-[1.5px] border-[#ccc] rounded-[20px] px-[22px] py-1.5 text-[17px] text-[#666] mb-3">Gặp gỡ người huấn luyện</div>
-          <h2 className="text-[26px] font-extrabold text-[#e25010] uppercase leading-[1.25] mb-8 max-[680px]:text-[22px] max-[680px]:leading-[1.22]">Th.S Vũ Kim Khánh</h2>
+          <h2 className="text-[36px] font-extrabold text-[#e25010] uppercase leading-[1.2] mb-8 max-[680px]:text-[27px] max-[680px]:leading-[1.2]">Th.S Vũ Kim Khánh</h2>
 
           <div className="flex gap-8 items-start text-left max-w-[800px] mx-auto mb-8 flex-wrap justify-center max-[680px]:flex-col max-[680px]:items-center max-[680px]:gap-0">
             <div className="relative shrink-0">
@@ -1000,8 +1000,8 @@ export default function ThuongHieuChuyenDoiPage() {
         <div className={container}>
           <h2 className={oppTitle}>7 NGÀY XÂY KÊNH CHUYỂN ĐỔI<br />THAY ĐỔI TOÀN BỘ CÔNG VIỆC KINH DOANH, SỰ NGHIỆP CỦA BẠN TRÊN&nbsp;ONLINE</h2>
 
-          <p className="text-lg font-extrabold text-[#0b0b0b] uppercase mt-6 mb-1 max-[680px]:text-[15px]">Phương pháp đào tạo Action Learning</p>
-          <p className="text-[19px] font-extrabold text-[#e25010] uppercase mb-6 max-[680px]:text-[15px]">20% học đúng — 80% làm thật — 100% mentor sửa trực tiếp</p>
+          <p className="text-[24px] font-extrabold text-[#0b0b0b] uppercase mt-6 mb-1 max-[680px]:text-[17px]">Phương pháp đào tạo Action Learning</p>
+          <p className="text-[22px] font-extrabold text-[#e25010] uppercase mb-6 max-[680px]:text-[16px]">20% học đúng — 80% làm thật — 100% mentor sửa trực tiếp</p>
 
           <div className="max-w-[600px] mx-auto mb-4 max-[680px]:mb-3 max-[680px]:px-4 max-[680px]:max-w-[340px]">
             <img src="/thuonghieuchuyendoi/images/chart-practice-80-20.png" alt="20% học lý thuyết - 80% thực hành kèm cặp" className="w-full h-auto block mx-auto" />
@@ -1033,7 +1033,7 @@ export default function ThuongHieuChuyenDoiPage() {
           <div className="grid grid-cols-3 gap-5 max-[860px]:grid-cols-1 max-[860px]:gap-6">
             <div className="rounded-2xl border-2 border-[#e2ded4] bg-white px-6 py-8 flex flex-col">
               <p className="text-sm font-extrabold tracking-wide text-[#888] uppercase mb-2">Silver</p>
-              <p className="text-[30px] font-black text-[#0b0b0b] mb-5 leading-none">568.000<span className="text-lg font-bold">đ</span></p>
+              <p className="text-[38px] font-black text-[#0b0b0b] mb-5 leading-none">568.000<span className="text-lg font-bold">đ</span></p>
               <ul className="space-y-2.5 text-[15px] text-[#444] mb-7 flex-1">
                 <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Học qua E-learning</li>
                 <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Hỏi đáp trong nhóm</li>
@@ -1053,7 +1053,7 @@ export default function ThuongHieuChuyenDoiPage() {
             <div className="rounded-2xl border-2 border-[#e25010] bg-[#fff8f0] px-6 py-8 flex flex-col relative shadow-[0_10px_30px_rgba(226,80,16,0.15)] md:scale-[1.04]">
               <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[linear-gradient(135deg,#e25010,#d0212a)] text-white text-[11px] font-extrabold px-4 py-1.5 rounded-full whitespace-nowrap">PHỔ BIẾN NHẤT</span>
               <p className="text-sm font-extrabold tracking-wide text-[#e25010] uppercase mb-2 mt-2">Gold</p>
-              <p className="text-[30px] font-black text-[#0b0b0b] mb-5 leading-none">868.000<span className="text-lg font-bold">đ</span></p>
+              <p className="text-[38px] font-black text-[#0b0b0b] mb-5 leading-none">868.000<span className="text-lg font-bold">đ</span></p>
               <ul className="space-y-2.5 text-[15px] text-[#333] mb-7 flex-1">
                 <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Học qua E-learning</li>
                 <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Hỏi đáp trong nhóm</li>
@@ -1075,7 +1075,7 @@ export default function ThuongHieuChuyenDoiPage() {
 
             <div className="rounded-2xl border-2 border-[#e2ded4] bg-white px-6 py-8 flex flex-col">
               <p className="text-sm font-extrabold tracking-wide text-[#888] uppercase mb-2">Diamond</p>
-              <p className="text-[30px] font-black text-[#0b0b0b] mb-5 leading-none">1.868.000<span className="text-lg font-bold">đ</span></p>
+              <p className="text-[38px] font-black text-[#0b0b0b] mb-5 leading-none">1.868.000<span className="text-lg font-bold">đ</span></p>
               <ul className="space-y-2.5 text-[15px] text-[#444] mb-7 flex-1">
                 <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Toàn bộ quyền lợi gói Gold</li>
                 <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Nhóm riêng kết nối CEO</li>
@@ -1101,7 +1101,7 @@ export default function ThuongHieuChuyenDoiPage() {
       ══════════════════════════════════════════ */}
       <section className={sectionDark + " pb-16"} data-section="register-cta">
         <div className={container}>
-          <h2 className="text-center text-[clamp(24px,3.2vw,36px)] font-extrabold text-white uppercase leading-[1.25] mb-2 relative max-[680px]:text-[22px] max-[680px]:leading-[1.22]">7 Ngày Xây Kênh Chuyển Đổi</h2>
+          <h2 className="text-center text-[clamp(28px,4vw,44px)] font-extrabold text-white uppercase leading-[1.2] mb-2 relative max-[680px]:text-[27px] max-[680px]:leading-[1.2]">7 Ngày Xây Kênh Chuyển Đổi</h2>
           <p className="text-center text-[19px] text-white/85 mb-9 relative max-[680px]:text-[15px]">Tháng 8.2026 — Kèm cặp liên tục 7 ngày</p>
 
           <div className="max-w-[440px] mx-auto bg-white rounded-[14px] px-[22px] py-7 text-[#222] relative" id="register">
@@ -1180,7 +1180,7 @@ export default function ThuongHieuChuyenDoiPage() {
               { value: "500+", label: "học viên đã tạo ra khách hàng hoặc đơn hàng từ nội dung" },
             ].map((s) => (
               <div key={s.label} className="bg-white border-[1.5px] border-[#eee] rounded-[14px] px-4 py-6 text-center">
-                <p className="text-[30px] font-black text-[#e25010] leading-none mb-2 max-[680px]:text-2xl">{s.value}</p>
+                <p className="text-[40px] font-black text-[#e25010] leading-none mb-2 max-[680px]:text-[28px]">{s.value}</p>
                 <p className="text-[13px] text-[#666] leading-snug">{s.label}</p>
               </div>
             ))}
