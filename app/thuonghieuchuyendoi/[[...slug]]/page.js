@@ -1130,7 +1130,7 @@ export default function ThuongHieuChuyenDoiPage() {
           <h2 className="text-[19px] min-[390px]:text-[21px] sm:text-[26px] md:text-[36px] font-black font-montserrat uppercase text-white leading-tight mb-2.5 text-center whitespace-nowrap">LỰA CHỌN HẠNG VÉ CỦA BẠN</h2>
           <p className="text-center text-[#e25010] font-extrabold text-[16.5px] md:text-[18.5px] mb-12 leading-relaxed">Chọn đúng hạng vé phù hợp với mục tiêu 7 ngày <br className="max-[680px]:inline hidden" /><span className="whitespace-nowrap">tới của bạn</span></p>
 
-          <div className="grid grid-cols-3 gap-6 max-[860px]:grid-cols-1 max-[860px]:gap-8 items-stretch">
+          <div className="grid grid-cols-3 gap-6 max-[860px]:grid-cols-1 max-[860px]:gap-8 items-stretch max-[860px]:max-w-[330px] max-[860px]:mx-auto">
             {[
               {
                 key: "Silver",
@@ -1171,23 +1171,23 @@ export default function ThuongHieuChuyenDoiPage() {
                 ghiChu: "Diamond — 1.868.000đ",
               },
             ].map((tier) => (
-              <div key={tier.key} className="rounded-2xl bg-white px-7 py-9 flex flex-col text-center">
-                <h3 className="text-[30px] md:text-[34px] font-black font-montserrat text-[#1a1a2e] uppercase leading-tight mb-2">{tier.key}</h3>
-                <p className="text-[14px] font-medium text-gray-600 mb-4">{tier.subtitle}</p>
+              <div key={tier.key} className="rounded-2xl bg-white px-6 py-9 flex flex-col text-center shadow-lg">
+                <h3 className="text-[32px] md:text-[36px] font-black font-montserrat text-[#1a1a2e] uppercase leading-tight mb-2">{tier.key}</h3>
+                <p className="text-[14.5px] font-semibold text-gray-600 mb-4">{tier.subtitle}</p>
                 <div className="h-px bg-gray-200 mb-5" />
-                <ul className="space-y-3.5 text-[15px] font-bold text-[#222] mb-6 flex-1 text-left">
+                <ul className="space-y-3.5 text-[16px] md:text-[17px] font-bold text-[#111111] mb-6 flex-1 text-left">
                   {tier.items.map((item) => (
                     <li key={item} className="flex gap-2.5 items-start">
-                      <span className="text-[#e30a0a] font-bold">✔</span>
+                      <span className="text-[#e30a0a] font-black">✓</span>
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
                 {tier.original && (
-                  <p className="text-[15px] text-gray-400 line-through leading-none mb-1">{tier.original}</p>
+                  <p className="text-[16px] text-gray-400 line-through leading-none mb-1">{tier.original}</p>
                 )}
-                <p className="text-[32px] font-black font-montserrat text-[#e30a0a] mb-6 leading-none">
-                  {tier.price}<span className="text-base font-bold"> VND</span>
+                <p className="text-[36px] max-[480px]:text-[32px] font-black font-montserrat text-[#e30a0a] mb-6 leading-none whitespace-nowrap">
+                  {tier.price} <span className="text-[28px] max-[480px]:text-[24px] font-black">VND</span>
                 </p>
                 <a
                   href="#register"
@@ -1195,7 +1195,7 @@ export default function ThuongHieuChuyenDoiPage() {
                     setGhiChu(tier.ghiChu);
                     handleAnchorClick(e, "register");
                   }}
-                  className={"block " + ctaButton + " py-3.5 text-sm active:scale-95"}
+                  className={"inline-block max-w-[220px] w-full mx-auto " + ctaButton + " py-3.5 text-sm active:scale-95 font-bold uppercase rounded-xl"}
                 >
                   Bấm để nhận vé
                 </a>
