@@ -1029,7 +1029,14 @@ export default function ThuongHieuChuyenDoiPage() {
                 <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Học qua E-learning</li>
                 <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Hỏi đáp trong nhóm</li>
               </ul>
-              <a href="#register" onClick={(e) => handleAnchorClick(e, "register")} className="block text-center rounded-md border-2 border-[#e25010] text-[#e25010] font-bold py-3 hover:bg-[#fff8f0] transition-colors">
+              <a
+                href="#register"
+                onClick={(e) => {
+                  setGhiChu("Silver — 568.000đ");
+                  handleAnchorClick(e, "register");
+                }}
+                className="block text-center rounded-md border-2 border-[#e25010] text-[#e25010] font-bold py-3 hover:bg-[#fff8f0] transition-colors"
+              >
                 Chọn Silver
               </a>
             </div>
@@ -1045,7 +1052,14 @@ export default function ThuongHieuChuyenDoiPage() {
                 <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Phiên coach chiến lược 1:1</li>
                 <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Hoàn tiền nếu không hài lòng</li>
               </ul>
-              <a href="#register" onClick={(e) => handleAnchorClick(e, "register")} className={btnBase + " block bg-[linear-gradient(135deg,#e25010,#d0212a)] text-white text-center"}>
+              <a
+                href="#register"
+                onClick={(e) => {
+                  setGhiChu("Gold — 868.000đ");
+                  handleAnchorClick(e, "register");
+                }}
+                className={btnBase + " block bg-[linear-gradient(135deg,#e25010,#d0212a)] text-white text-center"}
+              >
                 Chọn Gold
               </a>
             </div>
@@ -1058,7 +1072,14 @@ export default function ThuongHieuChuyenDoiPage() {
                 <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Nhóm riêng kết nối CEO</li>
                 <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Tặng 1 trong 3 khoá học online trị giá 2.000.000đ</li>
               </ul>
-              <a href="#register" onClick={(e) => handleAnchorClick(e, "register")} className="block text-center rounded-md border-2 border-[#e25010] text-[#e25010] font-bold py-3 hover:bg-[#fff8f0] transition-colors">
+              <a
+                href="#register"
+                onClick={(e) => {
+                  setGhiChu("Diamond — 1.868.000đ");
+                  handleAnchorClick(e, "register");
+                }}
+                className="block text-center rounded-md border-2 border-[#e25010] text-[#e25010] font-bold py-3 hover:bg-[#fff8f0] transition-colors"
+              >
                 Chọn Diamond
               </a>
             </div>
@@ -1109,13 +1130,18 @@ export default function ThuongHieuChuyenDoiPage() {
                 onChange={(e) => setPhone(e.target.value)}
                 required
               />
-              <input
-                type="text"
-                name="ghiChu"
-                placeholder="Vấn đề gặp phải"
+              <select
+                name="hangVe"
                 value={ghiChu}
                 onChange={(e) => setGhiChu(e.target.value)}
-              />
+                required
+                className="w-full border-[1.5px] border-[#ddd] rounded-md px-4 py-3.5 text-lg mb-2.5 outline-none block bg-white text-[#0b0b0b] focus:border-[#e25010] max-[680px]:text-[15px]"
+              >
+                <option value="" disabled>Lựa chọn hạng vé của bạn</option>
+                <option value="Silver — 568.000đ">Silver — 568.000đ</option>
+                <option value="Gold — 868.000đ">Gold — 868.000đ</option>
+                <option value="Diamond — 1.868.000đ">Diamond — 1.868.000đ</option>
+              </select>
               <button type="submit" disabled={isSubmitting} className={"block w-full " + btnBase + " border-[2.5px] border-white bg-[linear-gradient(135deg,#ffe066_0%,#f5c030_100%)] text-[#1a1a1a] shadow-[0_0_25px_rgba(245,166,35,0.8)]"}>
                 {isSubmitting ? "Đang đăng ký..." : "Đăng ký ngay"}
               </button>
