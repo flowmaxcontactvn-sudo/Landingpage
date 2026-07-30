@@ -1184,7 +1184,7 @@ export default function ThuongHieuChuyenDoiPage() {
                 <h3 className="text-[40px] md:text-[44px] font-black font-montserrat text-[#1a1a2e] uppercase leading-tight mb-1">{tier.key}</h3>
                 <p className="text-[16.5px] font-semibold text-gray-600 mb-3">{tier.subtitle}</p>
                 <div className="h-px bg-gray-200 mb-4" />
-                <ul className="space-y-3 text-[20px] md:text-[21px] font-bold text-[#111111] mb-4 text-left">
+                <ul className="space-y-1.5 text-[20px] md:text-[21px] font-bold text-[#111111] mb-4 text-left leading-snug">
                   {tier.items.map((item) => (
                     <li key={item} className="flex gap-2.5 items-start">
                       <span className="text-[#e30a0a] font-black">✓</span>
