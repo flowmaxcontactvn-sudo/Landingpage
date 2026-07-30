@@ -750,10 +750,10 @@ export default function ThuongHieuChuyenDoiPage() {
            SECTION 1 — THANH THÔNG BÁO ĐẦU TRANG
       ══════════════════════════════════════════ */}
       <div
-        className="relative overflow-hidden bg-[#e30a0a] text-white text-center px-6 py-4 text-[15.5px] font-bold flex flex-wrap items-center justify-center gap-x-5 gap-y-2.5 max-[680px]:text-[13.5px] max-[680px]:py-3 font-montserrat shadow-md"
+        className="relative overflow-hidden bg-[#e30a0a] text-white text-center px-6 py-4 text-[17px] font-bold flex flex-wrap items-center justify-center gap-x-5 gap-y-2.5 max-[680px]:text-[16px] max-[680px]:py-3.5 font-montserrat shadow-md"
         data-section="announcement-bar"
       >
-        <span className="opacity-95">🗓️ Khai giảng: 03/08/2026</span>
+        <span className="opacity-100 font-extrabold text-[#ffffff]">🗓️ Khai giảng: 03/08/2026</span>
         <span className="hidden md:inline-block opacity-40">|</span>
         <span className="text-[#ffe066] font-extrabold">Chỉ nhận 10 học viên để đội ngũ Mentor có thể theo sát quá trình thực hành.</span>
         <a
