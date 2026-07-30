@@ -857,7 +857,7 @@ export default function ThuongHieuChuyenDoiPage() {
       {/* ══════════════════════════════════════════
            SECTION 3 — GIỚI THIỆU GIẢI PHÁP 1
       ══════════════════════════════════════════ */}
-      <section className={sectionWhite + " border-t-[3px] border-t-[#f0f0f0]"} data-section="benefits">
+      <section className="bg-white py-10 md:py-12 max-[680px]:py-6 border-t-[3px] border-t-[#f0f0f0]" data-section="benefits">
         <div className={container}>
           <div className="grid grid-cols-[1.1fr_0.9fr] gap-12 items-start max-[960px]:grid-cols-1 max-[960px]:gap-10">
             {/* Cột trái: Tiêu đề & Danh sách văn bản */}
@@ -865,14 +865,14 @@ export default function ThuongHieuChuyenDoiPage() {
               <span className="block text-[18px] md:text-[22px] font-black text-gray-800 uppercase tracking-wider mb-1">
                 KHI BẠN THAM GIA
               </span>
-              <h2 className="text-[24px] md:text-[36px] font-black text-[#e25010] uppercase leading-[1.2] mb-2.5">
+              <h2 className="text-[24px] md:text-[36px] font-black text-[#e25010] uppercase leading-[1.2] mb-2">
                 7 ngày xây kênh <span className="whitespace-nowrap">chuyển đổi</span>
               </h2>
-              <span className="block text-[15px] md:text-[16px] font-black text-gray-800 uppercase tracking-widest mb-6">
+              <span className="block text-[15px] md:text-[16px] font-black text-gray-800 uppercase tracking-widest mb-4">
                 BẠN SẼ CÓ CƠ HỘI ĐỂ:
               </span>
 
-              <div className="space-y-3.5 text-[15.5px] leading-relaxed text-gray-700 font-medium font-sans text-justify">
+              <div className="space-y-2 text-[15.5px] leading-relaxed text-gray-700 font-medium font-sans text-justify">
                 {[
                   { num: "#1.", desc: <span>Thấu hiểu thuật toán các <span className="whitespace-nowrap">nền tảng.</span></span> },
                   { num: "#3.", desc: <span>Làm thế nào để chọn sản phẩm bán trên Online <span className="whitespace-nowrap">hiệu quả.</span></span> },
@@ -891,7 +891,7 @@ export default function ThuongHieuChuyenDoiPage() {
                 ))}
               </div>
 
-              <p className="text-left text-[16.5px] text-[#111111] font-black italic mt-8 font-sans">
+              <p className="text-left text-[16.5px] text-[#111111] font-black italic mt-5 font-sans">
                 Và còn nhiều hơnnnn thế nữa….
               </p>
             </div>
