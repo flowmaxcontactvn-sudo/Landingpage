@@ -872,7 +872,7 @@ export default function ThuongHieuChuyenDoiPage() {
                 BẠN SẼ CÓ CƠ HỘI ĐỂ:
               </span>
 
-              <div className="space-y-2 text-[15.5px] leading-relaxed text-gray-700 font-medium font-sans text-justify">
+              <div className="space-y-2 text-[15.5px] leading-relaxed text-gray-700 font-medium font-sans text-left">
                 {[
                   { num: "#1.", desc: <span>Thấu hiểu thuật toán các <span className="whitespace-nowrap">nền tảng.</span></span> },
                   { num: "#3.", desc: <span>Làm thế nào để chọn sản phẩm bán trên Online <span className="whitespace-nowrap">hiệu quả.</span></span> },
@@ -884,7 +884,7 @@ export default function ThuongHieuChuyenDoiPage() {
                   { num: "#31.", desc: <span>Kèm cặp chữa bài <span className="whitespace-nowrap">từng ngày.</span></span> },
                   { num: "#36.", desc: <span>Khám 1:1 định hướng kênh sau khi kết thúc <span className="whitespace-nowrap">hành trình.</span></span> }
                 ].map((item) => (
-                  <p key={item.num} className="text-justify leading-relaxed">
+                  <p key={item.num} className="text-left leading-relaxed">
                     <strong className="text-gray-900 font-bold font-montserrat mr-2">{item.num}</strong>
                     <span>{item.desc}</span>
                   </p>
@@ -972,7 +972,7 @@ export default function ThuongHieuChuyenDoiPage() {
               7 ngày xây kênh chuyển đổi là một chương trình liên tục được thiết kế để bạn vượt qua những rào cản bản thân để ngay lập tức <u>xây một kênh thương hiệu cá nhân, bán hàng gia tăng doanh số và thu nhập.</u>
             </p>
 
-            <div className="space-y-6 text-[#cbd5e1] text-justify">
+            <div className="space-y-6 text-[#f8fafc] text-justify">
               <p>
                 Với những trải nghiệm sống, sự phán xét từ môi trường xung quanh, con người ta chấp nhận những định kiến của người khác về xây kênh, về bán hàng online tạo ra những nỗi sợ ngăn chúng ta hành động.
               </p>
