@@ -805,7 +805,9 @@ export default function ThuongHieuChuyenDoiPage() {
           </div>
         </div>
         <a href="#register" onClick={(e) => handleAnchorClick(e, "register")} className={btnGoldLgWrap}>
-          YES! TÔI SẴN SÀNG XÂY KÊNH VÀ BỨT PHÁ DOANH THU CỦA MÌNH
+          YES!
+          <br />
+          TÔI SẴN SÀNG XÂY KÊNH VÀ BỨT PHÁ DOANH THU CỦA MÌNH
         </a>
       </section>
 
@@ -844,7 +846,9 @@ export default function ThuongHieuChuyenDoiPage() {
 
           <div className="text-center">
             <a href="#register" onClick={(e) => handleAnchorClick(e, "register")} className={btnGoldLgWrap}>
-              YES! TÔI ĐÃ SẴN SÀNG XÂY KÊNH VÀ BỨT PHÁ DOANH THU CỦA MÌNH
+              YES!
+              <br />
+              TÔI ĐÃ SẴN SÀNG XÂY KÊNH VÀ BỨT PHÁ DOANH THU CỦA MÌNH
             </a>
           </div>
         </div>
@@ -1023,7 +1027,9 @@ export default function ThuongHieuChuyenDoiPage() {
           </p>
 
           <a href="#register" onClick={(e) => handleAnchorClick(e, "register")} className={btnGoldLgWrap}>
-            YES! TÔI MUỐN BẮT ĐẦU XÂY KÊNH
+            YES!
+            <br />
+            TÔI MUỐN BẮT ĐẦU XÂY KÊNH
           </a>
           <p className="text-[15px] text-[#888] mt-4 max-[680px]:text-[13px]">Không cần nổi tiếng — Không cần thiết bị chuyên nghiệp — Không cần biết quay dựng phức&nbsp;tạp</p>
         </div>
