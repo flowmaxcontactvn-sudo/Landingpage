@@ -715,78 +715,50 @@ export default function ThuongHieuChuyenDoiPage() {
         }}
         data-section="hero"
       >
-        <div className="max-w-[1140px] mx-auto px-6 max-[680px]:px-4 relative grid grid-cols-[1fr_1.1fr] gap-10 items-center max-[860px]:grid-cols-1 max-[860px]:gap-8">
+        <div className="max-w-[800px] mx-auto px-6 max-[680px]:px-4 relative text-center flex flex-col items-center">
           
-          {/* Cột trái: Video player (dạng thẻ card trắng bo tròn giống ảnh mẫu) */}
-          <div className="relative max-[860px]:order-2">
-            <div className="w-full aspect-[4/3] md:aspect-[1.35/1] max-w-[500px] mx-auto rounded-2xl overflow-hidden border border-white/20 bg-white p-2.5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative group cursor-pointer flex flex-col justify-center items-center">
-              <img
-                src="/thuonghieuchuyendoi/images/banner.jpeg"
-                alt="Video giới thiệu chương trình"
-                className="w-full h-full object-cover rounded-xl"
-              />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-14 h-14 rounded-full bg-[#e30a0a] text-white flex items-center justify-center shadow-[0_0_25px_rgba(227,10,10,0.5)] group-hover:scale-110 group-hover:bg-[#ff1e1e] transition-all duration-300">
-                  <svg className="w-5 h-5 fill-current ml-1" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </div>
-              </div>
-              
-              {/* [âm nhạc] subtitle overlay ở dưới ảnh mẫu */}
-              <div className="absolute bottom-5 left-1/2 -translate-x-1/2 bg-black/75 px-3 py-1 rounded text-[11px] font-sans font-medium text-white tracking-wider select-none">
-                [âm nhạc]
-              </div>
-            </div>
+          <h1 className="text-[21px] md:text-[28px] font-black font-montserrat leading-relaxed mb-5 text-white uppercase max-w-[720px] mx-auto text-center">
+            7 ngày bắt đầu xây kênh và tạo ra những <span className="text-[#f5a623]">khách hàng đầu tiên</span> <br /> <span className="whitespace-nowrap">từ <span className="text-[#f5a623]">nội dung</span></span>
+          </h1>
+          
+          <p className="mb-4 text-[16px] md:text-[18px] opacity-[0.95] leading-relaxed max-w-[650px] text-center">
+            Bạn sẽ bắt đầu xây dựng được kênh thương hiệu cá nhân thu hút khách hàng và bán hàng bằng việc tham dự chương trình 7 ngày liên tục này.
+          </p>
+          
+          <p className="mb-4 text-[16px] md:text-[18px] italic text-[#f5a623] font-extrabold leading-relaxed text-center">
+            Đăng ký sớm ngay hôm nay để chúng tôi giữ cho bạn một chỗ.
+          </p>
+          
+          <p className="mb-6 text-[15px] md:text-[16px] opacity-[0.88] leading-relaxed max-w-[650px] text-center">
+            Trong suốt 4 năm qua, hơn <strong>2.000 học viên</strong> đã tham dự chương trình xây kênh và bán hàng, bằng những kiến thức có được và sự kèm cặp sát sao công việc kinh doanh của họ đã có rất nhiều thay đổi.
+          </p>
+          
+          {/* Hàng Icons ngày/địa điểm với SVG outline chuẩn (căn giữa) */}
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-8 text-[13.5px] font-medium text-white/90">
+            <span className="flex items-center gap-2">
+              <svg className="w-5 h-5 text-white/80 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              <span>Tháng 8/2026</span>
+            </span>
+            <span className="flex items-center gap-2">
+              <svg className="w-5 h-5 text-white/80 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span>Online qua Zoom & Group</span>
+            </span>
           </div>
 
-          {/* Cột phải: Text & CTA button (căn trái toàn bộ theo ảnh mẫu) */}
-          <div className="text-left max-[860px]:text-center flex flex-col items-start max-[860px]:items-center max-[860px]:order-1">
-            
-            <h1 className="text-[21px] md:text-[25px] font-black font-montserrat leading-relaxed mb-5 text-white uppercase max-w-[560px]">
-              7 ngày bắt đầu xây kênh và tạo ra những <span className="text-[#f5a623]">khách hàng đầu tiên</span> <br /> <span className="whitespace-nowrap">từ <span className="text-[#f5a623]">nội dung</span></span>
-            </h1>
-            
-            <p className="mb-4 text-[16px] md:text-[17.5px] opacity-[0.95] leading-relaxed max-w-[500px] text-justify">
-              Bạn sẽ bắt đầu xây dựng được kênh thương hiệu cá nhân thu hút khách hàng và bán hàng bằng việc tham dự chương trình 7 ngày liên tục này.
-            </p>
-            
-            <p className="mb-4 text-[16px] md:text-[17.5px] italic text-[#f5a623] font-extrabold leading-relaxed">
-              Đăng ký sớm ngay hôm nay để chúng tôi giữ cho bạn một chỗ.
-            </p>
-            
-            <p className="mb-6 text-[15px] md:text-[16px] opacity-[0.88] leading-relaxed max-w-[500px] text-justify">
-              Trong suốt 4 năm qua, hơn <strong>2.000 học viên</strong> đã tham dự chương trình xây kênh và bán hàng, bằng những kiến thức có được và sự kèm cặp sát sao công việc kinh doanh của họ đã có rất nhiều thay đổi.
-            </p>
-            
-            {/* Hàng Icons ngày/địa điểm với SVG outline chuẩn (căn trái) */}
-            <div className="flex flex-wrap items-center justify-start max-[860px]:justify-center gap-x-6 gap-y-2 mb-8 text-[13.5px] font-medium text-white/90">
-              <span className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-white/80 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                <span>Tháng 8/2026</span>
-              </span>
-              <span className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-white/80 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                <span>Online qua Zoom & Group</span>
-              </span>
-            </div>
-
-            {/* Red pill CTA Button */}
-            <a
-              href="#register"
-              onClick={(e) => handleAnchorClick(e, "register")}
-              className="inline-block bg-[#e30a0a] hover:bg-[#ff1e1e] text-white font-extrabold text-[12px] md:text-[13px] px-10 py-4.5 rounded-full text-center tracking-wide uppercase transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_10px_30px_rgba(227,10,10,0.4)] leading-tight font-montserrat max-[860px]:mx-auto"
-            >
-              YES! TÔI SẴN SÀNG XÂY KÊNH<br />
-              VÀ BỨT PHÁ DOANH THU CỦA MÌNH!
-            </a>
-            
-          </div>
+          {/* Red pill CTA Button */}
+          <a
+            href="#register"
+            onClick={(e) => handleAnchorClick(e, "register")}
+            className="inline-block bg-[#e30a0a] hover:bg-[#ff1e1e] text-white font-extrabold text-[12px] md:text-[13px] px-10 py-4.5 rounded-full text-center tracking-wide uppercase transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_10px_30px_rgba(227,10,10,0.4)] leading-tight font-montserrat mx-auto"
+          >
+            YES! TÔI SẴN SÀNG XÂY KÊNH<br />
+            VÀ BỨT PHÁ DOANH THU CỦA MÌNH!
+          </a>
           
         </div>
       </section>
