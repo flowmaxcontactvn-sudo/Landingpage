@@ -229,69 +229,6 @@ export default function ThuongHieuChuyenDoiPage() {
     return () => clearInterval(timer);
   }, []);
 
-  // 4. Social proof toast scheduler
-  useEffect(() => {
-    if (toastDismissed) return;
-
-    const people = [
-      { name: "Nguyễn Thị Hương" }, { name: "Trần Văn Minh" }, { name: "Lê Thị Lan" },
-      { name: "Phạm Văn Đức" }, { name: "Hoàng Thị Mai" }, { name: "Vũ Văn Tùng" },
-      { name: "Đặng Thị Thu" }, { name: "Bùi Văn Hải" }, { name: "Ngô Thị Ngọc" },
-      { name: "Đỗ Văn Long" }, { name: "Phạm Minh Tuấn" }, { name: "Nguyễn Thanh Hằng" },
-      { name: "Trần Minh Quang" }, { name: "Lê Hoàng Nam" }, { name: "Vũ Hồng Nhung" },
-      { name: "Nguyễn Văn Đạt" }, { name: "Phạm Hải Yến" }, { name: "Hoàng Quốc Việt" },
-      { name: "Đỗ Thị Thảo" }, { name: "Nguyễn Tuấn Anh" }, { name: "Trần Thu Trang" },
-      { name: "Lê Minh Triết" }, { name: "Vũ Thị Vân" }, { name: "Nguyễn Hữu Đạt" },
-      { name: "Phạm Thị Thủy" }, { name: "Nguyễn Tiến Dũng" }, { name: "Trần Phương Thảo" },
-      { name: "Lê Quốc Bảo" }, { name: "Nguyễn Kiều Trang" }, { name: "Phạm Đức Anh" },
-      { name: "Hoàng Minh Huy" }, { name: "Đỗ Kim Oanh" }, { name: "Vũ Duy Khánh" },
-      { name: "Trần Thanh Sơn" }, { name: "Nguyễn Ngọc Anh" }, { name: "Lê Thị Hồng" },
-      { name: "Nguyễn Việt Bách" }, { name: "Phạm Xuân Mai" }, { name: "Hoàng Tuấn Tú" },
-      { name: "Trần Hoài Nam" }, { name: "Đỗ Phương Linh" }, { name: "Nguyễn Khánh Ly" },
-      { name: "Lê Anh Đức" }, { name: "Vũ Hoàng Yến" }
-    ];
-
-    const avatarColors = ["#d0212a", "#e25010", "#c8961e", "#1b8a3e", "#1868c9", "#7a3fc9"];
-
-    const initials = (name) => {
-      const parts = name.trim().split(/\s+/);
-      return (parts[0].charAt(0) + parts[parts.length - 1].charAt(0)).toUpperCase();
-    };
-
-    let hideTimer = null;
-    let showTimer = null;
-
-    const showToast = () => {
-      if (document.hidden || successModalOpen) {
-        showTimer = setTimeout(showToast, 3000);
-        return;
-      }
-
-      const person = people[Math.floor(Math.random() * people.length)];
-      const minutesAgo = 1 + Math.floor(Math.random() * 14);
-      const color = avatarColors[Math.floor(Math.random() * avatarColors.length)];
-
-      setToast({
-        visible: true,
-        name: person.name,
-        time: `${minutesAgo} phút trước`,
-        initials: initials(person.name),
-        color,
-      });
-
-      hideTimer = setTimeout(() => {
-        setToast((prev) => ({ ...prev, visible: false }));
-        showTimer = setTimeout(showToast, 4000 + Math.random() * 4000);
-      }, 3000);
-    };
-
-    showTimer = setTimeout(showToast, 1000 + Math.random() * 1000);
-
-    return () => {
-      clearTimeout(showTimer);
-      clearTimeout(hideTimer);
-    };
-  }, [toastDismissed, successModalOpen]);
 
   // Ghi nhận lượt truy cập cho chiến dịch (nếu URL có slug chiến dịch)
   useEffect(() => {
@@ -1515,35 +1452,6 @@ export default function ThuongHieuChuyenDoiPage() {
       </footer>
 
 
-      {/* Thông báo đăng ký gần đây (social proof) */}
-      <div
-        className={`fixed left-4 bottom-[100px] z-[999] items-center gap-3 bg-white rounded-xl pl-3 pr-9 py-3 shadow-[0_10px_30px_rgba(0,0,0,0.18)] max-w-[300px] max-[480px]:left-2.5 max-[480px]:bottom-[86px] max-[480px]:max-w-[250px] max-[480px]:gap-2.5 max-[480px]:pl-2.5 max-[480px]:pr-[30px] max-[480px]:py-2.5 ${toast.visible ? "flex" : "hidden"}`}
-        id="signupToast"
-        aria-live="polite"
-      >
-        <button
-          type="button"
-          className="absolute top-1.5 right-1.5 w-[22px] h-[22px] border-0 bg-transparent text-[#aaa] text-[11px] cursor-pointer flex items-center justify-center rounded-full"
-          onClick={() => setToastDismissed(true)}
-          aria-label="Đóng"
-        >
-          ✕
-        </button>
-        <div
-          className="shrink-0 w-11 h-11 rounded-full flex items-center justify-center text-white font-bold text-base max-[480px]:w-[38px] max-[480px]:h-[38px] max-[480px]:text-sm"
-          style={{ background: toast.color }}
-        >
-          {toast.initials}
-        </div>
-        <div className="min-w-0">
-          <p className="text-[14.5px] text-[#222] leading-[1.4] max-[480px]:text-[13px]">
-            <strong>{toast.name}</strong> vừa đăng ký tham gia
-          </p>
-          <p className="text-[12.5px] text-[#999] mt-0.5 max-[480px]:text-[11px]">
-            <span>{toast.time}</span>
-          </p>
-        </div>
-      </div>
 
       {/* Dialog thông báo đăng ký thành công */}
       {successModalOpen && (
