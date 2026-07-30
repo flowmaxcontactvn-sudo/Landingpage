@@ -990,21 +990,6 @@ export default function ThuongHieuChuyenDoiPage() {
               </div>
             ))}
           </div>
-
-          <div className="grid grid-cols-2 gap-4 max-w-[720px] mx-auto max-[680px]:gap-2.5">
-            <div>
-              <img src="/thuonghieuchuyendoi/images/mentor-class-1.jpg" alt="Đồng hành thực chiến" className="w-full h-auto block rounded-lg shadow-[0_2px_10px_rgba(0,0,0,0.1)]" />
-            </div>
-            <div>
-              <img src="/thuonghieuchuyendoi/images/mentor-class-2.jpg" alt="Học viên thực hành" className="w-full h-auto block rounded-lg shadow-[0_2px_10px_rgba(0,0,0,0.1)]" />
-            </div>
-            <div>
-              <img src="/thuonghieuchuyendoi/images/mentor-class-3.jpg" alt="Mentor hướng dẫn" className="w-full h-auto block rounded-lg shadow-[0_2px_10px_rgba(0,0,0,0.1)]" />
-            </div>
-            <div>
-              <img src="/thuonghieuchuyendoi/images/mentor-class-4.jpg" alt="Lớp học xây kênh" className="w-full h-auto block rounded-lg shadow-[0_2px_10px_rgba(0,0,0,0.1)]" />
-            </div>
-          </div>
         </div>
       </section>
 
@@ -1201,7 +1186,7 @@ export default function ThuongHieuChuyenDoiPage() {
             ))}
           </div>
 
-          <h3 className="text-center text-lg font-extrabold text-[#e25010] uppercase mb-5 max-[680px]:text-base">Feedback bằng video</h3>
+          <h3 className="text-center text-lg font-extrabold text-[#e25010] uppercase mb-5 max-[680px]:text-base">Học viên thành công qua video</h3>
           <div className="grid grid-cols-3 gap-5 max-[680px]:grid-cols-1 mb-12">
             <div className="bg-white border-[1.5px] border-[#eee] rounded-[14px] overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
               <div className="relative aspect-square bg-[#222]">
@@ -1243,7 +1228,7 @@ export default function ThuongHieuChuyenDoiPage() {
             </div>
           </div>
 
-          <h3 className="text-center text-lg font-extrabold text-[#e25010] uppercase mb-5 max-[680px]:text-base">Feedback bằng hình ảnh</h3>
+          <h3 className="text-center text-lg font-extrabold text-[#e25010] uppercase mb-5 max-[680px]:text-base">Học viên thành công qua hình ảnh</h3>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-12">
             <img src="/thuonghieuchuyendoi/images/mentor-class-1.jpg" alt="Feedback học viên" className="w-full h-auto rounded-lg shadow-[0_2px_10px_rgba(0,0,0,0.08)]" />
             <img src="/thuonghieuchuyendoi/images/mentor-class-2.jpg" alt="Feedback học viên" className="w-full h-auto rounded-lg shadow-[0_2px_10px_rgba(0,0,0,0.08)]" />
