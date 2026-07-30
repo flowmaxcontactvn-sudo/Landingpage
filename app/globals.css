@@ -393,3 +393,34 @@
 .animate-circle-fill {
   animation: fillCircle 0.4s cubic-bezier(0.65, 0, 0.45, 1) 0.1s forwards;
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   PREMIUM ANNOUNCEMENT BAR EFFECTS
+   ═══════════════════════════════════════════════════════════════ */
+@keyframes barShimmer {
+  0% {
+    transform: translateX(-150%);
+  }
+  50%, 100% {
+    transform: translateX(150%);
+  }
+}
+
+@keyframes btnPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 12px rgba(255, 107, 0, 0.4);
+  }
+  50% {
+    transform: scale(1.04);
+    box-shadow: 0 0 20px rgba(255, 107, 0, 0.7);
+  }
+}
+
+.animate-bar-shimmer {
+  animation: barShimmer 8s infinite ease-in-out;
+}
+
+.animate-btn-pulse {
+  animation: btnPulse 2.5s infinite ease-in-out;
+}

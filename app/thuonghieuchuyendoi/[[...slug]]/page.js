@@ -747,19 +747,34 @@ export default function ThuongHieuChuyenDoiPage() {
            SECTION 1 — THANH THÔNG BÁO ĐẦU TRANG
       ══════════════════════════════════════════ */}
       <div
-        className="bg-[linear-gradient(90deg,#d0212a,#e25010)] text-white text-center px-4 py-2.5 text-[14.5px] font-semibold flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 max-[680px]:text-[12.5px] max-[680px]:py-2"
+        className="relative overflow-hidden bg-gradient-to-r from-[#0d0404] via-[#1a0808] to-[#0d0404] text-white text-center px-4 py-2.5 text-[14.5px] font-medium flex flex-wrap items-center justify-center gap-x-4 gap-y-2 max-[680px]:text-[12.5px] max-[680px]:py-2 border-b border-orange-500/20"
         data-section="announcement-bar"
       >
-        <span>🗓️ Khai giảng: <strong>03/08/2026</strong></span>
-        <span className="hidden min-[560px]:inline text-white/50">•</span>
-        <span>Chỉ nhận <strong>10 học viên</strong> để đội ngũ Mentor có thể theo sát quá trình thực hành</span>
-        <a
-          href="#register"
-          onClick={(e) => handleAnchorClick(e, "register")}
-          className="ml-1 inline-block bg-white text-[#d0212a] font-extrabold text-[12px] px-3.5 py-[7px] rounded-full uppercase tracking-wide hover:opacity-90 transition-opacity whitespace-nowrap"
-        >
-          Đăng ký giữ chỗ
-        </a>
+        {/* Shimmer light effect */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,107,0,0.08),transparent_70%)] pointer-events-none" />
+        <div className="absolute inset-0 w-[200%] h-full bg-[linear-gradient(90deg,transparent_45%,rgba(255,255,255,0.07)_50%,transparent_55%)] pointer-events-none animate-bar-shimmer" />
+
+        <div className="relative z-10 flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5">
+          <span className="inline-flex items-center gap-1.5 bg-orange-950/60 border border-orange-500/30 px-3 py-0.5 rounded-full text-orange-400 text-[12px] font-bold uppercase tracking-wider max-[680px]:text-[11px]">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
+            </span>
+            Khai giảng: 03/08/2026
+          </span>
+          
+          <span className="text-white/90">
+            Chỉ nhận <strong className="text-orange-400 font-extrabold underline decoration-orange-500/50 decoration-2 underline-offset-2">10 học viên</strong> để đội ngũ Mentor có thể theo sát quá trình thực hành
+          </span>
+          
+          <a
+            href="#register"
+            onClick={(e) => handleAnchorClick(e, "register")}
+            className="ml-1.5 inline-block bg-gradient-to-r from-[#ff6b00] to-[#ff2c00] text-white font-extrabold text-[12px] px-4 py-2 rounded-full uppercase tracking-wide transition-all duration-300 hover:scale-105 active:scale-95 whitespace-nowrap animate-btn-pulse"
+          >
+            Đăng ký giữ chỗ
+          </a>
+        </div>
       </div>
 
       {/* ══════════════════════════════════════════
