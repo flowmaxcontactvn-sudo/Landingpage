@@ -873,15 +873,15 @@ export default function ThuongHieuChuyenDoiPage() {
       {/* ══════════════════════════════════════════
            SECTION 4 — GIỚI THIỆU GIẢI PHÁP 2 (thư ngỏ)
       ══════════════════════════════════════════ */}
-      <section className="bg-[linear-gradient(to_right,#901a5e_0%,#4a187e_50%,#1c3285_100%)] py-20 max-[680px]:py-12" data-section="overcome-barriers">
+      <section className="bg-[linear-gradient(to_right,#901a5e_0%,#4a187e_50%,#1c3285_100%)] py-10 md:py-12 max-[680px]:py-6" data-section="overcome-barriers">
         <div className="max-w-[1040px] mx-auto px-6 max-[680px]:px-4">
-          <div className="bg-[#0b0c1e]/65 backdrop-blur-md rounded-[32px] p-8 md:p-12 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.3)] text-white font-montserrat leading-[1.8] text-[15px] md:text-[15.5px] max-[680px]:text-[14px]">
+          <div className="bg-[#0b0c1e]/65 backdrop-blur-md rounded-[32px] p-6 md:p-10 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.3)] text-white font-montserrat leading-[1.8] text-[16px] md:text-[17.5px] max-[680px]:text-[15.5px]">
             
-            <p className="text-justify font-bold text-[17px] md:text-[19.5px] leading-relaxed mb-8 max-w-[880px] mx-auto">
+            <p className="text-justify font-bold text-[18px] md:text-[21px] leading-relaxed mb-8 max-w-[880px] mx-auto">
               7 ngày xây kênh chuyển đổi là một chương trình liên tục được thiết kế để bạn vượt qua những rào cản bản thân để ngay lập tức <u>xây một kênh thương hiệu cá nhân, bán hàng gia tăng doanh số và thu nhập.</u>
             </p>
 
-            <div className="space-y-6 text-[#f8fafc] text-justify">
+            <div className="space-y-6 text-[#ffffff] text-justify">
               <p>
                 Với những trải nghiệm sống, sự phán xét từ môi trường xung quanh, con người ta chấp nhận những định kiến của người khác về xây kênh, về bán hàng online tạo ra những nỗi sợ ngăn chúng ta hành động.
               </p>
