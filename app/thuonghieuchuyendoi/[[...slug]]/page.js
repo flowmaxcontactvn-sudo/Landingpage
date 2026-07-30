@@ -1053,29 +1053,39 @@ export default function ThuongHieuChuyenDoiPage() {
               </div>
             </div>
 
-            {/* Cột phải — ảnh portrait + 2 ảnh nhỏ */}
+            {/* Cột phải — 4 ảnh bố cục (1 ảnh to trên, 1 ảnh ngang giữa, 2 ảnh vuông dưới) */}
             <div className="flex flex-col gap-3">
-              {/* Ảnh portrait chính */}
-              <div className="rounded-2xl overflow-hidden border border-gray-100 shadow-md">
+              {/* Ảnh 1: Chân dung chính (trên cùng) */}
+              <div className="rounded-[24px] overflow-hidden border border-gray-100 shadow-md aspect-[4/3]">
                 <img
                   src="/thuonghieuchuyendoi/images/banner.jpeg"
-                  alt="Th.S Vũ Kim Khánh"
-                  className="w-full object-cover"
+                  alt="Th.S Vũ Kim Khánh chân dung"
+                  className="w-full h-full object-cover"
                 />
               </div>
-              {/* 2 ảnh nhỏ xếp ngang */}
+
+              {/* Ảnh 2: Giải thưởng / Sự kiện (ngang ở giữa) */}
+              <div className="rounded-[20px] overflow-hidden border border-gray-100 shadow-sm aspect-[16/9]">
+                <img
+                  src="/thuonghieuchuyendoi/images/mentor-class-1.jpg"
+                  alt="Vũ Kim Khánh tại sự kiện"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Ảnh 3 & 4: Marathon & Bán hàng (2 ảnh song song ở dưới) */}
               <div className="grid grid-cols-2 gap-3">
-                <div className="rounded-xl overflow-hidden border border-gray-100 shadow-sm aspect-[3/4]">
+                <div className="rounded-[20px] overflow-hidden border border-gray-100 shadow-sm aspect-[4/3]">
                   <img
-                    src="/thuonghieuchuyendoi/images/mentor-class-1.jpg"
-                    alt="Vũ Kim Khánh - Sự kiện"
+                    src="/thuonghieuchuyendoi/images/mentor-class-2.jpg"
+                    alt="Vũ Kim Khánh Marathon"
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="rounded-xl overflow-hidden border border-gray-100 shadow-sm aspect-[3/4]">
+                <div className="rounded-[20px] overflow-hidden border border-gray-100 shadow-sm aspect-[4/3]">
                   <img
                     src="/thuonghieuchuyendoi/images/mentor-class-3.jpg"
-                    alt="Vũ Kim Khánh - Marathon"
+                    alt="Vũ Kim Khánh hoạt động"
                     className="w-full h-full object-cover"
                   />
                 </div>
