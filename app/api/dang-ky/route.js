@@ -10,7 +10,7 @@ function adminSupabase() {
 
 export async function POST(req) {
   const body = await req.json();
-  const { fullname, phone, email, nguon, utmCampaign, ghiChu, thietBi, thoiGianPhienGiay } = body;
+  const { fullname, phone, email, nguon, utmCampaign, ghiChu, thietBi, thoiGianPhienGiay, maSoThue } = body;
 
   if (!fullname || !phone) {
     return NextResponse.json({ ok: false, error: "Thiếu họ tên/số điện thoại" }, { status: 400 });
@@ -22,6 +22,11 @@ export async function POST(req) {
     chienDichId = data ?? null;
   }
 
+  const finalGhiChu = [
+    ghiChu?.trim() || "",
+    maSoThue?.trim() ? `MST: ${maSoThue.trim()}` : ""
+  ].filter(Boolean).join(" | ") || null;
+
   const { data: inserted, error } = await adminSupabase()
     .from("khach_hang")
     .insert({
@@ -30,7 +35,7 @@ export async function POST(req) {
       email: email?.trim() || null,
       nguon,
       chien_dich_id: chienDichId,
-      ghi_chu: ghiChu?.trim() || null,
+      ghi_chu: finalGhiChu,
       landing: "/thuonghieuchuyendoi",
       thiet_bi: thietBi,
       thoi_gian_phien_giay: thoiGianPhienGiay,
@@ -58,7 +63,7 @@ export async function POST(req) {
           email: email?.trim() || null,
           source: nguon ?? null,
           campaign_slug: utmCampaign ?? null,
-          note: ghiChu?.trim() || null,
+          note: finalGhiChu,
         }),
       }).catch((err) => console.warn("[PHMAX_SYNC_ERROR]", err))
     );
