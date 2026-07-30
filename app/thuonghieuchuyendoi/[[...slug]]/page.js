@@ -1193,7 +1193,7 @@ export default function ThuongHieuChuyenDoiPage() {
                   ))}
                 </ul>
                 {tier.original && (
-                  <p className="text-[17px] text-[#e30a0a] line-through leading-none mb-1 font-bold">{tier.original}</p>
+                  <p className="text-[22px] max-[480px]:text-[20px] text-[#e30a0a] line-through leading-none mb-1 font-bold font-montserrat">{tier.original}</p>
                 )}
                 <p className="text-[42px] max-[480px]:text-[36px] font-black font-montserrat text-[#e30a0a] mb-4 leading-none whitespace-nowrap">
                   {tier.price} <span className="text-[32px] max-[480px]:text-[26px] font-black">VND</span>
