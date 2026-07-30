@@ -877,11 +877,11 @@ export default function ThuongHieuChuyenDoiPage() {
         <div className="max-w-[1040px] mx-auto px-6 max-[680px]:px-4">
           <div className="bg-[#0b0c1e]/65 backdrop-blur-md rounded-[32px] p-5 md:p-8 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.3)] text-white font-montserrat leading-[1.8] text-[15.5px]">
             
-            <p className="text-justify font-bold text-[17.5px] leading-relaxed mb-8 max-w-[880px] mx-auto">
+            <p className="text-justify font-bold text-[17.5px] leading-relaxed mb-4 max-w-[880px] mx-auto">
               7 ngày xây kênh chuyển đổi là một chương trình liên tục được thiết kế để bạn vượt qua những rào cản bản thân để ngay lập tức <u>xây một kênh thương hiệu cá nhân, bán hàng gia tăng doanh số và thu nhập.</u>
             </p>
 
-            <div className="space-y-6 text-[#ffffff] text-justify">
+            <div className="space-y-3.5 text-[#ffffff] text-justify">
               <p>
                 Với những trải nghiệm sống, sự phán xét từ môi trường xung quanh, con người ta chấp nhận những định kiến của người khác về xây kênh, về bán hàng online tạo ra những nỗi sợ ngăn chúng ta hành động.
               </p>
