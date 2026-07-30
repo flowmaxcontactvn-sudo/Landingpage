@@ -1184,7 +1184,7 @@ export default function ThuongHieuChuyenDoiPage() {
                 <h3 className="text-[40px] md:text-[44px] font-black font-montserrat text-[#1a1a2e] uppercase leading-tight mb-1">{tier.key}</h3>
                 <p className="text-[16.5px] font-semibold text-gray-600 mb-3">{tier.subtitle}</p>
                 <div className="h-px bg-gray-200 mb-4" />
-                <ul className="space-y-3 text-[20px] md:text-[21px] font-bold text-[#e30a0a] mb-4 text-left">
+                <ul className="space-y-3 text-[20px] md:text-[21px] font-bold text-[#111111] mb-4 text-left">
                   {tier.items.map((item) => (
                     <li key={item} className="flex gap-2.5 items-start">
                       <span className="text-[#e30a0a] font-black">✓</span>
@@ -1193,7 +1193,7 @@ export default function ThuongHieuChuyenDoiPage() {
                   ))}
                 </ul>
                 {tier.original && (
-                  <p className="text-[17px] text-gray-400 line-through leading-none mb-1">{tier.original}</p>
+                  <p className="text-[17px] text-[#e30a0a] line-through leading-none mb-1 font-bold">{tier.original}</p>
                 )}
                 <p className="text-[42px] max-[480px]:text-[36px] font-black font-montserrat text-[#e30a0a] mb-4 leading-none whitespace-nowrap">
                   {tier.price} <span className="text-[32px] max-[480px]:text-[26px] font-black">VND</span>
