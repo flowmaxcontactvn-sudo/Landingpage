@@ -1023,16 +1023,25 @@ export default function ThuongHieuChuyenDoiPage() {
         <div className={container}>
 
           {/* Header căn giữa */}
-          <div className="text-center mb-10">
+          <div className="text-center mb-10 max-[860px]:mb-6">
             <p className="text-[16px] md:text-[18px] font-black uppercase tracking-[0.2em] text-[#e25010] mb-2 font-montserrat">
               GẶP GỠ NGƯỜI HUẤN LUYỆN
             </p>
             <h2 className={sectionTitle}>
               TH.S VŨ KIM KHÁNH
             </h2>
+
+            {/* Mobile-only: Ảnh 1 nằm ngay dưới tên người huấn luyện */}
+            <div className="hidden max-[860px]:block mt-6 max-w-[340px] mx-auto rounded-[24px] overflow-hidden border border-gray-100 shadow-md aspect-[4/3]">
+              <img
+                src="/thuonghieuchuyendoi/images/banner.jpeg"
+                alt="Th.S Vũ Kim Khánh chân dung"
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
 
-          {/* 2 cột: text trái — ảnh phải (đúng theo Figma) */}
+          {/* 2 cột: text trái — ảnh phải */}
           <div className="grid grid-cols-[1fr_340px] gap-10 items-start max-[860px]:grid-cols-1 max-[860px]:gap-8">
 
             {/* Cột trái — nội dung */}
@@ -1051,10 +1060,37 @@ export default function ThuongHieuChuyenDoiPage() {
                   Tham gia khoá học của Vũ Kim Khánh bạn sẽ trải nghiệm <span className="text-[#e25010] font-extrabold">một hành trình chuyển hoá</span> từ việc khám phá các tiềm lực của bản thân đến việc xây dựng kênh thương hiệu cá nhân và bán hàng bằng phong cách sống, mở ra cánh cửa mới cho tương lai của bạn.
                 </p>
               </div>
+
+              {/* Mobile-only: Ảnh 2, 3, 4 nằm dưới nội dung section */}
+              <div className="hidden max-[860px]:flex flex-col gap-3 mt-6">
+                <div className="rounded-[20px] overflow-hidden border border-gray-100 shadow-sm aspect-[16/9]">
+                  <img
+                    src="/thuonghieuchuyendoi/images/mentor-class-1.jpg"
+                    alt="Vũ Kim Khánh tại sự kiện"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="rounded-[20px] overflow-hidden border border-gray-100 shadow-sm aspect-[4/3]">
+                    <img
+                      src="/thuonghieuchuyendoi/images/mentor-class-2.jpg"
+                      alt="Vũ Kim Khánh Marathon"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="rounded-[20px] overflow-hidden border border-gray-100 shadow-sm aspect-[4/3]">
+                    <img
+                      src="/thuonghieuchuyendoi/images/mentor-class-3.jpg"
+                      alt="Vũ Kim Khánh hoạt động"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Cột phải — 4 ảnh bố cục (1 ảnh to trên, 1 ảnh ngang giữa, 2 ảnh vuông dưới) */}
-            <div className="flex flex-col gap-3">
+            {/* Desktop-only: Cột phải với đủ 4 ảnh */}
+            <div className="flex flex-col gap-3 max-[860px]:hidden">
               {/* Ảnh 1: Chân dung chính (trên cùng) */}
               <div className="rounded-[24px] overflow-hidden border border-gray-100 shadow-md aspect-[4/3]">
                 <img
