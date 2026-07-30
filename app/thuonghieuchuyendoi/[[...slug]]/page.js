@@ -911,47 +911,91 @@ export default function ThuongHieuChuyenDoiPage() {
       ══════════════════════════════════════════ */}
       <section className="bg-white py-10 max-[680px]:py-8" data-section="customer-pain-points">
         <div className={container}>
-          <h2 className={sectionTitle + " text-center mb-8"}>
-            ĐÂY LÀ VẤN ĐỀ MÀ <br className="max-[680px]:inline hidden" /><span className="whitespace-nowrap">HẦU HẾT</span> <br className="md:inline hidden" />CÁC CHỦ DOANH NGHIỆP ĐỀU GẶP PHẢI
+          <h2 className={sectionTitle + " text-center mb-8 max-w-[800px] mx-auto"}>
+            ĐÂY LÀ HẦU HẾT VẤN ĐỀ MÀ <br className="max-[680px]:inline hidden" />NHỮNG NGƯỜI KINH DOANH ONLINE GẶP PHẢI
           </h2>
 
-          <div className="max-w-[720px] mx-auto space-y-3 text-[15.5px] text-[#1a1a1a] leading-[1.8] font-sans font-bold text-justify">
-            <p>
-              Tôi là <strong>Vũ Kim Khánh</strong>. Bắt đầu từ năm 2018, kể từ ngày tôi bắt đầu đăng ký kinh doanh công ty đầu tiên của mình. Nhờ lại thời đó, tôi đã phạm phải một trong hai sai lầm lớn nhất của kinh doanh.
+          <div className="max-w-[720px] mx-auto text-[15.5px] text-[#1a1a1a] leading-[1.8] font-sans">
+            <div className="space-y-4 text-justify font-medium text-gray-800">
+              <p>
+                <strong>NĂM 2020 TÔI VÀ VỢ BẮT ĐẦU KINH DOANH ONLINE TỪ NGƯỜI LÀM THUÊ XUẤT SẮC</strong>, chúng tôi bắt đầu nhập hàng để bán trên Online nhưng khi nhìn vào đống hàng đã nhập về chúng tôi thực sự không biết làm thế nào?
+              </p>
+              <p>
+                Tôi muốn xây dựng thương hiệu cá nhân nhưng không biết mình nên chia sẻ điều gì?
+              </p>
+              <p>
+                Muốn quay Video nhưng cứ cầm điện thoại lên thì con chữ cứ bay đi đâu, cứng miệng không nói ra được!
+              </p>
+              <p>
+                Đăng bài lên đều nhưng nội dung ít tương tác, không có khách hàng nào hỏi mua.
+              </p>
+              <p>
+                Sau này phát triển thêm các kênh như Shopee, TikTok cũng không biết cách chọn sản phẩm, tối ưu nội dung như thế nào?
+              </p>
+              <p>
+                Xem rất nhiều hướng dẫn, lưu rất nhiều công thức nhưng kênh vẫn chưa tạo ra được kết quả.
+              </p>
+            </div>
+
+            <p className="font-extrabold text-[#e25010] mt-6 text-[16.5px]">
+              Nếu bạn cũng như vậy có thể bạn đang gặp những sai lầm sau:
             </p>
-            <p>
-              Tôi bắt đầu công việc kinh doanh của mình với <strong>NGHỀ ĐƯỢC ĐÀO TẠO</strong> chứ không phải <strong>NGHỀ KINH DOANH.</strong>
+            <ul className="list-none space-y-2 mt-3 pl-1">
+              {[
+                "Follow trước bán hàng sau.",
+                "Mình không phải idol, không có tài năng nào đặc biệt.",
+                "Đối diện với Camera cảm giác như đối diện với kẻ thù.",
+                "Không có người dẫn dắt bạn vượt qua những khó khăn ngày đầu xây kênh.",
+                "Cố gắng bắt đầu bằng một ý tưởng."
+              ].map((err, idx) => (
+                <li key={idx} className="flex items-start gap-2">
+                  <span className="text-[#e30a0a] font-bold shrink-0 mt-0.5">✕</span>
+                  <span className="font-semibold text-gray-700 text-[15.5px]">{err}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="italic font-bold text-gray-800 mt-4 pl-1 text-[15px]">
+              Tôi cũng đã từng gặp những lỗi như vậy và kết quả là không có Video, không có đơn hàng.
             </p>
-            <p>
-              Tôi được đào tạo để trở thành một chuyên gia, tôi chưa một ngày nào học về Doanh nghiệp và Kinh doanh. Thế nhưng tôi đã mở doanh nghiệp kinh doanh ngay trong lĩnh vực đó.
-            </p>
-            <p>
-              Tất nhiên, hàng của tôi cũng rất đình đám, nổi tiếng, nhưng sự thực là lợi nhuận chẳng có là bao, nhân sự thì toàn linh mới, những người "ngon" thì học xong họ lại biến mất, thậm chí, trở thành đối thủ của tôi.
-            </p>
-            <p>
-              Sau thời gian doanh nghiệp lớn dần lên, các vấn đề này sinh càng nhiều, công việc chồng chéo, hiệu suất kinh doanh thấp kém…
-            </p>
-            <p>
-              Việc kinh doanh ngày càng rối bời, mọi thứ làm vào bế tắc, cuộc sống vốn đã căng thẳng lại càng căng thẳng hơn với bộn bề công việc.
-            </p>
-            <p>
-              Sau nhiều năm tìm kiếm, cuối cùng tôi đã tìm thấy ánh sáng nơi cuối đường hầm.
-            </p>
-            <p>
-              Đây là tin vui: Vấn đề này là <strong>CƠ HỘI</strong> cho bạn.
-            </p>
-            <p>
-              Đây chính là thời điểm sẽ giúp bạn thoát ra khỏi tình trạng hiện nay và <strong>TĂNG TỐC DOANH NGHIỆP</strong> phát triển đột phá.
-            </p>
+
+            <div className="mt-8 bg-orange-50/70 border border-orange-100 rounded-2xl p-6">
+              <p className="font-black text-[#e30a0a] text-[17px] mb-4 text-center uppercase tracking-wide">
+                Thực tế là bạn không cần triệu view và hàng trăm ngàn Follower mới bán được hàng!
+              </p>
+              <p className="font-bold text-gray-900 mb-3 text-[16px]">Họ mua khi nội dung tạo ra:</p>
+              <ul className="list-none space-y-2.5 pl-1">
+                {[
+                  "Sự tin tưởng vào người bán và giải pháp phù hợp với họ",
+                  "Người làm nội dung thấu hiểu vấn đề của họ đang gặp phải",
+                  "Người giới thiệu thực sự hiểu được giá trị của sản phẩm giải quyết được vấn đề",
+                  "Trao đúng sản phẩm tới đúng người cần chứ không phải spam nội dung tới tất cả mọi người",
+                  "Biết rõ mình cần hành động gì tiếp theo"
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2.5">
+                    <span className="text-emerald-600 font-bold shrink-0 mt-0.5">✓</span>
+                    <span className="font-semibold text-gray-800 text-[15.5px]">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="mt-8 space-y-3.5 text-center border-t border-gray-100 pt-6">
+              <p className="text-[17.5px] text-[#e30a0a] font-black italic font-montserrat">
+                "Một kênh ít Follower vẫn có thể bán hàng nếu nội dung đúng và đủ!"
+              </p>
+              <p className="text-[18px] text-gray-900 font-black font-montserrat uppercase leading-relaxed max-w-[640px] mx-auto">
+                Nội dung hay có thể tạo View nhưng chỉ nội dung đúng mới tạo ra chuyển đổi
+              </p>
+            </div>
           </div>
 
-          <div className="text-center mt-8">
+          <div className="text-center mt-10">
             <a
               href="#register"
               onClick={(e) => handleAnchorClick(e, "register")}
-              className={"inline-block " + ctaButtonInline + " text-[14px] px-10 py-4"}
+              className={"inline-block " + ctaButtonInline + " text-[14px] px-10 py-4.5"}
             >
-              YES! TÔI SẴN SÀNG TĂNG TỐC CÔNG VIỆC KINH DOANH CỦA MÌNH!
+              YES! TÔI SẴN SÀNG XÂY KÊNH VÀ TẠO RA DOANH THU CHUYỂN ĐỔI!
             </a>
           </div>
         </div>
