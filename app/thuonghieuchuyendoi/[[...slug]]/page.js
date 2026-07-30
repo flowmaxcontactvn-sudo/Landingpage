@@ -875,9 +875,9 @@ export default function ThuongHieuChuyenDoiPage() {
       ══════════════════════════════════════════ */}
       <section className="bg-[linear-gradient(to_right,#901a5e_0%,#4a187e_50%,#1c3285_100%)] py-6 md:py-8 max-[680px]:py-3.5" data-section="overcome-barriers">
         <div className="max-w-[1040px] mx-auto px-6 max-[680px]:px-4">
-          <div className="bg-[#0b0c1e]/65 backdrop-blur-md rounded-[32px] p-5 md:p-8 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.3)] text-white font-montserrat leading-[1.8] text-[18px] md:text-[21px] max-[680px]:text-[17.5px]">
+          <div className="bg-[#0b0c1e]/65 backdrop-blur-md rounded-[32px] p-5 md:p-8 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.3)] text-white font-montserrat leading-[1.8] text-[15.5px]">
             
-            <p className="text-justify font-bold text-[20px] md:text-[24px] leading-relaxed mb-8 max-w-[880px] mx-auto">
+            <p className="text-justify font-bold text-[17.5px] leading-relaxed mb-8 max-w-[880px] mx-auto">
               7 ngày xây kênh chuyển đổi là một chương trình liên tục được thiết kế để bạn vượt qua những rào cản bản thân để ngay lập tức <u>xây một kênh thương hiệu cá nhân, bán hàng gia tăng doanh số và thu nhập.</u>
             </p>
 
