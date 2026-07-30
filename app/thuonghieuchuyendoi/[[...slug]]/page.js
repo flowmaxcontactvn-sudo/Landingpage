@@ -638,7 +638,7 @@ export default function ThuongHieuChuyenDoiPage() {
   const container = "max-w-[980px] mx-auto px-6 max-[680px]:px-4";
   const sectionWhite = "bg-white py-14 max-[680px]:py-5";
   const sectionTitle = "text-[clamp(28px,3.4vw,40px)] font-extrabold font-montserrat text-[#e25010] uppercase leading-[1.2]";
-  const ctaButton = "bg-[#e30a0a] hover:bg-[#ff1e1e] text-white font-extrabold font-montserrat uppercase tracking-wide rounded-xl shadow-[0_0_25px_rgba(227,10,10,0.45)] hover:shadow-[0_0_32px_rgba(227,10,10,0.6)] transition-all duration-300";
+  const ctaButton = "bg-[#e30a0a] hover:bg-[#ff1e1e] text-white font-extrabold font-montserrat uppercase tracking-wide rounded-full shadow-[0_0_25px_rgba(227,10,10,0.45)] hover:shadow-[0_0_32px_rgba(227,10,10,0.6)] transition-all duration-300";
   const ctaButtonInline = ctaButton + " hover:scale-105 active:scale-95";
   const oppTitle =
     "text-[clamp(30px,4.2vw,46px)] font-extrabold text-[#e25010] uppercase leading-[1.2] mb-2 max-[680px]:text-[27px] max-[680px]:leading-[1.2]";
