@@ -43,6 +43,7 @@ export default function ThuongHieuChuyenDoiPage() {
   const [ghiChu, setGhiChu] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successModalOpen, setSuccessModalOpen] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [playingTestimonial, setPlayingTestimonial] = useState(null);
 
   // UTM tracking variables
@@ -554,10 +555,12 @@ export default function ThuongHieuChuyenDoiPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitError("");
     formSubmittedRef.current = true;
 
     // Gửi qua route handler nội bộ — vừa lưu vào Supabase, vừa đồng bộ
     // sang phmax.vn để xử lý CRM ở đó (xem app/api/dang-ky/route.js)
+    let saveOk = false;
     try {
       const res = await fetch("/api/dang-ky", {
         method: "POST",
@@ -575,9 +578,16 @@ export default function ThuongHieuChuyenDoiPage() {
         }),
       });
       const json = await res.json();
+      saveOk = !!json.ok;
       if (!json.ok) console.warn("Lưu khách hàng thất bại:", json.error);
     } catch (err) {
       console.warn("Gửi đăng ký thất bại:", err);
+    }
+
+    if (!saveOk) {
+      setIsSubmitting(false);
+      setSubmitError("Đăng ký không thành công do lỗi hệ thống. Vui lòng thử lại hoặc liên hệ trực tiếp qua Zalo.");
+      return;
     }
 
     // Show success modal immediately to mimic fast UX
@@ -1343,6 +1353,10 @@ export default function ThuongHieuChuyenDoiPage() {
                   onChange={(e) => setMaSoThue(e.target.value)}
                 />
 
+                {submitError && (
+                  <p className="text-[13.5px] text-[#d03b3b] font-semibold text-center mb-3 leading-[1.5]">{submitError}</p>
+                )}
+
                 <button type="submit" disabled={isSubmitting} className={"block w-full " + ctaButton + " py-3.5 text-center tracking-wider text-base cursor-pointer active:scale-95 animate-btn-pulse"}>
                   {isSubmitting ? "Đang đăng ký..." : "Đăng ký ngay"}
                 </button>
@@ -1498,21 +1512,29 @@ export default function ThuongHieuChuyenDoiPage() {
       {/* ══════════════════════════════════════════
            FOOTER
       ══════════════════════════════════════════ */}
-      <footer className="bg-white pt-6 max-[680px]:pt-[18px]">
-        <div className={container + " flex gap-8 flex-wrap justify-between pb-9 max-[680px]:flex-col max-[680px]:items-center"}>
-          <div className="max-w-[420px]">
-            <h4 className="text-[19px] font-bold mb-3.5 text-[#222] max-[680px]:text-[15px]">CÔNG TY CỔ PHẦN FLOWMAX GLOBAL</h4>
-            <p className="text-[17.5px] mb-2 text-[#444] max-[680px]:text-[14px]">🏢 D01 – L39 An Vượng Villa, KĐT mới Dương Nội, Phường Dương Nội, TP Hà Nội</p>
-            <p className="text-[17.5px] mb-2 text-[#444] max-[680px]:text-[14px]">🧾 Mã số thuế: 0111301605 – do Sở Tài Chính TP Hà Nội cấp ngày 03/12/2025</p>
-            <p className="text-[17.5px] mb-2 text-[#444] max-[680px]:text-[14px]">📞 Hotline: 091 5217 659</p>
-            <p className="text-[17.5px] mb-2 text-[#444] max-[680px]:text-[14px]">✉️ Email: flowmax.contact.vn@gmail.com</p>
+      <footer
+        className="text-white pt-10 pb-6 relative overflow-hidden font-montserrat border-t border-white/10"
+        style={{
+          backgroundImage: "linear-gradient(to right, rgba(11, 16, 44, 0.98), rgba(16, 26, 68, 0.95)), url('/thuonghieuchuyendoi/images/banner.jpeg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat"
+        }}
+      >
+        <div className={container + " flex gap-8 flex-wrap justify-between pb-4 max-[680px]:flex-col max-[680px]:items-center"}>
+          <div className="max-w-[460px]">
+            <h4 className="text-[19px] font-black mb-4 text-[#ffe066] uppercase tracking-wide max-[680px]:text-[16px]">CÔNG TY CỔ PHẦN FLOWMAX GLOBAL</h4>
+            <p className="text-[16px] mb-2.5 text-gray-200 leading-relaxed max-[680px]:text-[14px]">🏢 D01 – L39 An Vượng Villa, KĐT mới Dương Nội, Phường Dương Nội, TP Hà Nội</p>
+            <p className="text-[16px] mb-2.5 text-gray-200 leading-relaxed max-[680px]:text-[14px]">🧾 Mã số thuế: 0111301605 – do Sở Tài Chính TP Hà Nội cấp ngày 03/12/2025</p>
+            <p className="text-[16px] mb-2.5 text-gray-200 leading-relaxed max-[680px]:text-[14px]">📞 Hotline: 091 5217 659</p>
+            <p className="text-[16px] mb-2.5 text-gray-200 leading-relaxed max-[680px]:text-[14px]">✉️ Email: flowmax.contact.vn@gmail.com</p>
           </div>
           <div>
             <iframe
               src="https://maps.google.com/maps?q=An+Vuong+Villa+Ha+Dong+Ha+Noi+Vietnam&t=&z=15&ie=UTF8&iwloc=&output=embed"
               width="340"
-              height="260"
-              className="border-0 rounded-lg block shadow-[0_2px_10px_rgba(0,0,0,0.1)] max-w-[340px] w-full max-[680px]:max-w-full"
+              height="240"
+              className="border border-white/20 rounded-xl block shadow-[0_8px_30px_rgba(0,0,0,0.5)] max-w-[340px] w-full max-[680px]:max-w-full"
               allowFullScreen=""
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

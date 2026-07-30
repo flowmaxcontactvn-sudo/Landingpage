@@ -1,12 +1,5 @@
 import { NextResponse, after } from "next/server";
-import { createClient } from "@supabase/supabase-js";
 import { supabase } from "@/lib/supabase";
-
-function adminSupabase() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://placeholder.supabase.co";
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY || "placeholder-key";
-  return createClient(url, key, { auth: { autoRefreshToken: false, persistSession: false } });
-}
 
 export async function POST(req) {
   const body = await req.json();
@@ -27,21 +20,22 @@ export async function POST(req) {
     maSoThue?.trim() ? `MST: ${maSoThue.trim()}` : ""
   ].filter(Boolean).join(" | ") || null;
 
-  const { data: inserted, error } = await adminSupabase()
-    .from("khach_hang")
-    .insert({
-      ho_ten: fullname.trim(),
-      so_dien_thoai: phone.trim(),
-      email: email?.trim() || null,
-      nguon,
-      chien_dich_id: chienDichId,
-      ghi_chu: finalGhiChu,
-      landing: "/thuonghieuchuyendoi",
-      thiet_bi: thietBi,
-      thoi_gian_phien_giay: thoiGianPhienGiay,
-    })
-    .select("id")
-    .single();
+  // Lưu ý: dùng client công khai (anon key) vì bảng khach_hang có RLS
+  // policy "Bất kỳ ai cũng đăng ký được" cho phép INSERT ẩn danh. Không
+  // dùng .select().single() sau insert — RLS lọc RETURNING theo policy
+  // SELECT (chỉ admin đã đăng nhập), nên với vai trò ẩn danh nó luôn trả
+  // về 0 dòng dù insert thành công, khiến .single() báo lỗi giả.
+  const { error } = await supabase.from("khach_hang").insert({
+    ho_ten: fullname.trim(),
+    so_dien_thoai: phone.trim(),
+    email: email?.trim() || null,
+    nguon,
+    chien_dich_id: chienDichId,
+    ghi_chu: finalGhiChu,
+    landing: "/thuonghieuchuyendoi",
+    thiet_bi: thietBi,
+    thoi_gian_phien_giay: thoiGianPhienGiay,
+  });
 
   if (error) {
     console.warn("Lưu khách hàng thất bại:", error.message);
@@ -50,14 +44,13 @@ export async function POST(req) {
 
   const phmaxUrl = process.env.PHMAX_API_URL;
   const secret = process.env.LANDING_SYNC_SECRET;
-  if (phmaxUrl && secret && inserted?.id) {
+  if (phmaxUrl && secret) {
     after(() =>
       fetch(`${phmaxUrl}/api/landing-leads`, {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-landing-secret": secret },
         body: JSON.stringify({
           source_site: "thuonghieuchuyendoi",
-          external_id: inserted.id,
           name: fullname.trim(),
           phone: phone.trim(),
           email: email?.trim() || null,
