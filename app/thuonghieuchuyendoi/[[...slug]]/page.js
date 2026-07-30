@@ -973,7 +973,7 @@ export default function ThuongHieuChuyenDoiPage() {
             Tham gia khoá học của Vũ Kim Khánh, bạn sẽ trải nghiệm một hành trình chuyển hoá từ việc khám phá các tiềm lực của bản thân đến việc xây dựng kênh thương hiệu cá nhân và bán hàng bằng phong cách sống, mở ra cánh cửa mới cho tương lai của&nbsp;bạn.
           </p>
 
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 max-w-[760px] mx-auto mb-9">
+          <div className="flex flex-wrap justify-center gap-3 max-w-[760px] mx-auto mb-9">
             {[
               { label: "Học vấn", value: "Thạc sĩ QTKD" },
               { label: "Đã đào tạo", value: "1000+ học viên" },
@@ -981,7 +981,10 @@ export default function ThuongHieuChuyenDoiPage() {
               { label: "Kinh nghiệm", value: "6 năm" },
               { label: "Thành tích nổi bật", value: "10 DN doanh thu >1 triệu $" },
             ].map((s) => (
-              <div key={s.label} className="bg-[#fff8f0] border-[1.5px] border-[#f0d5b0] rounded-lg px-2.5 py-3.5 text-center">
+              <div
+                key={s.label}
+                className="bg-[#fff8f0] border-[1.5px] border-[#f0d5b0] rounded-lg px-2.5 py-3.5 text-center w-[calc(50%-6px)] sm:w-auto sm:flex-1"
+              >
                 <p className="text-[10.5px] text-[#999] uppercase tracking-wide mb-1.5 leading-tight">{s.label}</p>
                 <p className="text-[13.5px] font-extrabold text-[#e25010] leading-snug">{s.value}</p>
               </div>
