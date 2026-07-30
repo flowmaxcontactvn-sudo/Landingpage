@@ -909,7 +909,7 @@ export default function ThuongHieuChuyenDoiPage() {
       {/* ══════════════════════════════════════════
            SECTION 5 — VẤN ĐỀ KHÁCH HÀNG ĐANG GẶP
       ══════════════════════════════════════════ */}
-      <section className="bg-white py-10 max-[680px]:py-8" data-section="customer-pain-points">
+      <section className="bg-white py-6 md:py-8 max-[680px]:py-3.5" data-section="customer-pain-points">
         <div className={container}>
           <h2 className={sectionTitle + " text-center mb-8 max-w-[800px] mx-auto"}>
             ĐÂY LÀ HẦU HẾT VẤN ĐỀ MÀ <br className="max-[680px]:inline hidden" />NHỮNG NGƯỜI KINH DOANH ONLINE GẶP PHẢI
