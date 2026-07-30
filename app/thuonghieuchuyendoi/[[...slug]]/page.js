@@ -1392,7 +1392,7 @@ export default function ThuongHieuChuyenDoiPage() {
                     )}
                   </div>
                   <div className="p-3 max-[480px]:p-1.5 text-center">
-                    <p className="font-bold text-[14px] max-[480px]:text-[10px] text-gray-800 font-montserrat leading-tight">{["Quỳnh Thương", "Hường Nguyễn", "Huyền Lắm Mẹo"][idx]}</p>
+                    <p className="font-bold text-[14px] max-[480px]:text-[10px] text-gray-800 font-montserrat leading-tight">{["Vũ Hải", "Phạm Minh Vương", "Quỳnh Thương"][idx]}</p>
                   </div>
                 </div>
               ))}
