@@ -862,7 +862,7 @@ export default function ThuongHieuChuyenDoiPage() {
             <a
               href="#register"
               onClick={(e) => handleAnchorClick(e, "register")}
-              className={"inline-block " + ctaButtonInline + " text-[15px] px-10 py-4.5 text-center animate-btn-pulse"}
+              className={"inline-block " + ctaButtonInline + " text-[12px] md:text-[13px] px-10 py-4.5 text-center animate-btn-pulse"}
             >
               YES! TÔI ĐÃ SẴN SÀNG XÂY KÊNH VÀ BỨT PHÁ DOANH THU CỦA MÌNH
             </a>
@@ -993,7 +993,7 @@ export default function ThuongHieuChuyenDoiPage() {
             <a
               href="#register"
               onClick={(e) => handleAnchorClick(e, "register")}
-              className={"inline-block " + ctaButtonInline + " text-[14px] px-10 py-4.5"}
+              className={"inline-block " + ctaButtonInline + " text-[12px] md:text-[13px] px-10 py-4.5"}
             >
               YES! TÔI SẴN SÀNG XÂY KÊNH VÀ TẠO RA DOANH THU CHUYỂN ĐỔI!
             </a>
@@ -1113,7 +1113,7 @@ export default function ThuongHieuChuyenDoiPage() {
             </p>
           </div>
 
-          <a href="#register" onClick={(e) => handleAnchorClick(e, "register")} className={"inline-block " + ctaButtonInline + " text-[15px] px-10 py-4.5 animate-btn-pulse"}>
+          <a href="#register" onClick={(e) => handleAnchorClick(e, "register")} className={"inline-block " + ctaButtonInline + " text-[12px] md:text-[13px] px-10 py-4.5 animate-btn-pulse"}>
             YES! TÔI MUỐN BẮT ĐẦU XÂY KÊNH
           </a>
           <p className="text-[17px] text-gray-600 mt-4 max-[680px]:text-[15px] font-bold font-montserrat">
