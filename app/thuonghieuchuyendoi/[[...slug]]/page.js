@@ -1003,7 +1003,7 @@ export default function ThuongHieuChuyenDoiPage() {
       <section className="bg-white py-10 max-[680px]:py-8" data-section="customer-pain-points">
         <div className={container}>
           <h2 className={sectionTitle + " text-center mb-8"}>
-            ĐÂY LÀ VẤN ĐỀ MÀ HẦU HẾT<br />CÁC CHỦ DOANH NGHIỆP ĐỀU GẶP PHẢI
+            ĐÂY LÀ VẤN ĐỀ MÀ <br className="max-[680px]:inline hidden" /><span className="whitespace-nowrap">HẦU HẾT</span> <br className="md:inline hidden" />CÁC CHỦ DOANH NGHIỆP ĐỀU GẶP PHẢI
           </h2>
 
           <div className="max-w-[720px] mx-auto space-y-3 text-[15.5px] text-[#1a1a1a] leading-[1.8] font-sans font-bold text-justify">
@@ -1358,7 +1358,7 @@ export default function ThuongHieuChuyenDoiPage() {
       <section className="py-16 bg-[#faf9f7]" data-section="social-proof">
         <div className={container}>
           <h2 className={sectionTitle + " text-center mb-8"}>
-            Đừng tin những gì tôi nói,<br />đây là những gì người khác nói…
+            Đừng tin những gì <br className="max-[680px]:inline hidden" /><span className="whitespace-nowrap">tôi nói,</span><br className="md:inline hidden" />đây là những gì <br className="max-[680px]:inline hidden" /><span className="whitespace-nowrap">người khác nói…</span>
           </h2>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-[860px] mx-auto my-9">
@@ -1377,9 +1377,6 @@ export default function ThuongHieuChuyenDoiPage() {
 
           {/* Feedback bằng bài đăng của học viên (12 ảnh) */}
           <div className="my-12">
-            <h3 className="text-center text-lg font-extrabold font-montserrat text-[#e25010] uppercase mb-6">
-              Feedback bằng bài đăng của học viên
-            </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {Array.from({ length: 12 }).map((_, idx) => (
                 <div key={idx} className="bg-white border border-[#eee] rounded-xl overflow-hidden shadow-sm aspect-[4/5] relative">
@@ -1398,10 +1395,7 @@ export default function ThuongHieuChuyenDoiPage() {
 
           {/* Feedback bằng Video (3 video thật) */}
           <div className="my-12">
-            <h3 className="text-center text-lg font-extrabold font-montserrat text-[#e25010] uppercase mb-6">
-              Học viên thành công qua video
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-[700px] mx-auto">
+            <div className="grid grid-cols-3 gap-3 max-w-[700px] mx-auto max-[480px]:gap-2">
               {["testimonial-1", "testimonial-2", "testimonial-3"].map((file, idx) => (
                 <div key={file} className="bg-white border border-[#eee] rounded-xl overflow-hidden shadow-sm flex flex-col">
                   <div className="relative aspect-[9/16] bg-[#111]">
@@ -1426,8 +1420,8 @@ export default function ThuongHieuChuyenDoiPage() {
                           className="w-full h-full object-cover"
                         />
                         <div className="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/20 transition-colors">
-                          <div className="w-12 h-12 rounded-full bg-red-600/90 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                            <svg className="w-5 h-5 fill-current ml-0.5" viewBox="0 0 24 24">
+                          <div className="w-12 h-12 max-[480px]:w-7 max-[480px]:h-7 rounded-full bg-red-600/90 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <svg className="w-5 h-5 max-[480px]:w-3.5 max-[480px]:h-3.5 fill-current ml-0.5" viewBox="0 0 24 24">
                               <path d="M8 5v14l11-7z" />
                             </svg>
                           </div>
@@ -1435,8 +1429,8 @@ export default function ThuongHieuChuyenDoiPage() {
                       </button>
                     )}
                   </div>
-                  <div className="p-3 text-center">
-                    <p className="font-bold text-[14px] text-gray-800 font-montserrat leading-tight">Cảm nhận học viên {idx + 1}</p>
+                  <div className="p-3 max-[480px]:p-1.5 text-center">
+                    <p className="font-bold text-[14px] max-[480px]:text-[10px] text-gray-800 font-montserrat leading-tight">Cảm nhận {idx + 1}</p>
                   </div>
                 </div>
               ))}
