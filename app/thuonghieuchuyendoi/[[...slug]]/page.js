@@ -1128,7 +1128,7 @@ export default function ThuongHieuChuyenDoiPage() {
       <section className="bg-[#0d0b26] py-20 max-[680px]:py-10" data-section="pricing-tiers">
         <div className={container}>
           <h2 className="text-[19px] min-[390px]:text-[21px] sm:text-[26px] md:text-[36px] font-black font-montserrat uppercase text-white leading-tight mb-2.5 text-center whitespace-nowrap">LỰA CHỌN HẠNG VÉ CỦA BẠN</h2>
-          <p className="text-center text-[#e25010] font-extrabold text-[16.5px] md:text-[18.5px] mb-12 leading-relaxed">Chọn đúng hạng vé phù hợp với mục tiêu 7 ngày tới <br className="max-[680px]:inline hidden" /><span className="whitespace-nowrap">của bạn</span></p>
+          <p className="text-center text-[#e25010] font-extrabold text-[16.5px] md:text-[18.5px] mb-12 leading-relaxed">Chọn đúng hạng vé phù hợp với mục tiêu 7 ngày <br className="max-[680px]:inline hidden" /><span className="whitespace-nowrap">tới của bạn</span></p>
 
           <div className="grid grid-cols-3 gap-6 max-[860px]:grid-cols-1 max-[860px]:gap-8 items-stretch">
             {[
