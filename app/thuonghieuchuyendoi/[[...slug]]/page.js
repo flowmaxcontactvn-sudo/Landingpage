@@ -706,7 +706,7 @@ export default function ThuongHieuChuyenDoiPage() {
            SECTION 2 — HERO: LỜI HỨA CHÍNH
       ══════════════════════════════════════════ */}
       <section
-        className="text-white py-16 md:py-20 max-[680px]:py-10 relative overflow-hidden"
+        className="text-white py-8 md:py-12 max-[680px]:py-6 relative overflow-hidden"
         style={{
           backgroundImage: "linear-gradient(to right, rgba(11, 16, 44, 0.95), rgba(16, 26, 68, 0.92)), url('/thuonghieuchuyendoi/images/banner.jpeg')",
           backgroundSize: "cover",
@@ -1383,7 +1383,7 @@ export default function ThuongHieuChuyenDoiPage() {
                     )}
                   </div>
                   <div className="p-3 max-[480px]:p-1.5 text-center">
-                    <p className="font-bold text-[14px] max-[480px]:text-[10px] text-gray-800 font-montserrat leading-tight">Cảm nhận {idx + 1}</p>
+                    <p className="font-bold text-[14px] max-[480px]:text-[10px] text-gray-800 font-montserrat leading-tight">{["Quỳnh Thương", "Hường Nguyễn", "Huyền Lắm Mẹo"][idx]}</p>
                   </div>
                 </div>
               ))}
