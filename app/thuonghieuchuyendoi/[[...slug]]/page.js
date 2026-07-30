@@ -743,70 +743,59 @@ export default function ThuongHieuChuyenDoiPage() {
            SECTION 1 — THANH THÔNG BÁO ĐẦU TRANG
       ══════════════════════════════════════════ */}
       <div
-        className="relative overflow-hidden bg-gradient-to-r from-[#0d0404] via-[#1a0808] to-[#0d0404] text-white text-center px-4 py-2.5 text-[14.5px] font-medium flex flex-wrap items-center justify-center gap-x-4 gap-y-2 max-[680px]:text-[12.5px] max-[680px]:py-2 border-b border-orange-500/20"
+        className="bg-[#e30a0a] text-white text-center py-3 text-[14.5px] font-bold font-montserrat uppercase tracking-wider max-[680px]:text-[12px] max-[680px]:py-2.5 px-4"
         data-section="announcement-bar"
       >
-        {/* Shimmer light effect */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,107,0,0.08),transparent_70%)] pointer-events-none" />
-        <div className="absolute inset-0 w-[200%] h-full bg-[linear-gradient(90deg,transparent_45%,rgba(255,255,255,0.07)_50%,transparent_55%)] pointer-events-none animate-bar-shimmer" />
-
-        <div className="relative z-10 flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5">
-          <span className="inline-flex items-center gap-1.5 bg-orange-950/60 border border-orange-500/30 px-3 py-0.5 rounded-full text-orange-400 text-[12px] font-bold uppercase tracking-wider max-[680px]:text-[11px]">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
-            </span>
-            Khai giảng: 03/08/2026
-          </span>
-          
-          <span className="text-white/90">
-            Chỉ nhận <strong className="text-orange-400 font-extrabold underline decoration-orange-500/50 decoration-2 underline-offset-2">10 học viên</strong> để đội ngũ Mentor có thể theo sát quá trình <span className="whitespace-nowrap">thực hành</span>
-          </span>
-          
-          <a
-            href="#register"
-            onClick={(e) => handleAnchorClick(e, "register")}
-            className="ml-1.5 inline-block bg-gradient-to-r from-[#ff6b00] to-[#ff2c00] text-white font-extrabold text-[12px] px-4 py-2 rounded-full uppercase tracking-wide transition-all duration-300 hover:scale-105 active:scale-95 whitespace-nowrap animate-btn-pulse"
-          >
-            Đăng ký giữ chỗ
-          </a>
-        </div>
+        7 NGÀY XÂY KÊNH CHUYỂN ĐỔI – ONLINE QUA ZOOM &amp; GROUP KÈM CẶP
       </div>
 
       {/* ══════════════════════════════════════════
            SECTION 2 — HERO: LỜI HỨA CHÍNH
       ══════════════════════════════════════════ */}
       <section
-        className="bg-[linear-gradient(135deg,#0b1120_0%,#141d3d_45%,#1f2b5c_100%)] text-white px-6 py-16 max-[680px]:px-4 max-[680px]:py-9 relative overflow-hidden"
+        className="bg-[linear-gradient(135deg,#0b1120_0%,#141d3d_45%,#1f2b5c_100%)] text-white px-6 py-10 max-[680px]:px-4 max-[680px]:py-6 relative overflow-hidden"
         data-section="hero"
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(226,80,16,0.12),transparent_55%)] pointer-events-none" />
-        <div className={container + " relative grid grid-cols-2 gap-10 items-center max-[860px]:grid-cols-1 max-[860px]:gap-7"}>
+        <div className="max-w-[1140px] mx-auto px-6 max-[680px]:px-4 relative grid grid-cols-[1.1fr_0.9fr] gap-8 items-center max-[860px]:grid-cols-1 max-[860px]:gap-6">
           <div className="relative">
-            <div className="w-full aspect-square max-w-[380px] mx-auto rounded-2xl overflow-hidden border-[3px] border-white/15 bg-[#f5a623] shadow-[0_20px_50px_rgba(0,0,0,0.45)]">
-              <img src="/thuonghieuchuyendoi/images/instructor-avatar.jpg" alt="Th.S Vũ Kim Khánh" className="w-full h-full object-cover" />
+            <div className="w-full aspect-video max-w-[500px] mx-auto rounded-xl overflow-hidden border-[3px] border-white/10 bg-black/60 shadow-[0_15px_40px_rgba(0,0,0,0.4)] relative group cursor-pointer">
+              <img
+                src="/thuonghieuchuyendoi/images/banner.jpeg"
+                alt="Video giới thiệu chương trình"
+                className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-500"
+                onError={(e) => {
+                  e.target.src = "https://placehold.co/500x281/1e293b/ffffff?text=Video+Giới+Thiệu+Chương+Trình";
+                }}
+              />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-14 h-14 rounded-full bg-[#e30a0a] text-white flex items-center justify-center shadow-[0_0_25px_rgba(227,10,10,0.5)] group-hover:scale-110 group-hover:bg-[#ff1e1e] transition-all duration-300">
+                  <svg className="w-5 h-5 fill-current ml-1" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              </div>
             </div>
           </div>
           <div className="text-left max-[860px]:text-center">
-            <h1 className="text-[clamp(30px,3.6vw,48px)] font-black leading-[1.18] mb-5">
+            <h1 className="text-[23px] md:text-[30px] font-black font-montserrat leading-[1.25] mb-3.5">
               7 NGÀY BẮT ĐẦU XÂY KÊNH<br />
               VÀ TẠO RA NHỮNG <span className="text-[#f5a623]">KHÁCH HÀNG ĐẦU TIÊN</span><br />
               TỪ NỘI DUNG
             </h1>
-            <p className="mb-4 text-[19px] opacity-[0.92] leading-[1.75] max-[680px]:text-[15px]">
-              Bạn sẽ bắt đầu xây dựng được kênh thương hiệu cá nhân thu hút khách hàng và bán hàng bằng việc tham dự chương trình 7 ngày liên tục&nbsp;này.
+            <p className="mb-2 text-[14.5px] opacity-[0.9] leading-[1.6] max-[680px]:text-[13.5px]">
+              Bạn sẽ bắt đầu xây dựng được kênh thương hiệu cá nhân thu hút khách hàng và bán hàng bằng việc tham dự chương trình 7 ngày liên tục này.
             </p>
-            <p className="mb-6 text-[19px] opacity-[0.92] leading-[1.75] max-[680px]:text-[15px]">
-              Trong suốt 4 năm qua, hơn <strong>2.000 học viên</strong> đã tham dự chương trình xây kênh và bán hàng — bằng những kiến thức có được và sự kèm cặp sát sao công việc kinh doanh, họ đã có rất nhiều thay&nbsp;đổi.
+            <p className="mb-4 text-[14.5px] opacity-[0.9] leading-[1.6] max-[680px]:text-[13.5px]">
+              Trong suốt 4 năm qua, hơn <strong>2.000 học viên</strong> đã tham dự chương trình xây kênh và bán hàng — bằng những kiến thức có được và sự kèm cặp sát sao công việc kinh doanh, họ đã có rất nhiều thay đổi.
             </p>
-            <div className="flex flex-wrap gap-x-6 gap-y-1.5 mb-8 text-[16px] font-semibold text-white/85 max-[860px]:justify-center max-[680px]:text-[13.5px]">
+            <div className="flex flex-wrap gap-x-4 gap-y-1.5 mb-5 text-[14px] font-semibold text-white/80 max-[860px]:justify-center max-[680px]:text-[13px]">
               <span>🗓️ Khai giảng: 03/08/2026</span>
               <span>💻 Địa điểm: Online qua Zoom và kèm cặp tại Group</span>
             </div>
-            <a href="#register" onClick={(e) => handleAnchorClick(e, "register")} className={btnGoldLgWrap + " max-[860px]:mx-auto"}>
-              YES!
-              <br />
-              TÔI SẴN SÀNG XÂY KÊNH VÀ BỨT PHÁ DOANH THU CỦA MÌNH
+            <a href="#register" onClick={(e) => handleAnchorClick(e, "register")} className="inline-block bg-[#e30a0a] hover:bg-[#ff1e1e] text-white font-extrabold text-[13.5px] px-8 py-3.5 rounded-full text-center tracking-wide uppercase transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg animate-btn-pulse max-[860px]:mx-auto leading-tight font-montserrat">
+              YES! TÔI SẴN SÀNG XÂY KÊNH<br />
+              VÀ BỨT PHÁ DOANH THU CỦA MÌNH!
             </a>
           </div>
         </div>
@@ -820,31 +809,15 @@ export default function ThuongHieuChuyenDoiPage() {
           <h2 className={oppTitle}>KHI BẠN THAM GIA CHƯƠNG TRÌNH<br /><span className="whitespace-nowrap">"7 NGÀY XÂY KÊNH CHUYỂN&nbsp;ĐỔI"</span></h2>
           <p className={oppSubtitle + " mb-6"}>Bạn sẽ có cơ hội để:</p>
 
-          <div className="grid grid-cols-[1.15fr_1fr] gap-10 items-start max-[860px]:grid-cols-1 max-[860px]:gap-6">
-            <div className="flex flex-col gap-2.5">
-              {[
-                ["#1", "Thấu hiểu thuật toán các nền tảng."],
-                ["#3", "Làm thế nào để chọn sản phẩm bán trên Online hiệu quả."],
-                ["#8", "Các chiến lược sáng tạo nội dung chuyển đổi."],
-                ["#11", "4 dạng nội dung chuyển đổi dễ dàng cho người mới."],
-                ["#17", "Quy trình quay và edit một video đơn giản."],
-                ["#23", "Xây dựng trang Fanpage, TikTok, Profile trên mạng xã hội."],
-                ["#25", "Đo lường chỉ số và tối ưu nội dung chuyển đổi trên kênh."],
-                ["#31", "Kèm cặp chữa bài từng ngày."],
-                ["#36", "Khám 1:1 định hướng kênh sau khi kết thúc hành trình."],
-              ].map(([tag, text]) => (
-                <p key={tag} className="text-[18px] text-[#333] leading-[1.55] max-[680px]:text-[15px]">
-                  <span className="font-extrabold text-[#e25010]">{tag}.</span> {text}
-                </p>
-              ))}
-              <p className="text-[17px] text-[#999] italic mt-2 max-[680px]:text-[14px]">Và còn nhiều hơn nữa….</p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-3 max-[860px]:max-w-[420px] max-[860px]:mx-auto">
-              <img src="/thuonghieuchuyendoi/images/mentor-class-1.jpg" alt="Học viên thực hành" className="w-full h-auto rounded-xl shadow-[0_4px_16px_rgba(0,0,0,0.12)] col-span-2" />
-              <img src="/thuonghieuchuyendoi/images/mentor-class-2.jpg" alt="Mentor hướng dẫn" className="w-full h-auto rounded-xl shadow-[0_4px_16px_rgba(0,0,0,0.12)]" />
-              <img src="/thuonghieuchuyendoi/images/mentor-class-3.jpg" alt="Lớp học xây kênh" className="w-full h-auto rounded-xl shadow-[0_4px_16px_rgba(0,0,0,0.12)]" />
-            </div>
+          <div className="text-center mb-8">
+            <img
+              src="/thuonghieuchuyendoi/images/section3-benefits.jpg"
+              alt="Lợi ích khi tham gia chương trình"
+              className="max-w-[760px] w-full h-auto inline-block rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] border border-orange-500/10"
+              onError={(e) => {
+                e.target.src = "https://placehold.co/760x900/fff8f0/e25010?text=Ảnh+Mô+Tả+Lợi+Ích+Học+Viên+(Section+3)";
+              }}
+            />
           </div>
 
           <div className="text-center mt-9">
@@ -861,29 +834,19 @@ export default function ThuongHieuChuyenDoiPage() {
            SECTION 4 — GIỚI THIỆU GIẢI PHÁP 2 (thư ngỏ)
       ══════════════════════════════════════════ */}
       <section className="bg-[linear-gradient(135deg,#7a1a5c_0%,#5b2a8f_50%,#2a4fb8_100%)] py-16 max-[680px]:py-9" data-section="overcome-barriers">
-        <div className={container + " max-w-[880px]"}>
-          <div className="rounded-3xl bg-black/20 border border-white/10 px-8 py-10 max-[680px]:px-5 max-[680px]:py-7">
-            <p className="max-w-[760px] mx-auto mb-8 text-[21px] leading-[1.8] text-white text-center max-[680px]:text-[16.5px] max-[680px]:mb-4">
-              7 ngày xây kênh chuyển đổi là một chương trình liên tục được thiết kế để bạn vượt qua những rào cản bản thân để ngay lập tức xây một kênh thương hiệu cá nhân, bán hàng gia tăng doanh số và thu&nbsp;nhập.
-            </p>
-            <p className="max-w-[740px] mx-auto mb-4 text-[21px] leading-[1.8] text-white/90 text-center max-[680px]:text-[16.5px]">
-              Với những trải nghiệm sống, sự phán xét từ môi trường xung quanh, con người ta chấp nhận những định kiến của người khác về xây kênh, về bán hàng online — tạo ra những nỗi sợ ngăn chúng ta hành&nbsp;động.
-            </p>
-            <p className="max-w-[740px] mx-auto mb-4 text-[21px] leading-[1.8] text-white/90 text-center max-[680px]:text-[16.5px]">
-              Theo thời gian, chúng ta tin đó là sự thật, nó biến thành những rào cản vô hình khi chúng ta phát triển kinh doanh và ngăn cản điều chúng ta muốn làm, muốn có, muốn trở&nbsp;thành.
-            </p>
-            <p className="max-w-[720px] mx-auto mb-5 text-2xl font-black text-[#f5a623] text-center max-[680px]:text-lg">
-              TÔI GỌI ĐÓ LÀ ẢO TƯỞNG!!!
-            </p>
-            <p className="max-w-[740px] mx-auto mb-4 text-[21px] leading-[1.8] text-white/90 text-center max-[680px]:text-[16.5px]">
-              Điều đáng buồn là chúng ta lại coi những ảo tưởng đó là có thật. Chúng ta sẵn sàng mang những điều chúng ta coi là "sự thật" để bao biện cho việc không xây kênh, không bắt đầu làm nội dung, không tạo ra thu&nbsp;nhập. Và dùng nó để chỉ trích ai đó đang có khát khao một kênh truyền thông, một nguồn thu nhập mới mà ta từng khát khao&nbsp;có.
-            </p>
-            <p className="max-w-[740px] mx-auto mb-4 text-[21px] leading-[1.8] text-white/90 text-center max-[680px]:text-[16.5px]">
-              7 ngày xây kênh chuyển đổi là một chương trình liên tục được thiết kế để bạn vượt qua những rào cản bản thân để ngay lập tức xây một kênh thương hiệu cá nhân, bán hàng gia tăng doanh số và thu&nbsp;nhập.
-            </p>
-            <p className="max-w-[740px] mx-auto text-center text-[24px] font-semibold text-[#f5a623] italic leading-[1.4] max-[680px]:text-[17px]">
-              Tôi mong bạn khi tham gia chương trình sẽ nhận ra những RÀO CẢN vô hình của mình, thách thức chúng rồi vượt qua chúng. Đối diện với nó thay vì TRỐN CHẠY như trước&nbsp;đây!
-            </p>
+        <div className={container}>
+          <div className="text-center mb-8">
+            <h2 className="text-[clamp(28px,3.8vw,42px)] font-extrabold text-white uppercase leading-[1.2] max-[680px]:text-[24px]">ẢO TƯỞNG CỦA BẠN VÀ RÀO CẢN VÔ HÌNH</h2>
+          </div>
+          <div className="text-center">
+            <img
+              src="/thuonghieuchuyendoi/images/section4-barriers.jpg"
+              alt="Vượt qua các rào cản vô hình"
+              className="max-w-[760px] w-full h-auto inline-block rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.2)]"
+              onError={(e) => {
+                e.target.src = "https://placehold.co/760x800/ffffff/d0212a?text=Ảnh+Thư+Ngỏ+Vượt+Qua+Rào+Cản+(Section+4)";
+              }}
+            />
           </div>
         </div>
       </section>
@@ -893,59 +856,18 @@ export default function ThuongHieuChuyenDoiPage() {
       ══════════════════════════════════════════ */}
       <section className={sectionWhite + " border-t-[3px] border-t-[#f0f0f0]"} data-section="customer-pain-points">
         <div className={container}>
-          <h2 className={oppTitle + " text-center"}>ĐÂY LÀ HẦU HẾT VẤN ĐỀ MÀ NHỮNG NGƯỜI<br /><span className="whitespace-nowrap">KINH DOANH ONLINE GẶP PHẢI</span></h2>
+          <h2 className={oppTitle + " text-center mb-8"}>ĐÂY LÀ HẦU HẾT VẤN ĐỀ MÀ NHỮNG NGƯỜI<br /><span className="whitespace-nowrap">KINH DOANH ONLINE GẶP PHẢI</span></h2>
 
-          <div className="max-w-[760px] mt-6 mb-7">
-            <p className="text-[18px] text-[#333] leading-[1.85] mb-4 max-[680px]:text-[15px]">
-              Năm 2020, tôi và vợ bắt đầu kinh doanh online từ người làm thuê xuất&nbsp;sắc.
-            </p>
-            <p className="text-[18px] text-[#333] leading-[1.85] mb-4 max-[680px]:text-[15px]">
-              Chúng tôi bắt đầu nhập hàng để bán trên Online, nhưng khi nhìn vào đống hàng đã nhập về, chúng tôi thực sự không biết làm thế&nbsp;nào?
-            </p>
-            <p className="text-[18px] text-[#333] leading-[1.85] mb-4 max-[680px]:text-[15px]">
-              Tôi muốn xây dựng thương hiệu cá nhân nhưng không biết mình nên chia sẻ điều&nbsp;gì?
-            </p>
-            <p className="text-[18px] text-[#333] leading-[1.85] mb-4 max-[680px]:text-[15px]">
-              Muốn quay video nhưng cứ cầm điện thoại lên thì con chữ cứ bay đi đâu, cứng miệng không nói ra&nbsp;được!
-            </p>
-            <p className="text-[18px] text-[#333] leading-[1.85] mb-4 max-[680px]:text-[15px]">
-              Đăng bài lên đều nhưng nội dung ít tương tác, không có khách hàng nào hỏi&nbsp;mua.
-            </p>
-            <p className="text-[18px] text-[#333] leading-[1.85] mb-4 max-[680px]:text-[15px]">
-              Sau này phát triển thêm các kênh như Shopee, TikTok cũng không biết cách chọn sản phẩm, tối ưu nội dung như thế&nbsp;nào?
-            </p>
-            <p className="text-[18px] text-[#333] leading-[1.85]">
-              Xem rất nhiều hướng dẫn, lưu rất nhiều công thức nhưng kênh vẫn chưa tạo ra được kết&nbsp;quả.
-            </p>
+          <div className="text-center mb-8">
+            <img
+              src="/thuonghieuchuyendoi/images/section5-painpoints.jpg"
+              alt="Các vấn đề người kinh doanh gặp phải"
+              className="max-w-[760px] w-full h-auto inline-block rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] border border-orange-500/10"
+              onError={(e) => {
+                e.target.src = "https://placehold.co/760x1200/fff8f0/e25010?text=Ảnh+Vấn+Đề+Kinh+Doanh+Online+Gặp+Phải+(Section+5)";
+              }}
+            />
           </div>
-
-          <p className="max-w-[760px] text-[21px] leading-[1.8] text-[#333] mb-4 max-[680px]:text-[16.5px]">Nếu bạn cũng như vậy, có thể bạn đang gặp những sai lầm&nbsp;sau:</p>
-
-          <ul className={oppListNoicon + " ml-0"}>
-            <li className={oppListNoiconLi}>Follow trước, bán hàng sau.</li>
-            <li className={oppListNoiconLi}>Mình không phải idol, không có tài năng nào đặc biệt.</li>
-            <li className={oppListNoiconLi}>Đối diện với camera cảm giác như đối diện với kẻ thù.</li>
-            <li className={oppListNoiconLi}>Không có người dẫn dắt bạn vượt qua những khó khăn ngày đầu xây kênh.</li>
-            <li className={oppListNoiconLi}>Cố gắng bắt đầu bằng một ý tưởng.</li>
-          </ul>
-
-          <p className="max-w-[760px] text-[21px] leading-[1.8] text-[#333] mb-4 max-[680px]:text-[16.5px]">Tôi đã từng gặp những lỗi như vậy — và không có video, không có đơn&nbsp;hàng.</p>
-
-          <p className="mb-2 text-xl font-bold text-[#0b0b0b] max-[680px]:text-base">
-            Thực tế là bạn không cần triệu view và hàng trăm ngàn Follower mới bán được&nbsp;hàng.
-          </p>
-          <p className="max-w-[760px] text-[21px] leading-[1.8] text-[#333] mb-4 max-[680px]:text-[16.5px]">Họ mua khi nội dung tạo&nbsp;ra:</p>
-
-          <ul className={checkListGreen + " ml-0"}>
-            <li className={checkListGreenLi}>Sự tin tưởng vào người bán và giải pháp phù hợp với họ.</li>
-            <li className={checkListGreenLi}>Người làm nội dung thấu hiểu vấn đề họ đang gặp phải.</li>
-            <li className={checkListGreenLi}>Người giới thiệu thực sự hiểu được giá trị của sản phẩm giải quyết được vấn đề.</li>
-            <li className={checkListGreenLi}>Trao đúng sản phẩm tới đúng người cần, chứ không phải spam nội dung tới tất cả mọi người.</li>
-            <li className={checkListGreenLi}>Biết rõ mình cần hành động gì tiếp theo.</li>
-          </ul>
-
-          <p className="text-[24px] font-semibold text-[#e25010] italic leading-[1.4] mb-2 max-[680px]:text-[17px]">Một kênh ít Follower vẫn có thể bán hàng nếu nội dung đúng và&nbsp;đủ!</p>
-          <p className="text-[24px] font-semibold text-[#e25010] italic leading-[1.4] mb-8 max-[680px]:text-[17px]">Nội dung hay có thể tạo View, nhưng chỉ nội dung đúng mới tạo ra chuyển&nbsp;đổi.</p>
 
           <div className="text-center">
             <a href="#register" onClick={(e) => handleAnchorClick(e, "register")} className={btnGoldLgWrap}>
@@ -967,44 +889,15 @@ export default function ThuongHieuChuyenDoiPage() {
             <h2 className="text-[36px] font-extrabold text-[#c81e6d] uppercase leading-[1.2] max-[680px]:text-[27px] max-[680px]:leading-[1.2]">Th.S Vũ Kim Khánh</h2>
           </div>
 
-          <div className="grid grid-cols-[1.2fr_1fr] gap-10 items-start max-[860px]:grid-cols-1 max-[860px]:gap-7">
-            <div className="text-left">
-              <p className="text-[18px] text-[#444] leading-[1.75] mb-3 max-[680px]:text-[15px]">
-                Không chỉ là một doanh nhân và nhà đào tạo chuyên nghiệp trong lĩnh vực xây dựng thương hiệu cá nhân và bán hàng, mà còn là một biểu tượng của sự kiên trì, vượt khó, tạo ra những kết quả không tưởng từ con số 0. Với hơn 6 năm kinh nghiệm kinh doanh và đào tạo, ông trở thành nguồn cảm hứng cho hàng chục nghìn người qua hơn 100 khoá học/seminar, đồng thời đồng hành cùng hơn 10 doanh nghiệp doanh thu triệu&nbsp;đô.
-              </p>
-              <p className="text-[18px] text-[#444] leading-[1.75] mb-3 max-[680px]:text-[15px]">
-                Sở hữu hệ thống kênh mạng xã hội hơn 400.000 Follower, nơi ông chia sẻ kiến thức về phát triển bản thân, kinh doanh và hạnh phúc gia đình — trở thành nguồn thông tin đáng tin cậy dẫn đường cho những ai đam mê kinh doanh và xây dựng hạnh&nbsp;phúc.
-              </p>
-              <p className="text-[18px] text-[#444] leading-[1.75] mb-3 max-[680px]:text-[15px]">
-                Không chỉ là một doanh nhân, Vũ Kim Khánh còn là một vận động viên Marathon mạnh mẽ — đã hoàn tất cự ly Marathon 42km nhiều lần, tham gia các chuyến trip 20 ngày trong khi doanh nghiệp vẫn vận hành bình thường. Những thành tựu này phản ánh sự kiên trì, nghị lực và khả năng quản lý thời gian, cân bằng cuộc sống một cách xuất&nbsp;sắc.
-              </p>
-              <p className="text-[18px] text-[#444] leading-[1.75] mb-6 max-[680px]:text-[15px]">
-                Tham gia khoá học của Vũ Kim Khánh, bạn sẽ trải nghiệm một hành trình chuyển hoá từ việc khám phá các tiềm lực của bản thân đến việc xây dựng kênh thương hiệu cá nhân và bán hàng bằng phong cách sống, mở ra cánh cửa mới cho tương lai của&nbsp;bạn.
-              </p>
-
-              <div className="flex flex-wrap gap-3">
-                {[
-                  { label: "Học vấn", value: "Thạc sĩ QTKD" },
-                  { label: "Đã đào tạo", value: "1000+ học viên" },
-                  { label: "Đã tư vấn", value: "50+ doanh nghiệp" },
-                  { label: "Kinh nghiệm", value: "6 năm" },
-                  { label: "Thành tích nổi bật", value: "10 DN doanh thu >1 triệu $" },
-                ].map((s) => (
-                  <div
-                    key={s.label}
-                    className="bg-white border-[1.5px] border-[#e6e6ea] rounded-lg px-3 py-3 text-center w-[calc(50%-6px)] sm:w-auto sm:flex-1"
-                  >
-                    <p className="text-[10.5px] text-[#999] uppercase tracking-wide mb-1.5 leading-tight">{s.label}</p>
-                    <p className="text-[13.5px] font-extrabold text-[#c81e6d] leading-snug">{s.value}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="relative max-w-[380px] mx-auto w-full">
-              <img src="/thuonghieuchuyendoi/images/instructor-avatar.jpg" alt="Th.S Vũ Kim Khánh" className="w-full rounded-2xl object-cover shadow-[0_16px_40px_rgba(0,0,0,0.15)]" />
-              <img src="/thuonghieuchuyendoi/images/mentor-class-4.jpg" alt="Sự kiện Vũ Kim Khánh" className="absolute -bottom-8 -left-8 w-[55%] rounded-xl border-4 border-white shadow-[0_10px_30px_rgba(0,0,0,0.2)] max-[860px]:hidden" />
-            </div>
+          <div className="text-center">
+            <img
+              src="/thuonghieuchuyendoi/images/section6-instructor.jpg"
+              alt="Giới thiệu người dẫn đường Vũ Kim Khánh"
+              className="max-w-[760px] w-full h-auto inline-block rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.08)]"
+              onError={(e) => {
+                e.target.src = "https://placehold.co/760x1000/ffffff/fa8c16?text=Ảnh+Hồ+Sơ+Giảng+Viên+Vũ+Kim+Khánh+(Section+6)";
+              }}
+            />
           </div>
         </div>
       </section>
@@ -1014,21 +907,18 @@ export default function ThuongHieuChuyenDoiPage() {
       ══════════════════════════════════════════ */}
       <section className="bg-[linear-gradient(115deg,#3a1560_0%,#5b2a8f_45%,#8a1f4a_100%)] text-center py-16 max-[680px]:py-9" data-section="methodology">
         <div className={container}>
-          <h2 className="text-[clamp(28px,3.8vw,42px)] font-extrabold text-white uppercase leading-[1.2] mb-2 max-[680px]:text-[24px]">7 NGÀY XÂY KÊNH CHUYỂN ĐỔI<br />THAY ĐỔI TOÀN BỘ CÔNG VIỆC KINH DOANH, SỰ NGHIỆP CỦA BẠN TRÊN&nbsp;ONLINE</h2>
+          <h2 className="text-[clamp(28px,3.8vw,42px)] font-extrabold text-white uppercase leading-[1.2] mb-8 max-[680px]:text-[24px]">7 NGÀY XÂY KÊNH CHUYỂN ĐỔI<br />THAY ĐỔI TOÀN BỘ CÔNG VIỆC KINH DOANH, SỰ NGHIỆP CỦA BẠN TRÊN&nbsp;ONLINE</h2>
 
-          <p className="text-[24px] font-extrabold text-white uppercase mt-6 mb-1 max-[680px]:text-[17px]">Phương pháp đào tạo Action Learning</p>
-          <p className="text-[22px] font-extrabold text-[#f5a623] uppercase mb-6 max-[680px]:text-[16px]">20% học đúng — 80% làm thật — 100% mentor sửa trực tiếp</p>
-
-          <div className="max-w-[600px] mx-auto mb-4 rounded-xl overflow-hidden max-[680px]:mb-3 max-[680px]:px-4 max-[680px]:max-w-[340px]">
-            <img src="/thuonghieuchuyendoi/images/chart-practice-80-20.png" alt="20% học lý thuyết - 80% thực hành kèm cặp" className="w-full h-auto block mx-auto" />
+          <div className="text-center mb-8">
+            <img
+              src="/thuonghieuchuyendoi/images/section7-methodology.jpg"
+              alt="Tổng hợp chương trình & tỷ lệ học tập"
+              className="max-w-[760px] w-full h-auto inline-block rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.08)]"
+              onError={(e) => {
+                e.target.src = "https://placehold.co/760x600/fff8f0/e25010?text=Ảnh+Tổng+Hợp+Phương+Pháp+Học+Tập+(Section+7)";
+              }}
+            />
           </div>
-
-          <p className="max-w-[680px] mx-auto text-[19px] leading-[1.85] text-white/85 text-center mb-2 max-[680px]:text-[15px]">
-            Chưa từng có tiền lệ một chương trình kết hợp cả việc HỌC và THỰC HÀNH trong cùng một chương&nbsp;trình.
-          </p>
-          <p className="max-w-[680px] mx-auto text-[19px] leading-[1.85] text-white/85 text-center mb-7 max-[680px]:text-[15px]">
-            Học viên sẽ trải nghiệm bằng việc học kiến thức tới đâu, thực hành ngay tới đó liên tục trong 7 ngày, với sự hỗ trợ kèm cặp của các Mentor. Sai đâu sửa đó, từng nội dung video và bài&nbsp;viết. Kết thúc 7 ngày, bạn được khám và định hướng tư vấn kênh&nbsp;1:1.
-          </p>
 
           <a href="#register" onClick={(e) => handleAnchorClick(e, "register")} className={btnGoldLgWrap}>
             YES!
@@ -1042,17 +932,21 @@ export default function ThuongHieuChuyenDoiPage() {
       {/* ══════════════════════════════════════════
            SECTION 8 — LỰA CHỌN HẠNG VÉ CỦA BẠN
       ══════════════════════════════════════════ */}
-      <section className="bg-[#0b0d16] py-16 max-[680px]:py-9" data-section="pricing-tiers">
+      <section className="bg-[#0b0d16] py-20 max-[680px]:py-10" data-section="pricing-tiers">
         <div className={container}>
-          <h2 className="text-[clamp(28px,3.8vw,42px)] font-extrabold text-white uppercase leading-[1.2] text-center mb-8 max-[680px]:text-[24px]">LỰA CHỌN HẠNG VÉ CỦA BẠN</h2>
+          <h2 className="text-[clamp(28px,3.8vw,42px)] font-extrabold font-montserrat text-white uppercase leading-[1.2] text-center mb-12 max-[680px]:text-[24px]">LỰA CHỌN HẠNG VÉ CỦA BẠN</h2>
 
-          <div className="grid grid-cols-3 gap-5 max-[860px]:grid-cols-1 max-[860px]:gap-6">
-            <div className="rounded-2xl bg-white px-6 py-8 flex flex-col">
-              <p className="text-sm font-extrabold tracking-wide text-[#888] uppercase mb-2">Silver</p>
-              <p className="text-[38px] font-black text-[#0b0b0b] mb-5 leading-none">568.000<span className="text-lg font-bold">đ</span></p>
-              <ul className="space-y-2.5 text-[15px] text-[#444] mb-7 flex-1">
-                <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Học qua E-learning</li>
-                <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Hỏi đáp trong nhóm</li>
+          <div className="grid grid-cols-3 gap-6 max-[860px]:grid-cols-1 max-[860px]:gap-8 items-stretch">
+            {/* Vé Silver */}
+            <div className="rounded-2xl bg-white border border-[#e5e7eb] px-7 py-9 flex flex-col hover:shadow-[0_15px_35px_rgba(0,0,0,0.1)] transition-all duration-300">
+              <p className="text-xs font-black font-montserrat tracking-wider text-[#888] uppercase mb-1">General</p>
+              <h3 className="text-xl font-bold font-montserrat text-gray-800 mb-3">Vé Silver</h3>
+              <p className="text-[36px] font-black font-montserrat text-[#0b0b0b] mb-6 leading-none">
+                568.000<span className="text-lg font-bold">đ</span>
+              </p>
+              <ul className="space-y-3.5 text-[15px] text-[#444] mb-8 flex-1">
+                <li className="flex gap-2.5 items-start"><span className="text-[#1b8a3e] font-bold">✔</span><span>Học qua E-learning</span></li>
+                <li className="flex gap-2.5 items-start"><span className="text-[#1b8a3e] font-bold">✔</span><span>Hỏi đáp trong nhóm</span></li>
               </ul>
               <a
                 href="#register"
@@ -1060,22 +954,26 @@ export default function ThuongHieuChuyenDoiPage() {
                   setGhiChu("Silver — 568.000đ");
                   handleAnchorClick(e, "register");
                 }}
-                className="block text-center rounded-md border-2 border-[#e25010] text-[#e25010] font-bold py-3 hover:bg-[#fff8f0] transition-colors"
+                className="block text-center rounded-lg border-2 border-[#e25010] text-[#e25010] font-bold font-montserrat py-3.5 hover:bg-[#fff8f0] transition-colors uppercase text-sm tracking-wider"
               >
                 Chọn Silver
               </a>
             </div>
 
-            <div className="rounded-2xl bg-white px-6 py-8 flex flex-col relative shadow-[0_20px_50px_rgba(226,80,16,0.35)] md:scale-[1.06] border-2 border-[#e25010]">
-              <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[linear-gradient(135deg,#e25010,#d0212a)] text-white text-[11px] font-extrabold px-4 py-1.5 rounded-full whitespace-nowrap">PHỔ BIẾN NHẤT</span>
-              <p className="text-sm font-extrabold tracking-wide text-[#e25010] uppercase mb-2 mt-2">Gold</p>
-              <p className="text-[38px] font-black text-[#0b0b0b] mb-5 leading-none">868.000<span className="text-lg font-bold">đ</span></p>
-              <ul className="space-y-2.5 text-[15px] text-[#333] mb-7 flex-1">
-                <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Học qua E-learning</li>
-                <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Hỏi đáp trong nhóm</li>
-                <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Chữa bài 7 ngày</li>
-                <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Phiên coach chiến lược 1:1</li>
-                <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Hoàn tiền nếu không hài lòng</li>
+            {/* Vé Gold */}
+            <div className="rounded-2xl bg-[#fffdfa] px-7 py-9 flex flex-col relative shadow-[0_20px_50px_rgba(226,80,16,0.25)] md:scale-[1.05] border-2 border-[#fa8c16] z-10">
+              <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#fa8c16] to-[#e25010] text-white text-[11px] font-extrabold px-5 py-1.5 rounded-full whitespace-nowrap uppercase tracking-wider">PHỔ BIẾN NHẤT</span>
+              <p className="text-xs font-black font-montserrat tracking-wider text-[#e25010] uppercase mb-1 mt-1">VIP Tier</p>
+              <h3 className="text-xl font-bold font-montserrat text-[#e25010] mb-3">Vé Gold</h3>
+              <p className="text-[36px] font-black font-montserrat text-[#e25010] mb-6 leading-none">
+                868.000<span className="text-lg font-bold">đ</span>
+              </p>
+              <ul className="space-y-3.5 text-[15px] text-[#333] mb-8 flex-1">
+                <li className="flex gap-2.5 items-start"><span className="text-[#1b8a3e] font-bold">✔</span><span>Học qua E-learning</span></li>
+                <li className="flex gap-2.5 items-start"><span className="text-[#1b8a3e] font-bold">✔</span><span>Hỏi đáp trong nhóm</span></li>
+                <li className="flex gap-2.5 items-start"><span className="text-[#1b8a3e] font-bold">✔</span><span>Chữa bài 7 ngày</span></li>
+                <li className="flex gap-2.5 items-start"><span className="text-[#1b8a3e] font-bold">✔</span><span>Phiên coach chiến lược 1:1</span></li>
+                <li className="flex gap-2.5 items-start"><span className="text-[#1b8a3e] font-bold">✔</span><span>Hoàn tiền nếu không hài lòng</span></li>
               </ul>
               <a
                 href="#register"
@@ -1083,19 +981,23 @@ export default function ThuongHieuChuyenDoiPage() {
                   setGhiChu("Gold — 868.000đ");
                   handleAnchorClick(e, "register");
                 }}
-                className={btnBase + " block bg-[linear-gradient(135deg,#e25010,#d0212a)] text-white text-center"}
+                className="block text-center rounded-lg bg-gradient-to-r from-[#fa8c16] to-[#e25010] text-white font-extrabold font-montserrat py-4 hover:shadow-lg transition-all uppercase text-sm tracking-wider animate-btn-pulse"
               >
                 Chọn Gold
               </a>
             </div>
 
-            <div className="rounded-2xl bg-white px-6 py-8 flex flex-col">
-              <p className="text-sm font-extrabold tracking-wide text-[#888] uppercase mb-2">Diamond</p>
-              <p className="text-[38px] font-black text-[#0b0b0b] mb-5 leading-none">1.868.000<span className="text-lg font-bold">đ</span></p>
-              <ul className="space-y-2.5 text-[15px] text-[#444] mb-7 flex-1">
-                <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Toàn bộ quyền lợi gói Gold</li>
-                <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Nhóm riêng kết nối CEO</li>
-                <li className="flex gap-2"><span className="text-[#1b8a3e]">✔</span>Tặng 1 trong 3 khoá học online trị giá 2.000.000đ</li>
+            {/* Vé Diamond */}
+            <div className="rounded-2xl bg-white border border-[#e5e7eb] px-7 py-9 flex flex-col hover:shadow-[0_15px_35px_rgba(0,0,0,0.1)] transition-all duration-300">
+              <p className="text-xs font-black font-montserrat tracking-wider text-[#888] uppercase mb-1">VVIP Tier</p>
+              <h3 className="text-xl font-bold font-montserrat text-gray-800 mb-3">Vé Diamond</h3>
+              <p className="text-[36px] font-black font-montserrat text-[#0b0b0b] mb-6 leading-none">
+                1.868.000<span className="text-lg font-bold">đ</span>
+              </p>
+              <ul className="space-y-3.5 text-[15px] text-[#444] mb-8 flex-1">
+                <li className="flex gap-2.5 items-start"><span className="text-[#1b8a3e] font-bold">✔</span><span>Toàn bộ quyền lợi gói Gold</span></li>
+                <li className="flex gap-2.5 items-start"><span className="text-[#1b8a3e] font-bold">✔</span><span>Nhóm riêng kết nối CEO</span></li>
+                <li className="flex gap-2.5 items-start"><span className="text-[#1b8a3e] font-bold">✔</span><span>Tặng 1 trong 3 khoá học online trị giá 2.000.000đ</span></li>
               </ul>
               <a
                 href="#register"
@@ -1103,7 +1005,7 @@ export default function ThuongHieuChuyenDoiPage() {
                   setGhiChu("Diamond — 1.868.000đ");
                   handleAnchorClick(e, "register");
                 }}
-                className="block text-center rounded-md border-2 border-[#e25010] text-[#e25010] font-bold py-3 hover:bg-[#fff8f0] transition-colors"
+                className="block text-center rounded-lg border-2 border-[#e25010] text-[#e25010] font-bold font-montserrat py-3.5 hover:bg-[#fff8f0] transition-colors uppercase text-sm tracking-wider"
               >
                 Chọn Diamond
               </a>
@@ -1127,10 +1029,10 @@ export default function ThuongHieuChuyenDoiPage() {
               <img src="/thuonghieuchuyendoi/images/mentor-class-2.jpg" alt="Lớp học xây kênh" className="w-full rounded-xl shadow-[0_16px_40px_rgba(0,0,0,0.5)] max-[860px]:max-w-[420px] max-[860px]:mx-auto" />
             </div>
 
-            <div className="bg-white rounded-[14px] px-[22px] py-7 text-[#222] relative" id="register">
-              <p className="text-center text-[17px] font-bold text-[#d0212a] mb-5 leading-[1.6] max-[680px]:text-[14px]">Ưu đãi đăng ký sớm chỉ áp dụng <br className="max-[680px]:hidden" />cho số lượng học viên giới hạn!</p>
+            <div className="bg-white rounded-2xl border border-gray-100 p-8 shadow-[0_20px_50px_rgba(0,0,0,0.15)] text-[#222] relative" id="register">
+              <p className="text-center text-lg font-bold font-montserrat text-[#d0212a] mb-5 leading-[1.6] max-[680px]:text-[15px]">Ưu đãi đăng ký sớm chỉ áp dụng <br className="max-[680px]:hidden" />cho số lượng học viên giới hạn!</p>
 
-              <form className="[&>input]:w-full [&>input]:border-[1.5px] [&>input]:border-[#ddd] [&>input]:rounded-md [&>input]:px-4 [&>input]:py-3.5 [&>input]:text-lg [&>input]:mb-2.5 [&>input]:outline-none [&>input]:block max-[680px]:[&>input]:text-[15px] [&>input]:focus:border-[#e25010]" onSubmit={handleSubmit} onFocusCapture={() => { formTouchedRef.current = true; }}>
+              <form className="[&>input]:w-full [&>input]:border-[1.5px] [&>input]:border-[#e5e7eb] [&>input]:rounded-lg [&>input]:px-4 [&>input]:py-3.5 [&>input]:text-base [&>input]:mb-3.5 [&>input]:outline-none [&>input]:block max-[680px]:[&>input]:text-[15px] [&>input]:focus:border-[#e25010] [&>input]:font-montserrat" onSubmit={handleSubmit} onFocusCapture={() => { formTouchedRef.current = true; }}>
                 <input
                   type="text"
                   name="fullname"
@@ -1156,8 +1058,8 @@ export default function ThuongHieuChuyenDoiPage() {
                   required
                 />
 
-                <p className="text-sm font-semibold text-[#0b0b0b] mb-2">Lựa chọn hạng vé của bạn</p>
-                <div className="flex flex-col gap-2 mb-3">
+                <p className="text-[15px] font-bold font-montserrat text-gray-800 mb-2">Lựa chọn hạng vé của bạn</p>
+                <div className="flex flex-col gap-2.5 mb-5">
                   {[
                     "Silver — 568.000đ",
                     "Gold — 868.000đ",
@@ -1168,8 +1070,8 @@ export default function ThuongHieuChuyenDoiPage() {
                       <label
                         key={opt}
                         className={
-                          "flex items-center gap-2.5 border-[1.5px] rounded-md px-4 py-3 cursor-pointer transition-colors " +
-                          (active ? "border-[#e25010] bg-[#fff8f0]" : "border-[#ddd]")
+                          "flex items-center gap-3 border-[1.5px] rounded-lg px-4 py-3.5 cursor-pointer transition-all " +
+                          (active ? "border-[#e25010] bg-[#fff8f0] shadow-sm font-semibold text-[#e25010]" : "border-[#e5e7eb] hover:bg-gray-50")
                         }
                       >
                         <input
@@ -1179,31 +1081,31 @@ export default function ThuongHieuChuyenDoiPage() {
                           checked={active}
                           onChange={(e) => setGhiChu(e.target.value)}
                           required
-                          className="accent-[#e25010] w-4 h-4 shrink-0"
+                          className="accent-[#e25010] w-4.5 h-4.5 shrink-0"
                         />
-                        <span className="text-[15px] font-medium text-[#333]">{opt}</span>
+                        <span className="text-[15px] text-[#333] font-montserrat">{opt}</span>
                       </label>
                     );
                   })}
                 </div>
 
-                <button type="submit" disabled={isSubmitting} className={"block w-full " + btnBase + " border-[2.5px] border-white bg-[linear-gradient(135deg,#ffe066_0%,#f5c030_100%)] text-[#1a1a1a] shadow-[0_0_25px_rgba(245,166,35,0.8)]"}>
+                <button type="submit" disabled={isSubmitting} className="block w-full py-4 text-center rounded-lg bg-gradient-to-r from-[#e25010] to-[#d0212a] text-white font-extrabold font-montserrat uppercase tracking-wider shadow-[0_10px_20px_rgba(226,80,16,0.3)] hover:shadow-[0_12px_24px_rgba(226,80,16,0.45)] hover:scale-[1.01] active:scale-95 transition-all text-base cursor-pointer animate-btn-pulse">
                   {isSubmitting ? "Đang đăng ký..." : "Đăng ký ngay"}
                 </button>
               </form>
 
-              <div className="flex justify-center items-center gap-1 mt-5">
-                <div className="flex flex-col items-center"><span className="block bg-[#111] text-white text-[26px] font-black px-2.5 py-1.5 rounded-md min-w-[50px] text-center leading-[1.2] max-[480px]:text-[22px] max-[480px]:min-w-[42px]">{timeParts.h}</span><small className="text-xs text-[#777] mt-[3px]">Giờ</small></div>
-                <div className="text-2xl font-black text-[#333] mb-3.5 px-0.5">:</div>
-                <div className="flex flex-col items-center"><span className="block bg-[#111] text-white text-[26px] font-black px-2.5 py-1.5 rounded-md min-w-[50px] text-center leading-[1.2] max-[480px]:text-[22px] max-[480px]:min-w-[42px]">{timeParts.m}</span><small className="text-xs text-[#777] mt-[3px]">Phút</small></div>
-                <div className="text-2xl font-black text-[#333] mb-3.5 px-0.5">:</div>
-                <div className="flex flex-col items-center"><span className="block bg-[#111] text-white text-[26px] font-black px-2.5 py-1.5 rounded-md min-w-[50px] text-center leading-[1.2] max-[480px]:text-[22px] max-[480px]:min-w-[42px]">{timeParts.s}</span><small className="text-xs text-[#777] mt-[3px]">Giây</small></div>
+              <div className="flex justify-center items-center gap-1.5 mt-6">
+                <div className="flex flex-col items-center"><span className="block bg-[#e25010] text-white text-[28px] font-black font-montserrat px-3 py-1.5 rounded-lg min-w-[55px] text-center leading-[1.2] max-[480px]:text-[22px] max-[480px]:min-w-[42px] shadow-sm">{timeParts.h}</span><small className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mt-1.5">Giờ</small></div>
+                <div className="text-2xl font-black text-gray-300 mb-5 px-0.5">:</div>
+                <div className="flex flex-col items-center"><span className="block bg-[#e25010] text-white text-[28px] font-black font-montserrat px-3 py-1.5 rounded-lg min-w-[55px] text-center leading-[1.2] max-[480px]:text-[22px] max-[480px]:min-w-[42px] shadow-sm">{timeParts.m}</span><small className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mt-1.5">Phút</small></div>
+                <div className="text-2xl font-black text-gray-300 mb-5 px-0.5">:</div>
+                <div className="flex flex-col items-center"><span className="block bg-[#e25010] text-white text-[28px] font-black font-montserrat px-3 py-1.5 rounded-lg min-w-[55px] text-center leading-[1.2] max-[480px]:text-[22px] max-[480px]:min-w-[42px] shadow-sm">{timeParts.s}</span><small className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mt-1.5">Giây</small></div>
               </div>
 
-              <div className="mt-4">
-                <p className="text-[15px] text-[#888] mb-1 leading-[1.6]">* Chú ý: Tư vấn viên sẽ liên lạc lại để xác nhận đăng ký chương trình cho bạn.</p>
-                <p className="text-[15px] text-[#888] mb-1 leading-[1.6]">* Đây là chương trình online kèm cặp qua E-Learning, không phải học trực tiếp.</p>
-                <p className="text-[15px] text-[#888] mb-1 leading-[1.6]">* Hãy kiểm tra lại thông tin họ tên và số điện thoại của bạn trước khi bấm đăng ký.</p>
+              <div className="mt-5 border-t border-gray-100 pt-5">
+                <p className="text-[13.5px] text-gray-500 mb-1.5 leading-[1.6]">* Chú ý: Tư vấn viên sẽ liên lạc lại để xác nhận đăng ký chương trình cho bạn.</p>
+                <p className="text-[13.5px] text-gray-500 mb-1.5 leading-[1.6]">* Đây là chương trình online kèm cặp qua E-Learning, không phải học trực tiếp.</p>
+                <p className="text-[13.5px] text-gray-500 mb-1.5 leading-[1.6]">* Hãy kiểm tra lại thông tin họ tên và số điện thoại của bạn trước khi bấm đăng ký.</p>
               </div>
             </div>
           </div>
