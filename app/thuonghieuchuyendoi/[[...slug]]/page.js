@@ -755,7 +755,7 @@ export default function ThuongHieuChuyenDoiPage() {
         <a
           href="#register"
           onClick={(e) => handleAnchorClick(e, "register")}
-          className="bg-white text-[#e30a0a] font-black text-[11px] px-3.5 py-1.5 rounded-full uppercase tracking-wider transition-all duration-300 hover:scale-105 active:scale-95 whitespace-nowrap shadow-sm ml-1"
+          className="bg-white text-[#e30a0a] font-black text-[11px] px-4 py-1.5 rounded-full uppercase tracking-wide hover:opacity-90 transition-opacity whitespace-nowrap"
         >
           Đăng ký giữ chỗ
         </a>
@@ -765,19 +765,18 @@ export default function ThuongHieuChuyenDoiPage() {
            SECTION 2 — HERO: LỜI HỨA CHÍNH
       ══════════════════════════════════════════ */}
       <section
-        className="bg-[linear-gradient(135deg,#0b1120_0%,#141d3d_45%,#1f2b5c_100%)] text-white px-6 py-10 max-[680px]:px-4 max-[680px]:py-6 relative overflow-hidden"
+        className="bg-[linear-gradient(135deg,#0b1120_0%,#141d3d_45%,#1f2b5c_100%)] text-white py-16 max-[680px]:py-9 relative overflow-hidden"
         data-section="hero"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(226,80,16,0.12),transparent_55%)] pointer-events-none" />
-        <div className="max-w-[1140px] mx-auto px-6 max-[680px]:px-4 relative grid grid-cols-[1.1fr_0.9fr] gap-8 items-center max-[860px]:grid-cols-1 max-[860px]:gap-6">
+        <div className="max-w-[1140px] mx-auto px-6 max-[680px]:px-4 relative grid grid-cols-[0.9fr_1.1fr] gap-8 items-center max-[860px]:grid-cols-1 max-[860px]:gap-6">
           <div className="relative">
             <div className="w-full aspect-video max-w-[500px] mx-auto rounded-xl overflow-hidden border-[3px] border-white/10 bg-black/60 shadow-[0_15px_40px_rgba(0,0,0,0.4)] relative group cursor-pointer">
               <img
-                src="/thuonghieuchuyendoi/images/banner.jpeg"
+                src="/thuonghieuchuyendoi/images/mentor-class-2.jpg"
                 alt="Video giới thiệu chương trình"
-                className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-500"
                 onError={(e) => {
-                  e.target.src = "https://placehold.co/500x281/1e293b/ffffff?text=Video+Giới+Thiệu+Chương+Trình";
+                  e.target.src = "https://placehold.co/500x281/1e293b/ffffff?text=Video+Gioi+Thieu+Chuong+Trinh";
                 }}
               />
               <div className="absolute inset-0 flex items-center justify-center">
@@ -790,22 +789,25 @@ export default function ThuongHieuChuyenDoiPage() {
             </div>
           </div>
           <div className="text-left max-[860px]:text-center">
-            <h1 className="text-[23px] md:text-[30px] font-black font-montserrat leading-[1.25] mb-3.5 uppercase">
+            <h1 className="text-[26px] md:text-[34px] font-black font-montserrat leading-[1.25] mb-3 uppercase">
               7 ngày bắt đầu xây kênh<br />
               và tạo ra những <span className="text-[#f5a623]">khách hàng đầu tiên</span><br />
               từ nội dung
             </h1>
-            <p className="mb-2 text-[14.5px] opacity-[0.9] leading-[1.6] max-[680px]:text-[13.5px]">
+            <p className="mb-2 text-[15px] opacity-[0.92] leading-[1.7] max-[680px]:text-[13.5px]">
               Bạn sẽ bắt đầu xây dựng được kênh thương hiệu cá nhân thu hút khách hàng và bán hàng bằng việc tham dự chương trình 7 ngày liên tục này.
             </p>
-            <p className="mb-4 text-[14.5px] opacity-[0.9] leading-[1.6] max-[680px]:text-[13.5px]">
+            <p className="mb-3 text-[14px] italic opacity-80 font-semibold leading-[1.6]">
+              Đăng ký sớm ngay hôm nay để chúng tôi giữ cho bạn một chỗ.
+            </p>
+            <p className="mb-4 text-[15px] opacity-[0.9] leading-[1.7] max-[680px]:text-[13.5px]">
               Trong suốt 4 năm qua, hơn <strong>2.000 học viên</strong> đã tham dự chương trình xây kênh và bán hàng, bằng những kiến thức có được và sự kèm cặp sát sao công việc kinh doanh của họ đã có rất nhiều thay đổi.
             </p>
-            <div className="flex flex-wrap gap-x-4 gap-y-1.5 mb-5 text-[14px] font-semibold text-white/80 max-[860px]:justify-center max-[680px]:text-[13px]">
-              <span>🗓️ Khai giảng: 11/08/2026</span>
+            <div className="flex flex-wrap gap-x-4 gap-y-1.5 mb-6 text-[14px] font-semibold text-white/80 max-[860px]:justify-center">
+              <span>🗓️ Khai giảng: 03/08/2026</span>
               <span>💻 Địa điểm: Online qua Zoom và kèm cặp tại Group</span>
             </div>
-            <a href="#register" onClick={(e) => handleAnchorClick(e, "register")} className="inline-block bg-[#e30a0a] hover:bg-[#ff1e1e] text-white font-extrabold text-[13.5px] px-8 py-3.5 rounded-full text-center tracking-wide uppercase transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg animate-btn-pulse max-[860px]:mx-auto leading-tight font-montserrat">
+            <a href="#register" onClick={(e) => handleAnchorClick(e, "register")} className="inline-block bg-[#e30a0a] hover:bg-[#ff1e1e] text-white font-extrabold text-[14px] px-10 py-3.5 rounded-full text-center tracking-wide uppercase transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg max-[860px]:mx-auto leading-tight font-montserrat">
               YES! TÔI SẴN SÀNG XÂY KÊNH<br />
               VÀ BỨT PHÁ DOANH THU CỦA MÌNH!
             </a>
@@ -941,7 +943,7 @@ export default function ThuongHieuChuyenDoiPage() {
               </p>
 
               <p>
-                TÔI GỌI ĐÓ LÀ ẢO TƯỞNG!!! Điều đáng buồn là chúng ta lại coi những ảo tưởng đó là có thật. Chúng ta sẵn sàng mang những điều chúng ta coi là “sự thật” để bao biện cho việc không xây kênh, không bắt đầu làm nội dung, không tạo ra thu nhập. Và dùng nó để chỉ trích ai đó đang có khát khao một kênh truyền thông, một nguồn thu nhập mới mà ta từng khát khao có.
+                TÔI GỌI ĐÓ LÀ ẢO TƯỞNG!!! Điều đáng buồn là chúng ta lại coi những ảo tưởng đó là có thật. Chúng ta sẵn sàng mang những điều chúng ta coi là "sự thật" đó để bao biện cho việc không xây kênh, không bắt đầu làm nội dung, không tạo ra thu nhập. Và dùng nó để chỉ trích ai đó đang có khát khao một kênh truyền thông, một nguồn thu nhập mới mà ta từng khát khao có.
               </p>
 
               <p>
@@ -959,126 +961,134 @@ export default function ThuongHieuChuyenDoiPage() {
       {/* ══════════════════════════════════════════
            SECTION 5 — VẤN ĐỀ KHÁCH HÀNG ĐANG GẶP
       ══════════════════════════════════════════ */}
-      <section className={sectionWhite + " border-t-[3px] border-t-[#f0f0f0]"} data-section="customer-pain-points">
+      <section className="bg-white py-10 max-[680px]:py-8" data-section="customer-pain-points">
         <div className={container}>
-          <h2 className="text-[clamp(28px,3.8vw,42px)] font-extrabold text-[#e25010] uppercase leading-[1.2] text-center mb-10 max-[680px]:text-[24px]">
-            ĐÂY LÀ HẦU HẾT VẤN ĐỀ MÀ NHỮNG NGƯỜI<br /><span className="whitespace-nowrap">KINH DOANH ONLINE GẶP PHẢI</span>
+          <h2 className="text-[clamp(26px,3.2vw,36px)] font-extrabold text-[#e6231e] uppercase leading-[1.3] text-center mb-8 max-[680px]:text-[22px] font-montserrat">
+            ĐÂY LÀ VẤN ĐỀ MÀ HẦU HẾT<br />CÁC CHỦ DOANH NGHIỆP ĐỀU GẶP PHẢI
           </h2>
 
-          <div className="max-w-[820px] mx-auto">
-            {[
-              "Năm 2020, tôi và vợ bắt đầu kinh doanh online từ người làm thuê xuất sắc.",
-              "Chúng tôi bắt đầu nhập hàng để bán trên Online, nhưng khi nhìn vào đống hàng đã nhập về, chúng tôi thực sự không biết làm thế nào?",
-              "Tôi muốn xây dựng thương hiệu cá nhân nhưng không biết mình nên chia sẻ điều gì?",
-              "Muốn quay video nhưng cứ cầm điện thoại lên thì con chữ cứ bay đi đâu, cứng miệng không nói ra được!",
-              "Đăng bài lên đều nhưng nội dung ít tương tác, không có khách hàng nào hỏi mua.",
-              "Sau này phát triển thêm các kênh như Shopee, TikTok cũng không biết cách chọn sản phẩm, tối ưu nội dung như thế nào?",
-              "Xem rất nhiều hướng dẫn, lưu rất nhiều công thức nhưng kênh vẫn chưa tạo ra được kết quả.",
-            ].map((text, i) => (
-              <p key={i} className="text-[18px] text-[#333] leading-[1.9] mb-4 max-[680px]:text-[15px]">{text}</p>
-            ))}
-
-            <p className="text-[18px] text-[#333] leading-[1.9] mb-4 max-[680px]:text-[15px]">Nếu bạn cũng như vậy, có thể bạn đang gặp những sai lầm sau:</p>
-            {[
-              "Follow trước, bán hàng sau.",
-              "Mình không phải idol, không có tài năng nào đặc biệt.",
-              "Đối diện với camera cảm giác như đối diện với kẻ thù.",
-              "Không có người dẫn dắt bạn vượt qua những khó khăn ngày đầu xây kênh.",
-              "Cố gắng bắt đầu bằng một ý tưởng.",
-            ].map((text, i) => (
-              <p key={i} className="text-[18px] text-[#333] leading-[1.9] mb-4 max-[680px]:text-[15px]">{text}</p>
-            ))}
-
-            <p className="text-[18px] text-[#333] leading-[1.9] mb-4 max-[680px]:text-[15px]">Tôi đã từng gặp những lỗi như vậy — và không có video, không có đơn hàng.</p>
-
-            <p className="text-[18px] font-bold text-[#0b0b0b] leading-[1.9] mb-4 max-[680px]:text-[15px]">Thực tế là bạn không cần triệu view và hàng trăm ngàn Follower mới bán được hàng.</p>
-            <p className="text-[18px] text-[#333] leading-[1.9] mb-4 max-[680px]:text-[15px]">Họ mua khi nội dung tạo ra:</p>
-            {[
-              "Sự tin tưởng vào người bán và giải pháp phù hợp với họ.",
-              "Người làm nội dung thấu hiểu vấn đề họ đang gặp phải.",
-              "Người giới thiệu thực sự hiểu được giá trị của sản phẩm giải quyết được vấn đề.",
-              "Trao đúng sản phẩm tới đúng người cần, chứ không phải spam nội dung tới tất cả mọi người.",
-              "Biết rõ mình cần hành động gì tiếp theo.",
-            ].map((text, i) => (
-              <p key={i} className="text-[18px] text-[#333] leading-[1.9] mb-4 max-[680px]:text-[15px]">{text}</p>
-            ))}
-
-            <p className="text-[18px] font-bold text-[#0b0b0b] leading-[1.9] mb-2 max-[680px]:text-[15px]">Một kênh ít Follower vẫn có thể bán hàng nếu nội dung đúng và đủ!</p>
-            <p className="text-[18px] font-bold text-[#0b0b0b] leading-[1.9] mb-8 max-[680px]:text-[15px]">Nội dung hay có thể tạo View, nhưng chỉ nội dung đúng mới tạo ra chuyển đổi.</p>
+          <div className="max-w-[720px] mx-auto space-y-3 text-[15.5px] text-[#1a1a1a] leading-[1.8] font-sans font-bold text-justify">
+            <p>
+              Tôi là <strong>Vũ Kim Khánh</strong>. Bắt đầu từ năm 2018, kể từ ngày tôi bắt đầu đăng ký kinh doanh công ty đầu tiên của mình. Nhờ lại thời đó, tôi đã phạm phải một trong hai sai lầm lớn nhất của kinh doanh.
+            </p>
+            <p>
+              Tôi bắt đầu công việc kinh doanh của mình với <strong>NGHỀ ĐƯỢC ĐÀO TẠO</strong> chứ không phải <strong>NGHỀ KINH DOANH.</strong>
+            </p>
+            <p>
+              Tôi được đào tạo để trở thành một chuyên gia, tôi chưa một ngày nào học về Doanh nghiệp và Kinh doanh. Thế nhưng tôi đã mở doanh nghiệp kinh doanh ngay trong lĩnh vực đó.
+            </p>
+            <p>
+              Tất nhiên, hàng của tôi cũng rất đình đám, nổi tiếng, nhưng sự thực là lợi nhuận chẳng có là bao, nhân sự thì toàn linh mới, những người "ngon" thì học xong họ lại biến mất, thậm chí, trở thành đối thủ của tôi.
+            </p>
+            <p>
+              Sau thời gian doanh nghiệp lớn dần lên, các vấn đề này sinh càng nhiều, công việc chồng chéo, hiệu suất kinh doanh thấp kém…
+            </p>
+            <p>
+              Việc kinh doanh ngày càng rối bời, mọi thứ làm vào bế tắc, cuộc sống vốn đã căng thẳng lại càng căng thẳng hơn với bộn bề công việc.
+            </p>
+            <p>
+              Sau nhiều năm tìm kiếm, cuối cùng tôi đã tìm thấy ánh sáng nơi cuối đường hầm.
+            </p>
+            <p>
+              Đây là tin vui: Vấn đề này là <strong>CƠ HỘI</strong> cho bạn.
+            </p>
+            <p>
+              Đây chính là thời điểm sẽ giúp bạn thoát ra khỏi tình trạng hiện nay và <strong>TĂNG TỐC DOANH NGHIỆP</strong> phát triển đột phá.
+            </p>
           </div>
 
-          <div className="text-center">
+          <div className="text-center mt-8">
             <a
               href="#register"
               onClick={(e) => handleAnchorClick(e, "register")}
-              className="inline-block px-10 py-4 rounded-full font-extrabold text-white bg-[#d0212a] text-[15px] uppercase tracking-wide hover:opacity-90 transition-opacity"
+              className="inline-block px-10 py-4 rounded-full font-extrabold text-white bg-[#d0212a] text-[14px] uppercase tracking-wide hover:bg-[#b81a22] transition-colors font-montserrat shadow-md"
             >
-              YES! TÔI SẴN SÀNG TĂNG TỐC XÂY KÊNH CỦA MÌNH!
+              YES! TÔI SẴN SÀNG TĂNG TỐC CÔNG VIỆC KINH DOANH CỦA MÌNH!
             </a>
           </div>
         </div>
       </section>
 
+
+
       {/* ══════════════════════════════════════════
            SECTION 6 — NGƯỜI DẪN ĐƯỜNG
       ══════════════════════════════════════════ */}
-      <section className="bg-[#f8f9fa] border-t-[3px] border-t-[#e6e6ea] py-20 max-[680px]:py-10" data-section="instructor">
+      <section
+        className="border-t border-[#eeeeee] py-16 max-[680px]:py-10 relative overflow-hidden"
+        style={{ backgroundColor: "#f9f9f9", backgroundImage: "url('/thuonghieuchuyendoi/images/world-map-bg.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}
+        data-section="instructor"
+      >
         <div className={container}>
-          <div className="text-center mb-12">
-            <p className="text-[13.5px] font-black uppercase tracking-[0.2em] text-[#fa8c16] mb-2 font-montserrat">Gặp gỡ người huấn luyện</p>
-            <h2 className="text-[36px] font-black text-[#e25010] uppercase leading-[1.2] font-montserrat max-[680px]:text-[27px]">Th.S Vũ Kim Khánh</h2>
+
+          {/* Header căn giữa */}
+          <div className="text-center mb-10">
+            <p className="text-[12px] font-black uppercase tracking-[0.22em] text-gray-400 mb-1 font-montserrat">
+              GẶP GỠ NGƯỜI HUẤN LUYỆN
+            </p>
+            <p className="text-[15px] font-bold uppercase tracking-wide text-gray-600 mb-2 font-montserrat">
+              LUẬT SƯ / NHÀ ĐÀO TẠO DOANH NGHIỆP
+            </p>
+            <h2 className="text-[32px] md:text-[40px] font-black text-[#e25010] uppercase leading-tight font-montserrat">
+              TH.S VŨ KIM KHÁNH
+            </h2>
           </div>
 
-          <div className="grid grid-cols-[1fr_1.3fr] gap-12 items-start max-[860px]:grid-cols-1 max-[860px]:gap-8 mb-12">
-            <div className="relative max-w-[340px] mx-auto w-full">
-              <div className="rounded-2xl overflow-hidden border-[3px] border-white bg-[#fa8c16]/10 shadow-[0_20px_50px_rgba(0,0,0,0.15)]">
-                <img src="/thuonghieuchuyendoi/images/instructor-avatar.jpg" alt="Th.S Vũ Kim Khánh" className="w-full object-cover" />
-              </div>
-              <div className="absolute -bottom-6 -right-6 w-[55%] rounded-xl overflow-hidden border-4 border-white shadow-[0_10px_35px_rgba(0,0,0,0.2)] max-[860px]:hidden">
-                <img src="/thuonghieuchuyendoi/images/mentor-class-4.jpg" alt="Sự kiện Vũ Kim Khánh" className="w-full object-cover" />
+          {/* 2 cột: text trái — ảnh phải (đúng theo Figma) */}
+          <div className="grid grid-cols-[1fr_340px] gap-10 items-start max-[860px]:grid-cols-1 max-[860px]:gap-8">
+
+            {/* Cột trái — nội dung */}
+            <div>
+              <div className="space-y-4 text-[14px] text-[#333] leading-[1.85] font-sans text-justify">
+                <p>
+                  Không chỉ là một Doanh nhân và Nhà đào tạo chuyên nghiệp trong lĩnh vực xây dựng thương hiệu cá nhân và bán hàng mà còn là <span className="text-[#e25010] font-semibold">một biểu tượng của sự kiên trì, vượt khó, tạo ra những kết quả không tưởng từ con số 0</span>. Với hơn 6 năm kinh nghiệm kinh doanh và đào tạo ông trở thành nguồn cảm hứng cho hàng chục nghìn người qua hơn 100 khoá học seminar, đồng thời đồng hành cùng hơn 10 doanh nghiệp doanh thu triệu đô.
+                </p>
+                <p>
+                  Sở hữu hệ thống kênh mạng xã hội <span className="text-[#e25010] font-semibold">&gt;400.000 Follower</span> nơi ông chia sẻ kiến thức về phát triển bản thân, kinh doanh và hạnh phúc gia đình. Trở thành một nguồn thông tin đáng tin cậy dẫn đường cho những ai <span className="text-[#e25010] font-semibold">đam mê kinh doanh và xây dựng hạnh phúc</span>.
+                </p>
+                <p>
+                  Không chỉ là một doanh nhân, Vũ Kim Khánh còn là <span className="text-[#e25010] font-semibold">một vận động viên Marathon mạnh mẽ</span>, đã thể hiện tinh thần thép qua việc hoàn tất cự ly Marathon 42km nhiều lần, tham gia các chuyến trip 20 ngày trong khi doanh nghiệp vẫn vận hành hoạt động bình thường. Những thành tựu này không chỉ phản ánh sự kiên trì nghị lực mà còn minh chứng cho khả năng quản lý thời gian và cân bằng cuộc sống một cách xuất sắc.
+                </p>
+                <p>
+                  Tham gia khoá học của Vũ Kim Khánh bạn sẽ trải nghiệm <span className="text-[#e25010] font-semibold">một hành trình chuyển hoá</span> từ việc khám phá các tiềm lực của bản thân đến việc xây dựng kênh thương hiệu cá nhân và bán hàng bằng phong cách sống, mở ra cánh cửa mới cho tương lai của bạn.
+                </p>
               </div>
             </div>
 
-            <div className="text-left leading-relaxed text-[16px] text-gray-700 space-y-4">
-              <p>
-                Không chỉ là một Doanh nhân và Nhà đào tạo chuyên nghiệp trong lĩnh vực xây dựng thương hiệu cá nhân và bán hàng mà còn là một biểu tượng của sự kiên trì, vượt khó, tạo ra những kết quả không tưởng từ con số 0. Với hơn 6 năm kinh nghiệm kinh doanh và đào tạo ông trở thành nguồn cảm hứng cho hàng chục nghìn người qua hơn 100 khoá học seminar, đồng hành cùng hơn 10 doanh nghiệp doanh thu triệu đô.
-              </p>
-              <p>
-                Sở hữu hệ thống kênh mạng xã hội &gt;400.000 Follower nơi ông chia sẻ kiến thức về phát triển bản thân, kinh doanh và hạnh phúc gia đình. Trở thành một nguồn thông tin đáng tin cậy dẫn đường cho những ai đam mê kinh doanh và xây dựng hạnh phúc.
-              </p>
-              <p>
-                Không chỉ là một doanh nhân, Vũ Kim Khánh còn là một vận động viên Marathon mạnh mẽ, đã thể hiện tinh thần thép qua việc hoàn tất cự ly Marathon 42km nhiều lần, tham gia các chuyến trip 20 ngày trong khi doanh nghiệp vẫn vận hành hoạt động bình thường. Những thành tựu này không chỉ phản ánh sự kiên trì nghị lực mà còn minh chứng cho khả năng quản lý thời gian và cân bằng cuộc sống một cách xuất sắc.
-              </p>
-              <p className="font-semibold text-gray-900 border-l-4 border-[#fa8c16] pl-3 py-1 bg-[#fffaf5] rounded-r-lg">
-                Tham gia khoá học của Vũ Kim Khánh bạn sẽ trải nghiệm một hành trình chuyển hoá từ việc khám phá các tiềm lực của bản thân đến việc xây dựng kênh thương hiệu cá nhân và bán hàng bằng phong cách sống, mở ra cánh cửa mới cho tương lai của bạn.
-              </p>
-            </div>
-          </div>
-
-          {/* Thành tích nổi bật có số liệu */}
-          <div className="mt-8 border-t border-gray-200/60 pt-10">
-            <h3 className="text-center text-lg font-bold font-montserrat text-gray-800 uppercase tracking-wider mb-6">Thành tích nổi bật của Huấn luyện viên</h3>
-            <div className="grid grid-cols-5 gap-4 max-[860px]:grid-cols-2 max-[480px]:grid-cols-1">
-              {[
-                { label: "Học vấn", val: "Thạc Sĩ", desc: "Quản Trị Kinh Doanh" },
-                { label: "Đã đào tạo", val: "1000+", desc: "Học viên thực chiến" },
-                { label: "Đã tư vấn", val: "50+", desc: "Doanh nghiệp đồng hành" },
-                { label: "Kinh nghiệm", val: "6 Năm", desc: "Đào tạo & vận hành" },
-                { label: "Thành tích", val: "10 Doanh Nghiệp", desc: "Doanh thu >1 triệu đô" },
-              ].map((s, idx) => (
-                <div
-                  key={idx}
-                  className="bg-white border border-[#e5e7eb] rounded-xl p-5 shadow-sm text-center flex flex-col justify-center items-center hover:shadow-md transition-all duration-300"
-                >
-                  <p className="text-[11px] font-black uppercase text-gray-400 font-montserrat tracking-wider mb-2 leading-none">{s.label}</p>
-                  <p className="text-[20px] font-black text-[#e25010] font-montserrat mb-1 leading-tight">{s.val}</p>
-                  <p className="text-[12px] text-gray-500 font-medium leading-tight">{s.desc}</p>
+            {/* Cột phải — ảnh portrait + 2 ảnh nhỏ */}
+            <div className="flex flex-col gap-3">
+              {/* Ảnh portrait chính */}
+              <div className="rounded-2xl overflow-hidden border border-gray-100 shadow-md">
+                <img
+                  src="/thuonghieuchuyendoi/images/banner.jpeg"
+                  alt="Th.S Vũ Kim Khánh"
+                  className="w-full object-cover"
+                />
+              </div>
+              {/* 2 ảnh nhỏ xếp ngang */}
+              <div className="grid grid-cols-2 gap-3">
+                <div className="rounded-xl overflow-hidden border border-gray-100 shadow-sm aspect-[3/4]">
+                  <img
+                    src="/thuonghieuchuyendoi/images/mentor-class-1.jpg"
+                    alt="Vũ Kim Khánh - Sự kiện"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-              ))}
+                <div className="rounded-xl overflow-hidden border border-gray-100 shadow-sm aspect-[3/4]">
+                  <img
+                    src="/thuonghieuchuyendoi/images/mentor-class-3.jpg"
+                    alt="Vũ Kim Khánh - Marathon"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
             </div>
+
           </div>
         </div>
       </section>
+
+
 
       {/* ══════════════════════════════════════════
            SECTION 7 — TỔNG HỢP CHƯƠNG TRÌNH
