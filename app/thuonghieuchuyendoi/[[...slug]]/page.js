@@ -1171,11 +1171,11 @@ export default function ThuongHieuChuyenDoiPage() {
                 ghiChu: "Diamond — 1.868.000đ",
               },
             ].map((tier) => (
-              <div key={tier.key} className="rounded-2xl bg-white px-6 py-9 flex flex-col text-center shadow-lg">
-                <h3 className="text-[32px] md:text-[36px] font-black font-montserrat text-[#1a1a2e] uppercase leading-tight mb-2">{tier.key}</h3>
-                <p className="text-[14.5px] font-semibold text-gray-600 mb-4">{tier.subtitle}</p>
-                <div className="h-px bg-gray-200 mb-5" />
-                <ul className="space-y-3.5 text-[16px] md:text-[17px] font-bold text-[#111111] mb-6 flex-1 text-left">
+              <div key={tier.key} className="rounded-2xl bg-white px-4 py-6 flex flex-col text-center shadow-lg">
+                <h3 className="text-[38px] md:text-[42px] font-black font-montserrat text-[#1a1a2e] uppercase leading-tight mb-1">{tier.key}</h3>
+                <p className="text-[16px] font-semibold text-gray-600 mb-3">{tier.subtitle}</p>
+                <div className="h-px bg-gray-200 mb-4" />
+                <ul className="space-y-2.5 text-[18px] md:text-[19px] font-bold text-[#111111] mb-4 flex-1 text-left">
                   {tier.items.map((item) => (
                     <li key={item} className="flex gap-2.5 items-start">
                       <span className="text-[#e30a0a] font-black">✓</span>
@@ -1184,10 +1184,10 @@ export default function ThuongHieuChuyenDoiPage() {
                   ))}
                 </ul>
                 {tier.original && (
-                  <p className="text-[16px] text-gray-400 line-through leading-none mb-1">{tier.original}</p>
+                  <p className="text-[17px] text-gray-400 line-through leading-none mb-1">{tier.original}</p>
                 )}
-                <p className="text-[36px] max-[480px]:text-[32px] font-black font-montserrat text-[#e30a0a] mb-6 leading-none whitespace-nowrap">
-                  {tier.price} <span className="text-[28px] max-[480px]:text-[24px] font-black">VND</span>
+                <p className="text-[42px] max-[480px]:text-[36px] font-black font-montserrat text-[#e30a0a] mb-4 leading-none whitespace-nowrap">
+                  {tier.price} <span className="text-[32px] max-[480px]:text-[26px] font-black">VND</span>
                 </p>
                 <a
                   href="#register"
