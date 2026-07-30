@@ -764,7 +764,7 @@ export default function ThuongHieuChuyenDoiPage() {
           </span>
           
           <span className="text-white/90">
-            Chỉ nhận <strong className="text-orange-400 font-extrabold underline decoration-orange-500/50 decoration-2 underline-offset-2">10 học viên</strong> để đội ngũ Mentor có thể theo sát quá trình thực hành
+            Chỉ nhận <strong className="text-orange-400 font-extrabold underline decoration-orange-500/50 decoration-2 underline-offset-2">10 học viên</strong> để đội ngũ Mentor có thể theo sát quá trình <span className="whitespace-nowrap">thực hành</span>
           </span>
           
           <a
