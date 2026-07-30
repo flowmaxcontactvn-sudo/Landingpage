@@ -806,19 +806,19 @@ export default function ThuongHieuChuyenDoiPage() {
           {/* Cột phải: Text & CTA button (căn trái toàn bộ theo ảnh mẫu) */}
           <div className="text-left max-[860px]:text-center flex flex-col items-start max-[860px]:items-center max-[860px]:order-1">
             
-            <h1 className="text-[20px] md:text-[23px] font-bold font-montserrat leading-relaxed mb-4 text-white uppercase max-w-[560px]">
+            <h1 className="text-[21px] md:text-[25px] font-black font-montserrat leading-relaxed mb-5 text-white uppercase max-w-[560px]">
               7 ngày bắt đầu xây kênh và tạo ra những <span className="text-[#f5a623]">khách hàng đầu tiên</span> từ <br /> <span className="text-[#f5a623] whitespace-nowrap">nội dung</span>
             </h1>
             
-            <p className="mb-4 text-[14px] md:text-[15px] opacity-[0.92] leading-relaxed max-w-[500px] text-justify">
+            <p className="mb-4 text-[16px] md:text-[17.5px] opacity-[0.95] leading-relaxed max-w-[500px] text-justify">
               Bạn sẽ bắt đầu xây dựng được kênh thương hiệu cá nhân thu hút khách hàng và bán hàng bằng việc tham dự chương trình 7 ngày liên tục này.
             </p>
             
-            <p className="mb-4 text-[14px] italic text-[#f5a623] font-bold leading-relaxed">
+            <p className="mb-4 text-[16px] md:text-[17.5px] italic text-[#f5a623] font-extrabold leading-relaxed">
               Đăng ký sớm ngay hôm nay để chúng tôi giữ cho bạn một chỗ.
             </p>
             
-            <p className="mb-6 text-[13.5px] md:text-[14.5px] opacity-[0.8] leading-relaxed max-w-[500px] text-justify">
+            <p className="mb-6 text-[15px] md:text-[16px] opacity-[0.88] leading-relaxed max-w-[500px] text-justify">
               Trong suốt 4 năm qua, hơn <strong>2.000 học viên</strong> đã tham dự chương trình xây kênh và bán hàng, bằng những kiến thức có được và sự kèm cặp sát sao công việc kinh doanh của họ đã có rất nhiều thay đổi.
             </p>
             
