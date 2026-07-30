@@ -1139,7 +1139,7 @@ export default function ThuongHieuChuyenDoiPage() {
           <h2 className="text-[19px] min-[390px]:text-[21px] sm:text-[26px] md:text-[36px] font-black font-montserrat uppercase text-white leading-tight mb-2.5 text-center whitespace-nowrap">LỰA CHỌN HẠNG VÉ CỦA BẠN</h2>
           <p className="text-center text-[#e25010] font-extrabold text-[16.5px] md:text-[18.5px] mb-12 leading-relaxed">Chọn đúng hạng vé phù hợp với mục tiêu 7 ngày <br className="max-[680px]:inline hidden" /><span className="whitespace-nowrap">tới của bạn</span></p>
 
-          <div className="grid grid-cols-3 gap-6 max-[860px]:grid-cols-1 max-[860px]:gap-8 items-stretch max-[860px]:max-w-[330px] max-[860px]:mx-auto">
+          <div className="grid grid-cols-3 gap-6 max-[860px]:grid-cols-1 max-[860px]:gap-8 items-start max-[860px]:max-w-[330px] max-[860px]:mx-auto">
             {[
               {
                 key: "Silver",
@@ -1184,7 +1184,7 @@ export default function ThuongHieuChuyenDoiPage() {
                 <h3 className="text-[38px] md:text-[42px] font-black font-montserrat text-[#1a1a2e] uppercase leading-tight mb-1">{tier.key}</h3>
                 <p className="text-[16px] font-semibold text-gray-600 mb-3">{tier.subtitle}</p>
                 <div className="h-px bg-gray-200 mb-4" />
-                <ul className="space-y-2.5 text-[18px] md:text-[19px] font-bold text-[#111111] mb-4 flex-1 text-left">
+                <ul className="space-y-2.5 text-[18px] md:text-[19px] font-bold text-[#111111] mb-4 text-left">
                   {tier.items.map((item) => (
                     <li key={item} className="flex gap-2.5 items-start">
                       <span className="text-[#e30a0a] font-black">✓</span>
