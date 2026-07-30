@@ -1034,7 +1034,7 @@ export default function ThuongHieuChuyenDoiPage() {
             {/* Mobile-only: Ảnh 1 nằm ngay dưới tên người huấn luyện */}
             <div className="hidden max-[860px]:block mt-6 max-w-[340px] mx-auto rounded-[24px] overflow-hidden border border-gray-100 shadow-md aspect-[4/3]">
               <img
-                src="/thuonghieuchuyendoi/images/banner.jpeg"
+                src="/thuonghieuchuyendoi/images/vu-kim-khanh-hero.jpg"
                 alt="Th.S Vũ Kim Khánh chân dung"
                 className="w-full h-full object-cover"
               />
@@ -1094,7 +1094,7 @@ export default function ThuongHieuChuyenDoiPage() {
               {/* Ảnh 1: Chân dung chính (trên cùng) */}
               <div className="rounded-[24px] overflow-hidden border border-gray-100 shadow-md aspect-[4/3]">
                 <img
-                  src="/thuonghieuchuyendoi/images/banner.jpeg"
+                  src="/thuonghieuchuyendoi/images/vu-kim-khanh-hero.jpg"
                   alt="Th.S Vũ Kim Khánh chân dung"
                   className="w-full h-full object-cover"
                 />
