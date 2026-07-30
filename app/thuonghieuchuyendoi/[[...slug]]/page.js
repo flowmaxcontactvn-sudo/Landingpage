@@ -984,7 +984,7 @@ export default function ThuongHieuChuyenDoiPage() {
                 "Một kênh ít Follower vẫn có thể bán hàng nếu nội dung đúng và đủ!"
               </p>
               <p className="text-[18px] text-gray-900 font-black font-montserrat uppercase leading-relaxed max-w-[640px] mx-auto">
-                Nội dung hay có thể tạo View nhưng chỉ <br className="max-[680px]:inline hidden" />nội dung đúng mới tạo ra <span className="whitespace-nowrap">chuyển đổi</span>
+                Nội dung hay có thể tạo View <br className="max-[680px]:inline hidden" /><span className="whitespace-nowrap">nhưng chỉ</span> nội dung đúng mới tạo ra <span className="whitespace-nowrap">chuyển đổi</span>
               </p>
             </div>
           </div>
