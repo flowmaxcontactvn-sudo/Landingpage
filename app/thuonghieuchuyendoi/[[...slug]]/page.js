@@ -687,7 +687,7 @@ export default function ThuongHieuChuyenDoiPage() {
            SECTION 1 — THANH THÔNG BÁO ĐẦU TRANG
       ══════════════════════════════════════════ */}
       <div
-        className="relative overflow-hidden bg-[#e30a0a] text-white text-center px-6 py-4 text-[17px] font-bold flex flex-wrap items-center justify-center gap-x-5 gap-y-2.5 max-[680px]:text-[16px] max-[680px]:py-3.5 font-montserrat shadow-md"
+        className="sticky top-0 z-50 relative overflow-hidden bg-[#e30a0a] text-white text-center px-6 py-4 text-[17px] font-bold flex flex-wrap items-center justify-center gap-x-5 gap-y-2.5 max-[680px]:text-[16px] max-[680px]:py-3.5 font-montserrat shadow-md"
         data-section="announcement-bar"
       >
         <span className="opacity-100 font-extrabold text-[#ffffff]">🗓️ Khai giảng: 03/08/2026</span>
