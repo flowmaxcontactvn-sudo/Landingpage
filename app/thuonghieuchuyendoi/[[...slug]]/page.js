@@ -754,7 +754,7 @@ export default function ThuongHieuChuyenDoiPage() {
           <a
             href="#register"
             onClick={(e) => handleAnchorClick(e, "register")}
-            className="inline-block bg-[#e30a0a] hover:bg-[#ff1e1e] text-white font-extrabold text-[15px] md:text-[16px] px-8 py-3 rounded-full text-center tracking-wide uppercase transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_10px_30px_rgba(227,10,10,0.4)] leading-tight font-montserrat mx-auto"
+            className="inline-block bg-[#e30a0a] hover:bg-[#ff1e1e] text-white font-extrabold text-[12px] md:text-[13px] px-10 py-4.5 rounded-full text-center tracking-wide uppercase transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_10px_30px_rgba(227,10,10,0.4)] leading-tight font-montserrat mx-auto"
           >
             YES! TÔI SẴN SÀNG XÂY KÊNH<br />
             VÀ BỨT PHÁ DOANH THU CỦA MÌNH!
@@ -862,7 +862,7 @@ export default function ThuongHieuChuyenDoiPage() {
             <a
               href="#register"
               onClick={(e) => handleAnchorClick(e, "register")}
-              className={"inline-block " + ctaButtonInline + " text-[17px] px-8 py-3.5 text-center animate-btn-pulse"}
+              className={"inline-block " + ctaButtonInline + " text-[15px] px-10 py-4.5 text-center animate-btn-pulse"}
             >
               YES! TÔI ĐÃ SẴN SÀNG XÂY KÊNH VÀ BỨT PHÁ DOANH THU CỦA MÌNH
             </a>
@@ -993,7 +993,7 @@ export default function ThuongHieuChuyenDoiPage() {
             <a
               href="#register"
               onClick={(e) => handleAnchorClick(e, "register")}
-              className={"inline-block " + ctaButtonInline + " text-[17px] px-8 py-3.5"}
+              className={"inline-block " + ctaButtonInline + " text-[14px] px-10 py-4.5"}
             >
               YES! TÔI SẴN SÀNG XÂY KÊNH VÀ TẠO RA DOANH THU CHUYỂN ĐỔI!
             </a>
@@ -1113,7 +1113,7 @@ export default function ThuongHieuChuyenDoiPage() {
             </p>
           </div>
 
-          <a href="#register" onClick={(e) => handleAnchorClick(e, "register")} className={"inline-block " + ctaButtonInline + " text-[17px] px-8 py-3.5 animate-btn-pulse"}>
+          <a href="#register" onClick={(e) => handleAnchorClick(e, "register")} className={"inline-block " + ctaButtonInline + " text-[15px] px-10 py-4.5 animate-btn-pulse"}>
             YES! TÔI MUỐN BẮT ĐẦU XÂY KÊNH
           </a>
           <p className="text-[17px] text-gray-600 mt-4 max-[680px]:text-[15px] font-bold font-montserrat">
