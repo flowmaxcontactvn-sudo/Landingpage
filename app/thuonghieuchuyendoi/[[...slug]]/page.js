@@ -1377,13 +1377,13 @@ export default function ThuongHieuChuyenDoiPage() {
       {/* ══════════════════════════════════════════
            SECTION 10 — SOCIAL PROOF
       ══════════════════════════════════════════ */}
-      <section className="py-16 bg-[#faf9f7]" data-section="social-proof">
+      <section className="py-10 max-[680px]:py-6 bg-[#faf9f7]" data-section="social-proof">
         <div className={container}>
           <h2 className={sectionTitle + " text-center mb-8"}>
             Đừng tin những gì <br className="max-[680px]:inline hidden" /><span className="whitespace-nowrap">tôi nói,</span><br className="md:inline hidden" />đây là những gì <br className="max-[680px]:inline hidden" /><span className="whitespace-nowrap">người khác nói…</span>
           </h2>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-[860px] mx-auto my-9">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-[860px] mx-auto mt-6 mb-4">
             {[
               { value: "500+", label: "học viên đã được đào tạo" },
               { value: "12+", label: "ngành nghề đã được tư vấn" },
@@ -1397,8 +1397,8 @@ export default function ThuongHieuChuyenDoiPage() {
             ))}
           </div>
 
-          {/* Feedback bằng bài đăng của học viên (12 ảnh, Masonry 2 cột trên desktop, trượt ngang snap-x trên mobile) */}
-          <div className="my-12 max-w-[960px] mx-auto">
+          {/* Feedback bằng bài đăng của học viên (12 ảnh, Masonry 2 cột trên desktop, xếp dọc 1 cột trên mobile) */}
+          <div className="mt-4 mb-8 max-w-[960px] mx-auto">
             {/* Giao diện Desktop: Grid 2 cột */}
             <div className="hidden md:grid grid-cols-2 gap-6">
               {/* Cột 1 */}
