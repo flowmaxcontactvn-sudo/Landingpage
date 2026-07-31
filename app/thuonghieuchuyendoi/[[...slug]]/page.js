@@ -1572,33 +1572,61 @@ export default function ThuongHieuChuyenDoiPage() {
             </p>
           </div>
 
-          {/* Lưới 12 ảnh, 3 cột x 4 hàng, bo góc tròn */}
-          <div className="grid grid-cols-3 gap-3 md:gap-4 max-w-[840px] mx-auto mb-10 px-2">
-            {[
-              "/thuonghieuchuyendoi/images/mentor-gallery-1.jpg",
-              "/thuonghieuchuyendoi/images/mentor-gallery-2.jpg",
-              "/thuonghieuchuyendoi/images/mentor-gallery-3.jpg",
-              "/thuonghieuchuyendoi/images/mentor-gallery-4.jpg",
-              "/thuonghieuchuyendoi/images/mentor-class-1.jpg",
-              "/thuonghieuchuyendoi/images/mentor-class-2.jpg",
-              "/thuonghieuchuyendoi/images/mentor-class-3.jpg",
-              "/thuonghieuchuyendoi/images/vu-kim-khanh-hero.jpg",
-              "/thuonghieuchuyendoi/images/testimonial-1-poster.jpg",
-              "/thuonghieuchuyendoi/images/testimonial-2-poster.jpg",
-              "/thuonghieuchuyendoi/images/testimonial-3-poster.jpg",
-              "/thuonghieuchuyendoi/images/banner.jpeg"
-            ].map((src, idx) => (
-              <div key={idx} className="bg-white/10 rounded-[14px] md:rounded-[20px] overflow-hidden border border-white/10 shadow-md aspect-[3/2]">
-                <img
-                  src={src}
-                  alt={`Hoạt động đào tạo ${idx + 1}`}
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.target.src = `https://placehold.co/300x200/fff3f3/e30a0a?text=Gallery+${idx + 1}`;
-                  }}
-                />
-              </div>
-            ))}
+          {/* Lưới 9 ảnh: Desktop (>= md) hiển thị 3 cột x 3 hàng, Mobile (< md) hiển thị trượt ngang từng ảnh 1 */}
+          <div className="mb-10 max-w-[840px] mx-auto">
+            {/* Giao diện Desktop: Grid 3 cột */}
+            <div className="hidden md:grid grid-cols-3 gap-4">
+              {[
+                "/thuonghieuchuyendoi/images/mentor-gallery-1.jpg",
+                "/thuonghieuchuyendoi/images/mentor-gallery-2.jpg",
+                "/thuonghieuchuyendoi/images/mentor-gallery-3.jpg",
+                "/thuonghieuchuyendoi/images/mentor-gallery-4.jpg",
+                "/thuonghieuchuyendoi/images/mentor-gallery-5.jpg",
+                "/thuonghieuchuyendoi/images/mentor-gallery-6.jpg",
+                "/thuonghieuchuyendoi/images/mentor-gallery-7.jpg",
+                "/thuonghieuchuyendoi/images/mentor-class-1.jpg",
+                "/thuonghieuchuyendoi/images/mentor-class-3.jpg"
+              ].map((src, idx) => (
+                <div key={idx} className="bg-white/10 rounded-[20px] overflow-hidden border border-white/10 shadow-md aspect-[3/2]">
+                  <img
+                    src={src}
+                    alt={`Hoạt động đào tạo ${idx + 1}`}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.target.src = `https://placehold.co/300x200/fff3f3/e30a0a?text=Gallery+${idx + 1}`;
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* Giao diện Mobile: Trượt ngang snap-x từng ảnh 1 cực kỳ rõ nét */}
+            <div className="md:hidden flex overflow-x-auto gap-4 snap-x snap-mandatory px-4 pb-4 scroll-smooth">
+              {[
+                "/thuonghieuchuyendoi/images/mentor-gallery-1.jpg",
+                "/thuonghieuchuyendoi/images/mentor-gallery-2.jpg",
+                "/thuonghieuchuyendoi/images/mentor-gallery-3.jpg",
+                "/thuonghieuchuyendoi/images/mentor-gallery-4.jpg",
+                "/thuonghieuchuyendoi/images/mentor-gallery-5.jpg",
+                "/thuonghieuchuyendoi/images/mentor-gallery-6.jpg",
+                "/thuonghieuchuyendoi/images/mentor-gallery-7.jpg",
+                "/thuonghieuchuyendoi/images/mentor-class-1.jpg",
+                "/thuonghieuchuyendoi/images/mentor-class-3.jpg"
+              ].map((src, idx) => (
+                <div key={idx} className="min-w-[85vw] max-w-[85vw] snap-center bg-white/10 rounded-[20px] overflow-hidden border border-white/10 shadow-md aspect-[3/2] shrink-0">
+                  <img
+                    src={src}
+                    alt={`Hoạt động đào tạo ${idx + 1}`}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.target.src = `https://placehold.co/300x200/fff3f3/e30a0a?text=Gallery+${idx + 1}`;
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+            {/* Gợi ý vuốt ngang */}
+            <p className="md:hidden text-center text-xs text-white/50 mt-2 font-medium">👈 Vuốt sang trái/phải để xem hình ảnh hoạt động 👉</p>
           </div>
 
           {/* Nút bấm đỏ tươi nổi bật ở dưới cùng */}
