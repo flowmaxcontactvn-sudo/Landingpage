@@ -11,6 +11,60 @@ function getDeviceBucket() {
   return "desktop";
 }
 
+function CountUp({ target, suffix = "", duration = 1500 }) {
+  const [count, setCount] = useState(0);
+  const elementRef = useRef(null);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !elementRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true;
+          let start = 0;
+          const end = parseInt(target, 10);
+          if (isNaN(end)) {
+            setCount(target);
+            return;
+          }
+          const startTime = performance.now();
+
+          const animate = (currentTime) => {
+            const elapsedTime = currentTime - startTime;
+            const progress = Math.min(elapsedTime / duration, 1);
+            
+            // Cubic easeOut curve
+            const easeProgress = 1 - Math.pow(1 - progress, 3);
+
+            const currentCount = Math.floor(easeProgress * end);
+            setCount(currentCount);
+
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            } else {
+              setCount(end);
+            }
+          };
+
+          requestAnimationFrame(animate);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(elementRef.current);
+
+    return () => {
+      if (elementRef.current) observer.unobserve(elementRef.current);
+    };
+  }, [target, duration]);
+
+  return <span ref={elementRef}>{count}{suffix}</span>;
+}
+
 export default function ThuongHieuChuyenDoiPage() {
   // Mốc thời gian trang tải xong — dùng để tính thời gian phiên của
   // người đăng ký thành công (Date.now() lúc gửi form - mốc này).
@@ -1415,13 +1469,15 @@ export default function ThuongHieuChuyenDoiPage() {
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-[860px] mx-auto mt-6 mb-4">
             {[
-              { value: "500+", label: "học viên đã được đào tạo" },
-              { value: "12+", label: "ngành nghề đã được tư vấn" },
-              { value: "500+", label: "kênh đã được đánh giá và tối ưu" },
-              { value: "500+", label: "học viên đã tạo ra khách hàng hoặc đơn hàng từ nội dung" },
+              { target: 500, suffix: "+", label: "học viên đã được đào tạo" },
+              { target: 12, suffix: "+", label: "ngành nghề đã được tư vấn" },
+              { target: 500, suffix: "+", label: "kênh đã được đánh giá và tối ưu" },
+              { target: 500, suffix: "+", label: "học viên đã tạo ra khách hàng hoặc đơn hàng từ nội dung" },
             ].map((s, idx) => (
               <div key={idx} className="bg-white border-[1.5px] border-[#eee] rounded-[14px] px-4 py-6 text-center shadow-sm">
-                <p className="text-[34px] md:text-[40px] font-black text-[#e25010] leading-none mb-2 font-montserrat">{s.value}</p>
+                <p className="text-[34px] md:text-[40px] font-black text-[#e25010] leading-none mb-2 font-montserrat">
+                  <CountUp target={s.target} suffix={s.suffix} />
+                </p>
                 <p className="text-[13px] text-[#555] font-semibold leading-snug">{s.label}</p>
               </div>
             ))}
