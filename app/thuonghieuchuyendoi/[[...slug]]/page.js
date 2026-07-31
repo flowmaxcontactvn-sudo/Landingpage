@@ -1566,7 +1566,7 @@ export default function ThuongHieuChuyenDoiPage() {
       <section className="py-12 bg-gradient-to-b from-[#f9f9f9] to-[#f3f3f3] text-center border-t border-b border-[#eee]" data-section="choose-seat">
         <div className={container}>
           <h3 className="text-[23px] md:text-[28px] font-extrabold text-[#e25010] font-montserrat uppercase tracking-wide mb-3">
-            CHỌN CHỖ NGỒI TỐT NHẤT <br className="max-[680px]:inline hidden" />HÔM NAY
+            ĐĂNG KÝ THAM GIA NGAY <br className="max-[680px]:inline hidden" />HÔM NAY
           </h3>
           <p className="text-[14px] md:text-[15.5px] text-[#e25010] font-bold max-w-[760px] mx-auto mb-8 leading-relaxed px-4">
             Đây chính là thời điểm sẽ giúp bạn thoát ra khỏi tình trạng hiện nay và TĂNG TỐC DOANH NGHIỆP phát triển đột phá.
