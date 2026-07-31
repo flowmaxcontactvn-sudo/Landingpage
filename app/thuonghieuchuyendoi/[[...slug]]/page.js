@@ -1561,6 +1561,60 @@ export default function ThuongHieuChuyenDoiPage() {
       </section>
 
       {/* ══════════════════════════════════════════
+           SECTION 10.2 — GALLERY HƠN 100 CHƯƠNG TRÌNH HUẤN LUYỆN
+      ══════════════════════════════════════════ */}
+      <section className="py-14 bg-gradient-to-r from-[#1b2d86] via-[#651586] to-[#ee5b6e] text-center text-white relative overflow-hidden" data-section="gallery-experience">
+        <div className={container}>
+          <div className="max-w-[760px] mx-auto mb-8 px-4">
+            <p className="text-[17px] md:text-[21px] font-extrabold font-montserrat leading-relaxed italic text-white/95">
+              "Đây không phải là lý thuyết...<br />
+              Tôi đã tổ chức chương trình với hơn 100 lần huấn luyện chuyên nghiệp, không chương trình nào giống nhau cả!"
+            </p>
+          </div>
+
+          {/* Lưới 12 ảnh, 3 cột x 4 hàng, bo góc tròn */}
+          <div className="grid grid-cols-3 gap-3 md:gap-4 max-w-[840px] mx-auto mb-10 px-2">
+            {[
+              "/thuonghieuchuyendoi/images/mentor-gallery-1.jpg",
+              "/thuonghieuchuyendoi/images/mentor-gallery-2.jpg",
+              "/thuonghieuchuyendoi/images/mentor-gallery-3.jpg",
+              "/thuonghieuchuyendoi/images/mentor-gallery-4.jpg",
+              "/thuonghieuchuyendoi/images/mentor-class-1.jpg",
+              "/thuonghieuchuyendoi/images/mentor-class-2.jpg",
+              "/thuonghieuchuyendoi/images/mentor-class-3.jpg",
+              "/thuonghieuchuyendoi/images/vu-kim-khanh-hero.jpg",
+              "/thuonghieuchuyendoi/images/testimonial-1-poster.jpg",
+              "/thuonghieuchuyendoi/images/testimonial-2-poster.jpg",
+              "/thuonghieuchuyendoi/images/testimonial-3-poster.jpg",
+              "/thuonghieuchuyendoi/images/banner.jpeg"
+            ].map((src, idx) => (
+              <div key={idx} className="bg-white/10 rounded-[14px] md:rounded-[20px] overflow-hidden border border-white/10 shadow-md aspect-[3/2]">
+                <img
+                  src={src}
+                  alt={`Hoạt động đào tạo ${idx + 1}`}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.target.src = `https://placehold.co/300x200/fff3f3/e30a0a?text=Gallery+${idx + 1}`;
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Nút bấm đỏ tươi nổi bật ở dưới cùng */}
+          <div className="mt-4 px-4">
+            <a
+              href="#register"
+              onClick={(e) => handleAnchorClick(e, "register")}
+              className={"inline-block w-full max-w-[620px] " + ctaButtonInline + " text-[12px] md:text-[13px] px-10 py-3.5 text-center bg-[#e30a0a] hover:bg-[#ff1e1e] border-0 text-white font-extrabold uppercase animate-btn-pulse rounded-full shadow-lg"}
+            >
+              YES! TÔI KHÔNG MUỐN BỎ LỠ CƠ HỘI THAM GIA KHÓA HỌC
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
            SECTION 10.5 — CHỌN CHỖ NGỒI TỐT NHẤT
       ══════════════════════════════════════════ */}
       <section className="py-12 bg-gradient-to-b from-[#f9f9f9] to-[#f3f3f3] text-center border-t border-b border-[#eee]" data-section="choose-seat">
