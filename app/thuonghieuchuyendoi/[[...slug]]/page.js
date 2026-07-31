@@ -551,6 +551,36 @@ export default function ThuongHieuChuyenDoiPage() {
     }
   }, [successModalOpen, zaloLink]);
 
+  // Scroll Reveal Animation (Fade-in Slide-up)
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const elements = document.querySelectorAll(".reveal-on-scroll");
+    if (!elements.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("revealed");
+            // Stop observing once transition runs to improve performance
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.08,
+        rootMargin: "0px 0px -40px 0px"
+      }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+
+    return () => {
+      elements.forEach((el) => observer.unobserve(el));
+    };
+  }, []);
+
   // 10. Form submission handler
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -656,7 +686,7 @@ export default function ThuongHieuChuyenDoiPage() {
   // ── Shared Tailwind class strings (1:1 port of the former BEM classes) ──
   const container = "max-w-[980px] mx-auto px-6 max-[680px]:px-4";
   const sectionWhite = "bg-white py-14 max-[680px]:py-5";
-  const sectionTitle = "text-[clamp(28px,3.4vw,40px)] font-extrabold font-montserrat text-[#e25010] uppercase leading-[1.2]";
+  const sectionTitle = "reveal-on-scroll text-[clamp(28px,3.4vw,40px)] font-extrabold font-montserrat text-[#e25010] uppercase leading-[1.2]";
   const ctaButton = "bg-[#e30a0a] hover:bg-[#ff1e1e] text-white font-extrabold font-montserrat uppercase tracking-wide rounded-full shadow-[0_0_25px_rgba(227,10,10,0.45)] hover:shadow-[0_0_32px_rgba(227,10,10,0.6)] transition-all duration-300";
   const ctaButtonInline = ctaButton + " hover:scale-105 active:scale-95";
   const oppTitle =
@@ -789,7 +819,7 @@ export default function ThuongHieuChuyenDoiPage() {
         <div className={container}>
           <div className="grid grid-cols-[1.1fr_0.9fr] gap-12 items-start max-[960px]:grid-cols-1 max-[960px]:gap-10">
             {/* Cột trái: Tiêu đề & Danh sách văn bản */}
-            <div className="text-left font-montserrat">
+            <div className="text-left font-montserrat reveal-on-scroll">
               <span className="block text-[18px] md:text-[22px] font-black text-gray-800 uppercase tracking-wider mb-1">
                 KHI BẠN THAM GIA
               </span>
@@ -825,7 +855,7 @@ export default function ThuongHieuChuyenDoiPage() {
             </div>
 
             {/* Cột phải: 4 ảnh xếp chồng/staggered */}
-            <div className="w-full max-w-[500px] mx-auto">
+            <div className="w-full max-w-[500px] mx-auto reveal-on-scroll">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-4">
                   <div className="rounded-[20px] overflow-hidden border border-gray-100 shadow-[0_8px_25px_rgba(0,0,0,0.06)] bg-gray-50 aspect-[4/3] relative">
@@ -894,7 +924,7 @@ export default function ThuongHieuChuyenDoiPage() {
       ══════════════════════════════════════════ */}
       <section className="bg-[linear-gradient(to_right,#901a5e_0%,#4a187e_50%,#1c3285_100%)] py-6 md:py-8 max-[680px]:py-3.5" data-section="overcome-barriers">
         <div className="max-w-[1040px] mx-auto px-6 max-[680px]:px-4">
-          <div className="bg-[#0b0c1e]/65 backdrop-blur-md rounded-[32px] p-5 md:p-8 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.3)] text-white font-montserrat leading-[1.8] text-[15.5px]">
+          <div className="bg-[#0b0c1e]/65 backdrop-blur-md rounded-[32px] p-5 md:p-8 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.3)] text-white font-montserrat leading-[1.8] text-[15.5px] reveal-on-scroll">
 
             <p className="text-justify font-bold text-[17.5px] leading-relaxed mb-4 max-w-[880px] mx-auto">
               7 ngày xây kênh chuyển đổi là một chương trình liên tục được thiết kế để bạn vượt qua những rào cản bản thân để ngay lập tức <u>xây một kênh thương hiệu cá nhân, bán hàng gia tăng doanh số và thu nhập.</u>
@@ -1055,7 +1085,7 @@ export default function ThuongHieuChuyenDoiPage() {
           <div className="grid grid-cols-[1fr_340px] gap-10 items-start max-[860px]:grid-cols-1 max-[860px]:gap-8">
 
             {/* Cột trái — nội dung */}
-            <div>
+            <div className="reveal-on-scroll">
               <div className="space-y-4 text-[15px] text-[#111111] font-semibold leading-[1.85] font-sans text-justify">
                 <p>
                   Không chỉ là một Doanh nhân và Nhà đào tạo chuyên nghiệp trong lĩnh vực xây dựng thương hiệu cá nhân và bán hàng mà còn là <span className="text-[#e25010] font-extrabold">một biểu tượng của sự kiên trì, vượt khó, tạo ra những kết quả không tưởng từ con số 0</span>. Với hơn 6 năm kinh nghiệm kinh doanh và đào tạo ông trở thành nguồn cảm hứng cho hàng chục nghìn người qua hơn 100 khoá học seminar, đồng thời đồng hành cùng hơn 10 doanh nghiệp doanh thu triệu đô.
@@ -1100,7 +1130,7 @@ export default function ThuongHieuChuyenDoiPage() {
             </div>
 
             {/* Desktop-only: Cột phải với đủ 4 ảnh */}
-            <div className="flex flex-col gap-3 max-[860px]:hidden">
+            <div className="flex flex-col gap-3 max-[860px]:hidden reveal-on-scroll">
               {/* Ảnh 1: Chân dung chính (trên cùng) */}
               <div className="rounded-[40px] overflow-hidden border border-gray-100 shadow-md">
                 <img
@@ -1563,9 +1593,9 @@ export default function ThuongHieuChuyenDoiPage() {
       {/* ══════════════════════════════════════════
            SECTION 10.2 — GALLERY HƠN 100 CHƯƠNG TRÌNH HUẤN LUYỆN
       ══════════════════════════════════════════ */}
-      <section className="py-14 bg-gradient-to-r from-[#1b2d86] via-[#651586] to-[#ee5b6e] text-center text-white relative overflow-hidden" data-section="gallery-experience">
+      <section className="py-16 md:py-24 bg-gradient-to-r from-[#1b2d86] via-[#651586] to-[#ee5b6e] text-center text-white relative overflow-hidden" data-section="gallery-experience">
         <div className={container}>
-          <div className="max-w-[840px] mx-auto mb-8 px-2">
+          <div className="max-w-[780px] mx-auto mb-10 px-4 md:px-0 reveal-on-scroll">
             <p className="text-[20px] md:text-[24px] font-extrabold font-montserrat leading-relaxed text-white/95 text-left">
               "Đây không phải là lý thuyết...<br />
               Tôi đã tổ chức chương trình với hơn 100 lần huấn luyện chuyên nghiệp, không chương trình nào giống nhau cả"
@@ -1573,9 +1603,9 @@ export default function ThuongHieuChuyenDoiPage() {
           </div>
 
           {/* Lưới 9 ảnh: Desktop (>= md) hiển thị 3 cột x 3 hàng, Mobile (< md) hiển thị danh sách dọc cuộn tự nhiên */}
-          <div className="mb-10 max-w-[840px] mx-auto">
+          <div className="mb-10 max-w-[780px] mx-auto reveal-on-scroll">
             {/* Giao diện Desktop: Grid 3 cột */}
-            <div className="hidden md:grid grid-cols-3 gap-4">
+            <div className="hidden md:grid grid-cols-3 gap-x-8 gap-y-7">
               {[
                 "/thuonghieuchuyendoi/images/mentor-gallery-1.jpg",
                 "/thuonghieuchuyendoi/images/mentor-gallery-2.jpg",
@@ -1601,7 +1631,7 @@ export default function ThuongHieuChuyenDoiPage() {
             </div>
 
             {/* Giao diện Mobile: Xếp dọc từ trên xuống dưới để cuộn tự nhiên */}
-            <div className="md:hidden flex flex-col gap-5 px-3">
+            <div className="md:hidden flex flex-col gap-6 px-4">
               {[
                 "/thuonghieuchuyendoi/images/mentor-gallery-1.jpg",
                 "/thuonghieuchuyendoi/images/mentor-gallery-2.jpg",
@@ -1628,7 +1658,7 @@ export default function ThuongHieuChuyenDoiPage() {
           </div>
 
           {/* Nút bấm đỏ tươi nổi bật ở dưới cùng */}
-          <div className="mt-4 px-4">
+          <div className="mt-10 md:mt-12 px-4">
             <a
               href="#register"
               onClick={(e) => handleAnchorClick(e, "register")}
