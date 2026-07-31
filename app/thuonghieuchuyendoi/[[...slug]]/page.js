@@ -1434,12 +1434,12 @@ export default function ThuongHieuChuyenDoiPage() {
               </div>
             </div>
 
-            {/* Giao diện Mobile: Trượt ngang xem từng ảnh 1 rõ ràng */}
-            <div className="md:hidden flex overflow-x-auto gap-4 px-4 pb-4 scroll-smooth">
+            {/* Giao diện Mobile: Xếp chồng 1 cột cuộn dọc, ảnh hiển thị to rõ ràng */}
+            <div className="md:hidden flex flex-col gap-5 px-4">
               {Array.from({ length: 12 }).map((_, idx) => {
                 const num = idx + 1;
                 return (
-                  <div key={num} className="min-w-[85vw] max-w-[85vw] bg-white border border-[#eee] rounded-2xl overflow-hidden shadow-md relative h-auto self-start">
+                  <div key={num} className="bg-white border border-[#eee] rounded-2xl overflow-hidden shadow-md relative w-full h-auto">
                     <img
                       src={`/thuonghieuchuyendoi/images/feedback-img-${num}.jpg`}
                       alt={`Feedback học viên ${num}`}
@@ -1452,8 +1452,6 @@ export default function ThuongHieuChuyenDoiPage() {
                 );
               })}
             </div>
-            {/* Gợi ý lướt trên mobile */}
-            <p className="md:hidden text-center text-xs text-gray-400 mt-2 font-medium">👈 Vuốt sang trái/phải để xem thêm phản hồi từ học viên 👉</p>
           </div>
 
           {/* Feedback bằng Video (3 video thật) */}
