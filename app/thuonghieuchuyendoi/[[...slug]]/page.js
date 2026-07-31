@@ -1511,9 +1511,9 @@ export default function ThuongHieuChuyenDoiPage() {
 
           {/* Kênh học viên thành công (chạy ngang) */}
           <div className="my-12">
-            <h3 className="text-center text-lg font-extrabold font-montserrat text-[#e25010] uppercase mb-6">
+            <h2 className={sectionTitle + " text-center mb-6"}>
               Kênh học viên thành công
-            </h3>
+            </h2>
             <div className="w-full overflow-hidden py-4 bg-gray-50 border-y border-[#eee] rounded-lg">
               <div className="animate-marquee whitespace-nowrap flex gap-6">
                 {[
