@@ -1278,7 +1278,7 @@ export default function ThuongHieuChuyenDoiPage() {
           <div className="grid grid-cols-[1fr_1.15fr] gap-10 items-start max-[860px]:grid-cols-1 max-[860px]:gap-7">
             <div className="text-white max-[860px]:text-center">
               <h2 className="text-[19px] min-[390px]:text-[22px] sm:text-[28px] md:text-[36px] font-black font-montserrat uppercase leading-[1.2] mb-3 text-[#e25010] whitespace-nowrap">7 Ngày Xây Kênh Chuyển Đổi</h2>
-              <div className="flex flex-wrap gap-x-5 gap-y-1 text-[16px] text-white/75 mb-6 max-[860px]:justify-center">
+              <div className="flex flex-wrap gap-x-5 gap-y-1 text-[16.5px] text-white font-medium mb-6 max-[860px]:justify-center">
                 <span>🗓️ Tháng 8.2026</span>
                 <span>📍 Kèm cặp liên tục 7 ngày</span>
               </div>
