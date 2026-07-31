@@ -1435,11 +1435,11 @@ export default function ThuongHieuChuyenDoiPage() {
             </div>
 
             {/* Giao diện Mobile: Trượt ngang xem từng ảnh 1 rõ ràng */}
-            <div className="md:hidden flex overflow-x-auto gap-4 snap-x snap-mandatory px-4 pb-4 scroll-smooth">
+            <div className="md:hidden flex overflow-x-auto gap-4 px-4 pb-4 scroll-smooth">
               {Array.from({ length: 12 }).map((_, idx) => {
                 const num = idx + 1;
                 return (
-                  <div key={num} className="min-w-[85vw] max-w-[85vw] snap-center bg-white border border-[#eee] rounded-2xl overflow-hidden shadow-md relative h-auto self-start">
+                  <div key={num} className="min-w-[85vw] max-w-[85vw] bg-white border border-[#eee] rounded-2xl overflow-hidden shadow-md relative h-auto self-start">
                     <img
                       src={`/thuonghieuchuyendoi/images/feedback-img-${num}.jpg`}
                       alt={`Feedback học viên ${num}`}
