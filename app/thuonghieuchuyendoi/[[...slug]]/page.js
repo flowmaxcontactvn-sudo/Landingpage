@@ -1565,10 +1565,10 @@ export default function ThuongHieuChuyenDoiPage() {
       ══════════════════════════════════════════ */}
       <section className="py-14 bg-gradient-to-r from-[#1b2d86] via-[#651586] to-[#ee5b6e] text-center text-white relative overflow-hidden" data-section="gallery-experience">
         <div className={container}>
-          <div className="max-w-[760px] mx-auto mb-8 px-4">
-            <p className="text-[17px] md:text-[21px] font-extrabold font-montserrat leading-relaxed italic text-white/95">
+          <div className="max-w-[840px] mx-auto mb-8 px-2">
+            <p className="text-[16px] md:text-[21px] font-extrabold font-montserrat leading-relaxed text-white/95 text-left">
               "Đây không phải là lý thuyết...<br />
-              Tôi đã tổ chức chương trình với hơn 100 lần huấn luyện chuyên nghiệp, không chương trình nào giống nhau cả!"
+              Tôi đã tổ chức chương trình với hơn 100 lần huấn luyện chuyên nghiệp, không chương trình nào giống nhau cả"
             </p>
           </div>
 
