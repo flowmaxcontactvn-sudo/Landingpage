@@ -1397,13 +1397,13 @@ export default function ThuongHieuChuyenDoiPage() {
             ))}
           </div>
 
-          {/* Feedback bằng bài đăng của học viên (12 ảnh, Masonry 2 cột trên desktop, xếp dọc 1 cột trên mobile) */}
+          {/* Feedback bằng bài đăng của học viên (Rút gọn còn 4 ảnh thật, Masonry 2 cột trên desktop, xếp dọc 1 cột trên mobile) */}
           <div className="mt-4 mb-8 max-w-[960px] mx-auto">
             {/* Giao diện Desktop: Grid 2 cột */}
             <div className="hidden md:grid grid-cols-2 gap-6">
               {/* Cột 1 */}
               <div className="flex flex-col gap-6">
-                {[1, 3, 5, 7, 9, 11].map((num) => (
+                {[1, 3].map((num) => (
                   <div key={num} className="bg-white border border-[#eee] rounded-2xl overflow-hidden shadow-md relative w-full h-auto">
                     <img
                       src={`/thuonghieuchuyendoi/images/feedback-img-${num}.jpg`}
@@ -1419,7 +1419,7 @@ export default function ThuongHieuChuyenDoiPage() {
 
               {/* Cột 2 */}
               <div className="flex flex-col gap-6">
-                {[2, 4, 6, 8, 10, 12].map((num) => (
+                {[2, 4].map((num) => (
                   <div key={num} className="bg-white border border-[#eee] rounded-2xl overflow-hidden shadow-md relative w-full h-auto">
                     <img
                       src={`/thuonghieuchuyendoi/images/feedback-img-${num}.jpg`}
@@ -1434,9 +1434,9 @@ export default function ThuongHieuChuyenDoiPage() {
               </div>
             </div>
 
-            {/* Giao diện Mobile: Xếp chồng 1 cột cuộn dọc, ảnh hiển thị to rõ ràng */}
+            {/* Giao diện Mobile: Xếp chồng 1 cột cuộn dọc */}
             <div className="md:hidden flex flex-col gap-5 px-4">
-              {Array.from({ length: 12 }).map((_, idx) => {
+              {Array.from({ length: 4 }).map((_, idx) => {
                 const num = idx + 1;
                 return (
                   <div key={num} className="bg-white border border-[#eee] rounded-2xl overflow-hidden shadow-md relative w-full h-auto">
@@ -1451,6 +1451,17 @@ export default function ThuongHieuChuyenDoiPage() {
                   </div>
                 );
               })}
+            </div>
+
+            {/* Nút đăng ký lớn đặt ngay dưới ảnh thứ 4 */}
+            <div className="text-center mt-10 px-4">
+              <a
+                href="#register"
+                onClick={(e) => handleAnchorClick(e, "register")}
+                className={"inline-block w-full max-w-[760px] " + ctaButtonInline + " text-[13px] md:text-[14.5px] py-3.5 text-center animate-btn-pulse font-extrabold uppercase"}
+              >
+                YES! TÔI MUỐN THAM GIA HÀNH TRÌNH 7 NGÀY XÂY KÊNH CHUYỂN ĐỔI
+              </a>
             </div>
           </div>
 
