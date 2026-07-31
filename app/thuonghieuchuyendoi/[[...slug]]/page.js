@@ -1435,7 +1435,7 @@ export default function ThuongHieuChuyenDoiPage() {
             </div>
 
             {/* Giao diện Mobile: Xếp chồng 1 cột cuộn dọc */}
-            <div className="md:hidden flex flex-col gap-5 px-4">
+            <div className="md:hidden flex flex-col gap-5">
               {Array.from({ length: 4 }).map((_, idx) => {
                 const num = idx + 1;
                 return (
@@ -1454,7 +1454,7 @@ export default function ThuongHieuChuyenDoiPage() {
             </div>
 
             {/* Nút đăng ký lớn đặt ngay dưới ảnh thứ 4 */}
-            <div className="text-center mt-10 px-4">
+            <div className="text-center mt-10">
               <a
                 href="#register"
                 onClick={(e) => handleAnchorClick(e, "register")}
