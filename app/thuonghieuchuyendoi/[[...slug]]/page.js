@@ -117,7 +117,7 @@ export default function ThuongHieuChuyenDoiPage() {
             else if (/(^|\.)google\./.test(host)) source = "google";
             else if (/(^|\.)youtube\.com$|(^|\.)youtu\.be$/.test(host)) source = "youtube";
             else source = host;
-          } catch (e) {}
+          } catch (e) { }
         }
       }
       setDetectedSource(source);
@@ -245,7 +245,7 @@ export default function ThuongHieuChuyenDoiPage() {
     if (typeof window === "undefined" || window.top !== window.self) return;
     if (!utmCampaign) return;
 
-    supabase.rpc("tang_luot_truy_cap", { p_slug: utmCampaign }).then(() => {}, () => {});
+    supabase.rpc("tang_luot_truy_cap", { p_slug: utmCampaign }).then(() => { }, () => { });
   }, [utmCampaign]);
 
   // Theo dõi tổng số giây mọi người xem từng section (heatmap)
@@ -326,7 +326,7 @@ export default function ThuongHieuChuyenDoiPage() {
           },
           body: JSON.stringify({ p_landing: LANDING, p_section_key: section, p_thiet_bi: bucket, p_giay: seconds }),
           keepalive: !!useKeepalive,
-        }).catch(() => {});
+        }).catch(() => { });
       });
     };
 
@@ -464,7 +464,7 @@ export default function ThuongHieuChuyenDoiPage() {
         },
         body: JSON.stringify({ p_landing: LANDING, p_thiet_bi: bucket, p_di_chuyen: dMoves, p_click: dClicks }),
         keepalive: !!useKeepalive,
-      }).catch(() => {});
+      }).catch(() => { });
     };
 
     let sessionSent = false;
@@ -491,7 +491,7 @@ export default function ThuongHieuChuyenDoiPage() {
           p_form_abandoned: isAbandoned,
         }),
         keepalive: !!useKeepalive,
-      }).catch(() => {});
+      }).catch(() => { });
     };
 
     const interval = setInterval(() => sendActivity(false), 15000);
@@ -735,23 +735,23 @@ export default function ThuongHieuChuyenDoiPage() {
         data-section="hero"
       >
         <div className="max-w-[800px] mx-auto px-6 max-[680px]:px-4 relative text-center flex flex-col items-center">
-          
+
           <h1 className="text-[21px] md:text-[28px] font-black font-montserrat leading-relaxed mb-5 text-white uppercase max-w-[720px] mx-auto text-center">
             7 ngày bắt đầu xây kênh và tạo ra những <span className="text-[#f5a623]">khách hàng đầu tiên</span> <br /> <span className="whitespace-nowrap">từ <span className="text-[#f5a623]">nội dung</span></span>
           </h1>
-          
+
           <p className="mb-4 text-[16px] md:text-[18px] opacity-[0.95] leading-relaxed max-w-[650px] text-center">
             Bạn sẽ bắt đầu xây dựng được kênh thương hiệu cá nhân thu hút khách hàng và bán hàng bằng việc tham dự chương trình 7 ngày liên tục này.
           </p>
-          
+
           <p className="mb-4 text-[16px] md:text-[18px] italic text-[#f5a623] font-extrabold leading-relaxed text-center">
             Đăng ký sớm ngay hôm nay để chúng tôi giữ cho bạn một chỗ.
           </p>
-          
+
           <p className="mb-6 text-[15px] md:text-[16px] opacity-[0.88] leading-relaxed max-w-[650px] text-center">
             Trong suốt 4 năm qua, hơn <strong>2.000 học viên</strong> đã tham dự chương trình xây kênh và bán hàng, bằng những kiến thức có được và sự kèm cặp sát sao công việc kinh doanh của họ đã có rất nhiều thay đổi.
           </p>
-          
+
           {/* Hàng Icons ngày/địa điểm với SVG outline chuẩn (căn giữa) */}
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-8 text-[13.5px] font-medium text-white/90">
             <span className="flex items-center gap-2">
@@ -778,7 +778,7 @@ export default function ThuongHieuChuyenDoiPage() {
             YES! TÔI SẴN SÀNG XÂY KÊNH<br />
             VÀ BỨT PHÁ DOANH THU CỦA MÌNH!
           </a>
-          
+
         </div>
       </section>
 
@@ -895,7 +895,7 @@ export default function ThuongHieuChuyenDoiPage() {
       <section className="bg-[linear-gradient(to_right,#901a5e_0%,#4a187e_50%,#1c3285_100%)] py-6 md:py-8 max-[680px]:py-3.5" data-section="overcome-barriers">
         <div className="max-w-[1040px] mx-auto px-6 max-[680px]:px-4">
           <div className="bg-[#0b0c1e]/65 backdrop-blur-md rounded-[32px] p-5 md:p-8 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.3)] text-white font-montserrat leading-[1.8] text-[15.5px]">
-            
+
             <p className="text-justify font-bold text-[17.5px] leading-relaxed mb-4 max-w-[880px] mx-auto">
               7 ngày xây kênh chuyển đổi là một chương trình liên tục được thiết kế để bạn vượt qua những rào cản bản thân để ngay lập tức <u>xây một kênh thương hiệu cá nhân, bán hàng gia tăng doanh số và thu nhập.</u>
             </p>
@@ -904,7 +904,7 @@ export default function ThuongHieuChuyenDoiPage() {
               <p>
                 Với những trải nghiệm sống, sự phán xét từ môi trường xung quanh, con người ta chấp nhận những định kiến của người khác về xây kênh, về bán hàng online tạo ra những nỗi sợ ngăn chúng ta hành động.
               </p>
-              
+
               <p>
                 Theo thời gian, chúng ta tin đó là sự thật, nó biến thành những rào cản vô hình khi chúng ta phát triển kinh doanh và ngăn cản điều chúng ta muốn làm, muốn có, muốn trở thành.
               </p>
