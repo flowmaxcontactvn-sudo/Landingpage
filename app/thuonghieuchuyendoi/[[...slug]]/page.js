@@ -1380,7 +1380,7 @@ export default function ThuongHieuChuyenDoiPage() {
       <section className="py-10 max-[680px]:py-6 bg-[#faf9f7]" data-section="social-proof">
         <div className={container}>
           <h2 className={sectionTitle + " text-center mb-8"}>
-            Đừng tin những gì <br className="max-[680px]:inline hidden" /><span className="whitespace-nowrap">tôi nói,</span><br className="md:inline hidden" />đây là những gì <br className="max-[680px]:inline hidden" /><span className="whitespace-nowrap">người khác nói…</span>
+            Đừng tin những gì <br className="max-[680px]:inline hidden" /><span className="whitespace-nowrap">tôi nói, </span><br className="md:inline hidden" />đây là những gì <br className="max-[680px]:inline hidden" /><span className="whitespace-nowrap">người khác nói…</span>
           </h2>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-[860px] mx-auto mt-6 mb-4">
