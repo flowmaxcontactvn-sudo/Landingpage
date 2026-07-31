@@ -1566,13 +1566,13 @@ export default function ThuongHieuChuyenDoiPage() {
       <section className="py-14 bg-gradient-to-r from-[#1b2d86] via-[#651586] to-[#ee5b6e] text-center text-white relative overflow-hidden" data-section="gallery-experience">
         <div className={container}>
           <div className="max-w-[840px] mx-auto mb-8 px-2">
-            <p className="text-[16px] md:text-[21px] font-extrabold font-montserrat leading-relaxed text-white/95 text-left">
+            <p className="text-[20px] md:text-[24px] font-extrabold font-montserrat leading-relaxed text-white/95 text-left">
               "Đây không phải là lý thuyết...<br />
               Tôi đã tổ chức chương trình với hơn 100 lần huấn luyện chuyên nghiệp, không chương trình nào giống nhau cả"
             </p>
           </div>
 
-          {/* Lưới 9 ảnh: Desktop (>= md) hiển thị 3 cột x 3 hàng, Mobile (< md) hiển thị trượt ngang từng ảnh 1 */}
+          {/* Lưới 9 ảnh: Desktop (>= md) hiển thị 3 cột x 3 hàng, Mobile (< md) hiển thị danh sách dọc cuộn tự nhiên */}
           <div className="mb-10 max-w-[840px] mx-auto">
             {/* Giao diện Desktop: Grid 3 cột */}
             <div className="hidden md:grid grid-cols-3 gap-4">
@@ -1600,8 +1600,8 @@ export default function ThuongHieuChuyenDoiPage() {
               ))}
             </div>
 
-            {/* Giao diện Mobile: Trượt ngang snap-x từng ảnh 1 cực kỳ rõ nét */}
-            <div className="md:hidden flex overflow-x-auto gap-4 snap-x snap-mandatory px-4 pb-4 scroll-smooth">
+            {/* Giao diện Mobile: Xếp dọc từ trên xuống dưới để cuộn tự nhiên */}
+            <div className="md:hidden flex flex-col gap-5 px-3">
               {[
                 "/thuonghieuchuyendoi/images/mentor-gallery-1.jpg",
                 "/thuonghieuchuyendoi/images/mentor-gallery-2.jpg",
@@ -1613,7 +1613,7 @@ export default function ThuongHieuChuyenDoiPage() {
                 "/thuonghieuchuyendoi/images/mentor-class-1.jpg",
                 "/thuonghieuchuyendoi/images/mentor-class-3.jpg"
               ].map((src, idx) => (
-                <div key={idx} className="min-w-[85vw] max-w-[85vw] snap-center bg-white/10 rounded-[20px] overflow-hidden border border-white/10 shadow-md aspect-[3/2] shrink-0">
+                <div key={idx} className="w-full bg-white/10 rounded-[20px] overflow-hidden border border-white/10 shadow-md aspect-[3/2]">
                   <img
                     src={src}
                     alt={`Hoạt động đào tạo ${idx + 1}`}
@@ -1625,8 +1625,6 @@ export default function ThuongHieuChuyenDoiPage() {
                 </div>
               ))}
             </div>
-            {/* Gợi ý vuốt ngang */}
-            <p className="md:hidden text-center text-xs text-white/50 mt-2 font-medium">👈 Vuốt sang trái/phải để xem hình ảnh hoạt động 👉</p>
           </div>
 
           {/* Nút bấm đỏ tươi nổi bật ở dưới cùng */}
