@@ -1397,11 +1397,12 @@ export default function ThuongHieuChuyenDoiPage() {
             ))}
           </div>
 
-          {/* Feedback bằng bài đăng của học viên (12 ảnh, chia thành 2 cột to rõ ràng, dài ngắn xen kẽ dạng Masonry) */}
+          {/* Feedback bằng bài đăng của học viên (12 ảnh, Masonry 2 cột trên desktop, trượt ngang snap-x trên mobile) */}
           <div className="my-12 max-w-[960px] mx-auto">
-            <div className="grid grid-cols-2 gap-6 max-[680px]:gap-3">
-              {/* Cột 1 (Ảnh 1, 3, 5, 7, 9, 11) */}
-              <div className="flex flex-col gap-6 max-[680px]:gap-3">
+            {/* Giao diện Desktop: Grid 2 cột */}
+            <div className="hidden md:grid grid-cols-2 gap-6">
+              {/* Cột 1 */}
+              <div className="flex flex-col gap-6">
                 {[1, 3, 5, 7, 9, 11].map((num) => (
                   <div key={num} className="bg-white border border-[#eee] rounded-2xl overflow-hidden shadow-md relative w-full h-auto">
                     <img
@@ -1416,8 +1417,8 @@ export default function ThuongHieuChuyenDoiPage() {
                 ))}
               </div>
 
-              {/* Cột 2 (Ảnh 2, 4, 6, 8, 10, 12) */}
-              <div className="flex flex-col gap-6 max-[680px]:gap-3">
+              {/* Cột 2 */}
+              <div className="flex flex-col gap-6">
                 {[2, 4, 6, 8, 10, 12].map((num) => (
                   <div key={num} className="bg-white border border-[#eee] rounded-2xl overflow-hidden shadow-md relative w-full h-auto">
                     <img
@@ -1432,6 +1433,27 @@ export default function ThuongHieuChuyenDoiPage() {
                 ))}
               </div>
             </div>
+
+            {/* Giao diện Mobile: Trượt ngang xem từng ảnh 1 rõ ràng */}
+            <div className="md:hidden flex overflow-x-auto gap-4 snap-x snap-mandatory px-4 pb-4 scroll-smooth">
+              {Array.from({ length: 12 }).map((_, idx) => {
+                const num = idx + 1;
+                return (
+                  <div key={num} className="min-w-[85vw] max-w-[85vw] snap-center bg-white border border-[#eee] rounded-2xl overflow-hidden shadow-md relative h-auto self-start">
+                    <img
+                      src={`/thuonghieuchuyendoi/images/feedback-img-${num}.jpg`}
+                      alt={`Feedback học viên ${num}`}
+                      className="w-full h-auto block"
+                      onError={(e) => {
+                        e.target.src = `https://placehold.co/450x600/fff3f3/e30a0a?text=Feedback+Ảnh+${num}`;
+                      }}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+            {/* Gợi ý lướt trên mobile */}
+            <p className="md:hidden text-center text-xs text-gray-400 mt-2 font-medium">👈 Vuốt sang trái/phải để xem thêm phản hồi từ học viên 👉</p>
           </div>
 
           {/* Feedback bằng Video (3 video thật) */}
@@ -1524,6 +1546,17 @@ export default function ThuongHieuChuyenDoiPage() {
                 ))}
               </div>
             </div>
+          </div>
+
+          {/* Nút đăng ký lớn dưới chân Social Proof */}
+          <div className="text-center mt-12 mb-4">
+            <a
+              href="#register"
+              onClick={(e) => handleAnchorClick(e, "register")}
+              className={"inline-block " + ctaButtonInline + " text-[12px] md:text-[13px] px-10 py-3 text-center animate-btn-pulse"}
+            >
+              YES! TÔI MUỐN THAM GIA HÀNH TRÌNH 7 NGÀY XÂY KÊNH CHUYỂN ĐỔI
+            </a>
           </div>
         </div>
       </section>
