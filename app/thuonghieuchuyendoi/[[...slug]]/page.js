@@ -1490,13 +1490,13 @@ export default function ThuongHieuChuyenDoiPage() {
             ))}
           </div>
 
-          {/* Feedback bằng bài đăng của học viên (Rút gọn còn 4 ảnh thật, Masonry 2 cột trên desktop, xếp dọc 1 cột trên mobile) */}
+          {/* Feedback bằng bài đăng của học viên (Rút gọn còn 8 ảnh thật, Masonry 2 cột trên desktop, xếp dọc 1 cột trên mobile) */}
           <div className="mt-4 mb-8 max-w-[960px] mx-auto">
             {/* Giao diện Desktop: Grid 2 cột */}
             <div className="hidden md:grid grid-cols-2 gap-6">
               {/* Cột 1 */}
               <div className="flex flex-col gap-6">
-                {[1, 3].map((num) => (
+                {[1, 3, 5, 7].map((num) => (
                   <div key={num} className="bg-white border border-[#eee] rounded-2xl overflow-hidden shadow-md relative w-full h-auto">
                     <img
                       src={`/thuonghieuchuyendoi/images/feedback-img-${num}.jpg`}
@@ -1512,7 +1512,7 @@ export default function ThuongHieuChuyenDoiPage() {
 
               {/* Cột 2 */}
               <div className="flex flex-col gap-6">
-                {[2, 4].map((num) => (
+                {[2, 4, 6, 8].map((num) => (
                   <div key={num} className="bg-white border border-[#eee] rounded-2xl overflow-hidden shadow-md relative w-full h-auto">
                     <img
                       src={`/thuonghieuchuyendoi/images/feedback-img-${num}.jpg`}
@@ -1529,7 +1529,7 @@ export default function ThuongHieuChuyenDoiPage() {
 
             {/* Giao diện Mobile: Xếp chồng 1 cột cuộn dọc */}
             <div className="md:hidden flex flex-col gap-5">
-              {Array.from({ length: 4 }).map((_, idx) => {
+              {Array.from({ length: 8 }).map((_, idx) => {
                 const num = idx + 1;
                 return (
                   <div key={num} className="bg-white border border-[#eee] rounded-2xl overflow-hidden shadow-md relative w-full h-auto">
@@ -1546,7 +1546,7 @@ export default function ThuongHieuChuyenDoiPage() {
               })}
             </div>
 
-            {/* Nút đăng ký lớn đặt ngay dưới ảnh thứ 4 */}
+            {/* Nút đăng ký lớn đặt ngay dưới các ảnh feedback */}
             <div className="text-center mt-10">
               <a
                 href="#register"
