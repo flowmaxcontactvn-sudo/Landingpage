@@ -608,32 +608,39 @@ export default function ThuongHieuChuyenDoiPage() {
   // Scroll Reveal Animation (Fade-in Slide-up)
   useEffect(() => {
     if (typeof window === "undefined") return;
+    if (campaignStatus !== "valid") return;
 
-    const elements = document.querySelectorAll(".reveal-on-scroll");
-    if (!elements.length) return;
+    let observerInstance = null;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("revealed");
-            // Stop observing once transition runs to improve performance
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.08,
-        rootMargin: "0px 0px -40px 0px"
-      }
-    );
+    const timer = setTimeout(() => {
+      const elements = document.querySelectorAll(".reveal-on-scroll");
+      if (!elements.length) return;
 
-    elements.forEach((el) => observer.observe(el));
+      observerInstance = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("revealed");
+              observerInstance.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.08,
+          rootMargin: "0px 0px -40px 0px"
+        }
+      );
+
+      elements.forEach((el) => observerInstance.observe(el));
+    }, 100);
 
     return () => {
-      elements.forEach((el) => observer.unobserve(el));
+      clearTimeout(timer);
+      if (observerInstance) {
+        observerInstance.disconnect();
+      }
     };
-  }, []);
+  }, [campaignStatus]);
 
   // 10. Form submission handler
   const handleSubmit = async (e) => {
