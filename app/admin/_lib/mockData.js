@@ -45,7 +45,7 @@ export const campaigns = [
 // có cấu trúc section khác nhau. Đúng thứ tự cuộn trang thật trong
 // app/thuonghieuchuyendoi/page.js (thứ tự các data-section trong DOM).
 // Điểm số/giây thực tế lấy từ bảng heatmap_section, không lưu ở đây.
-// landi2/landing3 chưa có nội dung nên để rỗng, thêm khi có trang thật.
+// landing2/landing3 chưa có nội dung nên để rỗng, thêm khi có trang thật.
 export const sectionLabelsByLanding = {
   "/thuonghieuchuyendoi": {
     "announcement-bar": "Thanh thông báo đầu trang",
@@ -59,7 +59,7 @@ export const sectionLabelsByLanding = {
     "register-cta": "CTA — Đăng ký tham gia",
     "social-proof": "Social proof — Học viên thành công",
   },
-  "/landi2": {},
+  "/landing2": {},
   "/landing3": {},
 };
 
@@ -74,7 +74,7 @@ export const sourceLabels = {
 // Các landing page hiện có trong hệ thống (khớp thư mục app/)
 export const landingPages = [
   { path: "/thuonghieuchuyendoi", domain: "7ngay.thuonghieuchuyendoi.com", name: "7 Ngày Xây Kênh Chuyển Đổi", live: true },
-  { path: "/landi2", domain: "landing2.com", name: "Landing 2", live: false },
+  { path: "/landing2", domain: "landing2.com", name: "Landing 2", live: false },
   { path: "/landing3", domain: "landing3.com", name: "Landing 3", live: false },
 ];
 
