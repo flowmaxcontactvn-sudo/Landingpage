@@ -8,9 +8,9 @@ export function proxy(request) {
   const domainMapping = {
     'thuonghieuchuyendoi.com': '/admin',
     'www.thuonghieuchuyendoi.com': '/admin',
-    '7ngay.thuonghieuchuyendoi.com': '/thuonghieuchuyendoi',
-    'landing2.com': '/landing2',
-    'www.landing2.com': '/landing2',
+    '7ngay.thuonghieuchuyendoi.com': '/landi2',
+    'landing2.com': '/landi2',
+    'www.landing2.com': '/landi2',
   };
 
   // Nếu là môi trường phát triển local (localhost/127.0.0.1)
