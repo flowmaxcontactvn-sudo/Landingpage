@@ -41,7 +41,7 @@ export default function SpeakerIntro() {
           </div>
 
           {/* Two columns layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-[14.5px] md:text-[15.5px] leading-relaxed text-white/90 font-medium">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 text-[14.5px] md:text-[15.5px] leading-relaxed text-white/90 font-medium">
             
             {/* Left Column */}
             <div className="space-y-5">
@@ -62,23 +62,23 @@ export default function SpeakerIntro() {
                 Khi đó bạn sẽ bạn hiểu rõ mình cần làm gì để vượt qua mọi cám dỗ của cuộc sống, và quan trọng nhất là chiến thắng chính bản thân mình. Dù chúng ta làm nghề gì đi chăng nữa thì chúng ta chỉ có một cuộc đời để sống.
               </p>
 
-              {/* Quote box in dark transparent */}
-              <div className="bg-[#031d2b]/60 border border-white/20 rounded-lg p-5 flex items-start gap-4 shadow-inner relative overflow-hidden">
+              {/* Quote box matching template (white thin border, transparent dark background) */}
+              <div className="bg-[#031d2b]/40 border border-white/40 rounded-lg p-5 flex items-start gap-4 shadow-inner relative overflow-hidden">
                 <p className="font-extrabold text-white text-[14px] md:text-[15px] leading-relaxed flex-grow relative z-10">
-                  "Chúng ta không được chọn hoàn cảnh khi sinh ra, nhưng được quyền tạo dựng một nhân cách sống."
+                  Chúng ta không được chọn hoàn cảnh khi sinh ra, nhưng được quyền tạo dựng một nhân cách sống.
                 </p>
-                <span className="text-[48px] font-black text-white/10 leading-none select-none font-montserrat shrink-0">
+                <span className="text-[48px] font-black text-white/20 leading-none select-none font-montserrat shrink-0">
                   ”
                 </span>
               </div>
 
               <p>
-                Vậy bạn chọn sống một cuộc đời như thế nào là do bạn? Tôi mong muốn cống hiện và lan tỏa giá trị của con đường này đến nhiều người hơn nữa. Để mỗi ngày sống là một niềm vui và ý nghĩa.
+                Vậy bạn chọn sống một cuộc đời như thế nào là do bạn? Tôi mong muốn cống hiến và lan tỏa giá trị của con đường này đến nhiều người hơn nữa. Để mỗi ngày sống là một niềm vui và ý nghĩa.
               </p>
               <p>
                 Bạn cùng tôi chung tay lan tỏa để chúng ta cùng xây dựng một gia đình lớn.
               </p>
-              <p className="text-[#ff9800] font-black text-[15px] md:text-[16px] uppercase tracking-wide">
+              <p className="text-[#ff9800] font-black text-[15px] md:text-[16px] uppercase tracking-wide text-right">
                 “Cộng đồng sống Tử Tế và cống hiến hết mình”
               </p>
             </div>
@@ -88,13 +88,13 @@ export default function SpeakerIntro() {
         </div>
 
         {/* ========================================================
-            PART 2: PORTRAIT & BIO WHITE CARD
+            PART 2: PORTRAIT & BIO WHITE CARD (Overlaying layout)
            ======================================================== */}
-        <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1.9fr] gap-10 items-end max-w-[860px] mx-auto pt-6">
+        <div className="flex flex-col md:flex-row items-end justify-center max-w-[920px] mx-auto pt-10 relative">
           
-          {/* Left Side: Speaker Portrait Placeholder */}
-          <div className="relative shrink-0 flex justify-center max-[767px]:mb-6">
-            <div className="w-[220px] h-[270px] bg-gradient-to-t from-[#062c45] to-[#0c446b] rounded-2xl border border-white/15 flex flex-col items-center justify-center text-center p-4 shadow-xl overflow-hidden group">
+          {/* Left Side: Speaker Portrait Placeholder (Large size) */}
+          <div className="relative shrink-0 flex justify-center max-[767px]:mb-6 z-0">
+            <div className="w-[240px] h-[300px] md:w-[280px] md:h-[350px] bg-gradient-to-t from-[#062c45] to-[#0c446b] rounded-2xl border border-white/15 flex flex-col items-center justify-center text-center p-4 shadow-xl overflow-hidden group">
               <svg className="w-16 h-16 text-white/30 mb-2 group-hover:scale-105 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
@@ -105,11 +105,11 @@ export default function SpeakerIntro() {
             </div>
           </div>
 
-          {/* Right Side: Bio White Card */}
-          <div className="space-y-5 text-left w-full">
+          {/* Right Side: Bio White Card (Overlapping image on Desktop) */}
+          <div className="w-full md:max-w-[580px] md:-ml-16 relative z-10 flex flex-col items-start gap-4 mb-4 text-left">
             
             {/* White card info box */}
-            <div className="bg-white text-[#042638] rounded-xl p-6 md:p-8 shadow-2xl border border-gray-100 relative overflow-hidden">
+            <div className="bg-white text-[#042638] rounded-xl p-6 md:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-gray-100 w-full">
               <h3 className="text-[20px] md:text-[23px] font-black font-montserrat tracking-wide mb-5">
                 Thầy Trần Việt Quân
               </h3>
@@ -128,8 +128,8 @@ export default function SpeakerIntro() {
             </div>
 
             {/* Signature quotes beneath the white card */}
-            <div className="pt-2">
-              <p className="font-handwriting text-[#ff9800] text-[28px] md:text-[32px] leading-none py-1 rotate-[-2deg] inline-block font-bold">
+            <div className="pt-2 w-full pl-6 max-[767px]:text-center">
+              <p className="font-handwriting text-[#ff9800] text-[34px] md:text-[40px] leading-none py-1 rotate-[-2deg] inline-block font-bold">
                 Hãy sống và lan tỏa điều tử tế!
               </p>
             </div>
