@@ -10,7 +10,7 @@ export default function SpeakerIntro() {
   ];
 
   return (
-    <section id="speaker-intro" className="relative py-24 bg-[#042638] text-white font-sans overflow-hidden border-t border-white/5">
+    <section id="speaker-intro" className="relative py-24 bg-[#021420] text-white font-sans overflow-hidden border-t border-white/5">
       {/* Import Font viết tay Caveat độc lập đề phòng */}
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap');
