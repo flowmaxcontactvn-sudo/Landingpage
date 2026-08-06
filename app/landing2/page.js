@@ -11,7 +11,6 @@ import WhatIsNumerology from "./components/sections/WhatIsNumerology";
 import Testimonials from "./components/sections/Testimonials";
 import Registration from "./components/sections/Registration";
 import SpeakerIntro from "./components/sections/SpeakerIntro";
-import StickyCTA from "./components/layout/StickyCTA";
 
 export default function Landing2Page() {
   return (
@@ -48,9 +47,6 @@ export default function Landing2Page() {
 
       {/* Footer */}
       <Footer />
-
-      {/* Sticky Bottom CTA Bar */}
-      <StickyCTA />
     </div>
   );
 }

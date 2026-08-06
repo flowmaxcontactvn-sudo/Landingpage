@@ -2,7 +2,7 @@ import React from "react";
 
 export default function FourCircles() {
   return (
-    <section id="four-circles" className="relative py-24 bg-[#042638] text-white font-sans overflow-hidden border-t border-white/5">
+    <section id="four-circles" className="relative py-12 md:py-16 bg-[#042638] text-white font-sans overflow-hidden border-t border-white/5">
       {/* Background Grayscale Event Image with Teal Overlay */}
       <div className="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden">
         <img 

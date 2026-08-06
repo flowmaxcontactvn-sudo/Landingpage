@@ -115,10 +115,10 @@ export default function Registration() {
   };
 
   return (
-    <section id="register" className="relative py-20 bg-[#042638] text-white font-sans border-t border-white/5">
+    <section id="register" className="relative py-12 md:py-16 bg-[#042638] text-white font-sans border-t border-white/5">
       
       {/* MINI TOP BAR HEADER */}
-      <div className="w-full border-b border-white/10 pb-6 mb-12">
+      <div className="w-full border-b border-white/10 pb-6 mb-8">
         <div className="max-w-[1040px] mx-auto px-6 flex justify-between items-center max-[640px]:flex-col max-[640px]:gap-4">
           {/* Left: Brand */}
           <div className="text-left font-montserrat font-black text-[15px] md:text-[17px] tracking-wide uppercase">

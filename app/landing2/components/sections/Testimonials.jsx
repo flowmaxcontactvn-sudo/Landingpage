@@ -177,11 +177,11 @@ export default function Testimonials() {
   };
 
   return (
-    <section id="testimonials" className="py-24 bg-white text-[#042638] font-sans border-t border-[#eee] relative">
+    <section id="testimonials" className="pt-12 pb-16 bg-white text-[#042638] font-sans border-t border-[#eee] relative">
       <div className="max-w-[1040px] mx-auto px-6 max-[680px]:px-4">
         
         {/* HEADER SECTION */}
-        <div className="text-center flex flex-col items-center mb-16">
+        <div className="text-center flex flex-col items-center mb-10">
           <div className="inline-block border-[1.5px] border-[#042638] rounded-sm px-4 py-1 mb-4 select-none">
             <span className="text-[12px] md:text-[13px] font-black tracking-[0.2em] text-[#042638] uppercase font-montserrat">
               CẢM NHẬN

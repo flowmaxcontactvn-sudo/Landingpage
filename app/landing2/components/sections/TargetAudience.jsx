@@ -65,7 +65,7 @@ export default function TargetAudience() {
   ];
 
   return (
-    <section id="target-audience" className="py-20 bg-white text-[#042638] font-sans border-t border-[#eee]">
+    <section id="target-audience" className="pt-12 pb-16 bg-white text-[#042638] font-sans border-t border-[#eee]">
       <div className="max-w-[780px] mx-auto px-6 max-[680px]:px-4">
         
         {/* HEADER (Căn trái) */}

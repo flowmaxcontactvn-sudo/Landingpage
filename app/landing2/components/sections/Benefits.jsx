@@ -56,7 +56,7 @@ export default function Benefits() {
   ];
 
   return (
-    <section id="benefits" className="py-20 bg-white text-[#042638] font-sans">
+    <section id="benefits" className="pt-12 pb-16 bg-white text-[#042638] font-sans">
       <div className="max-w-[1040px] mx-auto px-6 max-[680px]:px-4">
         
         {/* SECTION HEADER (Căn trái) */}

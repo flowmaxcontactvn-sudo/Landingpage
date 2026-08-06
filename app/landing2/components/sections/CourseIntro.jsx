@@ -10,7 +10,7 @@ export default function CourseIntro() {
   };
 
   return (
-    <section id="course-intro" className="relative py-20 bg-[#042638] text-white font-sans overflow-hidden">
+    <section id="course-intro" className="relative py-12 md:py-16 bg-[#042638] text-white font-sans overflow-hidden">
       {/* Glow Effects */}
       <div className="absolute top-[10%] left-[-10%] w-[400px] h-[400px] rounded-full bg-radial from-blue-500/10 to-transparent blur-[100px] pointer-events-none" />
       <div className="absolute bottom-[20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-radial from-[#ff1a40]/5 to-transparent blur-[120px] pointer-events-none" />

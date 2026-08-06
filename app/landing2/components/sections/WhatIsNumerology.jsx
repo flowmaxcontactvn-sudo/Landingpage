@@ -15,8 +15,8 @@ export default function WhatIsNumerology() {
   ];
 
   return (
-    <section id="what-is-numerology" className="py-24 bg-white text-[#042638] font-sans border-t border-[#eee]">
-      <div className="max-w-[1040px] mx-auto px-6 max-[680px]:px-4 space-y-24">
+    <section id="what-is-numerology" className="pt-12 pb-16 bg-white text-[#042638] font-sans border-t border-[#eee]">
+      <div className="max-w-[1040px] mx-auto px-6 max-[680px]:px-4 space-y-16">
         
         {/* ========================================================
             PHẦN 1: THẦN SỐ HỌC TRƯỜNG PHÁI PITAGO

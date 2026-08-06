@@ -61,7 +61,7 @@ export default function Footer() {
               allowFullScreen="" 
               loading="lazy" 
               referrerPolicy="no-referrer-when-downgrade"
-              className="w-full h-full grayscale brightness-90 group-hover:grayscale-0 transition-all duration-500 ease-in-out"
+              className="w-full h-full border-0"
               title="Google Map An Vượng Villa"
             />
             {/* Soft overlay gradient */}
