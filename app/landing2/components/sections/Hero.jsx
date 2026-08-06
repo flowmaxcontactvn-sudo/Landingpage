@@ -12,7 +12,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen pt-32 pb-16 flex flex-col justify-between bg-[#042638] text-white overflow-hidden font-sans">
+    <section id="hero" className="relative pt-24 pb-0 flex flex-col justify-start items-center bg-[#042638] text-white overflow-hidden font-sans">
       {/* Import Font viết tay Caveat độc lập chỉ cho Landing 2 */}
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap');
@@ -22,30 +22,30 @@ export default function Hero() {
       `}</style>
 
       {/* TOP HEADER LOGOS */}
-      <div className="absolute top-0 left-0 w-full z-20 py-6">
+      <div className="absolute top-0 left-0 w-full z-20 py-4">
         <div className="max-w-[1200px] mx-auto px-6 flex justify-between items-center">
           {/* Logo Bách Khoa (Vàng nghệ) */}
           <div className="flex flex-col items-center select-none">
-            <svg className="w-10 h-10 text-[#ffd043]" viewBox="0 0 24 24" fill="currentColor">
+            <svg className="w-9 h-9 text-[#ffd043]" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 2L2 22h20L12 2zm0 4.5l6.5 13H5.5L12 6.5z"/>
               <circle cx="12" cy="14" r="2.5"/>
             </svg>
-            <span className="text-[11px] font-black tracking-[0.15em] uppercase text-[#ffd043] mt-1 font-montserrat">
+            <span className="text-[10px] font-black tracking-[0.15em] uppercase text-[#ffd043] mt-1 font-montserrat">
               bach khoa
             </span>
-            <span className="text-[8px] font-bold tracking-[0.2em] uppercase text-[#ffd043]/80 font-montserrat">
+            <span className="text-[7.5px] font-bold tracking-[0.2em] uppercase text-[#ffd043]/80 font-montserrat">
               education
             </span>
           </div>
 
           {/* Logo GNH (Hoa sen nhiều màu) */}
           <div className="flex flex-col items-center select-none">
-            <div className="relative w-9 h-9 flex items-center justify-center bg-white/5 rounded-full p-1 border border-white/10">
-              <svg className="w-7 h-7 text-[#00bcd4]" viewBox="0 0 24 24" fill="currentColor">
+            <div className="relative w-8.5 h-8.5 flex items-center justify-center bg-white/5 rounded-full p-1 border border-white/10">
+              <svg className="w-6.5 h-6.5 text-[#00bcd4]" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 21.5c-1.35-1.22-4.14-3.75-6.14-6.14C3.86 12.96 3 11 3 9c0-3.31 2.69-6 6-6 1.84 0 3.5.83 4.6 2.1C14.7 3.83 16.36 3 18.2 3c3.31 0 6 2.69 6 6 0 2-.86 3.96-2.86 6.36-2 2.39-4.79 4.92-6.14 6.14z"/>
               </svg>
             </div>
-            <span className="text-[11px] font-black tracking-[0.2em] text-[#00bcd4] mt-1 font-montserrat">
+            <span className="text-[10px] font-black tracking-[0.2em] text-[#00bcd4] mt-1 font-montserrat">
               GNH.VN
             </span>
           </div>
@@ -53,10 +53,10 @@ export default function Hero() {
       </div>
 
       {/* MAIN HERO CONTENT */}
-      <div className="max-w-[960px] mx-auto px-6 relative z-10 flex-grow flex flex-col justify-center items-center text-center mt-12">
+      <div className="max-w-[960px] mx-auto px-6 relative z-10 flex flex-col items-center text-center mt-4 mb-6">
         
         {/* Badge: Khóa học offline */}
-        <div className="inline-block border-[1.5px] border-white rounded-sm px-5 py-1 mb-5">
+        <div className="inline-block border-[1.5px] border-white rounded-sm px-5 py-1 mb-4">
           <span className="text-[13px] md:text-[15px] font-black tracking-[0.2em] text-white uppercase font-montserrat">
             {heroData.badge}
           </span>
@@ -100,7 +100,7 @@ export default function Hero() {
         </div>
 
         {/* CTA Button */}
-        <div className="mt-12">
+        <div className="mt-6">
           <a
             href="#register"
             onClick={handleScrollToRegister}
@@ -112,7 +112,7 @@ export default function Hero() {
       </div>
 
       {/* BOTTOM INSTRUCTOR ROW */}
-      <div className="w-full border-t border-white/5 bg-[#03111c]/60 backdrop-blur-sm pt-8 pb-4 mt-12">
+      <div className="w-full border-t border-white/5 bg-[#03111c]/60 backdrop-blur-sm pt-6 pb-2 mt-4">
         <div className="max-w-[820px] mx-auto px-6 flex items-end justify-between gap-8 max-[680px]:flex-col max-[680px]:items-center max-[680px]:text-center max-[680px]:gap-6">
           
           {/* Left: Placeholder for Thầy Trần Việt Quân Image */}
