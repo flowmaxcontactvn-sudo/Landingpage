@@ -74,7 +74,7 @@ export default function Benefits() {
           {listData.map((box, boxIdx) => (
             <div 
               key={boxIdx} 
-              className="bg-white border-[1.5px] border-[#042638]/40 rounded-xl p-6 md:p-8 shadow-[0_8px_30px_rgba(4,38,56,0.04)] relative overflow-hidden min-h-[340px] flex flex-col justify-between"
+              className="bg-white border-[1.5px] border-[#042638]/40 rounded-xl p-6 md:p-8 shadow-[0_8px_30px_rgba(4,38,56,0.04)] relative overflow-hidden h-auto md:h-[460px] flex flex-col justify-between"
             >
               {/* LARGE BACKGROUND WATERMARK NUMBER */}
               <span className="absolute right-4 bottom-[-16px] text-[150px] font-black text-[#042638]/5 select-none pointer-events-none z-0 leading-none">
