@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="max-w-[1040px] mx-auto px-6 max-[680px]:px-4">
         
         {/* TWO COLUMNS BUNDLE */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center pb-12 border-b border-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
           
           {/* LEFT COLUMN: COMPANY DETAILS */}
           <div className="space-y-6 text-left">
@@ -70,10 +70,7 @@ export default function Footer() {
 
         </div>
 
-        {/* COPYRIGHT INFO */}
-        <div className="pt-8 text-center text-white/50 text-[12.5px] font-semibold tracking-wide">
-          <p>© 2026 CÔNG TY CỔ PHẦN FLOWMAX GLOBAL. All rights reserved.</p>
-        </div>
+
 
       </div>
     </footer>
