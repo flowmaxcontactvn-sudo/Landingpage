@@ -8,6 +8,7 @@ import TargetAudience from "./components/sections/TargetAudience";
 import CourseIntro from "./components/sections/CourseIntro";
 import FourCircles from "./components/sections/FourCircles";
 import WhatIsNumerology from "./components/sections/WhatIsNumerology";
+import SpeakerIntro from "./components/sections/SpeakerIntro";
 import Registration from "./components/sections/Registration";
 
 export default function Landing2Page() {
@@ -33,8 +34,11 @@ export default function Landing2Page() {
         {/* Section 6: Thần số học là gì? Để làm gì? */}
         <WhatIsNumerology />
 
-        {/* Section 7: Đăng ký & Thông tin lịch học Hồ Chí Minh */}
+        {/* Section 7: Đăng ký & Thông tin lịch học */}
         <Registration />
+
+        {/* Section 8: Đôi điều chia sẻ về tôi (Speaker) */}
+        <SpeakerIntro />
       </main>
 
       {/* Footer */}
