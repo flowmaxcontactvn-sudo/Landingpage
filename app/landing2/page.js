@@ -3,6 +3,7 @@
 import React from "react";
 import Footer from "./components/layout/Footer";
 import Hero from "./components/sections/Hero";
+import Benefits from "./components/sections/Benefits";
 
 export default function Landing2Page() {
   return (
@@ -12,31 +13,8 @@ export default function Landing2Page() {
         {/* Section 1: Hero */}
         <Hero />
 
-        {/* Section 2: Trống/placeholder chờ bổ sung thêm */}
-        <section id="benefits" className="py-24 border-t border-white/5 relative bg-[#090a10]">
-          <div className="max-w-[1040px] mx-auto px-6 max-[680px]:px-4 text-center space-y-4">
-            <h2 className="text-[clamp(28px,3.8vw,44px)] font-black uppercase font-montserrat text-[#e30a0a]">
-              Lợi Ích Đột Phá
-            </h2>
-            <p className="text-white/60 max-w-[600px] mx-auto font-sans leading-relaxed">
-              Các giá trị thực tế mà bạn sẽ nhận được khi tham gia chương trình đào tạo chuyên sâu.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-10">
-              <div className="bg-white/5 border border-white/5 p-8 rounded-2xl space-y-3 text-left">
-                <h3 className="text-xl font-bold text-white font-montserrat">Tự Động Hóa</h3>
-                <p className="text-white/60 text-sm leading-relaxed">Xây dựng quy trình tìm kiếm và tiếp cận khách hàng tiềm năng 100% tự động qua video ngắn.</p>
-              </div>
-              <div className="bg-white/5 border border-white/5 p-8 rounded-2xl space-y-3 text-left">
-                <h3 className="text-xl font-bold text-white font-montserrat">Thương Hiệu</h3>
-                <p className="text-white/60 text-sm leading-relaxed">Định vị bản thân là chuyên gia đầu ngành trong lĩnh vực của bạn một cách nhanh chóng.</p>
-              </div>
-              <div className="bg-white/5 border border-white/5 p-8 rounded-2xl space-y-3 text-left">
-                <h3 className="text-xl font-bold text-white font-montserrat">Chuyển Đổi</h3>
-                <p className="text-white/60 text-sm leading-relaxed">Tối ưu hóa các chỉ số tương tác, chuyển hóa người xem trung lập thành đơn hàng thực tế.</p>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* Section 2: Giá trị khóa học mang lại */}
+        <Benefits />
 
         {/* Section 3: Đăng ký */}
         <section id="register" className="py-24 border-t border-white/5 bg-[#07080d]">
