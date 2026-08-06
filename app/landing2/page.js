@@ -1,16 +1,12 @@
 "use client";
 
 import React from "react";
-import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Hero from "./components/sections/Hero";
 
 export default function Landing2Page() {
   return (
     <div className="min-h-screen bg-[#07080d] text-white flex flex-col selection:bg-[#e30a0a]/30 selection:text-white">
-      {/* Header */}
-      <Header />
-
       {/* Main Content */}
       <main className="flex-grow">
         {/* Section 1: Hero */}

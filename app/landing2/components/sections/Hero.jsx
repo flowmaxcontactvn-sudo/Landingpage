@@ -56,15 +56,15 @@ export default function Hero() {
       <div className="max-w-[960px] mx-auto px-6 relative z-10 flex-grow flex flex-col justify-center items-center text-center mt-12">
         
         {/* Badge: Khóa học offline */}
-        <div className="inline-block border-[1.5px] border-white/80 rounded-sm px-4 py-1 mb-5">
-          <span className="text-[12px] md:text-[13.5px] font-extrabold tracking-[0.2em] text-white uppercase font-montserrat">
+        <div className="inline-block border-[1.5px] border-white rounded-sm px-5 py-1 mb-5">
+          <span className="text-[13px] md:text-[15px] font-black tracking-[0.2em] text-white uppercase font-montserrat">
             {heroData.badge}
           </span>
         </div>
 
         {/* Title: Thần Số Học 3 Gốc */}
-        <h1 className="text-[clamp(36px,5.8vw,68px)] font-black tracking-wide leading-none font-montserrat uppercase mb-6">
-          <span className="text-[#e30a21] drop-shadow-[0_2px_10px_rgba(227,10,33,0.2)] mr-4">
+        <h1 className="text-[clamp(44px,6.8vw,80px)] font-black tracking-wide leading-[1.1] font-montserrat uppercase mb-6">
+          <span className="text-[#ff1a40] drop-shadow-[0_4px_12px_rgba(255,26,64,0.3)] mr-4">
             {heroData.titleRed}
           </span>
           <span className="text-white">
@@ -73,26 +73,26 @@ export default function Hero() {
         </h1>
 
         {/* Sub-headline Box */}
-        <div className="inline-flex items-center gap-2 bg-[#051c2d] border border-white/10 rounded-full px-5 py-2.5 mb-8 shadow-inner max-[480px]:px-4 max-[480px]:py-2">
-          <span className="text-[#ffd043] text-sm">👉</span>
-          <p className="text-[14px] md:text-[15.5px] font-semibold tracking-wide font-sans">
+        <div className="inline-flex items-center gap-2.5 bg-[#06243a] border border-white/20 rounded-full px-6 py-3 mb-8 shadow-md">
+          <span className="text-[#f9c115] text-base">👉</span>
+          <p className="text-[17px] md:text-[20px] font-bold tracking-wide font-sans">
             <span className="text-white mr-1.5">Khai sáng trí tuệ,</span>
-            <span className="text-[#ffd043]">{heroData.subHeadline.split(",")[1]?.trim() || "định hướng cuộc đời"}</span>
+            <span className="text-[#f9c115]">{heroData.subHeadline.split(",")[1]?.trim() || "định hướng cuộc đời"}</span>
           </p>
         </div>
 
         {/* Descriptions (Multi-line layout) */}
-        <div className="space-y-2 text-[15px] md:text-[17px] text-white/90 leading-relaxed font-sans max-w-[760px] mx-auto">
+        <div className="space-y-3.5 text-[18px] md:text-[21px] text-white leading-relaxed font-sans max-w-[800px] mx-auto">
           {heroData.descriptions.map((desc, idx) => {
             if (desc.highlight) {
               return (
-                <p key={idx} className="font-extrabold text-[#ffd043] tracking-wide uppercase">
+                <p key={idx} className="font-black text-[#f9c115] tracking-wide uppercase">
                   {desc.highlight}
                 </p>
               );
             }
             return (
-              <p key={idx} className={desc.italic ? "text-white/60 font-black tracking-wider italic text-[14px] md:text-[15px] mt-4" : "font-medium"}>
+              <p key={idx} className={desc.italic ? "text-white/60 font-black tracking-wider italic text-[15px] md:text-[16.5px] mt-6" : "font-semibold"}>
                 {desc.text}
               </p>
             );
@@ -100,11 +100,11 @@ export default function Hero() {
         </div>
 
         {/* CTA Button */}
-        <div className="mt-10">
+        <div className="mt-12">
           <a
             href="#register"
             onClick={handleScrollToRegister}
-            className="inline-flex items-center justify-center bg-gradient-to-r from-[#9b154c] to-[#e30a21] hover:from-[#b91e5e] hover:to-[#ff1e38] text-white font-extrabold font-montserrat uppercase tracking-wider rounded-full shadow-[0_4px_30px_rgba(227,10,33,0.4)] hover:shadow-[0_6px_36px_rgba(227,10,33,0.65)] hover:scale-105 active:scale-95 transition-all duration-300 px-12 py-4 text-[14.5px] md:text-[16px]"
+            className="inline-flex items-center justify-center bg-gradient-to-r from-[#cc0e48] to-[#ff1a40] hover:from-[#e61253] hover:to-[#ff3b5c] text-white font-black font-montserrat uppercase tracking-wider rounded-full shadow-[0_5px_35px_rgba(255,26,64,0.45)] hover:shadow-[0_8px_40px_rgba(255,26,64,0.7)] hover:scale-105 active:scale-95 transition-all duration-300 px-16 py-4.5 text-[16px] md:text-[18px]"
           >
             {heroData.ctaText}
           </a>
