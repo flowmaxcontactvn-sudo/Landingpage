@@ -121,14 +121,14 @@ export default function Registration() {
       <div className="w-full border-b border-white/10 pb-3 mb-5">
         <div className="max-w-[1040px] mx-auto px-6 flex justify-between items-center max-[640px]:flex-col max-[640px]:gap-4">
           {/* Left: Brand */}
-          <div className="text-left font-montserrat font-black text-[15px] md:text-[17px] tracking-wide uppercase">
+          <div className="text-left font-montserrat font-black text-[16.5px] md:text-[19px] tracking-wide uppercase">
             <span className="text-[#ff1a40] drop-shadow-[0_2px_8px_rgba(255,26,64,0.2)]">THẦN SỐ HỌC</span> <span className="text-white">3 GỐC</span>
           </div>
           
           {/* Middle: Schedule (Hanoi only) */}
           <div className="text-center flex flex-col items-center">
-            <span className="text-[11px] font-bold text-white/50 uppercase tracking-widest leading-none">Hà Nội</span>
-            <span className="text-[14px] md:text-[15.5px] font-black text-[#ff9800] font-montserrat mt-1 block">06/08/2026</span>
+            <span className="text-[12px] md:text-[13px] font-bold text-white/50 uppercase tracking-widest leading-none">Hà Nội</span>
+            <span className="text-[15.5px] md:text-[17.5px] font-black text-[#ff9800] font-montserrat mt-1 block">06/08/2026</span>
           </div>
 
           {/* Right: CTA Button */}
@@ -140,7 +140,7 @@ export default function Registration() {
                 const target = document.getElementById("registration-form");
                 if (target) target.scrollIntoView({ behavior: "smooth" });
               }}
-              className="inline-flex items-center justify-center bg-gradient-to-r from-[#cc0e48] to-[#ff1a40] text-white font-black text-[12.5px] md:text-[13.5px] font-montserrat uppercase tracking-wider px-6 py-2.5 rounded-full shadow-md shadow-[#ff1a40]/25 hover:scale-105 active:scale-95 transition-transform cursor-pointer"
+              className="inline-flex items-center justify-center bg-gradient-to-r from-[#cc0e48] to-[#ff1a40] text-white font-black text-[13.5px] md:text-[14.5px] font-montserrat uppercase tracking-wider px-6 py-2.5 rounded-full shadow-md shadow-[#ff1a40]/25 hover:scale-105 active:scale-95 transition-transform cursor-pointer"
             >
               ĐĂNG KÝ NGAY ➔
             </a>

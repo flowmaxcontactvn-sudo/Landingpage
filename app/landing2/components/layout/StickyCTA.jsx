@@ -31,20 +31,20 @@ export default function StickyCTA() {
         isVisible ? "translate-y-0 opacity-100" : "translate-y-full opacity-0 pointer-events-none"
       }`}
     >
-      <div className="max-w-[1040px] mx-auto px-6 py-3.5 flex justify-between items-center gap-4">
+      <div className="max-w-[1040px] mx-auto px-6 py-2.5 flex justify-between items-center gap-4">
         
         {/* Left: Brand Name */}
-        <div className="text-left font-montserrat font-black text-[13px] md:text-[15px] tracking-wide uppercase shrink-0">
+        <div className="text-left font-montserrat font-black text-[15px] md:text-[17px] tracking-wide uppercase shrink-0">
           <span className="text-[#ff1a40] block leading-none">THẦN SỐ HỌC</span>
-          <span className="text-white block text-[11px] md:text-[12px] tracking-[0.15em] mt-0.5 leading-none">3 GỐC</span>
+          <span className="text-white block text-[12px] md:text-[13px] tracking-[0.15em] mt-0.5 leading-none">3 GỐC</span>
         </div>
 
         {/* Center: Class Date (Hanoi only) */}
         <div className="text-center font-sans">
-          <span className="block text-[9.5px] md:text-[10.5px] font-bold text-white/50 uppercase tracking-widest leading-none">
+          <span className="block text-[11px] md:text-[12px] font-bold text-white/50 uppercase tracking-widest leading-none">
             Hà Nội
           </span>
-          <span className="text-[12.5px] md:text-[14px] font-black text-[#ff9800] font-montserrat mt-1 block leading-none">
+          <span className="text-[14px] md:text-[16px] font-black text-[#ff9800] font-montserrat mt-1 block leading-none">
             06/08/2026
           </span>
         </div>
@@ -54,7 +54,7 @@ export default function StickyCTA() {
           <a 
             href="#registration-form"
             onClick={handleScrollToForm}
-            className="inline-flex items-center justify-center bg-gradient-to-r from-[#cc0e48] to-[#ff1a40] text-white font-black text-[11.5px] md:text-[12.5px] font-montserrat uppercase tracking-wider px-5 py-2.5 rounded-full shadow-md shadow-[#ff1a40]/25 hover:scale-105 active:scale-95 transition-transform cursor-pointer"
+            className="inline-flex items-center justify-center bg-gradient-to-r from-[#cc0e48] to-[#ff1a40] text-white font-black text-[13px] md:text-[14px] font-montserrat uppercase tracking-wider px-5 py-2.5 rounded-full shadow-md shadow-[#ff1a40]/25 hover:scale-105 active:scale-95 transition-transform cursor-pointer"
           >
             ĐĂNG KÝ NGAY ➔
           </a>
