@@ -88,13 +88,13 @@ export default function SpeakerIntro() {
         </div>
 
         {/* ========================================================
-            PART 2: PORTRAIT & BIO WHITE CARD (Overlaying layout)
+            PART 2: PORTRAIT & BIO WHITE CARD (Aligned Grid Overlay)
            ======================================================== */}
-        <div className="flex flex-col md:flex-row items-end justify-center max-w-[920px] mx-auto pt-10 relative">
+        <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] items-end w-full pt-10 relative">
           
-          {/* Left Side: Speaker Portrait Placeholder (Large size) */}
-          <div className="relative shrink-0 flex justify-center max-[767px]:mb-6 z-0">
-            <div className="w-[240px] h-[300px] md:w-[280px] md:h-[350px] bg-gradient-to-t from-[#062c45] to-[#0c446b] rounded-2xl border border-white/15 flex flex-col items-center justify-center text-center p-4 shadow-xl overflow-hidden group">
+          {/* Left Side: Speaker Portrait Placeholder (Large size aligned left) */}
+          <div className="relative w-full max-w-[280px] z-0 max-[767px]:mx-auto max-[767px]:mb-6">
+            <div className="w-full h-[350px] bg-gradient-to-t from-[#062c45] to-[#0c446b] rounded-2xl border border-white/15 flex flex-col items-center justify-center text-center p-4 shadow-xl overflow-hidden group">
               <svg className="w-16 h-16 text-white/30 mb-2 group-hover:scale-105 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
@@ -105,8 +105,8 @@ export default function SpeakerIntro() {
             </div>
           </div>
 
-          {/* Right Side: Bio White Card (Overlapping image on Desktop) */}
-          <div className="w-full md:max-w-[580px] md:-ml-16 relative z-10 flex flex-col items-start gap-4 mb-4 text-left">
+          {/* Right Side: Bio White Card (Overlapping image on Desktop, extending to the right edge) */}
+          <div className="w-full md:-ml-12 relative z-10 flex flex-col items-start gap-4 mb-4 text-left">
             
             {/* White card info box */}
             <div className="bg-white text-[#042638] rounded-xl p-6 md:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-gray-100 w-full">
