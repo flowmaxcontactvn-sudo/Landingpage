@@ -19,7 +19,7 @@ export default function Registration() {
   });
 
   useEffect(() => {
-    const targetDate = new Date("2026-08-18T13:30:00");
+    const targetDate = new Date("2026-08-12T13:30:00");
     const interval = setInterval(() => {
       const now = new Date();
       const diff = targetDate.getTime() - now.getTime();
@@ -85,7 +85,7 @@ export default function Registration() {
           name,
           email,
           phone,
-          location: "TP.HCM",
+          location: "Hà Nội",
           ticketCount,
           totalPrice,
           invoiceInfo,
@@ -116,6 +116,38 @@ export default function Registration() {
 
   return (
     <section id="register" className="relative py-20 bg-[#042638] text-white font-sans border-t border-white/5">
+      
+      {/* MINI TOP BAR HEADER */}
+      <div className="w-full border-b border-white/10 pb-6 mb-12">
+        <div className="max-w-[1040px] mx-auto px-6 flex justify-between items-center max-[640px]:flex-col max-[640px]:gap-4">
+          {/* Left: Brand */}
+          <div className="text-left font-montserrat font-black text-[15px] md:text-[17px] tracking-wide uppercase">
+            <span className="text-[#ff1a40] drop-shadow-[0_2px_8px_rgba(255,26,64,0.2)]">THẦN SỐ HỌC</span> <span className="text-white">3 GỐC</span>
+          </div>
+          
+          {/* Middle: Schedule (Hanoi only) */}
+          <div className="text-center flex flex-col items-center">
+            <span className="text-[11px] font-bold text-white/50 uppercase tracking-widest leading-none">Hà Nội</span>
+            <span className="text-[14px] md:text-[15.5px] font-black text-[#ff9800] font-montserrat mt-1 block">06/08/2026</span>
+          </div>
+
+          {/* Right: CTA Button */}
+          <div>
+            <a 
+              href="#registration-form"
+              onClick={(e) => {
+                e.preventDefault();
+                const target = document.getElementById("registration-form");
+                if (target) target.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="inline-flex items-center justify-center bg-gradient-to-r from-[#cc0e48] to-[#ff1a40] text-white font-black text-[12.5px] md:text-[13.5px] font-montserrat uppercase tracking-wider px-6 py-2.5 rounded-full shadow-md shadow-[#ff1a40]/25 hover:scale-105 active:scale-95 transition-transform cursor-pointer"
+            >
+              ĐĂNG KÝ NGAY ➔
+            </a>
+          </div>
+        </div>
+      </div>
+
       <div className="max-w-[780px] mx-auto px-6 max-[680px]:px-4 flex flex-col items-center">
         
         {/* HEADER SECTION */}
@@ -144,32 +176,32 @@ export default function Registration() {
           </p>
         </div>
 
-        {/* LOCATION CARD - HO CHI MINH ONLY */}
-        <div className="w-full max-w-[460px] bg-[#e0f2f1] text-[#042638] rounded-2xl p-6 md:p-8 shadow-xl border border-teal-100 flex flex-col items-center text-center relative mb-12">
+        {/* LOCATION CARD - HANOI ONLY */}
+        <div className="w-full max-w-[460px] bg-[#fff9e6] text-[#042638] rounded-2xl p-6 md:p-8 shadow-xl border border-[#ffb300]/20 flex flex-col items-center text-center relative mb-12">
           
-          {/* Tag: Tại Hồ Chí Minh */}
-          <div className="bg-[#1a7f92] text-white font-black text-[15px] md:text-[16.5px] tracking-wide uppercase px-6 py-2.5 rounded-sm shadow-md font-montserrat absolute top-0 -translate-y-1/2">
-            Tại HỒ CHÍ MINH
+          {/* Tag: Tại Hà Nội */}
+          <div className="bg-[#ff9800] text-white font-black text-[15px] md:text-[16.5px] tracking-wide uppercase px-6 py-2.5 rounded-sm shadow-md font-montserrat absolute top-0 -translate-y-1/2">
+            Tại HÀ NỘI
           </div>
 
           <div className="space-y-6 w-full pt-4">
             {/* Address */}
             <div className="flex items-start gap-3 text-left">
-              <svg className="w-5 h-5 text-[#1a7f92] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+              <svg className="w-5 h-5 text-[#ff9800] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
-              <span className="text-[14.5px] font-bold text-[#042638]">Cập nhật sau</span>
+              <span className="text-[14px] md:text-[14.5px] font-bold text-[#042638]">Viện đào tạo bách khoa HN, KĐT Thanh Hà, Cự Khê, Thanh Oai, Hà Nội</span>
             </div>
 
             {/* Time & Khai Giảng */}
             <div className="flex items-start gap-3 text-left">
-              <svg className="w-5 h-5 text-[#1a7f92] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+              <svg className="w-5 h-5 text-[#ff9800] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
               <div className="text-[14.5px] font-bold text-[#042638] space-y-0.5">
                 <p>13h30 - 21h00</p>
-                <p>Khai giảng: <span className="text-[#ff1a40] font-black">18/08/2026</span></p>
+                <p>Khai giảng: <span className="text-[#ff1a40] font-black">06/08/2026</span></p>
               </div>
             </div>
 
@@ -182,7 +214,7 @@ export default function Registration() {
                 { label: "Giây", val: timeLeft.seconds }
               ].map((t, idx) => (
                 <div key={idx} className="flex flex-col items-center">
-                  <div className="w-[54px] h-[48px] rounded-lg bg-[#1a7f92] text-white font-black text-[22px] md:text-[24px] font-montserrat flex items-center justify-center shadow-md">
+                  <div className="w-[54px] h-[48px] rounded-lg bg-[#ff9800] text-white font-black text-[22px] md:text-[24px] font-montserrat flex items-center justify-center shadow-md">
                     {padZero(t.val)}
                   </div>
                   <span className="text-[10px] font-bold text-[#042638]/70 mt-1 uppercase tracking-wider">{t.label}</span>
@@ -191,13 +223,13 @@ export default function Registration() {
             </div>
 
             {/* Price */}
-            <div className="flex items-center gap-3 justify-center border-t border-[#1a7f92]/25 pt-5">
-              <svg className="w-5 h-5 text-[#1a7f92] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+            <div className="flex items-center gap-3 justify-center border-t border-[#ff9800]/20 pt-5">
+              <svg className="w-5 h-5 text-[#ff9800] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M7 7h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
               <div className="text-left leading-none">
                 <span className="text-[12.5px] font-bold text-gray-500 block uppercase tracking-wider">Học phí:</span>
-                <span className="text-[28px] md:text-[32px] font-black text-[#1a7f92] font-montserrat">{formatPrice(499000)}</span>
+                <span className="text-[28px] md:text-[32px] font-black text-[#ff9800] font-montserrat">{formatPrice(499000)}</span>
               </div>
             </div>
 
@@ -208,7 +240,7 @@ export default function Registration() {
                 const target = document.getElementById("registration-form");
                 if (target) target.scrollIntoView({ behavior: "smooth" });
               }}
-              className="w-full bg-[#1a7f92] hover:bg-[#146473] text-white font-black uppercase py-4 rounded-xl shadow-lg shadow-[#1a7f92]/20 active:scale-[0.98] transition-all cursor-pointer text-[14.5px] md:text-[15.5px] tracking-wider"
+              className="w-full bg-[#ff9800] hover:bg-[#e65100] text-white font-black uppercase py-4 rounded-xl shadow-lg shadow-[#ff9800]/20 active:scale-[0.98] transition-all cursor-pointer text-[14.5px] md:text-[15.5px] tracking-wider"
             >
               ĐĂNG KÝ NGAY ➔
             </button>
@@ -286,12 +318,12 @@ export default function Registration() {
               />
             </div>
 
-            {/* Fixed Location: TP.HCM */}
+            {/* Fixed Location: Hà Nội */}
             <div className="space-y-2">
               <span className="block text-[13px] font-bold text-white/60 uppercase tracking-wider">Địa điểm:</span>
               <div className="bg-white text-gray-800 rounded-lg p-4 flex items-center gap-3">
-                <span className="w-5 h-5 rounded-full border-4 border-[#ff1a40] bg-[#ff1a40] shrink-0" />
-                <span className="text-[15px] font-bold">Tôi tham dự ở TP.HCM</span>
+                <span className="w-5 h-5 rounded-full border-4 border-[#ff9800] bg-[#ff9800] shrink-0" />
+                <span className="text-[15px] font-bold">Tôi tham dự ở Hà Nội</span>
               </div>
             </div>
 
