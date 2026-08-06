@@ -12,7 +12,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen pt-32 pb-16 flex flex-col justify-between bg-[#041522] text-white overflow-hidden font-sans">
+    <section id="hero" className="relative min-h-screen pt-32 pb-16 flex flex-col justify-between bg-[#042638] text-white overflow-hidden font-sans">
       {/* Import Font viết tay Caveat độc lập chỉ cho Landing 2 */}
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap');
@@ -73,7 +73,7 @@ export default function Hero() {
         </h1>
 
         {/* Sub-headline Box */}
-        <div className="inline-flex items-center gap-2.5 bg-[#06243a] border border-white/20 rounded-full px-6 py-3 mb-8 shadow-md">
+        <div className="inline-flex items-center gap-2.5 bg-[#051c2d] border border-white/10 rounded-full px-6 py-3 mb-8 shadow-md">
           <span className="text-[#f9c115] text-base">👉</span>
           <p className="text-[17px] md:text-[20px] font-bold tracking-wide font-sans">
             <span className="text-white mr-1.5">Khai sáng trí tuệ,</span>
