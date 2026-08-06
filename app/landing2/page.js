@@ -6,6 +6,7 @@ import Hero from "./components/sections/Hero";
 import Benefits from "./components/sections/Benefits";
 import TargetAudience from "./components/sections/TargetAudience";
 import CourseIntro from "./components/sections/CourseIntro";
+import FourCircles from "./components/sections/FourCircles";
 
 export default function Landing2Page() {
   return (
@@ -23,6 +24,9 @@ export default function Landing2Page() {
 
         {/* Section 4: Giới thiệu chuyên sâu Thần Số Học 3 Gốc */}
         <CourseIntro />
+
+        {/* Section 5: 4 Vòng tròn đào tạo */}
+        <FourCircles />
 
         {/* Section 3: Đăng ký */}
         <section id="register" className="py-24 border-t border-white/5 bg-[#07080d]">
