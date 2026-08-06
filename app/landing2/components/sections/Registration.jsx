@@ -180,28 +180,28 @@ export default function Registration() {
         <div className="w-full max-w-[460px] bg-[#fff9e6] text-[#042638] rounded-2xl p-6 md:p-8 shadow-xl border border-[#ffb300]/20 flex flex-col items-center text-center relative mb-12">
           
           {/* Tag: Tại Hà Nội */}
-          <div className="bg-[#ff9800] text-white font-black text-[15px] md:text-[16.5px] tracking-wide uppercase px-6 py-2.5 rounded-sm shadow-md font-montserrat absolute top-0 -translate-y-1/2">
+          <div className="bg-[#ff9800] text-white font-black text-[17px] md:text-[18.5px] tracking-wide uppercase px-6 py-2.5 rounded-sm shadow-md font-montserrat absolute top-0 -translate-y-1/2">
             Tại HÀ NỘI
           </div>
 
           <div className="space-y-6 w-full pt-4">
             {/* Address */}
             <div className="flex items-start gap-3 text-left">
-              <svg className="w-5 h-5 text-[#ff9800] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+              <svg className="w-5.5 h-5.5 text-[#ff9800] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
-              <span className="text-[14px] md:text-[14.5px] font-bold text-[#042638]">Viện đào tạo bách khoa HN, KĐT Thanh Hà, Cự Khê, Thanh Oai, Hà Nội</span>
+              <span className="text-[15.5px] md:text-[17px] font-black leading-snug text-[#042638]">Viện đào tạo bách khoa HN, KĐT Thanh Hà, Cự Khê, Thanh Oai, Hà Nội</span>
             </div>
 
             {/* Time & Khai Giảng */}
             <div className="flex items-start gap-3 text-left">
-              <svg className="w-5 h-5 text-[#ff9800] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+              <svg className="w-5.5 h-5.5 text-[#ff9800] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
-              <div className="text-[14.5px] font-bold text-[#042638] space-y-0.5">
+              <div className="text-[16px] md:text-[17px] font-black text-[#042638] space-y-0.5">
                 <p>13h30 - 21h00</p>
-                <p>Khai giảng: <span className="text-[#ff1a40] font-black">06/08/2026</span></p>
+                <p>Khai giảng: <span className="text-[#ff1a40] font-black tracking-wide">06/08/2026</span></p>
               </div>
             </div>
 
@@ -214,22 +214,22 @@ export default function Registration() {
                 { label: "Giây", val: timeLeft.seconds }
               ].map((t, idx) => (
                 <div key={idx} className="flex flex-col items-center">
-                  <div className="w-[54px] h-[48px] rounded-lg bg-[#ff9800] text-white font-black text-[22px] md:text-[24px] font-montserrat flex items-center justify-center shadow-md">
+                  <div className="w-[58px] h-[52px] rounded-lg bg-[#ff9800] text-white font-black text-[24px] md:text-[26px] font-montserrat flex items-center justify-center shadow-md">
                     {padZero(t.val)}
                   </div>
-                  <span className="text-[10px] font-bold text-[#042638]/70 mt-1 uppercase tracking-wider">{t.label}</span>
+                  <span className="text-[11px] md:text-[12px] font-black text-[#042638]/80 mt-1 uppercase tracking-wider">{t.label}</span>
                 </div>
               ))}
             </div>
 
             {/* Price */}
             <div className="flex items-center gap-3 justify-center border-t border-[#ff9800]/20 pt-5">
-              <svg className="w-5 h-5 text-[#ff9800] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+              <svg className="w-5.5 h-5.5 text-[#ff9800] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M7 7h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
               <div className="text-left leading-none">
-                <span className="text-[12.5px] font-bold text-gray-500 block uppercase tracking-wider">Học phí:</span>
-                <span className="text-[28px] md:text-[32px] font-black text-[#ff9800] font-montserrat">{formatPrice(499000)}</span>
+                <span className="text-[13px] md:text-[14px] font-black text-gray-500 block uppercase tracking-wider">Học phí:</span>
+                <span className="text-[32px] md:text-[36px] font-black text-[#ff9800] font-montserrat tracking-wide">{formatPrice(499000)}</span>
               </div>
             </div>
 
@@ -240,7 +240,7 @@ export default function Registration() {
                 const target = document.getElementById("registration-form");
                 if (target) target.scrollIntoView({ behavior: "smooth" });
               }}
-              className="w-full bg-[#ff9800] hover:bg-[#e65100] text-white font-black uppercase py-4 rounded-xl shadow-lg shadow-[#ff9800]/20 active:scale-[0.98] transition-all cursor-pointer text-[14.5px] md:text-[15.5px] tracking-wider"
+              className="w-full bg-[#ff9800] hover:bg-[#e65100] text-white font-black uppercase py-4 rounded-xl shadow-lg shadow-[#ff9800]/20 active:scale-[0.98] transition-all cursor-pointer text-[16px] md:text-[17.5px] tracking-wider"
             >
               ĐĂNG KÝ NGAY ➔
             </button>
