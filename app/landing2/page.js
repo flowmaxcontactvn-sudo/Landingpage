@@ -4,6 +4,7 @@ import React from "react";
 import Footer from "./components/layout/Footer";
 import Hero from "./components/sections/Hero";
 import Benefits from "./components/sections/Benefits";
+import TargetAudience from "./components/sections/TargetAudience";
 
 export default function Landing2Page() {
   return (
@@ -15,6 +16,9 @@ export default function Landing2Page() {
 
         {/* Section 2: Giá trị khóa học mang lại */}
         <Benefits />
+
+        {/* Section 3: Khóa học dành cho những ai */}
+        <TargetAudience />
 
         {/* Section 3: Đăng ký */}
         <section id="register" className="py-24 border-t border-white/5 bg-[#07080d]">
