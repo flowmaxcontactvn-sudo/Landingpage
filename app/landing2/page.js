@@ -7,6 +7,7 @@ import Benefits from "./components/sections/Benefits";
 import TargetAudience from "./components/sections/TargetAudience";
 import CourseIntro from "./components/sections/CourseIntro";
 import FourCircles from "./components/sections/FourCircles";
+import WhatIsNumerology from "./components/sections/WhatIsNumerology";
 
 export default function Landing2Page() {
   return (
@@ -27,6 +28,9 @@ export default function Landing2Page() {
 
         {/* Section 5: 4 Vòng tròn đào tạo */}
         <FourCircles />
+
+        {/* Section 6: Thần số học là gì? Để làm gì? */}
+        <WhatIsNumerology />
 
         {/* Section 3: Đăng ký */}
         <section id="register" className="py-24 border-t border-white/5 bg-[#07080d]">
